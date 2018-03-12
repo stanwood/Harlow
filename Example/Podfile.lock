@@ -1,0 +1,16 @@
+PODS:
+  - StanwoodDebugger (0.1.0)
+
+DEPENDENCIES:
+  - StanwoodDebugger (from `../`)
+
+EXTERNAL SOURCES:
+  StanwoodDebugger:
+    :path: ../
+
+SPEC CHECKSUMS:
+  StanwoodDebugger: 71c1a07225288cd4cabe57d15ac664bb64424d92
+
+PODFILE CHECKSUM: 9bef2151bc203a5d622389752e0e6e5c1852b1d3
+
+COCOAPODS: 1.4.0

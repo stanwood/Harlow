@@ -1,29 +1,39 @@
-# StanwoodDebugger
 
-[![CI Status](http://img.shields.io/travis/talezion/StanwoodDebugger.svg?style=flat)](https://travis-ci.org/talezion/StanwoodDebugger)
-[![Version](https://img.shields.io/cocoapods/v/StanwoodDebugger.svg?style=flat)](http://cocoapods.org/pods/StanwoodDebugger)
-[![License](https://img.shields.io/cocoapods/l/StanwoodDebugger.svg?style=flat)](http://cocoapods.org/pods/StanwoodDebugger)
-[![Platform](https://img.shields.io/cocoapods/p/StanwoodDebugger.svg?style=flat)](http://cocoapods.org/pods/StanwoodDebugger)
+# StanwoodCore framework
 
-## Example
+[![Swift Version](https://img.shields.io/badge/Swift-4.0.x-orange.svg)]()
+[![iOS 9+](https://img.shields.io/badge/iOS-9+-EB7943.svg)]()
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+## Table of contents
 
-## Requirements
+- [Author](#author)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Licence](#licence)
 
-## Installation
-
-StanwoodDebugger is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'StanwoodDebugger'
-```
 
 ## Author
 
-talezion, talezion@gmail.com
+Tal Zion tal.zion@stanwood.io
 
-## License
+## Installation
 
-StanwoodDebugger is available under the MIT license. See the LICENSE file for more info.
+```ruby
+source 'git@github.com:CocoaPods/Specs.git'
+source 'git@github.com:stanwood/Cocoa_Pods_Specs.git'
+
+pod 'StanwoodDebugger', :configurations => ['Debug']
+```
+
+```
+$ pod update StanwoodDebugger
+```
+
+## Release Notes
+
+###
+
+## Licence
+
+StanwoodCore is a private library. See the [LICENSE](https://github.com/stanwood/Stanwood_Core/blob/master/LICENSE) file for more info.
+
