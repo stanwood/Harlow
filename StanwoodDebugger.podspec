@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'StanwoodDebugger'
-  s.version          = '0.1.0'
+  s.version          = '0.0.1'
   s.summary          = 'Stanwood debugger provide live view debugging'
   s.description      = <<-DESC
     Live debugger for:
@@ -20,4 +20,5 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '10.0'
 
   s.source_files = 'StanwoodDebugger/Classes/**/*'
+  s.dependency 'Pulsator'
 end
