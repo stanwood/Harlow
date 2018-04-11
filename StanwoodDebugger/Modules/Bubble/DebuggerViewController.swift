@@ -10,6 +10,7 @@ import Foundation
 class DebuggerViewController: UIViewController {
     
     private var debuggerButton: DebuggerUIButton!
+    var presenter: DebuggerPresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,27 +20,18 @@ class DebuggerViewController: UIViewController {
     }
 
     @objc func didTapDebuggerButton(target: UIButton) {
-        StanwoodDebugger.shared.isDisplayed = true
-        
-        /// For testing only, will be implemented in other tickets
-        let viewController = DebuggerDetailViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
-        let item = UIBarButtonItem(barButtonSystemItem: .done, target: viewController, action: #selector(DebuggerDetailViewController.dismissDebuggerView))
-        viewController.navigationItem.leftBarButtonItem = item
-        navigationController.tabBarItem = UITabBarItem(title: "Debugger", image: nil, selectedImage: nil)
-        let tabBarController = UITabBarController()
-        tabBarController.setViewControllers([navigationController], animated: false)
-        present(tabBarController, animated: true, completion: nil)
+        presenter.debuggerable.isDisplayed = true
+        presenter.presentDetailView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        StanwoodDebugger.shared.isDisplayed = false
+        presenter.debuggerable.isDisplayed = false
         debuggerButton.activatePulse()
     }
     
     func shouldHandle(_ point: CGPoint) -> Bool {
-        if StanwoodDebugger.shared.isDisplayed {
+        if presenter.debuggerable.isDisplayed {
             return true
         }
         return debuggerButton.frame.contains(point)

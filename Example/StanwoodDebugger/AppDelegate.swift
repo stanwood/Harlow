@@ -13,10 +13,11 @@ import StanwoodDebugger
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    lazy var debugger: StanwoodDebugger = StanwoodDebugger()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        StanwoodDebugger.shared.isEnabled = true
+        debugger.isEnabled = true
         
         return true
     }

@@ -7,7 +7,13 @@
 
 import Foundation
 
-public class StanwoodDebugger {
+protocol Debuggerable: class {
+    var isEnabled: Bool { get set }
+    var isDisplayed: Bool { get set }
+}
+
+/// StanwoodDebugger acts as the framework controller, delegating logs
+public class StanwoodDebugger: Debuggerable {
     
     /// Enable Debugger View
     public var isEnabled: Bool = false {
@@ -16,20 +22,25 @@ public class StanwoodDebugger {
         }
     }
     
-    /// Debugger Singleton
-    public static let shared: StanwoodDebugger = StanwoodDebugger()
-    
-    fileprivate lazy var debuggerViewController = DebuggerViewController()
-    private let window: DebuggerWindow
     var isDisplayed: Bool = false
-    
-    private init() {
+    fileprivate var debuggerViewController: DebuggerViewController?
+    private let window: DebuggerWindow
+    private let coordinator: DebuggerCoordinator
+    private let actions: DebuggerActions
+    public init() {
         window = DebuggerWindow(frame: UIScreen.main.bounds)
+        coordinator = DebuggerCoordinator(window: window)
+        actions = DebuggerActions(coordinator: coordinator)
     }
     
     private func configureDebuggerView() {
         switch isEnabled {
         case true:
+            if debuggerViewController == nil {
+                let presenter = DebuggerPresenter(debuggerable: self, actionable: actions)
+                debuggerViewController = DebuggerViewController()
+                debuggerViewController?.presenter = presenter
+            }
             window.rootViewController = debuggerViewController
             window.makeKeyAndVisible()
             window.delegate = self
@@ -44,6 +55,6 @@ public class StanwoodDebugger {
 extension StanwoodDebugger: DebuggerWindowDelegate {
     
     func isPoint(inside point: CGPoint) -> Bool {
-        return debuggerViewController.shouldHandle(point)
+        return debuggerViewController?.shouldHandle(point) ?? false
     }
 }
