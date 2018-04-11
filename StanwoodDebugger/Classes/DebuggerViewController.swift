@@ -16,7 +16,6 @@ class DebuggerViewController: UIViewController {
         debuggerButton = DebuggerUIButton()
         debuggerButton.addTarget(self, action: #selector(didTapDebuggerButton(target:)), for: .touchUpInside)
         view.addSubview(debuggerButton)
-        debuggerButton.activatePulse()
     }
 
     @objc func didTapDebuggerButton(target: UIButton) {
@@ -36,6 +35,7 @@ class DebuggerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         StanwoodDebugger.shared.isDisplayed = false
+        debuggerButton.activatePulse()
     }
     
     func shouldHandle(_ point: CGPoint) -> Bool {
