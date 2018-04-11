@@ -19,6 +19,11 @@ Pod::Spec.new do |s|
   s.swift_version = '4.0'
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'StanwoodDebugger/Classes/**/*'
+  s.source_files = [
+    'StanwoodCore/Controller/**/*',
+    'StanwoodCore/Views/**/*',
+    'StanwoodCore/DebuggerModule/**/*',
+    'StanwoodCore/DebuggerDetailModule/**/*'
+  ]
   s.dependency 'Pulsator'
 end
