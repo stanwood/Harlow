@@ -10,6 +10,7 @@ import Pulsator
 
 class DebuggerUIButton: UIButton {
     
+    // Will be moved to another file
     private var globalTint: UIColor {
         return UIColor(red: 210/255, green: 78/255, blue: 79/255, alpha: 1)
     }
