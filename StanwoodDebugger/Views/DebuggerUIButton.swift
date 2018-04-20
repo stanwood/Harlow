@@ -49,7 +49,7 @@ class DebuggerUIButton: UIButton {
                 let rect = CGRect(origin: origin, size: size)
                 return rect
             case .topRight:
-                let origin = CGPoint(x: size.width / 2, y: 0)
+                let origin = CGPoint(x: size.width, y: 0)
                 let rect = CGRect(origin: origin, size: size)
                 return rect
             case .centerLeft:
