@@ -1,5 +1,7 @@
 PODS:
-  - StanwoodDebugger (0.1.0)
+  - Pulsator (0.5.1)
+  - StanwoodDebugger (0.0.1):
+    - Pulsator
 
 DEPENDENCIES:
   - StanwoodDebugger (from `../`)
@@ -9,7 +11,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  StanwoodDebugger: 71c1a07225288cd4cabe57d15ac664bb64424d92
+  Pulsator: f465ca37212d826523fe8c79b07c1a4c1a941f5e
+  StanwoodDebugger: 03756dfeddb437bf95f9b19ceee374dedb5a9576
 
 PODFILE CHECKSUM: 9bef2151bc203a5d622389752e0e6e5c1852b1d3
 
