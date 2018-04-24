@@ -20,4 +20,8 @@ class DebuggerPresenter {
     func presentDetailView() {
         actionable.presentDetailView()
     }
+    
+    func presentScaled(_ view: DebuggerScallableView) {
+        actionable.presentScaleable(view)
+    }
 }

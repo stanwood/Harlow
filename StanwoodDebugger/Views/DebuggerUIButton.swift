@@ -96,10 +96,18 @@ class DebuggerUIButton: UIButton {
         }
     }
     
-    var pulsator: Pulsator
+    private lazy var pulsator: Pulsator = Pulsator()
     
+    var isPulseEnabled: Bool = false {
+        didSet {
+            switch isPulseEnabled {
+            case true: pulsator.start()
+            case false: pulsator.stop()
+            }
+        }
+    }
     init() {
-        pulsator = Pulsator()
+        
         super.init(frame: CGRect(origin: Positions.centerLeft.origin, size: Positions.buttonSize))
         center = Positions.centerLeft.origin
         
@@ -112,16 +120,15 @@ class DebuggerUIButton: UIButton {
         addGestureRecognizer(pan)
     }
     
-    func activatePulse() {
+    func preparePulse() {
         pulsator.backgroundColor = globalTint.cgColor
         pulsator.radius = Positions.buttonSize.width * 0.875
         pulsator.numPulse = 3
         pulsator.animationDuration = 3
         pulsator.position = center
+        
         superview?.layer.insertSublayer(pulsator, below: layer)
-        pulsator.start()
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

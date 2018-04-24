@@ -9,10 +9,16 @@ import Foundation
 
 protocol DebuggerActionable {
     func presentDetailView()
+    func presentScaleable(_ view: DebuggerScallableView)
 }
+
 extension DebuggerActions: DebuggerActionable {
     
     func presentDetailView() {
         coordinator.presentDetailView()
+    }
+    
+    func presentScaleable(_ view: DebuggerScallableView) {
+        view.show()
     }
 }

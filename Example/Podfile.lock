@@ -6,14 +6,18 @@ PODS:
 DEPENDENCIES:
   - StanwoodDebugger (from `../`)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Pulsator
+
 EXTERNAL SOURCES:
   StanwoodDebugger:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   Pulsator: f465ca37212d826523fe8c79b07c1a4c1a941f5e
-  StanwoodDebugger: 03756dfeddb437bf95f9b19ceee374dedb5a9576
+  StanwoodDebugger: ca5e1f10ca79e63e051c43436e69858c78efb8b4
 
 PODFILE CHECKSUM: 9bef2151bc203a5d622389752e0e6e5c1852b1d3
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0

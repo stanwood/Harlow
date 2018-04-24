@@ -10,6 +10,8 @@ import Foundation
 class DebuggerViewController: UIViewController {
     
     private var debuggerButton: DebuggerUIButton!
+    private var debuggerScallableView: DebuggerScallableView?
+    
     var presenter: DebuggerPresenter!
     
     override func viewDidLoad() {
@@ -19,19 +21,30 @@ class DebuggerViewController: UIViewController {
         view.addSubview(debuggerButton)
     }
 
-    @objc func didTapDebuggerButton(target: UIButton) {
+    @objc func didTapDebuggerButton(target: DebuggerUIButton) {
         presenter.debuggerable.isDisplayed = true
-        presenter.presentDetailView()
+        if debuggerScallableView == nil {
+            debuggerScallableView = DebuggerScallableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), button: debuggerButton)
+            view.addSubview(debuggerScallableView!)
+        }
+        presenter.presentScaled(debuggerScallableView!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.debuggerable.isDisplayed = false
-        debuggerButton.activatePulse()
+        debuggerButton.preparePulse()
+        debuggerButton.isPulseEnabled = true
     }
     
     func shouldHandle(_ point: CGPoint) -> Bool {
         if presenter.debuggerable.isDisplayed {
+            
+            if let view = debuggerScallableView, !view.frame.contains(point) {
+                debuggerScallableView?.dismiss()
+                presenter.debuggerable.isDisplayed = false
+            }
+            
             return true
         }
         return debuggerButton.frame.contains(point)
