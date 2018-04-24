@@ -23,10 +23,15 @@ Pod::Spec.new do |s|
     'StanwoodDebugger/Controller/**/*',
     'StanwoodDebugger/Views/**/*',
     'StanwoodDebugger/Modules/**/*',
-    'StanwoodDebugger/Protocols/**/*'
+    'StanwoodDebugger/Protocols/**/*',
+    'StanwoodDebugger/Extensions/**/*'
   ]
   s.resource_bundles = {
-      'StanwoodDebugger' => ['StanwoodDebugger/Assets/**/*']
+      'StanwoodDebugger' => [
+      'StanwoodDebugger/Assets/**/*.{png,jpeg}',
+      'StanwoodDebugger/Views/**/*.xib'
+      ]
+      
   }
 
   s.dependency 'Pulsator'
