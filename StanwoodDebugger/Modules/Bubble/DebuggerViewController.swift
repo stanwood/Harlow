@@ -26,6 +26,7 @@ class DebuggerViewController: UIViewController {
         if debuggerScallableView == nil {
             debuggerScallableView = DebuggerScallableView.loadFromNib(withFrame: .zero, bundle: Bundle.debuggerBundle(from: type(of: self)))
             debuggerScallableView?.button = debuggerButton
+            debuggerScallableView?.delegate = self
             view.addSubview(debuggerScallableView!)
         }
         presenter.presentScaled(debuggerScallableView!)
@@ -41,7 +42,7 @@ class DebuggerViewController: UIViewController {
     func shouldHandle(_ point: CGPoint) -> Bool {
         if presenter.debuggerable.isDisplayed {
             
-            if let view = debuggerScallableView, !view.frame.contains(point) {
+            if let view = debuggerScallableView, !view.frame.contains(point), isViewLoaded, view.window != nil {
                 debuggerScallableView?.dismiss()
                 presenter.debuggerable.isDisplayed = false
             }
@@ -52,6 +53,17 @@ class DebuggerViewController: UIViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        
+        // TODO
+    }
+}
+
+extension DebuggerViewController: DebuggerScallableViewDelegate {
+    
+    func scallableViewIsExpanding(completion: @escaping Completion) {
+        presenter.presentDetailView(completion: completion)
+    }
+    
+    func scallableViewDidDismiss() {
+        presenter.debuggerable.isDisplayed = false
     }
 }

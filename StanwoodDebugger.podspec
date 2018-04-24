@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   ]
   s.resource_bundles = {
       'StanwoodDebugger' => [
-      'StanwoodDebugger/Assets/**/*.{png,jpeg}',
+      'StanwoodDebugger/Assets/*',
       'StanwoodDebugger/Views/**/*.xib'
       ]
       

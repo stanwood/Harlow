@@ -16,21 +16,53 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="218"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9eL-lz-8wQ">
-                    <rect key="frame" x="166" y="98.5" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAJ-7Q-agL">
+                    <rect key="frame" x="5" y="5" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="ggi-6Z-6X2"/>
+                        <constraint firstAttribute="width" constant="44" id="gpK-Yo-gII"/>
+                    </constraints>
+                    <state key="normal" image="close_icon"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYg-ga-tMw">
+                    <rect key="frame" x="326" y="5" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="2Yf-K3-OJ3"/>
+                        <constraint firstAttribute="height" constant="44" id="QpI-gc-FYG"/>
+                    </constraints>
+                    <state key="normal" image="expand_icon"/>
+                    <connections>
+                        <action selector="expand:" destination="iN0-l3-epB" eventType="touchUpInside" id="3XM-s8-pqr"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qMS-nW-G21">
+                    <rect key="frame" x="0.0" y="49" width="375" height="169"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="9eL-lz-8wQ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="a6e-Ht-dP7"/>
-                <constraint firstItem="9eL-lz-8wQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hcH-M0-Fvt"/>
+                <constraint firstItem="qMS-nW-G21" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7WH-dd-0P8"/>
+                <constraint firstItem="TYg-ga-tMw" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="DUJ-fK-0ve"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TYg-ga-tMw" secondAttribute="trailing" constant="5" id="FGP-Wf-gON"/>
+                <constraint firstItem="jAJ-7Q-agL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="L5u-ab-7LP"/>
+                <constraint firstItem="qMS-nW-G21" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="NOM-Mt-yxX"/>
+                <constraint firstItem="jAJ-7Q-agL" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="WK0-wN-hAF"/>
+                <constraint firstItem="qMS-nW-G21" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Xd8-7k-ETR"/>
+                <constraint firstItem="qMS-nW-G21" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="49" id="acy-Lq-Kgb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="39" y="259"/>
+            <connections>
+                <outlet property="closeButton" destination="jAJ-7Q-agL" id="08h-U0-BOP"/>
+                <outlet property="expandButton" destination="TYg-ga-tMw" id="6md-de-6D6"/>
+                <outlet property="tableView" destination="qMS-nW-G21" id="CpX-6G-bqA"/>
+            </connections>
+            <point key="canvasLocation" x="38.5" y="259"/>
         </view>
     </objects>
+    <resources>
+        <image name="close_icon" width="24" height="24"/>
+        <image name="expand_icon" width="24" height="24"/>
+    </resources>
 </document>
