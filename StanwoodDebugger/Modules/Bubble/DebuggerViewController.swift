@@ -24,7 +24,7 @@ class DebuggerViewController: UIViewController {
     @objc func didTapDebuggerButton(target: DebuggerUIButton) {
         presenter.debuggerable.isDisplayed = true
         if debuggerScallableView == nil {
-            debuggerScallableView = DebuggerScallableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), button: debuggerButton)
+            debuggerScallableView = DebuggerScallableView.loadFromNib() //(frame: CGRect(x: 0, y: 0, width: 0, height: 0), button: debuggerButton)
             view.addSubview(debuggerScallableView!)
         }
         presenter.presentScaled(debuggerScallableView!)

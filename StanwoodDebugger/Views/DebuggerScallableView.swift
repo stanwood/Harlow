@@ -21,40 +21,46 @@ class DebuggerScallableView: UIView {
         self.button = button
         backgroundColor = .white
         alpha = 0
-        prepare()
+//        prepare()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
     }
     
-    private func prepare() {
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        let close = UIButton()
-        let image = UIImage(named: "close_icon", in: Bundle(for: type(of: self)), compatibleWith: nil)
-        close.setImage(image, for: .normal)
-        close.translatesAutoresizingMaskIntoConstraints = false
-        
-        let view = UIView()
-        view.backgroundColor = .red
-        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(close)
-        
-        addSubview(view)
-        
-        NSLayoutConstraint.activate([
-                view.heightAnchor.constraint(equalToConstant: 50),
-                view.topAnchor.constraint(equalTo: topAnchor),
-                view.leadingAnchor.constraint(equalTo: leadingAnchor),
-                view.trailingAnchor.constraint(equalTo: trailingAnchor)//,
+//    private func prepare() {
+//        translatesAutoresizingMaskIntoConstraints = false
 //
-//                close.heightAnchor.constraint(equalToConstant: 44),
-//                close.widthAnchor.constraint(equalToConstant: 44),
-//                close.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  -8),
-//                close.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-            ])
-    }
+//        let close = UIButton()
+//        let image = UIImage(named: "close_icon", in: Bundle(for: type(of: self)), compatibleWith: nil)
+//        close.setImage(image, for: .normal)
+//        close.translatesAutoresizingMaskIntoConstraints = false
+//
+//        let view = UIView()
+//        view.backgroundColor = .red
+//        view.translatesAutoresizingMaskIntoConstraints = false
+////        view.addSubview(close)
+//
+//        addSubview(view)
+//
+//        NSLayoutConstraint.activate([
+//                view.heightAnchor.constraint(equalToConstant: 50),
+//                view.topAnchor.constraint(equalTo: topAnchor),
+//                view.leadingAnchor.constraint(equalTo: leadingAnchor),
+//                view.trailingAnchor.constraint(equalTo: trailingAnchor)//,
+////
+////                close.heightAnchor.constraint(equalToConstant: 44),
+////                close.widthAnchor.constraint(equalToConstant: 44),
+////                close.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  -8),
+////                close.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//            ])
+//    }
     
     func show() {
         center = button.center
