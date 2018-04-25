@@ -1,5 +1,5 @@
 //
-//  Nibable.swift
+//  Loading.swift
 //  StanwoodDebugger-StanwoodDebugger
 //
 //  Created by Tal Zion on 24/04/2018.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol Nibable { }
+protocol Loading { }
 
-extension UIView: Nibable { }
+extension UIView: Loading { }
 
-extension Nibable where Self: UIView {
+extension Loading where Self: UIView {
     
     static func loadFromNib(withFrame frame: CGRect? = nil, bundle: Bundle = Bundle.main) -> Self? {
         guard let view = bundle.loadNibNamed(staticIdentifier, owner: nil, options: nil)?.last as? Self else { return nil }
