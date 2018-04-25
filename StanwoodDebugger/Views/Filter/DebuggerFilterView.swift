@@ -24,6 +24,8 @@ class DebuggerFilterView: UIView {
         static var allFilters: [DebuggerFilter] = [.analytics, .error, .uiTesting, .networking, .logs]
     }
     
+    private var currnetFilter: DebuggerFilter = .analytics
+    
     weak var delegate: DebuggerFilterViewDelegate?
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -51,6 +53,21 @@ extension DebuggerFilterView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(cellType: FilterCell.self, for: indexPath)
         cell.fill(with: DebuggerFilter.allFilters[indexPath.row])
+        cell.delegate = self
+        cell.set(selected: DebuggerFilter.allFilters[indexPath.row] == currnetFilter)
         return cell
+    }
+}
+
+extension DebuggerFilterView: FilterCellDelegate {
+    
+    func filterCellDid(filter: DebuggerFilterView.DebuggerFilter) {
+        self.currnetFilter = filter
+        
+        for cell in collectionView.visibleCells {
+            (cell as? FilterCell)?.select(currentFilter: currnetFilter)
+        }
+        
+        delegate?.debuggerFilterViewDidFilter(filter)
     }
 }

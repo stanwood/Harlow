@@ -17,8 +17,11 @@ class DebuggerCoordinator {
     
     func presentDetailView(completion: @escaping Completion) {
         
+        let title = "Debugger"
+        
         // Detail Nav Controller
         let deatailViewController = DebuggerDetailViewController()
+        deatailViewController.title = title
         let detailNavigationController = UINavigationController(rootViewController: deatailViewController)
         let detailItem = UIBarButtonItem(barButtonSystemItem: .done, target: deatailViewController, action: #selector(DebuggerDetailViewController.dismissDebuggerView))
         deatailViewController.navigationItem.leftBarButtonItem = detailItem
@@ -26,6 +29,7 @@ class DebuggerCoordinator {
         
         // Settings Nav Controller
         let settingsViewController = DebuggerDetailViewController()
+        settingsViewController.title = title
         let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
         let settingsItem = UIBarButtonItem(barButtonSystemItem: .done, target: settingsViewController, action: #selector(DebuggerSettingsViewController.dismissDebuggerView))
         settingsViewController.navigationItem.leftBarButtonItem = settingsItem

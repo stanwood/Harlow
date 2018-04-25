@@ -38,4 +38,20 @@ class FilterCell: UICollectionViewCell {
         guard let filter = filter else { return }
         delegate?.filterCellDid(filter: filter)
     }
+    
+    func select(currentFilter: DebuggerFilterView.DebuggerFilter) {
+        guard let filter = filter else { return }
+        set(selected: currentFilter == filter)
+    }
+    
+    func set(selected: Bool) {
+        switch selected {
+        case true:
+            filterButton.setTitleColor(.white, for: .normal)
+            filterButton.backgroundColor = .blue
+        case false:
+            filterButton.setTitleColor(.blue, for: .normal)
+            filterButton.backgroundColor = .white
+        }
+    }
 }
