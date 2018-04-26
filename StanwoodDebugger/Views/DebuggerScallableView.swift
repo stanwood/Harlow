@@ -15,11 +15,13 @@ protocol DebuggerScallableViewDelegate: class {
 }
 class DebuggerScallableView: UIView {
     
+    private var currentFilter: DebuggerFilterView.DebuggerFilter = .analytics
     private var size: CGSize {
         let screenSize = UIScreen.main.bounds.size
         return CGSize(width: screenSize.width - 18, height: screenSize.height / 1.8 )
     }
     
+    @IBOutlet private weak var filterView: DebuggerFilterOutletView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var expandButton: UIButton!
     @IBOutlet private weak var closeButton: UIButton!
@@ -27,8 +29,11 @@ class DebuggerScallableView: UIView {
     weak var button: DebuggerUIButton!
     weak var delegate: DebuggerScallableViewDelegate?
     
+    private var views: [UIView] {
+        return [tableView, filterView]
+    }
     private var buttons: [UIView] {
-        return [expandButton, closeButton, tableView]
+        return [expandButton, closeButton]
     }
     
     override func awakeFromNib() {
@@ -36,7 +41,19 @@ class DebuggerScallableView: UIView {
         backgroundColor = UIColor.white.withAlphaComponent(0.5)
         alpha = 0
         closeButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
+        views.hide(animated: false)
         buttons.hide(animated: false)
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowRadius = 2
+        layer.shadowOpacity = 0.45
+        layer.masksToBounds = false
+        clipsToBounds = true
+        layer.cornerRadius = 5
+        layer.borderColor = UIColor.black.withAlphaComponent(0.3).cgColor
+        layer.borderWidth = 1
+        
+        filterView.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
@@ -54,17 +71,19 @@ class DebuggerScallableView: UIView {
                 self.center = UIApplication.shared.keyWindow?.center ?? .zero
                 self.alpha = 1
             }, completion: { _ in
+                self.views.show(duration: 0.3)
                 self.buttons.show(duration: 0.3)
             })
         }
     }
     
     @objc func dismiss(fromExpandable isExpandable: Bool = false) {
+        views.hide(duration: 0.3)
         buttons.hide(duration: 0.3)
         UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseIn, animations: {
             self.frame = CGRect(origin: .zero, size: .zero)
             self.center = self.button.center
-            self.alpha = 0
+            self.alpha = isExpandable ? 1 : 0
         }) { _ in
             UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: {
                 self.button.transform = .identity
@@ -80,16 +99,24 @@ class DebuggerScallableView: UIView {
     }
     
     @IBAction func expand(_ sender: Any) {
-        buttons.hide()
+        buttons.hide(duration: 0.3)
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
             self.frame = UIApplication.shared.keyWindow?.frame ?? .zero
             self.backgroundColor = .white
         }) { _ in
+            self.views.hide()
             self.delegate?.scallableViewIsExpanding {
                 DispatchQueue.main.async { [weak self] in
                     self?.dismiss(fromExpandable: true)
                 }
             }
         }
+    }
+}
+
+extension DebuggerScallableView: DebuggerFilterViewDelegate {
+    func debuggerFilterViewDidFilter(_ filter: DebuggerFilterView.DebuggerFilter) {
+        self.currentFilter = filter
+        tableView.reloadData()
     }
 }

@@ -36,26 +36,37 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qMS-nW-G21">
-                    <rect key="frame" x="0.0" y="49" width="375" height="169"/>
+                    <rect key="frame" x="0.0" y="113" width="375" height="105"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyk-ur-m5s" customClass="DebuggerFilterOutletView" customModule="StanwoodDebugger" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="49" width="375" height="64"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="YmD-Bh-x63"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="qMS-nW-G21" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7WH-dd-0P8"/>
                 <constraint firstItem="TYg-ga-tMw" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="DUJ-fK-0ve"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TYg-ga-tMw" secondAttribute="trailing" constant="5" id="FGP-Wf-gON"/>
+                <constraint firstItem="gyk-ur-m5s" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="49" id="H7t-3u-q1u"/>
                 <constraint firstItem="jAJ-7Q-agL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="L5u-ab-7LP"/>
                 <constraint firstItem="qMS-nW-G21" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="NOM-Mt-yxX"/>
+                <constraint firstItem="gyk-ur-m5s" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="O0E-WD-y49"/>
                 <constraint firstItem="jAJ-7Q-agL" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="WK0-wN-hAF"/>
                 <constraint firstItem="qMS-nW-G21" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Xd8-7k-ETR"/>
-                <constraint firstItem="qMS-nW-G21" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="49" id="acy-Lq-Kgb"/>
+                <constraint firstItem="gyk-ur-m5s" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="kNZ-KD-q44"/>
+                <constraint firstItem="qMS-nW-G21" firstAttribute="top" secondItem="gyk-ur-m5s" secondAttribute="bottom" id="uuE-G2-xuU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="closeButton" destination="jAJ-7Q-agL" id="08h-U0-BOP"/>
                 <outlet property="expandButton" destination="TYg-ga-tMw" id="6md-de-6D6"/>
+                <outlet property="filterView" destination="gyk-ur-m5s" id="5gw-Ji-deQ"/>
                 <outlet property="tableView" destination="qMS-nW-G21" id="CpX-6G-bqA"/>
             </connections>
             <point key="canvasLocation" x="38.5" y="259"/>
