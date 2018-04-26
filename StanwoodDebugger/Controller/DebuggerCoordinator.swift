@@ -14,7 +14,7 @@ class DebuggerCoordinator {
     init(window: UIWindow) {
         self.window = window
     }
-    func presentDetailView() {
+    func presentDetailView(completion: @escaping Completion) {
         
         /// For testing only, will be implemented in other tickets
         let viewController = DebuggerDetailViewController()
@@ -24,6 +24,6 @@ class DebuggerCoordinator {
         navigationController.tabBarItem = UITabBarItem(title: "Debugger", image: nil, selectedImage: nil)
         let tabBarController = UITabBarController()
         tabBarController.setViewControllers([navigationController], animated: false)
-        window.rootViewController?.present(tabBarController, animated: true, completion: nil)
+        window.rootViewController?.present(tabBarController, animated: false, completion: completion)
     }
 }

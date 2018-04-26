@@ -8,11 +8,17 @@
 import Foundation
 
 protocol DebuggerActionable {
-    func presentDetailView()
+    func presentDetailView(completion: @escaping Completion)
+    func presentScaleable(_ view: DebuggerScallableView)
 }
+
 extension DebuggerActions: DebuggerActionable {
     
-    func presentDetailView() {
-        coordinator.presentDetailView()
+    func presentDetailView(completion: @escaping Completion) {
+        coordinator.presentDetailView(completion: completion)
+    }
+    
+    func presentScaleable(_ view: DebuggerScallableView) {
+        view.show()
     }
 }
