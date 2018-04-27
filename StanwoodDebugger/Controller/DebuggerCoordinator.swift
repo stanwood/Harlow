@@ -14,16 +14,29 @@ class DebuggerCoordinator {
     init(window: UIWindow) {
         self.window = window
     }
+    
     func presentDetailView(completion: @escaping Completion) {
         
-        /// For testing only, will be implemented in other tickets
-        let viewController = DebuggerDetailViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
-        let item = UIBarButtonItem(barButtonSystemItem: .done, target: viewController, action: #selector(DebuggerDetailViewController.dismissDebuggerView))
-        viewController.navigationItem.leftBarButtonItem = item
-        navigationController.tabBarItem = UITabBarItem(title: "Debugger", image: nil, selectedImage: nil)
-        let tabBarController = UITabBarController()
-        tabBarController.setViewControllers([navigationController], animated: false)
+        let title = "Debugger"
+        
+        // Detail Nav Controller
+        let deatailViewController = DebuggerDetailViewController()
+        deatailViewController.title = title
+        let detailNavigationController = UINavigationController(rootViewController: deatailViewController)
+        let detailItem = UIBarButtonItem(barButtonSystemItem: .done, target: deatailViewController, action: #selector(DebuggerDetailViewController.dismissDebuggerView))
+        deatailViewController.navigationItem.leftBarButtonItem = detailItem
+        detailNavigationController.tabBarItem = UITabBarItem(title: "Debugger", image: UIImage(named: "bug_icon", in: Bundle.debuggerBundle(from: type(of: self)), compatibleWith: nil), selectedImage: nil)
+        
+        // Settings Nav Controller
+        let settingsViewController = DebuggerDetailViewController()
+        settingsViewController.title = title
+        let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
+        let settingsItem = UIBarButtonItem(barButtonSystemItem: .done, target: settingsViewController, action: #selector(DebuggerSettingsViewController.dismissDebuggerView))
+        settingsViewController.navigationItem.leftBarButtonItem = settingsItem
+        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings_icon", in: Bundle.debuggerBundle(from: type(of: self)), compatibleWith: nil), selectedImage: nil)
+        
+        let tabBarController = DebuggerUITabBarController()
+        tabBarController.setViewControllers([detailNavigationController, settingsNavigationController], animated: false)
         window.rootViewController?.present(tabBarController, animated: false, completion: completion)
     }
 }
