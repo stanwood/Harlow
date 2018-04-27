@@ -51,7 +51,9 @@ extension UITableView {
             register(nib, forCellReuseIdentifier: cell.identifier)
         }
     }
-    
+}
+
+extension UITableViewCell {
     static var identifier: String {
         return String(describing: self)
     }
