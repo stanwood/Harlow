@@ -22,6 +22,11 @@ protocol Sourceable {
     func cellForItem(at indexPath: IndexPath) -> Filling.Type?
 }
 
+extension Sourceable {
+    // Optional 
+    func cellForItem(at indexPath: IndexPath) -> Filling.Type? { return nil }
+}
+
 protocol Filling where Self: UITableViewCell {
     func fill(with: Item?)
 }

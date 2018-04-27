@@ -27,10 +27,16 @@ public class StanwoodDebugger: Debuggerable {
     private let window: DebuggerWindow
     private let coordinator: DebuggerCoordinator
     private let actions: DebuggerActions
+    private let appData: DebuggerData
+    private let paramaters: DebuggerParamaters
+    
     public init() {
         window = DebuggerWindow(frame: UIScreen.main.bounds)
-        coordinator = DebuggerCoordinator(window: window)
-        actions = DebuggerActions(coordinator: coordinator)
+        actions = DebuggerActions()
+        appData = DebuggerData(items: DebuggerElements())
+        paramaters = DebuggerParamaters(appData: appData)
+        coordinator = DebuggerCoordinator(window: window, actionable: actions, paramaterable: paramaters)
+        actions.coordinator = coordinator
     }
     
     private func configureDebuggerView() {

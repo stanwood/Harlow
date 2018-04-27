@@ -7,4 +7,15 @@
 
 import Foundation
 
-class AbstractDelegate: NSObject, UITableViewDelegate {}
+class AbstractDelegate<Items: Sourceable>: NSObject, UITableViewDelegate {
+    
+    private(set) var items: Items
+    
+    required init(items: Items) {
+        self.items = items
+    }
+    
+    func update(items: Items) {
+        self.items = items
+    }
+}

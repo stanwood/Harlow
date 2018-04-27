@@ -7,13 +7,18 @@
 
 import Foundation
 
-class AbstractDataSource: NSObject, UITableViewDataSource {
+class AbstractDataSource<Items: Sourceable>: NSObject, UITableViewDataSource {
+
+    private(set) var items: Items
     
-    private(set) var items: Sourceable
-    
-    init<T: Sourceable>(items: T) {
+    required init(items: Items) {
         self.items = items
     }
+    
+    func update(items: Items) {
+        self.items = items
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.numberOfItems
     }
