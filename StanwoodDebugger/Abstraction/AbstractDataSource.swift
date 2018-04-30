@@ -11,7 +11,7 @@ class AbstractDataSource<Items: Sourceable>: NSObject, UITableViewDataSource {
 
     private(set) var items: Items
     
-    required init(items: Items) {
+    init(items: Items) {
         self.items = items
     }
     

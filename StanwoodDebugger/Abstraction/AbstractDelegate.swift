@@ -11,7 +11,7 @@ class AbstractDelegate<Items: Sourceable>: NSObject, UITableViewDelegate {
     
     private(set) var items: Items
     
-    required init(items: Items) {
+    init(items: Items) {
         self.items = items
     }
     
