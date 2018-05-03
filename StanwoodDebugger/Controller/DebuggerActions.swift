@@ -8,10 +8,5 @@
 import Foundation
 
 class DebuggerActions {
-    
-    let coordinator: DebuggerCoordinator
-    
-    init(coordinator: DebuggerCoordinator) {
-        self.coordinator = coordinator
-    }
+    weak var coordinator: DebuggerCoordinator?
 }

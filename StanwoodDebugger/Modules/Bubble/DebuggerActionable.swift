@@ -15,7 +15,7 @@ protocol DebuggerActionable {
 extension DebuggerActions: DebuggerActionable {
     
     func presentDetailView(completion: @escaping Completion) {
-        coordinator.presentDetailView(completion: completion)
+        coordinator?.presentDetailView(completion: completion)
     }
     
     func presentScaleable(_ view: DebuggerScallableView) {

@@ -32,6 +32,33 @@ extension UICollectionView {
     }
 }
 
+extension UITableView {
+    
+    func dequeue<Elemenet: UITableViewCell>(cellType: Elemenet.Type, for indexPath: IndexPath) -> Elemenet {
+        guard let cell = dequeueReusableCell(withIdentifier: cellType.staticIdentifier, for: indexPath) as? Elemenet else {
+            fatalError("Cell must exist")
+        }
+        return cell
+    }
+    func register(cell: UITableViewCell.Type, bundle: Bundle) {
+        let nib = UINib(nibName: cell.identifier, bundle: bundle)
+        register(nib, forCellReuseIdentifier: cell.identifier)
+    }
+    
+    func register(cells: UITableViewCell.Type...) {
+        cells.forEach { cell in
+            let nib = UINib(nibName: cell.identifier, bundle: Bundle.debuggerBundle(from: type(of: self)))
+            register(nib, forCellReuseIdentifier: cell.identifier)
+        }
+    }
+}
+
+extension UITableViewCell {
+    static var identifier: String {
+        return String(describing: self)
+    }
+}
+
 extension UICollectionReusableView {
     static var identifier: String {
         return String(describing: self)
