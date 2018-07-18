@@ -15,7 +15,7 @@ protocol DebuggerScallableViewDelegate: class {
 }
 class DebuggerScallableView: UIView {
     
-    private var currentFilter: DebuggerFilterView.DebuggerFilter = .analytics
+    var currentFilter: DebuggerFilterView.DebuggerFilter = .analytics
     private var size: CGSize {
         let screenSize = UIScreen.main.bounds.size
         return CGSize(width: screenSize.width - 18, height: screenSize.height / 1.8 )

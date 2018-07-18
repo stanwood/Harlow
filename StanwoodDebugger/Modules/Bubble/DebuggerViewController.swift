@@ -60,7 +60,7 @@ class DebuggerViewController: UIViewController {
 extension DebuggerViewController: DebuggerScallableViewDelegate {
     
     func scallableViewIsExpanding(completion: @escaping Completion) {
-        presenter.presentDetailView(completion: completion)
+        presenter.presentDetailView(with: debuggerScallableView?.currentFilter ?? .analytics, completion: completion)
     }
     
     func scallableViewDidDismiss() {

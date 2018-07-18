@@ -24,7 +24,7 @@ class DebuggerFilterView: UIView {
         static var allFilters: [DebuggerFilter] = [.analytics, .error, .uiTesting, .networking, .logs]
     }
     
-    private var currnetFilter: DebuggerFilter = .analytics
+    var currnetFilter: DebuggerFilter = .analytics
     
     weak var delegate: DebuggerFilterViewDelegate?
     @IBOutlet weak var collectionView: UICollectionView!

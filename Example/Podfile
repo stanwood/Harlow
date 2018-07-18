@@ -2,7 +2,8 @@ use_frameworks!
 
 target 'StanwoodDebugger_Example' do
   pod 'StanwoodDebugger', :path => '../'
-
+  pod 'StanwoodCore'
+  
   target 'StanwoodDebugger_Tests' do
     inherit! :search_paths
 

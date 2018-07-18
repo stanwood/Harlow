@@ -17,8 +17,8 @@ class DebuggerPresenter {
         self.actionable = actionable
     }
     
-    func presentDetailView(completion: @escaping Completion) {
-        actionable.presentDetailView(completion: completion)
+    func presentDetailView(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion) {
+        actionable.presentListView(with: filter, completion: completion)
     }
     
     func presentScaled(_ view: DebuggerScallableView) {

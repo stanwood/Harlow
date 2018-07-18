@@ -33,12 +33,17 @@ public class StanwoodDebugger: Debuggerable {
     public init() {
         window = DebuggerWindow(frame: UIScreen.main.bounds)
         actions = DebuggerActions()
-        appData = DebuggerData(items: DebuggerElements())
+        appData = DebuggerData()
         paramaters = DebuggerParamaters(appData: appData)
         coordinator = DebuggerCoordinator(window: window, actionable: actions, paramaterable: paramaters)
         actions.coordinator = coordinator
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
     }
     
+    @objc func applicationDidEnterBackground() {
+        appData.save()
+    }
     private func configureDebuggerView() {
         switch isEnabled {
         case true:

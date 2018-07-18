@@ -25,8 +25,7 @@ Pod::Spec.new do |s|
     'StanwoodDebugger/Modules/**/*',
     'StanwoodDebugger/Model/**/*',
     'StanwoodDebugger/Protocols/**/*',
-    'StanwoodDebugger/Extensions/**/*',
-    'StanwoodDebugger/Abstraction/**/*'
+    'StanwoodDebugger/Extensions/**/*'
   ]
   s.resource_bundles = {
       'StanwoodDebugger' => [
@@ -38,4 +37,5 @@ Pod::Spec.new do |s|
   }
 
   s.dependency 'Pulsator'
+  s.dependency 'StanwoodCore'
 end

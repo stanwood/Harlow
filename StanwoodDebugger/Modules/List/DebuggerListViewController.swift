@@ -1,5 +1,5 @@
 //
-//  DebuggerDetailViewController.swift
+//  DebuggerListViewController.swift
 //  StanwoodDebugger
 //
 //  Created by Tal Zion on 11/04/2018.
@@ -7,16 +7,16 @@
 
 import Foundation
 
-protocol DetailViewable: class {
+protocol ListViewable: class {
     var filterView: DebuggerFilterView! { get set }
     var tableView: UITableView! { get set }
 }
 
-class DebuggerDetailViewController: UIViewController, DetailViewable {
+class DebuggerListViewController: UIViewController, ListViewable {
     
     var filterView: DebuggerFilterView!
     var tableView: UITableView!
-    var presenter: DetailPresenter!
+    var presenter: ListPresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class DebuggerDetailViewController: UIViewController, DetailViewable {
     }
 }
 
-extension DebuggerDetailViewController: DebuggerFilterViewDelegate {
+extension DebuggerListViewController: DebuggerFilterViewDelegate {
     func debuggerFilterViewDidFilter(_ filter: DebuggerFilterView.DebuggerFilter) {
         self.presenter.set(current: filter)
         tableView.reloadData()

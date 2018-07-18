@@ -19,16 +19,17 @@ class DebuggerCoordinator {
         self.paramaterable = paramaterable
     }
     
-    func presentDetailView(completion: @escaping Completion) {
+    func presentListView(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion) {
         
         let title = "Debugger"
         
         // Detail Nav Controller
-        let detailControllers = DetailWireframe.makeViewController(withTitle: title)
-        DetailWireframe.prepare(detailControllers.viewController, with: actionable, paramaterable)
+        let detailControllers = ListWireframe.makeViewController(withTitle: title)
+        
+        ListWireframe.prepare(detailControllers.viewController, with: actionable, paramaterable, filter: filter)
         
         // Settings Nav Controller
-        let settingsViewController = DebuggerDetailViewController()
+        let settingsViewController = DebuggerListViewController()
         settingsViewController.title = title
         let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
         let settingsItem = UIBarButtonItem(barButtonSystemItem: .done, target: settingsViewController, action: #selector(DebuggerSettingsViewController.dismissDebuggerView))

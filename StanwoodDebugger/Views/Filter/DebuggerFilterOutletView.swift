@@ -9,7 +9,7 @@ import Foundation
 
 class DebuggerFilterOutletView: UIView {
 
-    private var currnetFilter: DebuggerFilterView.DebuggerFilter = .analytics
+    var currnetFilter: DebuggerFilterView.DebuggerFilter = .analytics
 
     weak var delegate: DebuggerFilterViewDelegate?
     @IBOutlet weak var collectionView: UICollectionView!
