@@ -7,10 +7,14 @@
 
 import Foundation
 
-class DebuggerViewController: UIViewController {
+protocol DebuggerViewable: class {
+    var debuggerScallableView: DebuggerScallableView? { get set }
+}
+
+class DebuggerViewController: UIViewController, DebuggerViewable {
     
     private var debuggerButton: DebuggerUIButton!
-    private var debuggerScallableView: DebuggerScallableView?
+    var debuggerScallableView: DebuggerScallableView?
     
     var presenter: DebuggerPresenter!
     

@@ -29,6 +29,9 @@ class DebuggerScallableView: UIView {
     weak var button: DebuggerUIButton!
     weak var delegate: DebuggerScallableViewDelegate?
     
+    private var listDelegate: ListDelegate!
+    private var listDataSource: ListDataSource!
+    
     private var views: [UIView] {
         return [tableView, filterView]
     }
@@ -75,6 +78,22 @@ class DebuggerScallableView: UIView {
                 self.buttons.show(duration: 0.3)
             })
         }
+    }
+    
+    func configureTableView(with items: AnalyticItems) {
+        
+        tableView.register(UINib(nibName: AnalyticsCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: AnalyticsCell.identifier)
+        
+        tableView.estimatedRowHeight = 75
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        listDataSource = ListDataSource(dataObject: items)
+        listDelegate = ListDelegate(dataObject: items)
+        
+        tableView.dataSource = listDataSource
+        tableView.delegate = listDelegate
+    
+        tableView.reloadData()
     }
     
     @objc func dismiss(fromExpandable isExpandable: Bool = false) {

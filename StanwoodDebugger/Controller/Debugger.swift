@@ -48,9 +48,8 @@ public class StanwoodDebugger: Debuggerable {
         switch isEnabled {
         case true:
             if debuggerViewController == nil {
-                let presenter = DebuggerPresenter(debuggerable: self, actionable: actions)
-                debuggerViewController = DebuggerViewController()
-                debuggerViewController?.presenter = presenter
+                debuggerViewController = DebuggerWireframe.makeViewController()
+                DebuggerWireframe.prepare(debuggerViewController, with: actions, and: paramaters, for: self)
             }
             window.rootViewController = debuggerViewController
             window.makeKeyAndVisible()

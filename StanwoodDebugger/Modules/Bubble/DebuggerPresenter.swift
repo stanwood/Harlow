@@ -11,10 +11,14 @@ class DebuggerPresenter {
     
     weak var debuggerable: Debuggerable!
     private var actionable: DebuggerActionable
+    private var parameterable: DebuggerParameterable
+    private weak var viewable: DebuggerViewable?
     
-    init(debuggerable: Debuggerable, actionable: DebuggerActionable) {
+    init(debuggerable: Debuggerable, actionable: DebuggerActionable, viewable: DebuggerViewable, parameterable: DebuggerParameterable) {
         self.debuggerable = debuggerable
         self.actionable = actionable
+        self.viewable = viewable
+        self.parameterable = parameterable
     }
     
     func presentDetailView(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion) {
@@ -22,6 +26,9 @@ class DebuggerPresenter {
     }
     
     func presentScaled(_ view: DebuggerScallableView) {
+        
+        viewable?.debuggerScallableView?.configureTableView(with: parameterable.items)
+        
         actionable.presentScaleable(view)
     }
 }
