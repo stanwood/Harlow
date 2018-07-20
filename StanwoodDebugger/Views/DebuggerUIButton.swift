@@ -7,14 +7,61 @@
 
 import Foundation
 import Pulsator
+import StanwoodCore
 
-class DebuggerUIButton: UIButton {
+enum DebuggerIcons: String {
+    case analytics = "👻"
     
-    // Will be moved to another file
-    private var globalTint: UIColor {
-        return UIColor(red: 210/255, green: 78/255, blue: 79/255, alpha: 1)
+    func makeAnimation(for label: UILabel, to point: CGPoint) -> (duration: TimeInterval, animations: () -> Void, completion: (Bool) -> Void) {
+        switch self {
+        case .analytics:
+            let animations: () -> Void = { [label = label, point = point] in
+                label.center = point
+                label.alpha = 0.0
+                
+                func shake(_ direction: Direction = .left) {
+                    
+                    UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                        
+                        let tr: CGFloat = direction == .left ? -10 : 10
+                        label.center = CGPoint(x: label.center.x + tr, y: label.center.y)
+                        
+                        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+                            
+                            let tr: CGFloat = direction == .left ? 10 : -10
+                            label.center = CGPoint(x: label.center.x + tr, y: label.center.y)
+                            
+                        }, completion: { (_) in
+                            shake(direction.opositeDirection)
+                        })
+                        
+                    }, completion: nil)
+                }
+                
+//                shake()
+            }
+            
+            let completion: (Bool) -> Void = { [label = label] _ in
+                label.removeFromSuperview()
+            }
+            return (4.0, animations, completion)
+        }
     }
     
+    private enum Direction {
+        case left, right
+        
+        var opositeDirection: Direction {
+            switch self {
+            case .left: return .right
+            case .right: return .left
+            }
+        }
+    }
+}
+
+class DebuggerUIButton: UIButton {
+
     private enum Positions {
         case topLeft, topRight, centerLeft, centerRight, bottomLeft, bottomRight
         
@@ -114,14 +161,16 @@ class DebuggerUIButton: UIButton {
         layer.cornerRadius = Positions.buttonSize.width / 2
         setTitle("S", for: .normal)
         setTitleColor( .white, for: .normal)
-        backgroundColor = globalTint
+        backgroundColor = StanwoodDebugger.Style.tintColor
         
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panning(_:)))
         addGestureRecognizer(pan)
+        
+        NotificationCenter.default.addObservers(self, observers: Stanwood.Observer(selector: #selector(didAddDebuggerItem(_:)), name: Notification.Name.DeuggerDidAddDebuggerItem))
     }
     
     func preparePulse() {
-        pulsator.backgroundColor = globalTint.cgColor
+        pulsator.backgroundColor = StanwoodDebugger.Style.tintColor.cgColor
         pulsator.radius = Positions.buttonSize.width * 0.875
         pulsator.numPulse = 3
         pulsator.animationDuration = 3
@@ -166,5 +215,22 @@ class DebuggerUIButton: UIButton {
             break
         }
     }
-
+    
+    @objc private func didAddDebuggerItem(_ notification: Notification) {
+        switch notification.object {
+        case .some(let object) where object is DebuggerAnalyticsItem:
+            animate(.analytics)
+        default: break
+        }
+    }
+    
+    private func animate(_ icon: DebuggerIcons) {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        label.text = icon.rawValue
+        label.center = center
+        superview?.insertSubview(label, belowSubview: self)
+        
+        let animationAttributes = icon.makeAnimation(for: label, to: CGPoint(x: center.x, y: center.y - 250))
+        UIView.animate(withDuration: animationAttributes.duration, animations: animationAttributes.animations, completion: animationAttributes.completion)
+    }
 }

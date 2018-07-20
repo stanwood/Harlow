@@ -44,9 +44,15 @@ class ListPresenter {
         dataSource = ListDataSource(dataObject: items)
         delegate = ListDelegate(dataObject: items)
         
+        delegate.presenter = self
+        
         viewable?.tableView.dataSource = dataSource
         viewable?.tableView.delegate = delegate
         
         viewable?.filterView.filterCellDid(filter: currentFilter)
+    }
+    
+    func present(_ item: DebuggerAnalyticsItem) {
+        
     }
 }

@@ -52,4 +52,8 @@ extension Notification.Name {
     static var DeuggerDidAppendLogItem: Notification.Name {
         return NSNotification.Name(rawValue: "io.stanwood.debugger.didAppendLogItem")
     }
+    
+    static var DeuggerDidAddDebuggerItem: Notification.Name {
+        return NSNotification.Name(rawValue: "io.stanwood.debugger.didAddDebuggerItem")
+    }
 }

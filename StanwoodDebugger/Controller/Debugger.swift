@@ -15,6 +15,11 @@ protocol Debuggerable: class {
 /// StanwoodDebugger acts as the framework controller, delegating logs
 public class StanwoodDebugger: Debuggerable {
     
+    class Style {
+        private init () {}
+        static let tintColor: UIColor = UIColor(red: 210/255, green: 78/255, blue: 79/255, alpha: 1)
+    }
+    
     /// Enable Debugger View
     public var isEnabled: Bool = false {
         didSet {
@@ -39,6 +44,8 @@ public class StanwoodDebugger: Debuggerable {
         actions.coordinator = coordinator
         
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        
+        window.tintColor = Style.tintColor
     }
     
     @objc func applicationDidEnterBackground() {

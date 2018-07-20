@@ -86,6 +86,7 @@ class DebuggerScallableView: UIView {
         
         tableView.estimatedRowHeight = 75
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         
         listDataSource = ListDataSource(dataObject: items)
         listDelegate = ListDelegate(dataObject: items)

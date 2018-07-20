@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -30,12 +30,22 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbL-WE-JeZ">
+                    <rect key="frame" x="0.0" y="70" width="375" height="1"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="HIj-3Y-LRv"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="X4C-7r-8k8" secondAttribute="bottom" id="1IF-Io-k7u"/>
                 <constraint firstItem="X4C-7r-8k8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="TgV-gn-cxm"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="X4C-7r-8k8" secondAttribute="trailing" id="c6L-IL-tr0"/>
+                <constraint firstAttribute="bottom" secondItem="cbL-WE-JeZ" secondAttribute="bottom" id="q0G-Vn-fZI"/>
+                <constraint firstItem="cbL-WE-JeZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="skz-qm-QCO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cbL-WE-JeZ" secondAttribute="trailing" id="uEd-7W-6Bb"/>
                 <constraint firstItem="X4C-7r-8k8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xYy-Y0-7E5"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

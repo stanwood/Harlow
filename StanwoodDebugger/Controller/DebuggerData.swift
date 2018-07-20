@@ -32,7 +32,14 @@ class DebuggerData {
     }
 
     @objc func didReceiveAnalyticsItem(_ notification: Notification) {
-       
+        guard let userInfo = notification.userInfo,
+        let data = try? JSONSerialization.data(withJSONObject: userInfo, options: []),
+       let item = try? JSONDecoder().decode(DebuggerAnalyticsItem.self, from: data)  else { return }
+        
+        analyticsItems.append(item)
+        
+        NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: item)
     }
     
     @objc func didReceiveErrorItem(_ notification: Notification) {
