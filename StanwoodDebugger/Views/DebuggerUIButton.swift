@@ -217,10 +217,12 @@ class DebuggerUIButton: UIButton {
     }
     
     @objc private func didAddDebuggerItem(_ notification: Notification) {
-        switch notification.object {
-        case .some(let object) where object is DebuggerAnalyticsItem:
+        guard let addedItem = notification.object as? AddedItem else { return }
+        
+        switch addedItem.type {
+        case .analytics:
             animate(.analytics)
-        default: break
+        case .error, .logs, .networking, .uiTesting: break
         }
     }
     

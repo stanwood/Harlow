@@ -8,9 +8,15 @@
 import Foundation
 import StanwoodCore
 
+struct AddedItem {
+    let type: DebuggerFilterView.DebuggerFilter
+    let count: Int
+}
+
 class DebuggerData {
     
     var analyticsItems: AnalyticItems
+    var count = 98
     
     init() {
         self.analyticsItems = AnalyticItems.loadFromFile() ?? AnalyticItems(items: [])
@@ -25,6 +31,13 @@ class DebuggerData {
         )
         
         tempSetItems()
+        
+        Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { (_) in
+            let item = AddedItem(type: .analytics, count: self.count)
+            self.count += 1
+            let not = Notification(name: Notification.Name.DeuggerDidAddDebuggerItem, object: item, userInfo: nil)
+            NotificationCenter.default.post(not)
+        }
     }
     
     func tempSetItems() {
@@ -32,14 +45,17 @@ class DebuggerData {
     }
 
     @objc func didReceiveAnalyticsItem(_ notification: Notification) {
+        
         guard let userInfo = notification.userInfo,
         let data = try? JSONSerialization.data(withJSONObject: userInfo, options: []),
        let item = try? JSONDecoder().decode(DebuggerAnalyticsItem.self, from: data)  else { return }
         
         analyticsItems.append(item)
         
+        let addedIem = AddedItem(type: .analytics, count: analyticsItems.numberOfItems)
+        
         NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: item)
+        NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIem)
     }
     
     @objc func didReceiveErrorItem(_ notification: Notification) {
