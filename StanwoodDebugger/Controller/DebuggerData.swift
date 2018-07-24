@@ -19,8 +19,11 @@ class DebuggerData {
     var count = 98
     
     init() {
-        self.analyticsItems = AnalyticItems.loadFromFile() ?? AnalyticItems(items: [])
-        
+        if let items = AnalyticItems.loadFromFile() {
+            analyticsItems = items as! AnalyticItems
+        } else {
+            analyticsItems = AnalyticItems(items: [])
+        }
 
         NotificationCenter.default.addObservers(self, observers:
             Stanwood.Observer(selector: #selector(didReceiveAnalyticsItem(_:)), name: .DebuggerDidReceiveAnalyticsItem),
