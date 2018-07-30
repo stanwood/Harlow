@@ -15,7 +15,7 @@ class AnalyticsCell: UITableViewCell, Fillable {
     private(set) var item: DebuggerAnalyticsItem?
     
     private enum Labels: Int {
-        case name, category, label, action
+        case name, category, id, contentType
     }
     
     override func awakeFromNib() {
@@ -31,10 +31,10 @@ class AnalyticsCell: UITableViewCell, Fillable {
     func fill(with type: Type?) {
         guard let item = type as? DebuggerAnalyticsItem else { return }
         self.item = item
-        labels[Labels.name.rawValue].text = item.name
-        labels[Labels.category.rawValue].text = item.parameters?.category
-        labels[Labels.label.rawValue].text = item.parameters?.label
-        labels[Labels.action.rawValue].text = item.parameters?.action
+        labels[Labels.name.rawValue].text = item.eventName
+        labels[Labels.category.rawValue].text = item.category
+        labels[Labels.id.rawValue].text = item.id
+        labels[Labels.contentType.rawValue].text = item.contentType
     }
     
 }

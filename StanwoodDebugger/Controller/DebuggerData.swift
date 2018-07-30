@@ -88,31 +88,45 @@ let analytics_data: Data =
 {
 "items" : [
 {
-"name" : "user_action",
-"parameters": {
-"label" : "home",
-"action" : "purchases",
-"category" : "user"
-}
-},
-{
-"name" : "user_action",
-"parameters": {
-"label" : "home",
-"action" : "purchases"
-}
+"eventName" : "user_action",
+"itemId" : "123",
+"contentType" : "some_content_type",
+"category" : "meals"
 },{
-"name" : "user_action",
-"parameters": {
-"label" : "home",
-"category" : "user"
-}
+"eventName" : "user_action",
+"itemId" : "123",
+"contentType" : "some_content_type",
+"category" : "meals"
 },{
-"name" : "user_action",
-"parameters": {
-"action" : "purchases",
-"category" : "user"
-}
+"eventName" : "user_action",
+"itemId" : "123",
+"contentType" : "some_content_type",
+"category" : "meals"
+},{
+"eventName" : "user_action",
+"itemId" : "123",
+"category" : "meals"
+},{
+"eventName" : "user_action",
+"itemId" : "123",
+"contentType" : "some_content_type",
+},{
+"eventName" : "user_action",
+"itemId" : "123",
+},{
+"eventName" : "user_action",
+"itemId" : "123",
+"contentType" : "some_content_type",
+"category" : "meals"
+},{
+"eventName" : "user_action",
+"itemId" : "123",
+"contentType" : "some_content_type",
+"category" : "meals"
+},{
+"eventName" : "user_action",
+"contentType" : "some_content_type",
+"category" : "meals"
 }
 ]
 }

@@ -8,19 +8,14 @@
 import Foundation
 import StanwoodCore
 
-struct DebuggerAnalyticsParameters: Typeable {
-
-    var id: String? { return action }
-    
-    var label: String?
-    var action: String?
-    var category: String?
-}
-
 struct DebuggerAnalyticsItem: Typeable {
-    var id: String? {
-        return name
+    
+    enum CodingKeys: String, CodingKey {
+        case eventName, category, contentType, id = "itemId"
     }
-    var name: String?
-    var parameters: DebuggerAnalyticsParameters?
+    
+    var id: String?
+    var eventName: String?
+    var category: String?
+    var contentType: String?
 }

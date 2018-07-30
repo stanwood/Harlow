@@ -9,54 +9,79 @@ import Foundation
 import Pulsator
 import StanwoodCore
 
+typealias AnimationCompletion = (UILabel) -> Void
+typealias DoneCompletion = (Bool) -> Void
+
 enum DebuggerIcons: String {
     case analytics = "👻"
+    case error = "⚠️"
+    case log = "✏️"
+    case uiTesting = "📱"
+    case networking = "📶"
     
-    func makeAnimation(for label: UILabel, to point: CGPoint) -> (duration: TimeInterval, animations: () -> Void, completion: (Bool) -> Void) {
+    private var duration: TimeInterval {
         switch self {
         case .analytics:
-            let animations: () -> Void = { [label = label, point = point] in
-                label.center = point
-                label.alpha = 0.0
-                
-                func shake(_ direction: Direction = .left) {
-                    
-                    UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
-                        
-                        let tr: CGFloat = direction == .left ? -10 : 10
-                        label.center = CGPoint(x: label.center.x + tr, y: label.center.y)
-                        
-                        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-                            
-                            let tr: CGFloat = direction == .left ? 10 : -10
-                            label.center = CGPoint(x: label.center.x + tr, y: label.center.y)
-                            
-                        }, completion: { (_) in
-                            shake(direction.opositeDirection)
-                        })
-                        
-                    }, completion: nil)
-                }
-                
-//                shake()
-            }
-            
-            let completion: (Bool) -> Void = { [label = label] _ in
-                label.removeFromSuperview()
-            }
-            return (4.0, animations, completion)
+            return 5
+        case .error, .log, .networking, .uiTesting: return 0 // WIP
         }
     }
     
-    private enum Direction {
-        case left, right
+    func animate(_ label: UILabel, toPoint point: CGPoint, completion: @escaping AnimationCompletion){
         
-        var opositeDirection: Direction {
-            switch self {
-            case .left: return .right
-            case .right: return .left
-            }
+        let completed: (Bool) -> Void = { [label = label] _ in
+            completion(label)
         }
+        
+        switch self {
+        case .analytics:
+            
+            let numberOfTurnPoints = 3
+            let durationUntilChange = duration / Double(numberOfTurnPoints)
+            
+            /// Fade out
+            UIView.animate(withDuration: duration / 2, delay: duration / 2, options: .curveEaseOut, animations: { [label = label] in
+                label.alpha = 0
+            }, completion: nil)
+            
+            /// Ghost kind animation
+            for index in 0..<Int(numberOfTurnPoints) {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + (Double(index) * durationUntilChange)) { [currentIndex = index, label = label] in
+                    self.performAnimation(to: label, with: durationUntilChange, delay: 0, completion: currentIndex == (numberOfTurnPoints - 1) ? completed : nil)
+                    
+                }
+            }
+            
+            /// Path animation
+            let path = UIBezierPath()
+            
+            path.move(to: label.center)
+            path.addLine(to: point)
+            
+            let anim = CAKeyframeAnimation(keyPath: "position")
+            anim.path = path.cgPath
+            anim.repeatCount = 0
+            anim.duration = duration
+            anim.isRemovedOnCompletion = true
+            label.layer.add(anim, forKey: "animateLabel")
+            
+        case .error, .networking, .uiTesting, .log: break
+        }
+    }
+    
+    private func performAnimation(to label: UILabel, with duration: Double, delay: Double, completion: DoneCompletion?){
+        
+        UIView.animate(withDuration: duration, delay: delay, options: [.allowAnimatedContent], animations: {
+            
+            let isNegative = label.transform.tx < 0
+            var newX = CGFloat.random(between: 50, and: 20)
+            newX = isNegative ? newX : (-newX + label.center.x) >= 0 ? -newX : 0
+            
+            label.transform = CGAffineTransform(translationX: newX, y: 0)
+            label.layoutIfNeeded()
+            
+        }, completion: completion)
     }
 }
 
@@ -232,7 +257,9 @@ class DebuggerUIButton: UIButton {
         label.center = center
         superview?.insertSubview(label, belowSubview: self)
         
-        let animationAttributes = icon.makeAnimation(for: label, to: CGPoint(x: center.x, y: center.y - 250))
-        UIView.animate(withDuration: animationAttributes.duration, animations: animationAttributes.animations, completion: animationAttributes.completion)
+        let toPoint = CGPoint(x: center.x, y: center.y - 250)
+        icon.animate(label, toPoint: toPoint) { (label) in
+            label.removeFromSuperview()
+        }
     }
 }
