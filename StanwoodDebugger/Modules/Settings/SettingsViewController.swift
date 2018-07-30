@@ -7,10 +7,12 @@
 
 import Foundation
 
-class DebuggerSettingsViewController: UITableViewController {
+class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .white
     }
     
     @objc func dismissDebuggerView() {

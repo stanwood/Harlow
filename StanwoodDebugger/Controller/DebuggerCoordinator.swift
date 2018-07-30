@@ -25,20 +25,17 @@ class DebuggerCoordinator {
         
         // Detail Nav Controller
         let detailControllers = ListWireframe.makeViewController(withTitle: title)
-        
         ListWireframe.prepare(detailControllers.viewController, with: actionable, paramaterable, filter: filter)
         
         // Settings Nav Controller
-        let settingsViewController = DebuggerListViewController()
-        settingsViewController.title = title
-        let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
-        let settingsItem = UIBarButtonItem(barButtonSystemItem: .done, target: settingsViewController, action: #selector(DebuggerSettingsViewController.dismissDebuggerView))
-        settingsViewController.navigationItem.leftBarButtonItem = settingsItem
-        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings_icon", in: Bundle.debuggerBundle(from: type(of: self)), compatibleWith: nil), selectedImage: nil)
-
+        let settingsControllers = SettingsWireframe.makeViewController(withTitle: title)
+        // TODO: Preapre
         
         let tabBarController = DebuggerUITabBarController()
-        tabBarController.setViewControllers([detailControllers.navigationController, settingsNavigationController], animated: false)
+        tabBarController.setViewControllers([
+            detailControllers.navigationController,
+            settingsControllers.navigationController], animated: false)
+        
         window.rootViewController?.present(tabBarController, animated: false, completion: completion)
     }
 }

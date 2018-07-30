@@ -28,6 +28,7 @@ public class StanwoodDebugger: Debuggerable {
     }
     
     var isDisplayed: Bool = false
+    
     fileprivate var debuggerViewController: DebuggerViewController?
     private let window: DebuggerWindow
     private let coordinator: DebuggerCoordinator

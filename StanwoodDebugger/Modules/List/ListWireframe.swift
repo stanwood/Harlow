@@ -11,13 +11,13 @@ class ListWireframe {
     private init () {}
     
     static func makeViewController(withTitle title: String) -> (navigationController: UINavigationController, viewController: DebuggerListViewController) {
-        let settingsViewController = DebuggerListViewController()
-        settingsViewController.title = title
-        let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
-        let settingsItem = UIBarButtonItem(barButtonSystemItem: .done, target: settingsViewController, action: #selector(DebuggerSettingsViewController.dismissDebuggerView))
-        settingsViewController.navigationItem.leftBarButtonItem = settingsItem
-        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings_icon", in: Bundle.debuggerBundle(from: type(of: ListWireframe())), compatibleWith: nil), selectedImage: nil)
-        return (settingsNavigationController, settingsViewController)
+        let listViewController = DebuggerListViewController()
+        listViewController.title = title
+        let listNavigationController = UINavigationController(rootViewController: listViewController)
+        let listItem = UIBarButtonItem(barButtonSystemItem: .done, target: listViewController, action: #selector(DebuggerListViewController.dismissDebuggerView))
+        listViewController.navigationItem.leftBarButtonItem = listItem
+        listNavigationController.tabBarItem = UITabBarItem(title: "Debugger", image: UIImage(named: "bug_icon", in: Bundle.debuggerBundle(from: type(of: ListWireframe())), compatibleWith: nil), selectedImage: nil)
+        return (listNavigationController, listViewController)
     }
     
     static func prepare(_ viewController: DebuggerListViewController, with actionable: ListActionable, _ paramaterable: ListParamaterable, filter: DebuggerFilterView.DebuggerFilter) {
