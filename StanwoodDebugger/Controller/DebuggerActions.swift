@@ -9,4 +9,10 @@ import Foundation
 
 class DebuggerActions {
     weak var coordinator: DebuggerCoordinator?
+    
+    let appData: DebuggerData
+    
+    init(appData: DebuggerData) {
+        self.appData = appData
+    }
 }

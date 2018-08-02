@@ -13,5 +13,7 @@ class DebuggerParamaters {
     
     init(appData: DebuggerData) {
         self.appData = appData
+        
+        DebuggerSettings.setDefaultSettings()
     }
 }

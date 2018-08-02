@@ -15,7 +15,7 @@ class SettingsWireframe {
         let settingsViewController = SettingsViewController()
         settingsViewController.title = title
         let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
-        let settingsItem = UIBarButtonItem(barButtonSystemItem: .done, target: settingsViewController, action: #selector(DebuggerListViewController.dismissDebuggerView))
+        let settingsItem = UIBarButtonItem(barButtonSystemItem: .done, target: settingsViewController, action: #selector(ListViewController.dismissDebuggerView))
         settingsViewController.navigationItem.leftBarButtonItem = settingsItem
         
         let image: UIImage? = UIImage(named: "settings_icon", in: Bundle.debuggerBundle(from: type(of: SettingsWireframe())), compatibleWith: nil)
@@ -24,5 +24,8 @@ class SettingsWireframe {
         return (settingsNavigationController, settingsViewController)
     }
     
-    
+    static func prepare(_ viewController: SettingsViewController, with actions: SettingsActionable, _ parameters: SettingsParameterable) {
+        let presenter = SettingsPresenter(actionable: actions, parameterable: parameters, viewable: viewController)
+        viewController.presenter = presenter
+    }
 }

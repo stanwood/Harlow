@@ -8,7 +8,7 @@
 import Foundation
 import StanwoodCore
 
-struct DebuggerAnalyticsItem: Typeable {
+struct AnalyticsItem: Typeable {
     
     enum CodingKeys: String, CodingKey {
         case eventName, category, contentType, id = "itemId", createdAt

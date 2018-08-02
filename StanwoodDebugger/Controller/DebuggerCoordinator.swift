@@ -29,7 +29,7 @@ class DebuggerCoordinator {
         
         // Settings Nav Controller
         let settingsControllers = SettingsWireframe.makeViewController(withTitle: title)
-        // TODO: Preapre
+        SettingsWireframe.prepare(settingsControllers.viewController, with: actionable, paramaterable)
         
         let tabBarController = DebuggerUITabBarController()
         tabBarController.setViewControllers([

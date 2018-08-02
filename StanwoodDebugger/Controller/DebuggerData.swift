@@ -59,7 +59,7 @@ class DebuggerData {
         
         guard let userInfo = notification.userInfo,
             let data = try? JSONSerialization.data(withJSONObject: userInfo, options: []),
-            let item = try? decoder.decode(DebuggerAnalyticsItem.self, from: data)  else { return }
+            let item = try? decoder.decode(AnalyticsItem.self, from: data)  else { return }
         
         
         analyticsItems.append(item)
@@ -87,7 +87,9 @@ class DebuggerData {
     }
     
     func save() {
-        try? Stanwood.Storage.store(analyticsItems, to: .documents, as: .json, withName: AnalyticItems.fileName)
+        if DebuggerSettings.shouldStoreAnalyticsData {
+            try? Stanwood.Storage.store(analyticsItems, to: .documents, as: .json, withName: AnalyticItems.fileName)
+        }
     }
 }
 

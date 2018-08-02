@@ -17,7 +17,8 @@ public class StanwoodDebugger: Debuggerable {
     
     class Style {
         private init () {}
-        static let tintColor: UIColor = UIColor(red: 210/255, green: 78/255, blue: 79/255, alpha: 1)
+        static let tintColor: UIColor = UIColor(r: 210, g: 78, b: 79)//UIColor(red: 210/255, green: 78/255, blue: 79/255, alpha: 1)
+        static let defaultColor: UIColor = UIColor(r: 51, g: 51, b: 51)
     }
     
     /// Enable Debugger View
@@ -38,9 +39,11 @@ public class StanwoodDebugger: Debuggerable {
     
     public init() {
         window = DebuggerWindow(frame: UIScreen.main.bounds)
-        actions = DebuggerActions()
+        
         appData = DebuggerData()
         paramaters = DebuggerParamaters(appData: appData)
+        actions = DebuggerActions(appData: appData)
+        
         coordinator = DebuggerCoordinator(window: window, actionable: actions, paramaterable: paramaters)
         actions.coordinator = coordinator
         

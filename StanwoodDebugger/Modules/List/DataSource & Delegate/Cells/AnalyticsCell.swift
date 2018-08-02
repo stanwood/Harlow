@@ -12,7 +12,7 @@ class AnalyticsCell: UITableViewCell, Fillable {
 
     @IBOutlet private var labels: [UILabel]!
     
-    private(set) var item: DebuggerAnalyticsItem?
+    private(set) var item: AnalyticsItem?
     
     private enum Labels: Int {
         case name, category, id, contentType, date
@@ -30,7 +30,7 @@ class AnalyticsCell: UITableViewCell, Fillable {
     }
     
     func fill(with type: Type?) {
-        guard let item = type as? DebuggerAnalyticsItem else { return }
+        guard let item = type as? AnalyticsItem else { return }
         self.item = item
         labels[Labels.name.rawValue].text = item.eventName
         labels[Labels.category.rawValue].text = item.category

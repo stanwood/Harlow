@@ -8,9 +8,13 @@
 import Foundation
 import StanwoodCore
 
-class AnalyticItems: Stanwood.Elements<DebuggerAnalyticsItem> {
+class AnalyticItems: Stanwood.Elements<AnalyticsItem> {
     
     static let fileName: String = "analytics_items"
+    
+    func removeAll() {
+        items.removeAll()
+    }
     
     override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
         return AnalyticsCell.self
