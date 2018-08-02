@@ -7,14 +7,10 @@
 
 import Foundation
 import Pulsator
+import StanwoodCore
 
 class DebuggerUIButton: UIButton {
-    
-    // Will be moved to another file
-    private var globalTint: UIColor {
-        return UIColor(red: 210/255, green: 78/255, blue: 79/255, alpha: 1)
-    }
-    
+
     private enum Positions {
         case topLeft, topRight, centerLeft, centerRight, bottomLeft, bottomRight
         
@@ -106,7 +102,12 @@ class DebuggerUIButton: UIButton {
             }
         }
     }
-    init() {
+    
+    private let debuggerable: Debuggerable
+    
+    init(debuggerable: Debuggerable) {
+        
+        self.debuggerable = debuggerable
         
         super.init(frame: CGRect(origin: Positions.centerLeft.origin, size: Positions.buttonSize))
         center = Positions.centerLeft.origin
@@ -114,14 +115,16 @@ class DebuggerUIButton: UIButton {
         layer.cornerRadius = Positions.buttonSize.width / 2
         setTitle("S", for: .normal)
         setTitleColor( .white, for: .normal)
-        backgroundColor = globalTint
+        backgroundColor = StanwoodDebugger.Style.tintColor
         
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panning(_:)))
         addGestureRecognizer(pan)
+        
+        NotificationCenter.default.addObservers(self, observers: Stanwood.Observer(selector: #selector(didAddDebuggerItem(_:)), name: Notification.Name.DeuggerDidAddDebuggerItem))
     }
     
     func preparePulse() {
-        pulsator.backgroundColor = globalTint.cgColor
+        pulsator.backgroundColor = StanwoodDebugger.Style.tintColor.cgColor
         pulsator.radius = Positions.buttonSize.width * 0.875
         pulsator.numPulse = 3
         pulsator.animationDuration = 3
@@ -129,6 +132,7 @@ class DebuggerUIButton: UIButton {
         
         superview?.layer.insertSublayer(pulsator, below: layer)
     }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -162,9 +166,27 @@ class DebuggerUIButton: UIButton {
                 self.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
                 self.pulsator.opacity = 0
             }, completion: nil)
-        default:
-            break
+        default: break
         }
     }
-
+    
+    @objc private func didAddDebuggerItem(_ notification: Notification) {
+        guard let addedItem = notification.object as? AddedItem else { return }
+        
+        switch addedItem.type {
+        case .analytics:
+            animate(.analytics)
+        case .error, .logs, .networking, .uiTesting: break
+        }
+    }
+    
+    private func animate(_ icon: DebuggerIconLabel.DebuggerIcons) {
+        guard !debuggerable.isDisplayed else { return }
+        let label = DebuggerIconLabel(icon: icon,frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        label.center = CGPoint(x: center.x + 20, y: center.y)
+        superview?.insertSubview(label, belowSubview: self)
+        
+        let point = CGPoint(x: center.x, y: center.y - 250)
+        label.animate(to: point)
+    }
 }

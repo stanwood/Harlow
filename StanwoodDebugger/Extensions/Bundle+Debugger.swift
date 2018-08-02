@@ -9,6 +9,10 @@ import Foundation
 
 extension Bundle {
     
+    static func debuggerBundle() -> Bundle {
+        return Bundle(for: StanwoodDebugger.self)
+    }
+    
     static func debuggerBundle(from target: AnyClass) -> Bundle {
         let podBundle = Bundle(for:  target)
         guard let bundleURL = podBundle.url(forResource: "StanwoodDebugger", withExtension: "bundle"),

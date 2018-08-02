@@ -15,6 +15,12 @@ protocol Debuggerable: class {
 /// StanwoodDebugger acts as the framework controller, delegating logs
 public class StanwoodDebugger: Debuggerable {
     
+    class Style {
+        private init () {}
+        static let tintColor: UIColor = UIColor(r: 210, g: 78, b: 79)//UIColor(red: 210/255, green: 78/255, blue: 79/255, alpha: 1)
+        static let defaultColor: UIColor = UIColor(r: 51, g: 51, b: 51)
+    }
+    
     /// Enable Debugger View
     public var isEnabled: Bool = false {
         didSet {
@@ -23,6 +29,7 @@ public class StanwoodDebugger: Debuggerable {
     }
     
     var isDisplayed: Bool = false
+    
     fileprivate var debuggerViewController: DebuggerViewController?
     private let window: DebuggerWindow
     private let coordinator: DebuggerCoordinator
@@ -32,20 +39,29 @@ public class StanwoodDebugger: Debuggerable {
     
     public init() {
         window = DebuggerWindow(frame: UIScreen.main.bounds)
-        actions = DebuggerActions()
-        appData = DebuggerData(items: DebuggerElements())
+        
+        appData = DebuggerData()
         paramaters = DebuggerParamaters(appData: appData)
+        actions = DebuggerActions(appData: appData)
+        
         coordinator = DebuggerCoordinator(window: window, actionable: actions, paramaterable: paramaters)
         actions.coordinator = coordinator
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        
+        window.tintColor = Style.tintColor
+    }
+    
+    @objc func applicationDidEnterBackground() {
+        appData.save()
     }
     
     private func configureDebuggerView() {
         switch isEnabled {
         case true:
             if debuggerViewController == nil {
-                let presenter = DebuggerPresenter(debuggerable: self, actionable: actions)
-                debuggerViewController = DebuggerViewController()
-                debuggerViewController?.presenter = presenter
+                debuggerViewController = DebuggerWireframe.makeViewController()
+                DebuggerWireframe.prepare(debuggerViewController, with: actions, and: paramaters, for: self)
             }
             window.rootViewController = debuggerViewController
             window.makeKeyAndVisible()

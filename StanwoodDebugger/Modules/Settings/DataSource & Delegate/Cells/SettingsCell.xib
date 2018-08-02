@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SettingsCell" id="gTV-IL-0wX" customClass="SettingsCell" customModule="StanwoodDebugger" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="330" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="330" height="44"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zZ8-Mj-yFg">
+                        <rect key="frame" x="264" y="6" width="52" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="3AY-KX-xiJ"/>
+                        </constraints>
+                        <color key="onTintColor" red="0.80392156859999997" green="0.16078431369999999" blue="0.56470588239999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <action selector="switchDidChange:" destination="gTV-IL-0wX" eventType="valueChanged" id="az0-PE-6yz"/>
+                        </connections>
+                    </switch>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvl-Cw-I9J" userLabel="SeparatorView">
+                        <rect key="frame" x="20" y="43" width="294" height="1"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="l47-wj-c2k"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S13-2i-Hih">
+                        <rect key="frame" x="0.0" y="0.0" width="1" height="44"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="CVz-LM-4Eg"/>
+                            <constraint firstAttribute="height" constant="44" id="aXC-3K-3fV"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDB-MW-bgG">
+                        <rect key="frame" x="17" y="0.0" width="43" height="43"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="didTapAction" destination="gTV-IL-0wX" eventType="touchUpInside" id="tn9-PH-Wha"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="S13-2i-Hih" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0BV-rJ-tNU"/>
+                <constraint firstItem="zZ8-Mj-yFg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fDB-MW-bgG" secondAttribute="trailing" constant="16" id="423-3A-seO"/>
+                <constraint firstAttribute="bottom" secondItem="zvl-Cw-I9J" secondAttribute="bottom" id="E9w-6U-29q"/>
+                <constraint firstItem="S13-2i-Hih" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Ekq-iQ-maZ"/>
+                <constraint firstItem="fDB-MW-bgG" firstAttribute="leading" secondItem="S13-2i-Hih" secondAttribute="trailing" constant="16" id="GUA-Oj-Dnl"/>
+                <constraint firstItem="fDB-MW-bgG" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="GdX-hn-HNA"/>
+                <constraint firstItem="zZ8-Mj-yFg" firstAttribute="centerY" secondItem="fDB-MW-bgG" secondAttribute="centerY" id="JcP-uU-b6G"/>
+                <constraint firstItem="zvl-Cw-I9J" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="WCJ-NR-d0V"/>
+                <constraint firstAttribute="trailing" secondItem="zZ8-Mj-yFg" secondAttribute="trailing" constant="16" id="cKJ-xX-q2H"/>
+                <constraint firstAttribute="bottom" secondItem="S13-2i-Hih" secondAttribute="bottom" id="jY1-do-Jo6"/>
+                <constraint firstItem="zvl-Cw-I9J" firstAttribute="trailing" secondItem="zZ8-Mj-yFg" secondAttribute="trailing" id="tCI-6G-vPP"/>
+                <constraint firstItem="fDB-MW-bgG" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="u2o-4J-7RL"/>
+                <constraint firstItem="zvl-Cw-I9J" firstAttribute="top" secondItem="fDB-MW-bgG" secondAttribute="bottom" id="vGq-WX-Dtv"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="330" height="43"/>
+            <connections>
+                <outlet property="actionButton" destination="fDB-MW-bgG" id="Vzd-kw-KnF"/>
+                <outlet property="separatorView" destination="zvl-Cw-I9J" id="EfS-wH-W98"/>
+                <outlet property="switchButton" destination="zZ8-Mj-yFg" id="2aA-2j-d78"/>
+            </connections>
+            <point key="canvasLocation" x="-107" y="111"/>
+        </collectionViewCell>
+    </objects>
+</document>

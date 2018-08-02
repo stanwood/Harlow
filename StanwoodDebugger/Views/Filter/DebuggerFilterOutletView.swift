@@ -9,7 +9,7 @@ import Foundation
 
 class DebuggerFilterOutletView: UIView {
 
-    private var currnetFilter: DebuggerFilterView.DebuggerFilter = .analytics
+    var currnetFilter: DebuggerFilterView.DebuggerFilter = .analytics
 
     weak var delegate: DebuggerFilterViewDelegate?
     @IBOutlet weak var collectionView: UICollectionView!
@@ -26,6 +26,7 @@ class DebuggerFilterOutletView: UIView {
         }
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
+        backgroundColor = UIColor.white.withAlphaComponent(0.8)
     }
 
     override init(frame: CGRect) {
@@ -35,7 +36,8 @@ class DebuggerFilterOutletView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        loadFromOutlet(bundle: Bundle.debuggerBundle(from: type(of: self)))
+        let container = loadFromOutlet(bundle: Bundle.debuggerBundle(from: type(of: self)))
+        container?.backgroundColor = .clear
     }
 }
 
@@ -47,9 +49,8 @@ extension DebuggerFilterOutletView: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(cellType: FilterCell.self, for: indexPath)
-        cell.fill(with: DebuggerFilterView.DebuggerFilter.allFilters[indexPath.row])
         cell.delegate = self
-        cell.set(selected: DebuggerFilterView.DebuggerFilter.allFilters[indexPath.row] == currnetFilter)
+        cell.fill(with: DebuggerFilterView.DebuggerFilter.allFilters[indexPath.row], isSelected: DebuggerFilterView.DebuggerFilter.allFilters[indexPath.row] == currnetFilter)
         return cell
     }
 }

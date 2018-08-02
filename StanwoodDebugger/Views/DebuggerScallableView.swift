@@ -15,7 +15,7 @@ protocol DebuggerScallableViewDelegate: class {
 }
 class DebuggerScallableView: UIView {
     
-    private var currentFilter: DebuggerFilterView.DebuggerFilter = .analytics
+    var currentFilter: DebuggerFilterView.DebuggerFilter = .analytics
     private var size: CGSize {
         let screenSize = UIScreen.main.bounds.size
         return CGSize(width: screenSize.width - 18, height: screenSize.height / 1.8 )
@@ -28,6 +28,9 @@ class DebuggerScallableView: UIView {
     
     weak var button: DebuggerUIButton!
     weak var delegate: DebuggerScallableViewDelegate?
+    
+    private var listDelegate: ListDelegate!
+    private var listDataSource: ListDataSource!
     
     private var views: [UIView] {
         return [tableView, filterView]
@@ -77,6 +80,23 @@ class DebuggerScallableView: UIView {
         }
     }
     
+    func configureTableView(with items: AnalyticItems) {
+        
+        tableView.register(UINib(nibName: AnalyticsCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: AnalyticsCell.identifier)
+        
+        tableView.estimatedRowHeight = 75
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        
+        listDataSource = ListDataSource(dataObject: items)
+        listDelegate = ListDelegate(dataObject: items)
+        
+        tableView.dataSource = listDataSource
+        tableView.delegate = listDelegate
+    
+        tableView.reloadData()
+    }
+    
     @objc func dismiss(fromExpandable isExpandable: Bool = false) {
         views.hide(duration: 0.3)
         buttons.hide(duration: 0.3)
@@ -102,7 +122,7 @@ class DebuggerScallableView: UIView {
         buttons.hide(duration: 0.3)
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
             self.frame = UIApplication.shared.keyWindow?.frame ?? .zero
-            self.backgroundColor = .white
+            self.backgroundColor = UIColor.white.withAlphaComponent(0.95)
         }) { _ in
             self.views.hide()
             self.delegate?.scallableViewIsExpanding {

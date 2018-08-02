@@ -13,25 +13,31 @@ protocol FilterCellDelegate: class {
 
 class FilterCell: UICollectionViewCell {
 
-    @IBOutlet private weak var filterButton: UIButton!
+    @IBOutlet private weak var filterButton: FilterUIButton!
     private var filter: DebuggerFilterView.DebuggerFilter?
     var delegate: FilterCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         filterButton.layer.borderWidth = 1
-        filterButton.layer.borderColor = UIColor.blue.cgColor
+        filterButton.layer.borderColor = StanwoodDebugger.Style.tintColor.cgColor
         filterButton.layer.cornerRadius = filterButton.frame.height / 2
+        backgroundColor = .clear
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        filterButton.setTitle(nil, for: .normal)
+        filterButton.setTitle(nil)
     }
     
     func fill(with filter: DebuggerFilterView.DebuggerFilter) {
         self.filter = filter
-        filterButton.setTitle(filter.rawValue, for: .normal)
+        filterButton.setTitle(filter)
+    }
+    
+    func fill(with filter: DebuggerFilterView.DebuggerFilter, isSelected: Bool) {
+        fill(with: filter)
+        filterButton.set(selected: isSelected)
     }
     
     @IBAction func filterAction(_ sender: UIButton) {
@@ -41,17 +47,6 @@ class FilterCell: UICollectionViewCell {
     
     func select(currentFilter: DebuggerFilterView.DebuggerFilter) {
         guard let filter = filter else { return }
-        set(selected: currentFilter == filter)
-    }
-    
-    func set(selected: Bool) {
-        switch selected {
-        case true:
-            filterButton.setTitleColor(.white, for: .normal)
-            filterButton.backgroundColor = .blue
-        case false:
-            filterButton.setTitleColor(.blue, for: .normal)
-            filterButton.backgroundColor = .white
-        }
+        filterButton.set(selected: currentFilter == filter)
     }
 }

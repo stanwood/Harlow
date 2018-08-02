@@ -19,25 +19,23 @@ class DebuggerCoordinator {
         self.paramaterable = paramaterable
     }
     
-    func presentDetailView(completion: @escaping Completion) {
+    func presentListView(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion) {
         
         let title = "Debugger"
         
         // Detail Nav Controller
-        let detailControllers = DetailWireframe.makeViewController(withTitle: title)
-        DetailWireframe.prepare(detailControllers.viewController, with: actionable, paramaterable)
+        let detailControllers = ListWireframe.makeViewController(withTitle: title)
+        ListWireframe.prepare(detailControllers.viewController, with: actionable, paramaterable, filter: filter)
         
         // Settings Nav Controller
-        let settingsViewController = DebuggerDetailViewController()
-        settingsViewController.title = title
-        let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
-        let settingsItem = UIBarButtonItem(barButtonSystemItem: .done, target: settingsViewController, action: #selector(DebuggerSettingsViewController.dismissDebuggerView))
-        settingsViewController.navigationItem.leftBarButtonItem = settingsItem
-        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings_icon", in: Bundle.debuggerBundle(from: type(of: self)), compatibleWith: nil), selectedImage: nil)
-
+        let settingsControllers = SettingsWireframe.makeViewController(withTitle: title)
+        SettingsWireframe.prepare(settingsControllers.viewController, with: actionable, paramaterable)
         
         let tabBarController = DebuggerUITabBarController()
-        tabBarController.setViewControllers([detailControllers.navigationController, settingsNavigationController], animated: false)
+        tabBarController.setViewControllers([
+            detailControllers.navigationController,
+            settingsControllers.navigationController], animated: false)
+        
         window.rootViewController?.present(tabBarController, animated: false, completion: completion)
     }
 }

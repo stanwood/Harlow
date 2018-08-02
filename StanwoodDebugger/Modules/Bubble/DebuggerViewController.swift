@@ -7,16 +7,20 @@
 
 import Foundation
 
-class DebuggerViewController: UIViewController {
+protocol DebuggerViewable: class {
+    var debuggerScallableView: DebuggerScallableView? { get set }
+}
+
+class DebuggerViewController: UIViewController, DebuggerViewable {
     
     private var debuggerButton: DebuggerUIButton!
-    private var debuggerScallableView: DebuggerScallableView?
+    var debuggerScallableView: DebuggerScallableView?
     
     var presenter: DebuggerPresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        debuggerButton = DebuggerUIButton()
+        debuggerButton = DebuggerUIButton(debuggerable: presenter.debuggerable)
         debuggerButton.addTarget(self, action: #selector(didTapDebuggerButton(target:)), for: .touchUpInside)
         view.addSubview(debuggerButton)
     }
@@ -60,7 +64,7 @@ class DebuggerViewController: UIViewController {
 extension DebuggerViewController: DebuggerScallableViewDelegate {
     
     func scallableViewIsExpanding(completion: @escaping Completion) {
-        presenter.presentDetailView(completion: completion)
+        presenter.presentDetailView(with: debuggerScallableView?.currentFilter ?? .analytics, completion: completion)
     }
     
     func scallableViewDidDismiss() {

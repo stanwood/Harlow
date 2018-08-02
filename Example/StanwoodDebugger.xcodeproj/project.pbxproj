@@ -215,10 +215,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = ZC4L7BE562;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = ZC4L7BE562;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -272,11 +274,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-StanwoodDebugger_Example/Pods-StanwoodDebugger_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Pulsator/Pulsator.framework",
+				"${BUILT_PRODUCTS_DIR}/StanwoodCore/StanwoodCore.framework",
 				"${BUILT_PRODUCTS_DIR}/StanwoodDebugger/StanwoodDebugger.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulsator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StanwoodCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StanwoodDebugger.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +479,7 @@
 			baseConfigurationReference = 65CC5593567DABE1E1A8E37C /* Pods-StanwoodDebugger_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZC4L7BE562;
 				INFOPLIST_FILE = StanwoodDebugger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -490,6 +495,7 @@
 			baseConfigurationReference = 46FEBF1507183EAB8371E0F9 /* Pods-StanwoodDebugger_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZC4L7BE562;
 				INFOPLIST_FILE = StanwoodDebugger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -504,6 +510,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 88753D26D2805B63EAE6D1B1 /* Pods-StanwoodDebugger_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = ZC4L7BE562;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -525,6 +532,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 336996636B23604025BAA6DF /* Pods-StanwoodDebugger_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = ZC4L7BE562;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
