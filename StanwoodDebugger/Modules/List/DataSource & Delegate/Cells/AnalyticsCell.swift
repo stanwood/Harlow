@@ -15,7 +15,7 @@ class AnalyticsCell: UITableViewCell, Fillable {
     private(set) var item: DebuggerAnalyticsItem?
     
     private enum Labels: Int {
-        case name, category, id, contentType
+        case name, category, id, contentType, date
     }
     
     override func awakeFromNib() {
@@ -26,6 +26,7 @@ class AnalyticsCell: UITableViewCell, Fillable {
     override func prepareForReuse() {
         super.prepareForReuse()
         item = nil
+        labels.forEach({ $0.text = nil })
     }
     
     func fill(with type: Type?) {
@@ -35,6 +36,7 @@ class AnalyticsCell: UITableViewCell, Fillable {
         labels[Labels.category.rawValue].text = item.category
         labels[Labels.id.rawValue].text = item.id
         labels[Labels.contentType.rawValue].text = item.contentType
+        labels[Labels.date.rawValue].text = item.formattedDate
     }
     
 }

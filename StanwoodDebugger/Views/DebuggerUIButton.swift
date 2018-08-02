@@ -102,7 +102,12 @@ class DebuggerUIButton: UIButton {
             }
         }
     }
-    init() {
+    
+    private let debuggerable: Debuggerable
+    
+    init(debuggerable: Debuggerable) {
+        
+        self.debuggerable = debuggerable
         
         super.init(frame: CGRect(origin: Positions.centerLeft.origin, size: Positions.buttonSize))
         center = Positions.centerLeft.origin
@@ -127,6 +132,7 @@ class DebuggerUIButton: UIButton {
         
         superview?.layer.insertSublayer(pulsator, below: layer)
     }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -160,8 +166,7 @@ class DebuggerUIButton: UIButton {
                 self.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
                 self.pulsator.opacity = 0
             }, completion: nil)
-        default:
-            break
+        default: break
         }
     }
     
@@ -175,15 +180,13 @@ class DebuggerUIButton: UIButton {
         }
     }
     
-    private func animate(_ icon: DebuggerIcons) {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
-        label.text = icon.rawValue
-        label.center = center
+    private func animate(_ icon: DebuggerIconLabel.DebuggerIcons) {
+        guard !debuggerable.isDisplayed else { return }
+        let label = DebuggerIconLabel(icon: icon,frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        label.center = CGPoint(x: center.x + 20, y: center.y)
         superview?.insertSubview(label, belowSubview: self)
         
-        let toPoint = CGPoint(x: center.x, y: center.y - 250)
-        icon.animate(label, toPoint: toPoint) { (label) in
-            label.removeFromSuperview()
-        }
+        let point = CGPoint(x: center.x, y: center.y - 250)
+        label.animate(to: point)
     }
 }

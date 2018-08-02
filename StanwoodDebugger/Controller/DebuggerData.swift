@@ -18,13 +18,21 @@ class DebuggerData {
     var analyticsItems: AnalyticItems
     var count = 98
     
+    lazy var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        decoder.dateDecodingStrategy = .formatted(formatter)
+        return decoder
+    }()
+    
     init() {
-        if let items = AnalyticItems.loadFromFile() {
-            analyticsItems = items as! AnalyticItems
+        if let items = try? Stanwood.Storage.retrieve(AnalyticItems.fileName, of: .json, from: .documents, as: AnalyticItems.self) {
+            analyticsItems = items ?? AnalyticItems(items: [])
         } else {
             analyticsItems = AnalyticItems(items: [])
         }
-
+        
         NotificationCenter.default.addObservers(self, observers:
             Stanwood.Observer(selector: #selector(didReceiveAnalyticsItem(_:)), name: .DebuggerDidReceiveAnalyticsItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveLogItem(_:)), name: .DeuggerDidReceiveLogItem),
@@ -44,14 +52,15 @@ class DebuggerData {
     }
     
     func tempSetItems() {
-        self.analyticsItems = try! JSONDecoder().decode(AnalyticItems.self, from: analytics_data)
+        self.analyticsItems = try! decoder.decode(AnalyticItems.self, from: analytics_data)
     }
-
+    
     @objc func didReceiveAnalyticsItem(_ notification: Notification) {
         
         guard let userInfo = notification.userInfo,
-        let data = try? JSONSerialization.data(withJSONObject: userInfo, options: []),
-       let item = try? JSONDecoder().decode(DebuggerAnalyticsItem.self, from: data)  else { return }
+            let data = try? JSONSerialization.data(withJSONObject: userInfo, options: []),
+            let item = try? decoder.decode(DebuggerAnalyticsItem.self, from: data)  else { return }
+        
         
         analyticsItems.append(item)
         
@@ -62,51 +71,56 @@ class DebuggerData {
     }
     
     @objc func didReceiveErrorItem(_ notification: Notification) {
-        
+        // SFW-52: Phase 3
     }
     
     @objc func didReceiveNetworkingItem(_ notification: Notification) {
-        
+        // SFW-54: Phase 5
     }
     
     @objc func didReceiveLogItem(_ notification: Notification) {
-
+        // SFW-55: Phase 6
     }
     
     @objc func didReceiveUITestingItem(_ notification: Notification) {
-    
+        // SFW-53: Phase 4
     }
     
     func save() {
-        try? analyticsItems.save()
+        try? Stanwood.Storage.store(analyticsItems, to: .documents, as: .json, withName: AnalyticItems.fileName)
     }
 }
 
+// MOCK DATA
 
-let analytics_data: Data =
-"""
+let analytics_data: Data = """
 {
 "items" : [
 {
+"createdAt": "2018-08-01T05:00:02+0300",
 "eventName" : "user_action",
 "itemId" : "123",
 "contentType" : "some_content_type",
 "category" : "meals"
 },{
+"createdAt": "2018-08-01T05:00:02+0300",
 "eventName" : "user_action",
 "itemId" : "123",
 "contentType" : "some_content_type",
 "category" : "meals"
 },{
+"createdAt": "2018-08-01T05:00:02+0300",
 "eventName" : "user_action",
 "itemId" : "123",
 "contentType" : "some_content_type",
 "category" : "meals"
 },{
+"createdAt": "2018-08-01T05:00:02+0300",
 "eventName" : "user_action",
 "itemId" : "123",
 "category" : "meals"
 },{
+"createdAt": "2018-08-01T05:00:02+0300",
 "eventName" : "user_action",
 "itemId" : "123",
 "contentType" : "some_content_type",
@@ -114,16 +128,19 @@ let analytics_data: Data =
 "eventName" : "user_action",
 "itemId" : "123",
 },{
+"createdAt": "2018-08-01T05:00:02+0300",
 "eventName" : "user_action",
 "itemId" : "123",
 "contentType" : "some_content_type",
 "category" : "meals"
 },{
+"createdAt": "2018-08-01T05:00:02+0300",
 "eventName" : "user_action",
 "itemId" : "123",
 "contentType" : "some_content_type",
 "category" : "meals"
 },{
+"createdAt": "2018-08-01T05:00:02+0300",
 "eventName" : "user_action",
 "contentType" : "some_content_type",
 "category" : "meals"
@@ -131,3 +148,4 @@ let analytics_data: Data =
 ]
 }
 """.data(using: .utf8)!
+

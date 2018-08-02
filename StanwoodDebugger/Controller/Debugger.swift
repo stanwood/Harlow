@@ -52,6 +52,7 @@ public class StanwoodDebugger: Debuggerable {
     @objc func applicationDidEnterBackground() {
         appData.save()
     }
+    
     private func configureDebuggerView() {
         switch isEnabled {
         case true:

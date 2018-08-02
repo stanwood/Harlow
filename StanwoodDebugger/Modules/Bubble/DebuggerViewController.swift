@@ -20,7 +20,7 @@ class DebuggerViewController: UIViewController, DebuggerViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        debuggerButton = DebuggerUIButton()
+        debuggerButton = DebuggerUIButton(debuggerable: presenter.debuggerable)
         debuggerButton.addTarget(self, action: #selector(didTapDebuggerButton(target:)), for: .touchUpInside)
         view.addSubview(debuggerButton)
     }

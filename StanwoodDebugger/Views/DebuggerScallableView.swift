@@ -122,7 +122,7 @@ class DebuggerScallableView: UIView {
         buttons.hide(duration: 0.3)
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
             self.frame = UIApplication.shared.keyWindow?.frame ?? .zero
-            self.backgroundColor = .white
+            self.backgroundColor = UIColor.white.withAlphaComponent(0.95)
         }) { _ in
             self.views.hide()
             self.delegate?.scallableViewIsExpanding {

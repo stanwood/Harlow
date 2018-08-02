@@ -11,11 +11,20 @@ import StanwoodCore
 struct DebuggerAnalyticsItem: Typeable {
     
     enum CodingKeys: String, CodingKey {
-        case eventName, category, contentType, id = "itemId"
+        case eventName, category, contentType, id = "itemId", createdAt
     }
     
     var id: String?
     var eventName: String?
     var category: String?
     var contentType: String?
+    var createdAt: Date?
+    
+    var formattedDate: String {
+        guard let date = createdAt else { return "" }
+        let format = "HH:mm:ss"
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = format
+        return dateFormat.string(from: date)
+    }
 }
