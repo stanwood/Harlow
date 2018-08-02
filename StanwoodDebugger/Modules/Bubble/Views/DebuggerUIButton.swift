@@ -103,9 +103,9 @@ class DebuggerUIButton: UIButton {
         }
     }
     
-    private let debuggerable: Debuggerable
+    private let debuggerable: Debugging
     
-    init(debuggerable: Debuggerable) {
+    init(debuggerable: Debugging) {
         
         self.debuggerable = debuggerable
         
