@@ -20,6 +20,7 @@ class ListViewController: UIViewController, ListViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .clear
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let navigationBarHeight = navigationController?.navigationBar.frame.height ?? 0

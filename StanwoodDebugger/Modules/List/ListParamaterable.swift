@@ -9,12 +9,15 @@ import Foundation
 import StanwoodCore
 
 protocol ListParamaterable {
-    var deguggerItems: DataType { get }
+    func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> DataType?
 }
 
 extension DebuggerParamaters: ListParamaterable {
 
-    var deguggerItems: DataType {
-        return appData.analyticsItems // Temp
+    func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> DataType? {
+        switch filter {
+        case .analytics: return appData.analyticsItems
+        case .error, .logs, .networking, .uiTesting: return nil
+        }
     }
 }

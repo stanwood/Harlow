@@ -18,8 +18,8 @@ class ListPresenter {
     private var delegate: ListDelegate!
     private var currentFilter: DebuggerFilterView.DebuggerFilter = .analytics
     
-    private var items: Stanwood.Elements<AnalyticsItem> {
-        return paramaterable.deguggerItems as! Stanwood.Elements<AnalyticsItem> 
+    private var items: DataType? {
+        return paramaterable.getDeguggerItems(for: currentFilter)
     }
     
     init(actionable: ListActionable, viewable: ListViewable, paramaterable: ListParamaterable, filter: DebuggerFilterView.DebuggerFilter) {
@@ -31,7 +31,13 @@ class ListPresenter {
     }
     
     func set(current filter: DebuggerFilterView.DebuggerFilter) {
-        self.currentFilter = filter
+        currentFilter = filter
+        refresh()
+    }
+    
+    private func refresh() {
+        dataSource?.update(with: items)
+        delegate?.update(with: items)
     }
     
     func viewDidLoad() {
@@ -50,9 +56,5 @@ class ListPresenter {
         viewable?.tableView.delegate = delegate
         
         viewable?.filterView.filterCellDid(filter: currentFilter)
-    }
-    
-    func present(_ item: AnalyticsItem) {
-        
     }
 }
