@@ -17,7 +17,7 @@ public class StanwoodDebugger: Debugging {
     
     struct Style {
         private init () {}
-        static let tintColor: UIColor = UIColor(r: 210, g: 78, b: 79)//UIColor(red: 210/255, green: 78/255, blue: 79/255, alpha: 1)
+        static let tintColor: UIColor = UIColor(r: 210, g: 78, b: 79)
         static let defaultColor: UIColor = UIColor(r: 51, g: 51, b: 51)
     }
     

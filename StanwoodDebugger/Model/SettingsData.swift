@@ -17,7 +17,8 @@ class SettingsData: DataType {
     var sections: [Section] = [
         Section(withType: .information),
         Section(withType: .data),
-        Section(withType: .settings)
+        Section(withType: .settings),
+        Section(withType: .animation)
     ]
     
     var numberOfSections: Int {
@@ -45,6 +46,7 @@ class SettingsData: DataType {
             case .information: settings = [Setting(type: .version), Setting(type: .device)]
             case .data: settings = [Setting(type: .storeAnalytics)]
             case .settings: settings = [Setting(type: .resetAll), Setting(type: .removeData), Setting(type: .removeAnalytics)]
+            case .animation: settings = [Setting(type: .bubblePulse), Setting(type: .debuggerIcons)]
             }
         }
         
@@ -70,15 +72,16 @@ class SettingsData: DataType {
             case .data: return "Data"
             case .information: return "App Information"
             case .settings: return "Settings"
+            case .animation: return "Animation"
             }
         }
         
         enum SectionType {
-            case information, data, settings
+            case information, data, settings, animation
         }
         
         enum SettingType: String {
-            case device, version, storeAnalytics, resetAll, removeData, removeAnalytics
+            case device, version, storeAnalytics, resetAll, removeData, removeAnalytics, bubblePulse, debuggerIcons
         }
         
         struct Setting: Type {
@@ -90,13 +93,17 @@ class SettingsData: DataType {
                 case .device, .version, .resetAll, .removeData, .removeAnalytics: return false
                 case .storeAnalytics:
                     return DebuggerSettings.shouldStoreAnalyticsData
+                case .bubblePulse:
+                    return DebuggerSettings.isDebuggerBubblePulseAnimationEnabled
+                case .debuggerIcons:
+                    return DebuggerSettings.isDebuggerItemIconsAnimationEnabled
                 }
             }
             
             var isSeparatorVisible: Bool = true
             var isActionable: Bool {
                 switch type {
-                case .device, .version, .storeAnalytics: return false
+                case .device, .version, .storeAnalytics, .bubblePulse, .debuggerIcons: return false
                 case .resetAll, .removeData, .removeAnalytics: return true
                 }
             }
@@ -104,7 +111,7 @@ class SettingsData: DataType {
             var hasSwitch: Bool {
                 switch type {
                 case .device, .version, .resetAll, .removeData, .removeAnalytics: return false
-                case .storeAnalytics: return true
+                case .storeAnalytics, .bubblePulse, .debuggerIcons: return true
                 }
             }
             
@@ -120,6 +127,8 @@ class SettingsData: DataType {
                 case .resetAll: return "Restore to Default Settings"
                 case .removeData: return "Delete Cached Data"
                 case .removeAnalytics: return "Delete Analytics Data"
+                case .bubblePulse: return "Enable Bubble Pulse Animation"
+                case .debuggerIcons: return "Enable Bubble Emoji Animation"
                 }
             }
             

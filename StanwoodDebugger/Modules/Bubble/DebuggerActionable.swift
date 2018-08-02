@@ -10,6 +10,9 @@ import Foundation
 protocol DebuggerActionable {
     func presentListView(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion)
     func presentScaleable(_ view: DebuggerScallableView)
+    
+    /// Handled in ListActionable
+    func refresh(withDelay delay: DispatchTimeInterval)
 }
 
 extension DebuggerActions: DebuggerActionable {

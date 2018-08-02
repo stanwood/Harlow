@@ -41,6 +41,7 @@ class DebuggerScallableView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         backgroundColor = UIColor.white.withAlphaComponent(0.5)
         alpha = 0
         closeButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
@@ -55,6 +56,8 @@ class DebuggerScallableView: UIView {
         layer.cornerRadius = 5
         layer.borderColor = UIColor.black.withAlphaComponent(0.3).cgColor
         layer.borderWidth = 1
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: nil)
         
         filterView.delegate = self
     }
@@ -97,6 +100,10 @@ class DebuggerScallableView: UIView {
         tableView.reloadData()
     }
     
+    @objc func refresh() {
+        tableView.reloadData()
+    }
+    
     @objc func dismiss(fromExpandable isExpandable: Bool = false) {
         views.hide(duration: 0.3)
         buttons.hide(duration: 0.3)
@@ -135,6 +142,11 @@ class DebuggerScallableView: UIView {
 }
 
 extension DebuggerScallableView: DebuggerFilterViewDelegate {
+    
+    func canRefresh() {
+        
+    }
+    
     func debuggerFilterViewDidFilter(_ filter: DebuggerFilterView.DebuggerFilter) {
         self.currentFilter = filter
         tableView.reloadData()

@@ -26,9 +26,11 @@ class DebuggerPresenter {
     }
     
     func presentScaled(_ view: DebuggerScallableView) {
-        
         viewable?.debuggerScallableView?.configureTableView(with: parameterable.items)
-        
         actionable.presentScaleable(view)
+    }
+    
+    func refresh() {
+        actionable.refresh(withDelay: .milliseconds(500))
     }
 }

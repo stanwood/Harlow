@@ -10,12 +10,18 @@ import Foundation
 class DebuggerSettings {
     
     private enum LocalKeys: String {
-        case shouldStoreAnalyticsData
+        case shouldStoreAnalyticsData,
+        isDebuggerBubblePulseAnimationEnabled,
+        isDebuggerItemIconsAnimationEnabled
         
         var key: String {
             switch self {
             case .shouldStoreAnalyticsData:
                 return "should_store_analytics_data"
+            case .isDebuggerBubblePulseAnimationEnabled:
+                return "is_debugger_bubble_pulse_animation_enabled"
+            case .isDebuggerItemIconsAnimationEnabled:
+                return "is_debugger_item_icons_animation_enabled"
             }
         }
     }
@@ -44,5 +50,29 @@ class DebuggerSettings {
         set {
             defaults.set(newValue, forKey: LocalKeys.shouldStoreAnalyticsData.key)
         }
+    }
+    
+    static var isDebuggerBubblePulseAnimationEnabled: Bool {
+        get {
+            return defaults.bool(forKey: LocalKeys.isDebuggerBubblePulseAnimationEnabled.key)
+        }
+        
+        set {
+            defaults.set(newValue, forKey: LocalKeys.isDebuggerBubblePulseAnimationEnabled.key)
+        }
+    }
+    
+    static var isDebuggerItemIconsAnimationEnabled: Bool {
+        get {
+            return defaults.bool(forKey: LocalKeys.isDebuggerItemIconsAnimationEnabled.key)
+        }
+        
+        set {
+            defaults.set(newValue, forKey: LocalKeys.isDebuggerItemIconsAnimationEnabled.key)
+        }
+    }
+    
+    static func restoreDefaults() {
+        /// Handle: Low prio later feature
     }
 }
