@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import StanwoodCore
 
 typealias Completion = () -> Void
 
@@ -29,6 +30,7 @@ class DebuggerScallableView: UIView {
     weak var button: DebuggerUIButton!
     weak var delegate: DebuggerScallableViewDelegate?
     
+    var presenter: DebuggerPresenter!
     private var listDelegate: ListDelegate!
     private var listDataSource: ListDataSource!
     
@@ -83,7 +85,7 @@ class DebuggerScallableView: UIView {
         }
     }
     
-    func configureTableView(with items: AnalyticItems) {
+    func configureTableView(with items: DataType?) {
         
         tableView.register(UINib(nibName: AnalyticsCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: AnalyticsCell.identifier)
         
@@ -142,13 +144,13 @@ class DebuggerScallableView: UIView {
 }
 
 extension DebuggerScallableView: DebuggerFilterViewDelegate {
-    
-    func canRefresh() {
-        
-    }
-    
+
     func debuggerFilterViewDidFilter(_ filter: DebuggerFilterView.DebuggerFilter) {
         self.currentFilter = filter
+        
+        listDataSource.update(with: presenter.parameterable.getDeguggerItems(for: filter))
+        listDelegate.update(with: presenter.parameterable.getDeguggerItems(for: filter))
+        
         tableView.reloadData()
     }
 }

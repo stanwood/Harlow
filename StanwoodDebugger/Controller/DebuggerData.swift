@@ -29,7 +29,6 @@ class DebuggerData {
         return decoder
     }()
     
-    var counter: Int = 0
     init() {
         if let items = try? Stanwood.Storage.retrieve(AnalyticItems.fileName, of: .json, from: .documents, as: AnalyticItems.self) {
             analyticsItems = items ?? AnalyticItems(items: [])
@@ -40,18 +39,16 @@ class DebuggerData {
         NotificationCenter.default.addObservers(self, observers:
             Stanwood.Observer(selector: #selector(didReceiveAnalyticsItem(_:)), name: .DebuggerDidReceiveAnalyticsItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveLogItem(_:)), name: .DeuggerDidReceiveLogItem),
+                                                Stanwood.Observer(selector: #selector(save), name: .UIApplicationWillTerminate),
                                                 Stanwood.Observer(selector: #selector(didReceiveErrorItem(_:)), name: .DeuggerDidReceiveErrorItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveUITestingItem(_:)), name: .DeuggerDidReceiveUITestingItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveNetworkingItem(_:)), name: .DeuggerDidReceiveNetworkingItem)
         )
         
-        
         /// MOCK DATA
+        /*
         Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { (_) in
             
-            guard self.counter < 4 else { return }
-            self.counter += 1
-
             let dateString = self.formatter.string(from: Date())
             let dic: [String: Any] = [
                 "createdAt" : dateString,
@@ -65,6 +62,7 @@ class DebuggerData {
             let not = Notification(name: Notification.Name.DebuggerDidReceiveAnalyticsItem, object: nil, userInfo: dic)
             NotificationCenter.default.post(not)
         }
+         */
     }
     
     func removeAll() {
@@ -88,12 +86,14 @@ class DebuggerData {
         
         analyticsItems.append(item)
         
-        analyticsItems.items.sort(by: { ($0.createdAt ?? Date()) > ($1.createdAt ?? Date()) })
+        analyticsItems.items.sort(by: { ($0.createdAt ?? Date()) < ($1.createdAt ?? Date()) })
         
         let addedIems: [AddedItem] = [AddedItem(type: .analytics, count: analyticsItems.numberOfItems)]
         
         NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
         NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIems)
+        
+        Stanwood.FeedbackGenerator.generate(style: .light)
     }
     
     @objc func didReceiveErrorItem(_ notification: Notification) {
@@ -112,7 +112,7 @@ class DebuggerData {
         // SFW-53: Phase 4
     }
     
-    func save() {
+    @objc func save() {
         if DebuggerSettings.shouldStoreAnalyticsData {
             try? Stanwood.Storage.store(analyticsItems, to: .documents, as: .json, withName: AnalyticItems.fileName)
         }

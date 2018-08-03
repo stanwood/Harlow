@@ -11,7 +11,7 @@ class DebuggerPresenter {
     
     weak var debuggerable: Debugging!
     private var actionable: DebuggerActionable
-    private var parameterable: DebuggerParameterable
+    var parameterable: DebuggerParameterable
     private weak var viewable: DebuggerViewable?
     
     init(debuggerable: Debugging, actionable: DebuggerActionable, viewable: DebuggerViewable, parameterable: DebuggerParameterable) {
@@ -26,7 +26,8 @@ class DebuggerPresenter {
     }
     
     func presentScaled(_ view: DebuggerScallableView) {
-        viewable?.debuggerScallableView?.configureTableView(with: parameterable.items)
+        view.presenter = self
+        viewable?.debuggerScallableView?.configureTableView(with: parameterable.getDeguggerItems(for: .analytics))
         actionable.presentScaleable(view)
     }
     
