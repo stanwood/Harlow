@@ -31,7 +31,8 @@ class DebuggerSettings {
     }
     
     private static func getDefaultSettings() ->  [String: Any] {
-        if let path = Bundle.debuggerBundle().path(forResource: "DefaultSettings", ofType: "plist"), let parameters = NSDictionary(contentsOfFile: path) as? Dictionary<String, Any> {
+        let bundle = Bundle.debuggerBundle(from: type(of: DebuggerSettings()))
+        if let path = bundle.path(forResource: "DefaultSettings", ofType: "plist"), let parameters = NSDictionary(contentsOfFile: path) as? Dictionary<String, Any> {
             return parameters
         } else {
             fatalError("Settings plist file is missing!")

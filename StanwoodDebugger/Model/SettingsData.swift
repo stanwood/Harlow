@@ -17,8 +17,8 @@ class SettingsData: DataType {
     var sections: [Section] = [
         Section(withType: .information),
         Section(withType: .data),
-        Section(withType: .settings),
-        Section(withType: .animation)
+        Section(withType: .animation),
+        Section(withType: .settings)
     ]
     
     var numberOfSections: Int {
