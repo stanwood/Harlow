@@ -9,16 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    @IBAction func tapMe(_ sender: Any) {
+        let alertController = UIAlertController(title: "Hi!", message: "Do you like StanwoodDebugger?", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Yes😍", style: .default, handler: nil)
+        let no = UIAlertAction(title: "No!🤬", style: .destructive, handler: nil)
+        alertController.addAction(yes)
+        alertController.addAction(no)
+        present(alertController, animated: true, completion: nil)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
 

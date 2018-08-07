@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'StanwoodDebugger'
-  s.version          = '0.1.0'
+  s.version          = '0.0.1'
   s.summary          = 'Stanwood debugger provide live view debugging'
   s.description      = <<-DESC
     Live debugger for:
@@ -19,5 +19,24 @@ Pod::Spec.new do |s|
   s.swift_version = '4.0'
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'StanwoodDebugger/Classes/**/*'
+  s.source_files = [
+    'StanwoodDebugger/Controller/**/*',
+    'StanwoodDebugger/Views/**/*',
+    'StanwoodDebugger/Modules/**/*',
+    'StanwoodDebugger/Model/**/*',
+    'StanwoodDebugger/Protocols/**/*',
+    'StanwoodDebugger/Extensions/**/*'
+  ]
+  s.resource_bundles = {
+      'StanwoodDebugger' => [
+      'StanwoodDebugger/Assets/*',
+      'StanwoodDebugger/Resources/*',
+      'StanwoodDebugger/Views/**/*.xib',
+      'StanwoodDebugger/Modules/**/*.xib'
+      ]
+      
+  }
+
+  s.dependency 'Pulsator'
+  s.dependency 'StanwoodCore'
 end

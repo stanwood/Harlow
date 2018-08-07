@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>should_store_analytics_data</key>
+	<true/>
+	<key>is_debugger_bubble_pulse_animation_enabled</key>
+	<true/>
+	<key>is_debugger_item_icons_animation_enabled</key>
+	<true/>
+</dict>
+</plist>
