@@ -67,9 +67,9 @@ class FilterUIButton: UIButton {
     }
     
     @objc private func didAddNewItem(_ notification: Notification) {
-        guard let addedItem = notification.object as? AddedItem,
-            let type = self.filter,
-            addedItem.type == type else { return }
+        
+        guard let addedItems = notification.object as? [AddedItem],
+            let addedItem = addedItems.filter({ $0.type == self.filter }).first else { return }
         
         UIView.animate(withDuration: 0.3,  animations: {
             self.badgeLabel.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)

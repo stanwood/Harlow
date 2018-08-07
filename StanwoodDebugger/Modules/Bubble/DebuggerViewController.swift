@@ -33,6 +33,9 @@ class DebuggerViewController: UIViewController, DebuggerViewable {
             debuggerScallableView?.delegate = self
             view.addSubview(debuggerScallableView!)
         }
+        
+        presenter.refresh()
+        
         presenter.presentScaled(debuggerScallableView!)
     }
     

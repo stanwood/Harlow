@@ -35,6 +35,7 @@ class ListViewController: UIViewController, ListViewable {
         tableView.backgroundColor = UIColor.white.withAlphaComponent(0.9)
         view.addSubview(tableView)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: nil)
         presenter.viewDidLoad()
     }
     
@@ -44,12 +45,17 @@ class ListViewController: UIViewController, ListViewable {
         tableView.reloadData()
     }
     
+    @objc func refresh() {
+        tableView.reloadData()
+    }
+    
     @objc func dismissDebuggerView() {
         tabBarController?.dismiss(animated: true, completion: nil)
     }
 }
 
 extension ListViewController: DebuggerFilterViewDelegate {
+    
     func debuggerFilterViewDidFilter(_ filter: DebuggerFilterView.DebuggerFilter) {
         self.presenter.set(current: filter)
         tableView.reloadData()

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import StanwoodCore
 
 typealias Completion = () -> Void
 
@@ -29,6 +30,7 @@ class DebuggerScallableView: UIView {
     weak var button: DebuggerUIButton!
     weak var delegate: DebuggerScallableViewDelegate?
     
+    var presenter: DebuggerPresenter!
     private var listDelegate: ListDelegate!
     private var listDataSource: ListDataSource!
     
@@ -41,6 +43,7 @@ class DebuggerScallableView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         backgroundColor = UIColor.white.withAlphaComponent(0.5)
         alpha = 0
         closeButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
@@ -55,6 +58,8 @@ class DebuggerScallableView: UIView {
         layer.cornerRadius = 5
         layer.borderColor = UIColor.black.withAlphaComponent(0.3).cgColor
         layer.borderWidth = 1
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: nil)
         
         filterView.delegate = self
     }
@@ -80,7 +85,7 @@ class DebuggerScallableView: UIView {
         }
     }
     
-    func configureTableView(with items: AnalyticItems) {
+    func configureTableView(with items: DataType?) {
         
         tableView.register(UINib(nibName: AnalyticsCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: AnalyticsCell.identifier)
         
@@ -94,6 +99,10 @@ class DebuggerScallableView: UIView {
         tableView.dataSource = listDataSource
         tableView.delegate = listDelegate
     
+        tableView.reloadData()
+    }
+    
+    @objc func refresh() {
         tableView.reloadData()
     }
     
@@ -135,8 +144,13 @@ class DebuggerScallableView: UIView {
 }
 
 extension DebuggerScallableView: DebuggerFilterViewDelegate {
+
     func debuggerFilterViewDidFilter(_ filter: DebuggerFilterView.DebuggerFilter) {
         self.currentFilter = filter
+        
+        listDataSource.update(with: presenter.parameterable.getDeguggerItems(for: filter))
+        listDelegate.update(with: presenter.parameterable.getDeguggerItems(for: filter))
+        
         tableView.reloadData()
     }
 }

@@ -32,10 +32,10 @@ class ListPresenter {
     
     func set(current filter: DebuggerFilterView.DebuggerFilter) {
         currentFilter = filter
-        refresh()
+        refreshSource()
     }
     
-    private func refresh() {
+    private func refreshSource() {
         dataSource?.update(with: items)
         delegate?.update(with: items)
     }
@@ -56,5 +56,7 @@ class ListPresenter {
         viewable?.tableView.delegate = delegate
         
         viewable?.filterView.filterCellDid(filter: currentFilter)
+        
+        actionable.refresh(withDelay: .milliseconds(0))
     }
 }

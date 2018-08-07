@@ -7,6 +7,12 @@
 
 import Foundation
 
-protocol ListActionable { }
+protocol ListActionable {
+    func refresh(withDelay delay: DispatchTimeInterval)
+}
 
-extension DebuggerActions: ListActionable { }
+extension DebuggerActions: ListActionable {
+    func refresh(withDelay delay: DispatchTimeInterval = .milliseconds(500)) {
+        appData.refresh(withDelay: delay)
+    }
+}

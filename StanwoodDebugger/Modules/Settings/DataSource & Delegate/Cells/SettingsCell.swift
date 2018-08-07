@@ -24,6 +24,8 @@ class SettingsCell: Stanwood.AutoSizeableCell, Fillable {
     
     override func prepare() {
         actionButton.setTitle(nil, for: .normal)
+        switchButton.onTintColor = StanwoodDebugger.Style.tintColor
+        
         type = nil
     }
 

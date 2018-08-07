@@ -10,7 +10,7 @@ import Pulsator
 import StanwoodCore
 
 class DebuggerUIButton: UIButton {
-
+    
     private enum Positions {
         case topLeft, topRight, centerLeft, centerRight, bottomLeft, bottomRight
         
@@ -103,9 +103,9 @@ class DebuggerUIButton: UIButton {
         }
     }
     
-    private let debuggerable: Debuggerable
+    private let debuggerable: Debugging
     
-    init(debuggerable: Debuggerable) {
+    init(debuggerable: Debugging) {
         
         self.debuggerable = debuggerable
         
@@ -124,6 +124,7 @@ class DebuggerUIButton: UIButton {
     }
     
     func preparePulse() {
+        guard DebuggerSettings.isDebuggerBubblePulseAnimationEnabled else { return }
         pulsator.backgroundColor = StanwoodDebugger.Style.tintColor.cgColor
         pulsator.radius = Positions.buttonSize.width * 0.875
         pulsator.numPulse = 3
@@ -157,11 +158,17 @@ class DebuggerUIButton: UIButton {
                 self.center = position.origin
                 self.transform = .identity
             }, completion: { _ in
+                
+                Stanwood.FeedbackGenerator.generate(style: .heavy)
+                
                 UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: {
                     self.pulsator.opacity = 1
                 }, completion: nil)
             })
         case .began:
+            
+            Stanwood.FeedbackGenerator.generate(style: .light)
+            
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
                 self.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
                 self.pulsator.opacity = 0
@@ -171,17 +178,19 @@ class DebuggerUIButton: UIButton {
     }
     
     @objc private func didAddDebuggerItem(_ notification: Notification) {
-        guard let addedItem = notification.object as? AddedItem else { return }
+        guard let addedItems = notification.object as? [AddedItem] else { return }
         
-        switch addedItem.type {
-        case .analytics:
-            animate(.analytics)
-        case .error, .logs, .networking, .uiTesting: break
-        }
+        addedItems.forEach({
+            switch $0.type {
+            case .analytics:
+                animate(.analytics)
+            case .error, .logs, .networking, .uiTesting: break
+            }
+        })
     }
     
     private func animate(_ icon: DebuggerIconLabel.DebuggerIcons) {
-        guard !debuggerable.isDisplayed else { return }
+        guard !debuggerable.isDisplayed, DebuggerSettings.isDebuggerItemIconsAnimationEnabled else { return }
         let label = DebuggerIconLabel(icon: icon,frame: CGRect(x: 0, y: 0, width: 60, height: 60))
         label.center = CGPoint(x: center.x + 20, y: center.y)
         superview?.insertSubview(label, belowSubview: self)

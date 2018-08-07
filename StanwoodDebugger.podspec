@@ -30,6 +30,7 @@ Pod::Spec.new do |s|
   s.resource_bundles = {
       'StanwoodDebugger' => [
       'StanwoodDebugger/Assets/*',
+      'StanwoodDebugger/Resources/*',
       'StanwoodDebugger/Views/**/*.xib',
       'StanwoodDebugger/Modules/**/*.xib'
       ]

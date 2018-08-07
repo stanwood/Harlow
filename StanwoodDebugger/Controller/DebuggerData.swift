@@ -16,12 +16,15 @@ struct AddedItem {
 class DebuggerData {
     
     var analyticsItems: AnalyticItems
-    var count = 98
     
-    lazy var decoder: JSONDecoder = {
-        let decoder = JSONDecoder()
+    private lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return formatter
+    }()
+    
+    private lazy var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(formatter)
         return decoder
     }()
@@ -36,23 +39,42 @@ class DebuggerData {
         NotificationCenter.default.addObservers(self, observers:
             Stanwood.Observer(selector: #selector(didReceiveAnalyticsItem(_:)), name: .DebuggerDidReceiveAnalyticsItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveLogItem(_:)), name: .DeuggerDidReceiveLogItem),
+                                                Stanwood.Observer(selector: #selector(save), name: .UIApplicationWillTerminate),
                                                 Stanwood.Observer(selector: #selector(didReceiveErrorItem(_:)), name: .DeuggerDidReceiveErrorItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveUITestingItem(_:)), name: .DeuggerDidReceiveUITestingItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveNetworkingItem(_:)), name: .DeuggerDidReceiveNetworkingItem)
         )
         
-        tempSetItems()
-        
+        /// MOCK DATA
+        /*
         Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { (_) in
-            let item = AddedItem(type: .analytics, count: self.count)
-            self.count += 1
-            let not = Notification(name: Notification.Name.DeuggerDidAddDebuggerItem, object: item, userInfo: nil)
+            
+            let dateString = self.formatter.string(from: Date())
+            let dic: [String: Any] = [
+                "createdAt" : dateString,
+                "eventName" : "stanwood 2018",
+                "itemId" : "we_work",
+                "contentType" : "beer",
+                "category" : "burgers"
+            ]
+            
+            
+            let not = Notification(name: Notification.Name.DebuggerDidReceiveAnalyticsItem, object: nil, userInfo: dic)
             NotificationCenter.default.post(not)
         }
+         */
     }
     
-    func tempSetItems() {
-        self.analyticsItems = try! decoder.decode(AnalyticItems.self, from: analytics_data)
+    func removeAll() {
+        /// Remove all stored items
+        analyticsItems.removeAll()
+    }
+    
+    func refresh(withDelay delay: DispatchTimeInterval = .milliseconds(500)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            let addedIems: [AddedItem] = [AddedItem(type: .analytics, count: self.analyticsItems.numberOfItems)]
+            NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIems)
+        }
     }
     
     @objc func didReceiveAnalyticsItem(_ notification: Notification) {
@@ -64,10 +86,14 @@ class DebuggerData {
         
         analyticsItems.append(item)
         
-        let addedIem = AddedItem(type: .analytics, count: analyticsItems.numberOfItems)
+        analyticsItems.items.sort(by: { ($0.createdAt ?? Date()) < ($1.createdAt ?? Date()) })
+        
+        let addedIems: [AddedItem] = [AddedItem(type: .analytics, count: analyticsItems.numberOfItems)]
         
         NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIem)
+        NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIems)
+        
+        Stanwood.FeedbackGenerator.generate(style: .light)
     }
     
     @objc func didReceiveErrorItem(_ notification: Notification) {
@@ -86,68 +112,11 @@ class DebuggerData {
         // SFW-53: Phase 4
     }
     
-    func save() {
+    @objc func save() {
         if DebuggerSettings.shouldStoreAnalyticsData {
             try? Stanwood.Storage.store(analyticsItems, to: .documents, as: .json, withName: AnalyticItems.fileName)
         }
+        
+        refresh()
     }
 }
-
-// MOCK DATA
-
-let analytics_data: Data = """
-{
-"items" : [
-{
-"createdAt": "2018-08-01T05:00:02+0300",
-"eventName" : "user_action",
-"itemId" : "123",
-"contentType" : "some_content_type",
-"category" : "meals"
-},{
-"createdAt": "2018-08-01T05:00:02+0300",
-"eventName" : "user_action",
-"itemId" : "123",
-"contentType" : "some_content_type",
-"category" : "meals"
-},{
-"createdAt": "2018-08-01T05:00:02+0300",
-"eventName" : "user_action",
-"itemId" : "123",
-"contentType" : "some_content_type",
-"category" : "meals"
-},{
-"createdAt": "2018-08-01T05:00:02+0300",
-"eventName" : "user_action",
-"itemId" : "123",
-"category" : "meals"
-},{
-"createdAt": "2018-08-01T05:00:02+0300",
-"eventName" : "user_action",
-"itemId" : "123",
-"contentType" : "some_content_type",
-},{
-"eventName" : "user_action",
-"itemId" : "123",
-},{
-"createdAt": "2018-08-01T05:00:02+0300",
-"eventName" : "user_action",
-"itemId" : "123",
-"contentType" : "some_content_type",
-"category" : "meals"
-},{
-"createdAt": "2018-08-01T05:00:02+0300",
-"eventName" : "user_action",
-"itemId" : "123",
-"contentType" : "some_content_type",
-"category" : "meals"
-},{
-"createdAt": "2018-08-01T05:00:02+0300",
-"eventName" : "user_action",
-"contentType" : "some_content_type",
-"category" : "meals"
-}
-]
-}
-""".data(using: .utf8)!
-

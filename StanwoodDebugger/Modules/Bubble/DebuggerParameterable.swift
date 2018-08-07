@@ -6,14 +6,10 @@
 //
 
 import Foundation
+import StanwoodCore
 
 protocol DebuggerParameterable {
-    var items: AnalyticItems { get }
+    func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> DataType?
 }
 
-extension DebuggerParamaters: DebuggerParameterable {
-    
-    var items: AnalyticItems {
-        return appData.analyticsItems
-    }
-}
+extension DebuggerParamaters: DebuggerParameterable {}

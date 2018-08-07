@@ -45,6 +45,6 @@ class SettingsPresenter: Presentable, SourceTypePresentable {
     }
     
     func didTapAction(_ type: SettingsData.Section.SettingType) {
-        
+        actionable.didTap(action: type)
     }
 }
