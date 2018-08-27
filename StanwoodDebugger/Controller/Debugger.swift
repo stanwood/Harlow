@@ -15,9 +15,15 @@ protocol Debugging: class {
 /// StanwoodDebugger acts as the framework controller, delegating logs
 public class StanwoodDebugger: Debugging {
     
+    /// Debugger tintColor
+    public var tintColor: UIColor {
+        get { return Style.tintColor }
+        set { Style.tintColor = newValue }
+    }
+    
     struct Style {
         private init () {}
-        static let tintColor: UIColor = UIColor(r: 210, g: 78, b: 79)
+        static var tintColor: UIColor = UIColor(r: 210, g: 78, b: 79)
         static let defaultColor: UIColor = UIColor(r: 51, g: 51, b: 51)
     }
     

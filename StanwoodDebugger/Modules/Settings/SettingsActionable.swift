@@ -33,13 +33,19 @@ extension DebuggerActions: SettingsActionable {
     func didTap(action: SettingsData.Section.SettingType) {
         switch action {
         case .removeAnalytics:
-            appData.analyticsItems.removeAll()
-            appData.save()
+            coordinator?.shouldReset(.analytics) { [unowned self] in
+                self.appData.analyticsItems.removeAll()
+                self.appData.save()
+            }
         case .removeData:
-            appData.removeAll()
-            appData.save()
+            coordinator?.shouldReset(.allData) { [unowned self] in
+                self.appData.removeAll()
+                self.appData.save()
+            }
         case .resetAll:
-            DebuggerSettings.restoreDefaults()
+            coordinator?.shouldReset(.settings) {
+                DebuggerSettings.restoreDefaults()
+            }
         default: break
         }
     }

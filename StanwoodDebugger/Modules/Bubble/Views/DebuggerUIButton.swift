@@ -158,16 +158,15 @@ class DebuggerUIButton: UIButton {
                 self.center = position.origin
                 self.transform = .identity
             }, completion: { _ in
-                
-                Stanwood.FeedbackGenerator.generate(style: .heavy)
+                main {
+                    Stanwood.FeedbackGenerator.generate(style: .light)
+                }
                 
                 UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: {
                     self.pulsator.opacity = 1
                 }, completion: nil)
             })
         case .began:
-            
-            Stanwood.FeedbackGenerator.generate(style: .light)
             
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
                 self.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)

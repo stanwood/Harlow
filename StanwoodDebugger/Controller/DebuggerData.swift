@@ -44,25 +44,6 @@ class DebuggerData {
                                                 Stanwood.Observer(selector: #selector(didReceiveUITestingItem(_:)), name: .DeuggerDidReceiveUITestingItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveNetworkingItem(_:)), name: .DeuggerDidReceiveNetworkingItem)
         )
-        
-        /// MOCK DATA
-        /*
-        Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { (_) in
-            
-            let dateString = self.formatter.string(from: Date())
-            let dic: [String: Any] = [
-                "createdAt" : dateString,
-                "eventName" : "stanwood 2018",
-                "itemId" : "we_work",
-                "contentType" : "beer",
-                "category" : "burgers"
-            ]
-            
-            
-            let not = Notification(name: Notification.Name.DebuggerDidReceiveAnalyticsItem, object: nil, userInfo: dic)
-            NotificationCenter.default.post(not)
-        }
-         */
     }
     
     func removeAll() {
@@ -93,7 +74,9 @@ class DebuggerData {
         NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
         NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIems)
         
-        Stanwood.FeedbackGenerator.generate(style: .light)
+        main {
+            Stanwood.FeedbackGenerator.generate(style: .light)
+        }
     }
     
     @objc func didReceiveErrorItem(_ notification: Notification) {
