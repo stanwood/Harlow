@@ -82,7 +82,7 @@ class DebuggerCoordinator {
     
     func shouldReset(_ type: ActionSheet, _ completion: @escaping () -> Void) {
         
-        let completion: (UIAlertAction) -> Void = { action in
+        let completion: (UIAlertAction) -> Void = { _ in
             completion()
         }
         
