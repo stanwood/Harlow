@@ -154,13 +154,14 @@ class DebuggerUIButton: UIButton {
             let position = Positions.position(for: center)
             pulsator.position = position.origin
             
+            main {
+                Stanwood.FeedbackGenerator.generate(style: .light)
+            }
+            
             UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
                 self.center = position.origin
                 self.transform = .identity
             }, completion: { _ in
-                main {
-                    Stanwood.FeedbackGenerator.generate(style: .light)
-                }
                 
                 UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: {
                     self.pulsator.opacity = 1
