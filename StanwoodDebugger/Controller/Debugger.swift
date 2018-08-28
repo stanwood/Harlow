@@ -18,7 +18,7 @@ public class StanwoodDebugger: Debugging {
     /// Debugger tintColor
     public var tintColor: UIColor {
         get { return Style.tintColor }
-        set { Style.tintColor = newValue }
+        set { Style.tintColor = newValue; configureStyle() }
     }
     
     struct Style {
@@ -55,14 +55,19 @@ public class StanwoodDebugger: Debugging {
         
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
         
-        window.tintColor = Style.tintColor
+        configureStyle()
     }
     
     @objc func applicationDidEnterBackground() {
         appData.save()
     }
     
+    private func configureStyle() {
+        window.tintColor = Style.tintColor
+    }
+    
     private func configureDebuggerView() {
+        
         switch isEnabled {
         case true:
             if debuggerViewController == nil {
