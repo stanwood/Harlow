@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'StanwoodDebugger'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'Stanwood debugger provide live view debugging'
   s.description      = <<-DESC
     Live debugger for:
@@ -37,5 +37,5 @@ Pod::Spec.new do |s|
   }
 
   s.dependency 'Pulsator'
-  s.dependency 'StanwoodCore', '~> 1.2.1'
+  s.dependency 'StanwoodCore', '~> 1.2.2'
 end
