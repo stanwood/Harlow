@@ -12,7 +12,7 @@ class SettingsDelegate: Stanwood.AbstractCollectionDelegate {
     
     weak var presenter: SettingsPresenter?
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.size.width, height: 56.0)
     }
 }

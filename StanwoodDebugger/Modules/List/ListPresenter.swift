@@ -47,8 +47,8 @@ class ListPresenter {
         viewable?.tableView.estimatedRowHeight = 75
         viewable?.tableView.rowHeight = UITableViewAutomaticDimension
         
-        dataSource = ListDataSource(dataObject: items)
-        delegate = ListDelegate(dataObject: items)
+        dataSource = ListDataSource(dataType: items)
+        delegate = ListDelegate(dataType: items)
         
         delegate.presenter = self
         
