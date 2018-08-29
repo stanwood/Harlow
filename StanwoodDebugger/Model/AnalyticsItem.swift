@@ -11,13 +11,14 @@ import StanwoodCore
 struct AnalyticsItem: Typeable {
     
     enum CodingKeys: String, CodingKey {
-        case eventName, category, contentType, id = "itemId", createdAt
+        case eventName, category, contentType, id = "itemId", createdAt, name
     }
     
     var id: String?
     var eventName: String?
     var category: String?
     var contentType: String?
+    var name: String?
     var createdAt: Date?
     
     var formattedDate: String {
