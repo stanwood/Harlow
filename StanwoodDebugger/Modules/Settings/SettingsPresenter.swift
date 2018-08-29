@@ -33,8 +33,8 @@ class SettingsPresenter: Presentable, SourceTypePresentable {
         self.parameterable = parameterable
         self.viewable = viewable
         
-        dataSource = SettingsDataSource(dataObject: settingsData)
-        delegate = SettingsDelegate(dataObject: settingsData)
+        dataSource = SettingsDataSource(dataType: settingsData)
+        delegate = SettingsDelegate(dataType: settingsData)
         
         dataSource.presenter = self
         delegate.presenter = self

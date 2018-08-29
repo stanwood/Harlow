@@ -93,8 +93,8 @@ class DebuggerScallableView: UIView {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         
-        listDataSource = ListDataSource(dataObject: items)
-        listDelegate = ListDelegate(dataObject: items)
+        listDataSource = ListDataSource(dataType: items)
+        listDelegate = ListDelegate(dataType: items)
         
         tableView.dataSource = listDataSource
         tableView.delegate = listDelegate

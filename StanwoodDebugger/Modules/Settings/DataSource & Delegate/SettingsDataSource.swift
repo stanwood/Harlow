@@ -18,9 +18,9 @@ class SettingsDataSource: Stanwood.AbstractCollectionDataSource {
         return cell
     }
         
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueHeader(cellType: SettingsHeaderView.self, for: indexPath)
-        if let section = dataObject?[indexPath.section] as? SettingsData.Section {
+        if let section = dataType?[indexPath.section] as? SettingsData.Section {
             header.set(title: section.title)
         }
         return header
