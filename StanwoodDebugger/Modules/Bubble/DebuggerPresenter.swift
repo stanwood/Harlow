@@ -28,13 +28,13 @@ import Foundation
 
 class DebuggerPresenter {
     
-    weak var debuggerable: Debugging!
+    weak var debugger: Debugging!
     private var actionable: DebuggerActionable
     var parameterable: DebuggerParameterable
     private weak var viewable: DebuggerViewable?
     
-    init(debuggerable: Debugging, actionable: DebuggerActionable, viewable: DebuggerViewable, parameterable: DebuggerParameterable) {
-        self.debuggerable = debuggerable
+    init(debugger: Debugging, actionable: DebuggerActionable, viewable: DebuggerViewable, parameterable: DebuggerParameterable) {
+        self.debugger = debugger
         self.actionable = actionable
         self.viewable = viewable
         self.parameterable = parameterable

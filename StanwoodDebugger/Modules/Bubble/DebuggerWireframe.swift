@@ -32,9 +32,9 @@ class DebuggerWireframe {
         return DebuggerViewController()
     }
     
-    static func prepare(_ viewController: DebuggerViewController?, with actions: DebuggerActionable, _ parameters: DebuggerParameterable, _ debuggerable: Debugging) {
+    static func prepare(_ viewController: DebuggerViewController?, with actions: DebuggerActionable, _ parameters: DebuggerParameterable, _ debugger: Debugging) {
         guard let viewController = viewController else { return }
-        let presenter = DebuggerPresenter(debuggerable: debuggerable, actionable: actions, viewable: viewController, parameterable: parameters)
+        let presenter = DebuggerPresenter(debugger: debugger, actionable: actions, viewable: viewController, parameterable: parameters)
         viewController.presenter = presenter
     }
 }

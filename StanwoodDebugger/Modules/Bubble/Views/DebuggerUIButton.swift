@@ -122,11 +122,11 @@ class DebuggerUIButton: UIButton {
         }
     }
     
-    private let debuggerable: Debugging
+    private let debugger: Debugging
     
-    init(debuggerable: Debugging) {
+    init(debugger: Debugging) {
         
-        self.debuggerable = debuggerable
+        self.debugger = debugger
         
         super.init(frame: CGRect(origin: Positions.centerLeft.origin, size: Positions.buttonSize))
         center = Positions.centerLeft.origin
@@ -216,7 +216,7 @@ class DebuggerUIButton: UIButton {
             Stanwood.FeedbackGenerator.generate(style: .light)
             
             // Animating the icon
-            guard !self.debuggerable.isDisplayed, DebuggerSettings.isDebuggerItemIconsAnimationEnabled else { return }
+            guard !self.debugger.isDisplayed, DebuggerSettings.isDebuggerItemIconsAnimationEnabled else { return }
             let label = DebuggerIconLabel(icon: icon,frame: CGRect(x: 0, y: 0, width: 60, height: 60))
             label.center = CGPoint(x: self.center.x + 20, y: self.center.y)
             self.superview?.insertSubview(label, belowSubview: self)

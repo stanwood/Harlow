@@ -39,13 +39,13 @@ class DebuggerViewController: UIViewController, DebuggerViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        debuggerButton = DebuggerUIButton(debuggerable: presenter.debuggerable)
+        debuggerButton = DebuggerUIButton(debugger: presenter.debugger)
         debuggerButton.addTarget(self, action: #selector(didTapDebuggerButton(target:)), for: .touchUpInside)
         view.addSubview(debuggerButton)
     }
 
     @objc func didTapDebuggerButton(target: DebuggerUIButton) {
-        presenter.debuggerable.isDisplayed = true
+        presenter.debugger.isDisplayed = true
         if debuggerScallableView == nil {
             debuggerScallableView = DebuggerScallableView.loadFromNib(withFrame: .zero, bundle: Bundle.debuggerBundle(from: type(of: self)))
             debuggerScallableView?.button = debuggerButton
@@ -60,17 +60,17 @@ class DebuggerViewController: UIViewController, DebuggerViewable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.debuggerable.isDisplayed = false
+        presenter.debugger.isDisplayed = false
         debuggerButton.preparePulse()
         debuggerButton.isPulseEnabled = true
     }
     
     func shouldHandle(_ point: CGPoint) -> Bool {
-        if presenter.debuggerable.isDisplayed {
+        if presenter.debugger.isDisplayed {
             
             if let view = debuggerScallableView, !view.frame.contains(point), isViewLoaded, view.window != nil {
                 debuggerScallableView?.dismiss()
-                presenter.debuggerable.isDisplayed = false
+                presenter.debugger.isDisplayed = false
             }
             
             return true
@@ -90,6 +90,6 @@ extension DebuggerViewController: DebuggerScallableViewDelegate {
     }
     
     func scallableViewDidDismiss() {
-        presenter.debuggerable.isDisplayed = false
+        presenter.debugger.isDisplayed = false
     }
 }
