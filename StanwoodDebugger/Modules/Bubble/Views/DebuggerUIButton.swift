@@ -209,8 +209,13 @@ class DebuggerUIButton: UIButton {
     }
     
     private func animate(_ icon: DebuggerIconLabel.DebuggerIcons) {
-        main { [weak self] in
+        main(deadline: .milliseconds(500)) { [weak self] in
             guard let `self` = self else { return }
+            
+            // Generating vibration feedback
+            Stanwood.FeedbackGenerator.generate(style: .light)
+            
+            // Animating the icon
             guard !self.debuggerable.isDisplayed, DebuggerSettings.isDebuggerItemIconsAnimationEnabled else { return }
             let label = DebuggerIconLabel(icon: icon,frame: CGRect(x: 0, y: 0, width: 60, height: 60))
             label.center = CGPoint(x: self.center.x + 20, y: self.center.y)

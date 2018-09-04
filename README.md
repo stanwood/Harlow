@@ -45,6 +45,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 ```
+
+## Adding logs
+
+### Analytics
+
+Option 1.
+
+Set up your tracking payload:
+
+```swift
+public func payload() -> [String:String] {
+
+    var payload: [String:String] = ["eventName": eventName]
+    
+    if let itemId = itemId {
+        payload["itemId"] = itemId
+    }
+    
+    if let category = category {
+        payload["category"] = category
+    }
+
+    if let contentType = contentType {
+        payload["contentType"] = contentType
+    }
+
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+    
+    payload["createdAt"] = dateFormatter.string(from: Date())
+    
+    return payload
+}
+```
+Post it to:
+
+```swift
+func post(_ payload: [String:String]) {
+    let notificationCentre = NotificationCenter.default
+    let notification = Notification.init(name: Notification.Name(rawValue: "io.stanwood.debugger.didReceiveAnalyticsItem"), object: nil, userInfo: payload)
+    notificationCentre.post(notification)
+}
+```
+
+
+Option 2.
+
+Use 
+
+### Error, UITesing, Networking, Print logs **[WIP]**
 ## Licence
 
 StanwoodDebugger is under MIT licence. See the [LICENSE](https://github.com/stanwood/Stanwood_Debugger_iOS/blob/master/LICENSE.md) file for more info.

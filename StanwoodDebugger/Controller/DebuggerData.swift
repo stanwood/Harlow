@@ -92,10 +92,6 @@ class DebuggerData {
         
         NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
         NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIems)
-        
-        main {
-            Stanwood.FeedbackGenerator.generate(style: .light)
-        }
     }
     
     @objc func didReceiveErrorItem(_ notification: Notification) {
