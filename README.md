@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ### Analytics
 
-Option 1.
+##### Option 1.
 
 Set up your tracking payload:
 
@@ -90,9 +90,9 @@ func post(_ payload: [String:String]) {
 ```
 
 
-Option 2.
+##### Option 2.
 
-Use 
+Use [StanwoodAnalytics](https://github.com/stanwood/Stanwood_Analytics_iOS) as your tracking framework
 
 ### Error, UITesing, Networking, Print logs **[WIP]**
 ## Licence
