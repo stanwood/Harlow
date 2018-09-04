@@ -1,8 +1,27 @@
 //
 //  DebuggerUIButton.swift
-//  StanwoodDebugger
 //
-//  Created by Tal Zion on 10/04/2018.
+//  The MIT License (MIT)
+//
+//  Copyright (c) 2018 Stanwood GmbH (www.stanwood.io)
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 //
 
 import Foundation
@@ -190,12 +209,15 @@ class DebuggerUIButton: UIButton {
     }
     
     private func animate(_ icon: DebuggerIconLabel.DebuggerIcons) {
-        guard !debuggerable.isDisplayed, DebuggerSettings.isDebuggerItemIconsAnimationEnabled else { return }
-        let label = DebuggerIconLabel(icon: icon,frame: CGRect(x: 0, y: 0, width: 60, height: 60))
-        label.center = CGPoint(x: center.x + 20, y: center.y)
-        superview?.insertSubview(label, belowSubview: self)
-        
-        let point = CGPoint(x: center.x, y: center.y - 250)
-        label.animate(to: point)
+        main { [weak self] in
+            guard let `self` = self else { return }
+            guard !self.debuggerable.isDisplayed, DebuggerSettings.isDebuggerItemIconsAnimationEnabled else { return }
+            let label = DebuggerIconLabel(icon: icon,frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+            label.center = CGPoint(x: self.center.x + 20, y: self.center.y)
+            self.superview?.insertSubview(label, belowSubview: self)
+            
+            let point = CGPoint(x: self.center.x, y: self.center.y - 250)
+            label.animate(to: point)
+        }
     }
 }
