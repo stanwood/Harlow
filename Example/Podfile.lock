@@ -1,7 +1,7 @@
 PODS:
   - Pulsator (0.5.1)
   - StanwoodCore (1.2.2)
-  - StanwoodDebugger (0.0.4):
+  - StanwoodDebugger (0.1.0):
     - Pulsator
     - StanwoodCore (~> 1.2.2)
 
@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Pulsator: f465ca37212d826523fe8c79b07c1a4c1a941f5e
   StanwoodCore: f3163aad6f4ca7262f6ec1e40f0046796673610e
-  StanwoodDebugger: dfdecfdaba20e46d07c5c35d626c393b014307a9
+  StanwoodDebugger: 3a4d548366b6a59e51653e1ea557e33c20600c24
 
 PODFILE CHECKSUM: 24ba9e47bd8cd96dd685ca053065afdf3185e889
 
