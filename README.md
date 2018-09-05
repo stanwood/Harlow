@@ -4,11 +4,16 @@
 [![Swift Version](https://img.shields.io/badge/Swift-4.1.x-orange.svg)]()
 [![iOS 10+](https://img.shields.io/badge/iOS-10+-EB7943.svg)]()
 
+Debugging and testing iOS applications can be quite a long task due to the nature of Software Development. _StanwoodDebugger_ tool provides reach information on Analytics, Errors, Logging, Networking, and UITesting to simplify this process.
+
+
 ## Table of contents
 
 - [Author](#author)
 - [Installation](#installation)
+- [Usage](#usage)
 - [Licence](#licence)
+- [Changelog](#changelog)
 
 
 ## Author
@@ -95,9 +100,12 @@ func post(_ payload: [String:String]) {
 Use [StanwoodAnalytics](https://github.com/stanwood/Stanwood_Analytics_iOS) as your tracking framework
 
 ### Error, UITesing, Networking, Print logs **[WIP]**
+
 ## Licence
 
 StanwoodDebugger is under MIT licence. See the [LICENSE](https://github.com/stanwood/Stanwood_Debugger_iOS/blob/master/LICENSE.md) file for more info.
+
+## Changelog
 
 A brief summary of each StanwoodDebugger release can be found in the [CHANGELOG](https://github.com/stanwood/Stanwood_Debugger_iOS/blob/master/CHANGELOG.md).
 
