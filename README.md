@@ -102,6 +102,12 @@ func post(_ payload: [String:String]) {
 
 Use [StanwoodAnalytics](https://github.com/stanwood/Stanwood_Analytics_iOS) as your tracking framework
 
+```swift
+#if DEBUG
+        analyticsBuilder = analyticsBuilder.setDebuggerNotifications(enabled: true)
+#endif
+```
+
 ### Error, UITesing, Networking, Print logs **[WIP]**
 
 ## Licence
