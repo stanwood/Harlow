@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController {
         let headerNib = UINib(nibName: SettingsHeaderView.identifier, bundle: Bundle.debuggerBundle())
         
         collectionView.register(nib, forCellWithReuseIdentifier: SettingsCell.identifier)
-        collectionView.register(headerNib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: SettingsHeaderView.identifier)
+        collectionView.register(headerNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SettingsHeaderView.identifier)
         
         collectionView.set(spacing: 0)
         

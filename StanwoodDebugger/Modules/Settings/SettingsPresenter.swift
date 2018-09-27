@@ -43,7 +43,7 @@ class SettingsPresenter: Presentable, SourceTypePresentable {
     var delegate: SettingsDelegate!
     var actionable: SettingsActionable
     var parameterable: SettingsParameterable
-    weak var viewable: SettingsViewable?
+    unowned var viewable: SettingsViewable
     
     private var settingsData = SettingsData()
     

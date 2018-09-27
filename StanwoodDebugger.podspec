@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'StanwoodDebugger'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Stanwood debugger provide live view debugging'
   s.description      = <<-DESC
     Live debugger for:
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.author           = { 'stanwood' => 'ios.frameworks@stanwood.io' }
   s.source           = { :git => 'https://github.com/stanwood/Stanwood_Debugger_iOS.git', :tag => s.version.to_s }
   
-  s.swift_version = '4.1'
+  s.swift_version = '4.2'
   s.ios.deployment_target = '10.0'
 
   s.source_files = [
@@ -37,5 +37,5 @@ Pod::Spec.new do |s|
   }
 
   s.dependency 'Pulsator'
-  s.dependency 'StanwoodCore', '~> 1.2.2'
+  s.dependency 'StanwoodCore', '~> 1.3.1'
 end

@@ -27,7 +27,7 @@
 import Foundation
 import StanwoodCore
 
-struct AnalyticsItem: Typeable {
+struct AnalyticsItem: Typeable, Codable {
     
     enum CodingKeys: String, CodingKey {
         case eventName, category, contentType, id = "itemId", createdAt, name

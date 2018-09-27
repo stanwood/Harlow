@@ -64,7 +64,7 @@ class ListPresenter {
         viewable?.tableView.register(UINib(nibName: AnalyticsCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: AnalyticsCell.identifier)
         
         viewable?.tableView.estimatedRowHeight = 75
-        viewable?.tableView.rowHeight = UITableViewAutomaticDimension
+        viewable?.tableView.rowHeight = UITableView.automaticDimension
         
         dataSource = ListDataSource(dataType: items)
         delegate = ListDelegate(dataType: items)

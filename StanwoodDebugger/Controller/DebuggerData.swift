@@ -58,7 +58,7 @@ class DebuggerData {
         NotificationCenter.default.addObservers(self, observers:
             Stanwood.Observer(selector: #selector(didReceiveAnalyticsItem(_:)), name: .DebuggerDidReceiveAnalyticsItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveLogItem(_:)), name: .DeuggerDidReceiveLogItem),
-                                                Stanwood.Observer(selector: #selector(save), name: .UIApplicationWillTerminate),
+                                                Stanwood.Observer(selector: #selector(save), name: UIApplication.willTerminateNotification),
                                                 Stanwood.Observer(selector: #selector(didReceiveErrorItem(_:)), name: .DeuggerDidReceiveErrorItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveUITestingItem(_:)), name: .DeuggerDidReceiveUITestingItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveNetworkingItem(_:)), name: .DeuggerDidReceiveNetworkingItem)

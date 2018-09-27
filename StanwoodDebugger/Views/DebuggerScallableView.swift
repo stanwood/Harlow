@@ -109,7 +109,7 @@ class DebuggerScallableView: UIView {
         tableView.register(UINib(nibName: AnalyticsCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: AnalyticsCell.identifier)
         
         tableView.estimatedRowHeight = 75
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         
         listDataSource = ListDataSource(dataType: items)

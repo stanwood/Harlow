@@ -54,7 +54,7 @@ class DebuggerFilterView: UIView {
         backgroundColor = UIColor.black.withAlphaComponent(0.1)
         collectionView.register(cell: FilterCell.self, bundle: Bundle.debuggerBundle(from: type(of: self)))
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             layout.minimumLineSpacing = 0
             layout.minimumInteritemSpacing = 0
         }
