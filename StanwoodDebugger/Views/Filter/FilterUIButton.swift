@@ -67,7 +67,7 @@ class FilterUIButton: UIButton {
     
     func setTitle(_ filter: DebuggerFilterView.DebuggerFilter?) {
         self.filter = filter
-        [UIControlState.normal, UIControlState.highlighted].forEach({ setTitle(filter?.rawValue, for: $0) })
+        [UIControl.State.normal, UIControl.State.highlighted].forEach({ setTitle(filter?.rawValue, for: $0) })
     }
     
     func set(selected: Bool) {

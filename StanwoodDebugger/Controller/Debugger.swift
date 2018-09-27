@@ -72,7 +72,7 @@ public class StanwoodDebugger: Debugging {
         coordinator = DebuggerCoordinator(window: window, actionable: actions, paramaterable: paramaters)
         actions.coordinator = coordinator
         
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         
         configureStyle()
     }

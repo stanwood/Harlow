@@ -1,12 +1,12 @@
 PODS:
   - Pulsator (0.5.1)
-  - StanwoodCore (1.2.2)
-  - StanwoodDebugger (0.1.0):
+  - StanwoodCore (1.3.1)
+  - StanwoodDebugger (0.2.0):
     - Pulsator
-    - StanwoodCore (~> 1.2.2)
+    - StanwoodCore (~> 1.3.1)
 
 DEPENDENCIES:
-  - StanwoodCore (~> 1.2.2)
+  - StanwoodCore (~> 1.3.1)
   - StanwoodDebugger (from `../`)
 
 SPEC REPOS:
@@ -20,9 +20,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Pulsator: f465ca37212d826523fe8c79b07c1a4c1a941f5e
-  StanwoodCore: f3163aad6f4ca7262f6ec1e40f0046796673610e
-  StanwoodDebugger: 3a4d548366b6a59e51653e1ea557e33c20600c24
+  StanwoodCore: ece1234bdfbc222817512ae16000d47fe32f94aa
+  StanwoodDebugger: 4d7f1dc27b1834319ed0f87695b5b4988b6ca5cb
 
-PODFILE CHECKSUM: 24ba9e47bd8cd96dd685ca053065afdf3185e889
+PODFILE CHECKSUM: 615dfc6169ac423ca61e44a6be83e4ba507c886a
 
 COCOAPODS: 1.5.3
