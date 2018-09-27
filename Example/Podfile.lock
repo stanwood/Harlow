@@ -1,8 +1,6 @@
 PODS:
-  - Pulsator (0.5.1)
   - StanwoodCore (1.3.1)
   - StanwoodDebugger (0.2.0):
-    - Pulsator
     - StanwoodCore (~> 1.3.1)
 
 DEPENDENCIES:
@@ -11,7 +9,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Pulsator
     - StanwoodCore
 
 EXTERNAL SOURCES:
@@ -19,9 +16,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Pulsator: f465ca37212d826523fe8c79b07c1a4c1a941f5e
   StanwoodCore: ece1234bdfbc222817512ae16000d47fe32f94aa
-  StanwoodDebugger: 4d7f1dc27b1834319ed0f87695b5b4988b6ca5cb
+  StanwoodDebugger: 8222d464ff7a3f0638f81af1410524d72d36beb3
 
 PODFILE CHECKSUM: 615dfc6169ac423ca61e44a6be83e4ba507c886a
 
