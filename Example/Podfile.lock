@@ -1,10 +1,10 @@
 PODS:
-  - StanwoodCore (1.3.1)
-  - StanwoodDebugger (0.2.0):
-    - StanwoodCore (~> 1.3.1)
+  - StanwoodCore (1.4.1)
+  - StanwoodDebugger (0.2.1):
+    - StanwoodCore (~> 1.4.1)
 
 DEPENDENCIES:
-  - StanwoodCore (~> 1.3.1)
+  - StanwoodCore (~> 1.4.1)
   - StanwoodDebugger (from `../`)
 
 SPEC REPOS:
@@ -16,9 +16,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  StanwoodCore: ece1234bdfbc222817512ae16000d47fe32f94aa
-  StanwoodDebugger: 8222d464ff7a3f0638f81af1410524d72d36beb3
+  StanwoodCore: 9f58032a58b16e9b5ebbb2906b7888d87c098642
+  StanwoodDebugger: cb003fc600c3c28b396c6cf8bf7281fc98e8ef59
 
-PODFILE CHECKSUM: 615dfc6169ac423ca61e44a6be83e4ba507c886a
+PODFILE CHECKSUM: b1697111f3c092fc5d25e1bcefca1007f1ade949
 
 COCOAPODS: 1.5.3

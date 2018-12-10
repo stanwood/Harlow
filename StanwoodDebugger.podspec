@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'StanwoodDebugger'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'Stanwood debugger provide live view debugging'
   s.description      = <<-DESC
     Live debugger for:
@@ -37,5 +37,5 @@ Pod::Spec.new do |s|
   }
 
 #  s.dependency 'Pulsator' /// Wait for Swift 4.2 support
-  s.dependency 'StanwoodCore', '~> 1.3.1'
+  s.dependency 'StanwoodCore', '~> 1.4.1'
 end
