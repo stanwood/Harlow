@@ -19,7 +19,7 @@ class AnalyticsExample: Stanwood.Elements<AnalyticExample>, Headerable {
     
     var headerView: UIView {
         let view = HeaderView.loadFromNib()
-        view?.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        view?.backgroundColor = UIColor.white.withAlphaComponent(0.9)
         view?.set(title: "Analytics Example")
         return view ?? UIView()
     }
@@ -36,10 +36,12 @@ struct NetworkExample: Typeable, Codable {
 
 class NetworkingExample: Stanwood.Elements<NetworkExample>, Headerable {
     
+    var title: String = ""
+    
     var headerView: UIView {
         let view = HeaderView.loadFromNib()
-        view?.backgroundColor = UIColor.white.withAlphaComponent(0.8)
-        view?.set(title: "Networking Example")
+        view?.backgroundColor = UIColor.white.withAlphaComponent(0.9)
+        view?.set(title: title)
         return view ?? UIView()
     }
     
@@ -57,27 +59,38 @@ class ExampleViewController: UIViewController {
     var delegate: ExampleDelegate!
     var sections: Stanwood.Sections!
     
-    let networkingItems: [NetworkExample] = [
-        NetworkExample(method: .get, url: "http://httpbin.org/status/400"),
-        NetworkExample(method: .get, url: "http://httpbin.org/status/401"),
-        NetworkExample(method: .get, url: "http://httpbin.org/status/402"),
-        NetworkExample(method: .get, url: "http://httpbin.org/status/403"),
-        NetworkExample(method: .get, url: "http://httpbin.org/status/404"),
-        NetworkExample(method: .get, url: "http://httpbin.org/status/405"),
-        NetworkExample(method: .get, url: "http://httpbin.org/status/406"),
-        NetworkExample(method: .get, url: "http://httpbin.org/status/407"),
-        NetworkExample(method: .get, url: "http://httpbin.org/status/408"),
-        NetworkExample(method: .get, url: "http://httpbin.org/status/409"),
-        NetworkExample(method: .get, url: "http://httpbin.org/status/410")
+    let getNetworkingItems: [NetworkExample] = [
+        NetworkExample(method: .get, url: "https://httpbin.org/status/400"),
+        NetworkExample(method: .get, url: "https://httpbin.org/status/404"),
+        NetworkExample(method: .get, url: "https://httpbin.org/status/200"),
+        NetworkExample(method: .get, url: "https://httpbin.org/status/410"),
+        NetworkExample(method: .get, url: "https://httpbin.org/status/202"),
+        NetworkExample(method: .get, url: "https://httpbin.org/status/500"),
+        NetworkExample(method: .get, url: "https://httpbin.org/status/300"),
+        NetworkExample(method: .get, url: "https://httpbin.org/status/100")
+    ]
+    
+    let postNetworkingItems: [NetworkExample] = [
+        NetworkExample(method: .post, url: "https://httpbin.org/post")
+    ]
+    
+    let imageNetworkingItems: [NetworkExample] = [
+        NetworkExample(method: .get, url: "https://httpbin.org/image/jpeg")
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let networkingExamples = NetworkingExample(items: networkingItems)
+        let getNetworkingExamples = NetworkingExample(items: getNetworkingItems)
+        getNetworkingExamples.title = "[GET] Networking Examples"
+        let postNetworkingExamples = NetworkingExample(items: postNetworkingItems)
+        postNetworkingExamples.title = "[POST] Networking Examples"
+        let imageNetworkingExamples = NetworkingExample(items: imageNetworkingItems)
+        imageNetworkingExamples.title = "[IMAGE] Networking Examples"
+        
         let analyticsExamples = AnalyticsExample(items: [AnalyticExample()])
         
-        sections = Stanwood.Sections(items: [networkingExamples, analyticsExamples])
+        sections = Stanwood.Sections(items: [getNetworkingExamples, postNetworkingExamples, imageNetworkingExamples, analyticsExamples])
         
         tableView.register(cellTypes: AnalyticsCell.self, NetworkingCell.self)
         

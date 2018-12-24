@@ -18,6 +18,10 @@ class NetworkingManager {
     var tasks = [URLSessionDataTask]()
     var session: URLSession!
 
+    init() {
+        session = URLSession.shared
+    }
+    
     func makePostRequest(url: String, data: String? = nil) {
         guard let url = URL(string: url) else {return}
         let request = NSMutableURLRequest(url: url)
@@ -39,11 +43,11 @@ class NetworkingManager {
     
     func makeRequest(with item: NetworkExample) {
         guard let url = URL(string: item.url) else {return}
-        let request = NSMutableURLRequest(url: url)
+        var request = URLRequest(url: url)
         request.setValue(UUID().uuidString, forHTTPHeaderField: "UUID")
         request.setValue("sald;kjfnap9ew8urqoiw;fao;idhfaowfq349", forHTTPHeaderField: "toke")
         request.httpMethod = item.method.rawValue.uppercased()
-        let task = session.dataTask(with: request as URLRequest, completionHandler: { _, response, error in
+        let task = session.dataTask(with: request, completionHandler: { _, response, error in
             if let response = response {
                 print("response for url : [\(url)] : \(response)")
             }
