@@ -27,13 +27,21 @@ fileprivate var bodyDictionary: [String: Data] = [:]
 
 class DebuggerNetworking: URLProtocol {
     
-    lazy var queue: OperationQueue = {
+    lazy var networkQueue: OperationQueue = {
         var queue = OperationQueue()
         queue.name = "io.stanwood.debugger.networking"
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
-
+    
+    private var sessionTask: URLSessionTask?
+    private var response: URLResponse?
+    private var newRequest: NSMutableURLRequest?
+    private var session: URLSession?
+    
+    private var connection: NSURLConnection?
+    private var responseData: NSMutableData?
+    private var networkItem: NetworkItem?
     
     static var isEnabled: Bool = true {
         didSet {
@@ -71,10 +79,70 @@ class DebuggerNetworking: URLProtocol {
     }
     
     override func startLoading() {
+        guard let request = (request as NSURLRequest).mutableCopy() as? NSMutableURLRequest,
+            self.newRequest == nil else {
+                return
+        }
         
+        /// Setting the property to keep track of the request
+        DebuggerNetworking.setProperty(true, forKey: "ProtocolHandledKey", in: request)
+        
+        self.newRequest = request
+        session = URLSession(configuration: .default, delegate: self, delegateQueue: networkQueue)
+        sessionTask = session?.dataTask(with: request as URLRequest)
+        sessionTask?.resume()
+        
+        responseData = NSMutableData()
+        networkItem = NetworkItem(request: request as URLRequest)
     }
     
     override func stopLoading() {
+        sessionTask?.cancel()
+        guard var networkItem = networkItem else {return}
         
+        if let data = (newRequest as URLRequest?)?.body {
+            networkItem.httpBody = data
+        }
+        
+        let duration = fabs(networkItem.requestDate.timeIntervalSinceNow)
+        networkItem.duration = duration
+        
+        NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidReceiveNetworkingItem, object: networkItem)
+    }
+}
+
+extension DebuggerNetworking: URLSessionDataDelegate, URLSessionTaskDelegate {
+    
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+        client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+        completionHandler(.allow)
+        
+        networkItem?.set(response: response)
+        if let data = responseData {
+            networkItem?.dataResponse = data as Data
+        }
+    }
+    
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        client?.urlProtocol(self, didLoad: data)
+        responseData?.append(data)
+    }
+    
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        if let error = error {
+            client?.urlProtocol(self, didFailWithError: error)
+            let errorMessage = error.localizedDescription
+            networkItem?.errorDescription = errorMessage
+            return
+        }
+        client?.urlProtocolDidFinishLoading(self)
+    }
+    
+    public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
+        if let error = error {
+            let errorMessage = error.localizedDescription
+            networkItem?.errorDescription = errorMessage
+            return
+        }
     }
 }

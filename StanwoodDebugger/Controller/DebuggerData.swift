@@ -91,7 +91,7 @@ class DebuggerData {
         
         guard let userInfo = notification.userInfo,
             let data = try? JSONSerialization.data(withJSONObject: userInfo, options: []),
-            let item = try? decoder.decode(AnalyticsItem.self, from: data)  else { return }
+            let item = try? decoder.decode(AnalyticsItem.self, from: data) else { return }
         
         
         analyticsItems.append(item)
@@ -109,7 +109,13 @@ class DebuggerData {
     }
     
     @objc func didReceiveNetworkingItem(_ notification: Notification) {
-        // SFW-54: Phase 5
+        guard let item = notification.object as? NetworkItem else { assert(false); return }
+        
+        networkingItems.append(item)
+        let addedIems: [AddedItem] = [AddedItem(type: .networking, count: networkingItems.numberOfItems)]
+        
+        NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIems)
     }
     
     @objc func didReceiveLogItem(_ notification: Notification) {
