@@ -29,7 +29,4 @@ import StanwoodCore
 
 class ListDataSource: Stanwood.AbstractTableDataSource {
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return super.tableView(tableView, cellForRowAt: indexPath)
-    }
 }

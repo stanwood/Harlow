@@ -35,7 +35,7 @@ class ListDelegate: Stanwood.AbstractTableDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         guard let cell = tableView.cellForRow(at: indexPath) as? AnalyticsCell,
-        let item = cell.item else { return }
+        let _ = cell.item else { return }
         
     }
 }
