@@ -41,7 +41,24 @@ class DebuggerFilterView: UIView {
         networking = "   Networking   ",
         logs = "   Logs   "
         
-        static var allFilters: [DebuggerFilter] = [.analytics, .error, .uiTesting, .networking, .logs]
+        var isUnderConstruction: Bool {
+            switch self {
+            case .analytics, .networking: return false
+            case .error, .logs, .uiTesting: return true
+            }
+        }
+        
+        var icon: DebuggerIconLabel.DebuggerIcons {
+            switch self {
+            case .analytics: return .analytics
+            case .networking: return .networking
+            case .error: return .error
+            case .logs: return .logs
+            case .uiTesting: return .uiTesting
+            }
+        }
+        
+        static var allFilters: [DebuggerFilter] = [.analytics, .networking, .error, .uiTesting, .logs]
     }
     
     var currnetFilter: DebuggerFilter = .analytics

@@ -52,6 +52,9 @@ class ListViewController: UIViewController, ListViewable {
         
         tableView = UITableView(frame: CGRect(x: 0, y: statusBarHeight + navigationBarHeight + filterView.frame.height, width: view.bounds.width, height: view.bounds.height - ([statusBarHeight, navigationBarHeight, tabBarHeight].reduce(0, +))), style: .plain)
         tableView.backgroundColor = UIColor.white.withAlphaComponent(0.9)
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView(frame: .zero)
+        
         view.addSubview(tableView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: nil)
@@ -76,7 +79,8 @@ class ListViewController: UIViewController, ListViewable {
 extension ListViewController: DebuggerFilterViewDelegate {
     
     func debuggerFilterViewDidFilter(_ filter: DebuggerFilterView.DebuggerFilter) {
-        self.presenter.set(current: filter)
+        presenter.set(current: filter)
+        presenter.refreshEmptyView()
         tableView.reloadData()
     }
 }

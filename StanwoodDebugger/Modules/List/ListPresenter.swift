@@ -71,11 +71,23 @@ class ListPresenter {
         
         delegate.presenter = self
         
+        refreshEmptyView()
+        
         viewable?.tableView.dataSource = dataSource
         viewable?.tableView.delegate = delegate
         
         viewable?.filterView.filterCellDid(filter: currentFilter)
         
         actionable.refresh(withDelay: .milliseconds(0))
+    }
+    
+    func refreshEmptyView() {
+        if (items?.numberOfItems ?? 0) == 0 {
+            let emptyView = DebuggerEmptyView.loadFromNib(withFrame: viewable?.tableView.frame, bundle: Bundle.debuggerBundle())
+            emptyView?.setLabel(with: currentFilter)
+            viewable?.tableView.backgroundView = emptyView
+        } else {
+            viewable?.tableView.backgroundView = nil
+        }
     }
 }

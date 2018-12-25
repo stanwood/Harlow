@@ -34,7 +34,7 @@ class AnalyticsCell: UITableViewCell, Fillable {
     private(set) var item: AnalyticsItem?
     
     private enum Labels: Int {
-        case eventName, category, id, contentType, date, name
+        case eventName, date, screenName, category, itemId, contentType
     }
     
     override func awakeFromNib() {
@@ -51,12 +51,14 @@ class AnalyticsCell: UITableViewCell, Fillable {
     func fill(with type: Type?) {
         guard let item = type as? AnalyticsItem else { return }
         self.item = item
-        labels[Labels.eventName.rawValue].text = item.eventName
-        labels[Labels.category.rawValue].text = item.category
-        labels[Labels.id.rawValue].text = item.id
-        labels[Labels.contentType.rawValue].text = item.contentType
+        
+        labels[Labels.eventName.rawValue].text = item.eventName ?? String.defaultValue
         labels[Labels.date.rawValue].text = item.formattedDate
-        labels[Labels.name.rawValue].text = item.name
+        labels[Labels.screenName.rawValue].text = item.screenName ?? String.defaultValue
+        
+        labels[Labels.category.rawValue].text = item.category ?? String.defaultValue
+        labels[Labels.itemId.rawValue].text = item.itemId ?? String.defaultValue
+        labels[Labels.contentType.rawValue].text = item.contentType ?? String.defaultValue
     }
     
 }

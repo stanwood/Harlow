@@ -34,7 +34,7 @@ class DebuggerIconLabel: UILabel {
     enum DebuggerIcons: String {
         case analytics = "👻"
         case error = "⚠️"
-        case log = "✏️"
+        case logs = "✏️"
         case uiTesting = "📱"
         case networking = "📶"
         
@@ -42,7 +42,7 @@ class DebuggerIconLabel: UILabel {
             switch self {
             case .analytics: return 5
             case .networking: return 4
-            case .error, .log, .uiTesting: assert(false, "add duration"); return 0
+            case .error, .logs, .uiTesting: assert(false, "add duration"); return 0
             }
         }
         
@@ -85,7 +85,7 @@ class DebuggerIconLabel: UILabel {
                 anim.isRemovedOnCompletion = true
                 label.layer.add(anim, forKey: "animateLabel")
                 
-            case .error, .uiTesting, .log: assert(false, "Add support for a new item")
+            case .error, .uiTesting, .logs: assert(false, "Add support for a new item")
             }
         }
         

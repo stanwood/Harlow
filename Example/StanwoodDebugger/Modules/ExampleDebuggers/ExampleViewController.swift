@@ -38,9 +38,9 @@ struct AnalyticExample: Typeable, Codable {
         
         static func type(forCount count: Int) -> AnalyticsType {
             switch count {
-            case 0: return .contentShort
-            case 1: return .contentMedium
-            case 2: return .contentLong
+            case 1: return .contentShort
+            case 2: return .contentMedium
+            case 3: return .contentLong
             default: return .contentShort
             }
         }
@@ -65,7 +65,7 @@ struct AnalyticExample: Typeable, Codable {
         if let screenName = screenName {
             payload["screenName"] = screenName
         }
-        
+  
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
@@ -142,9 +142,9 @@ class ExampleViewController: UIViewController {
     ]
     
     let analyticsItems: [AnalyticExample] = [
-        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "asdf987", category: "foood", contentType: "product"),
+        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "09873rf", category: "articles", contentType: "website"),
         AnalyticExample(eventName: "content_type", screenName: nil, itemId: "asdf987", category: "foood", contentType: nil),
-        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "asdf987", category: nil, contentType: "product"),
+        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "cnaiodnc", category: nil, contentType: "product"),
         AnalyticExample(eventName: "content_type", screenName: nil, itemId: nil, category: nil, contentType: nil),
         AnalyticExample(eventName: "", screenName: "home_view", itemId: nil, category: nil, contentType: nil)
     ]

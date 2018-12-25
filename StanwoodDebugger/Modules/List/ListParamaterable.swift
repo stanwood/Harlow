@@ -37,7 +37,7 @@ extension DebuggerParamaters: ListParamaterable {
         switch filter {
         case .analytics: return appData.analyticsItems
         case .networking: return appData.networkingItems
-        case .error, .logs, .uiTesting: assert(false, "add support"); return nil
+        case .error, .logs, .uiTesting: return nil
         }
     }
 }
