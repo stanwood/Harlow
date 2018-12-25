@@ -13,6 +13,72 @@ import StanwoodCore
 
 struct AnalyticExample: Typeable, Codable {
     
+    let eventName: String
+    let screenName: String?
+    
+    let itemId: String?
+    let category: String?
+    let contentType: String?
+    
+    var type: AnalyticsType {
+        return screenName != nil ? .screen : AnalyticsType.type(forCount: [itemId, category, contentType].compactMap({$0}).count)
+    }
+    
+    enum AnalyticsType {
+        case screen, contentLong, contentShort, contentMedium
+        
+        var title: String {
+            switch self {
+            case .screen: return "Analytics screen event"
+            case .contentShort: return "Analytics short event"
+            case .contentMedium: return "Analytics medium event"
+            case .contentLong: return "Analytics long event"
+            }
+        }
+        
+        static func type(forCount count: Int) -> AnalyticsType {
+            switch count {
+            case 1: return .contentShort
+            case 2: return .contentMedium
+            case 3: return .contentLong
+            default: return .contentShort
+            }
+        }
+    }
+    
+    private func payload() -> [String:String] {
+        
+        var payload: [String:String] = ["eventName": eventName]
+        
+        if let itemId = itemId {
+            payload["itemId"] = itemId
+        }
+        
+        if let category = category {
+            payload["category"] = category
+        }
+        
+        if let contentType = contentType {
+            payload["contentType"] = contentType
+        }
+        
+        if let screenName = screenName {
+            payload["screenName"] = screenName
+        }
+  
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        payload["createdAt"] = dateFormatter.string(from: Date())
+        
+        return payload
+    }
+    
+    func post() {
+        let notificationCentre = NotificationCenter.default
+        let notification = Notification.init(name: Notification.Name(rawValue: "io.stanwood.debugger.didReceiveAnalyticsItem"), object: nil, userInfo: payload())
+        notificationCentre.post(notification)
+    }
 }
 
 class AnalyticsExample: Stanwood.Elements<AnalyticExample>, Headerable {
@@ -25,7 +91,7 @@ class AnalyticsExample: Stanwood.Elements<AnalyticExample>, Headerable {
     }
     
     override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
-        return AnalyticsCell.self
+        return AnalyticsExampleCell.self
     }
 }
 
@@ -67,17 +133,22 @@ class ExampleViewController: UIViewController {
         NetworkExample(method: .get, url: "https://httpbin.org/status/202"),
         NetworkExample(method: .get, url: "https://httpbin.org/status/500"),
         NetworkExample(method: .get, url: "https://httpbin.org/status/300"),
-        NetworkExample(method: .get, url: "https://httpbin.org/status/100")
+        NetworkExample(method: .get, url: "https://httpbin.org/status/100"),
+        NetworkExample(method: .get, url: "https://httpbin.org/image/jpeg")
     ]
     
     let postNetworkingItems: [NetworkExample] = [
         NetworkExample(method: .post, url: "https://httpbin.org/post")
     ]
     
-    let imageNetworkingItems: [NetworkExample] = [
-        NetworkExample(method: .get, url: "https://httpbin.org/image/jpeg")
+    let analyticsItems: [AnalyticExample] = [
+        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "09873rf", category: "articles", contentType: "website"),
+        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "asdf987", category: "foood", contentType: nil),
+        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "cnaiodnc", category: nil, contentType: "product"),
+        AnalyticExample(eventName: "content_type", screenName: nil, itemId: nil, category: nil, contentType: nil),
+        AnalyticExample(eventName: "", screenName: "home_view", itemId: nil, category: nil, contentType: nil)
     ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,14 +156,13 @@ class ExampleViewController: UIViewController {
         getNetworkingExamples.title = "[GET] Networking Examples"
         let postNetworkingExamples = NetworkingExample(items: postNetworkingItems)
         postNetworkingExamples.title = "[POST] Networking Examples"
-        let imageNetworkingExamples = NetworkingExample(items: imageNetworkingItems)
-        imageNetworkingExamples.title = "[IMAGE] Networking Examples"
+
         
-        let analyticsExamples = AnalyticsExample(items: [AnalyticExample()])
+        let analyticsExamples = AnalyticsExample(items: analyticsItems)
         
-        sections = Stanwood.Sections(items: [getNetworkingExamples, postNetworkingExamples, imageNetworkingExamples, analyticsExamples])
+        sections = Stanwood.Sections(items: [getNetworkingExamples, postNetworkingExamples, analyticsExamples])
         
-        tableView.register(cellTypes: AnalyticsCell.self, NetworkingCell.self)
+        tableView.register(cellTypes: AnalyticsExampleCell.self, NetworkingCell.self)
         
         let nib = UINib(nibName: "HeaderView", bundle: nil)
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: "HeaderView")

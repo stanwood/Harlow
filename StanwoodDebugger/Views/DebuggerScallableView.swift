@@ -107,10 +107,20 @@ class DebuggerScallableView: UIView {
     func configureTableView(with items: DataType?) {
         
         tableView.register(UINib(nibName: AnalyticsCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: AnalyticsCell.identifier)
+        tableView.register(UINib(nibName: NetworkingCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: NetworkingCell.identifier)
         
         tableView.estimatedRowHeight = 75
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        tableView.tableFooterView = UIView(frame: .zero)
+        
+        if (items?.numberOfItems ?? 0) == 0 {
+            let emptyView = DebuggerEmptyView.loadFromNib(withFrame: tableView.frame, bundle: Bundle.debuggerBundle())
+            emptyView?.setLabel(with: currentFilter)
+            tableView.backgroundView = emptyView
+        } else {
+            tableView.backgroundView = nil
+        }
         
         listDataSource = ListDataSource(dataType: items)
         listDelegate = ListDelegate(dataType: items)
@@ -167,8 +177,17 @@ extension DebuggerScallableView: DebuggerFilterViewDelegate {
     func debuggerFilterViewDidFilter(_ filter: DebuggerFilterView.DebuggerFilter) {
         self.currentFilter = filter
         
-        listDataSource.update(with: presenter.parameterable.getDeguggerItems(for: filter))
-        listDelegate.update(with: presenter.parameterable.getDeguggerItems(for: filter))
+        let items = presenter.parameterable.getDeguggerItems(for: filter)
+        
+        if (items?.numberOfItems ?? 0) == 0 {
+            let emptyView = DebuggerEmptyView.loadFromNib(withFrame: tableView.frame, bundle: Bundle.debuggerBundle())
+            emptyView?.setLabel(with: filter)
+            tableView.backgroundView = emptyView
+        } else {
+            tableView.backgroundView = nil
+        }
+        listDataSource.update(with: items)
+        listDelegate.update(with: items)
         
         tableView.reloadData()
     }

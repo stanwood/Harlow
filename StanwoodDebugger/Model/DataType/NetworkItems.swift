@@ -17,6 +17,6 @@ class NetworkItems: Stanwood.Elements<NetworkItem> {
     }
     
     override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
-        return NetwrokingCell.self
+        return NetworkingCell.self
     }
 }

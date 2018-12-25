@@ -30,18 +30,19 @@ typealias AnimationCompletion = (UILabel) -> Void
 typealias DoneCompletion = (Bool) -> Void
 
 class DebuggerIconLabel: UILabel {
+    
     enum DebuggerIcons: String {
         case analytics = "👻"
         case error = "⚠️"
-        case log = "✏️"
+        case logs = "✏️"
         case uiTesting = "📱"
         case networking = "📶"
         
         private var duration: TimeInterval {
             switch self {
-            case .analytics:
-                return 5
-            case .error, .log, .networking, .uiTesting: return 0 // WIP
+            case .analytics: return 5
+            case .networking: return 4
+            case .error, .logs, .uiTesting: assert(false, "add duration"); return 0
             }
         }
         
@@ -52,7 +53,7 @@ class DebuggerIconLabel: UILabel {
             }
             
             switch self {
-            case .analytics:
+            case .analytics, .networking:
                 
                 let numberOfTurnPoints = 3
                 let durationUntilChange = duration / Double(numberOfTurnPoints)
@@ -84,7 +85,7 @@ class DebuggerIconLabel: UILabel {
                 anim.isRemovedOnCompletion = true
                 label.layer.add(anim, forKey: "animateLabel")
                 
-            case .error, .networking, .uiTesting, .log: break
+            case .error, .uiTesting, .logs: assert(false, "Add support for a new item")
             }
         }
         

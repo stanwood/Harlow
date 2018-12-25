@@ -202,15 +202,21 @@ class DebuggerUIButton: UIButton {
         guard let addedItems = notification.object as? [AddedItem] else { return }
         
         addedItems.forEach({
+            
             switch $0.type {
             case .analytics:
                 animate(.analytics)
-            case .error, .logs, .networking, .uiTesting: break
+            case .networking:
+                animate(.networking)
+            case .error, .logs, .uiTesting: assert(false, "Add another case to support the animation")
             }
+            
+            
         })
     }
     
     private func animate(_ icon: DebuggerIconLabel.DebuggerIcons) {
+        print(icon)
         main(deadline: .milliseconds(500)) { [weak self] in
             guard let `self` = self else { return }
             
