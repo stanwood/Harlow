@@ -1,6 +1,6 @@
 PODS:
   - StanwoodCore (1.4.1)
-  - StanwoodDebugger (0.2.1):
+  - StanwoodDebugger (0.3.0):
     - StanwoodCore (~> 1.4.1)
 
 DEPENDENCIES:
@@ -17,7 +17,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   StanwoodCore: 9f58032a58b16e9b5ebbb2906b7888d87c098642
-  StanwoodDebugger: cb003fc600c3c28b396c6cf8bf7281fc98e8ef59
+  StanwoodDebugger: a886d508f13fd69c9893e804c3b2db7f30f09f9e
 
 PODFILE CHECKSUM: b1697111f3c092fc5d25e1bcefca1007f1ade949
 

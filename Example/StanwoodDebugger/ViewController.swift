@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StanwoodCore
 
 class ViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class ViewController: UIViewController {
         let no = UIAlertAction(title: "No!🤬", style: .destructive, handler: nil)
         alertController.addAction(yes)
         alertController.addAction(no)
-        present(alertController, animated: true, completion: nil)
+        
+        UIApplication.shared.delegate?.window??.rootViewController?.present(alertController, animated: true, completion: nil)
     }
 }

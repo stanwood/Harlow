@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import StanwoodCore
 
 protocol DebuggerFilterViewDelegate: class {
     func debuggerFilterViewDidFilter(_ filter: DebuggerFilterView.DebuggerFilter)
@@ -54,14 +55,20 @@ class DebuggerFilterView: UIView {
         backgroundColor = UIColor.black.withAlphaComponent(0.1)
         collectionView.register(cell: FilterCell.self, bundle: Bundle.debuggerBundle(from: type(of: self)))
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-            layout.minimumLineSpacing = 0
-            layout.minimumInteritemSpacing = 0
+            layout.estimatedItemSize = CGSize(width: 50, height: UICollectionViewFlowLayout.automaticSize.height)
         }
+        
+        collectionView.set(spacing: 0)
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
+        
+        main(deadline: .milliseconds(500)) {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
     }
 }
+
+
 
 extension DebuggerFilterView: UICollectionViewDataSource {
     

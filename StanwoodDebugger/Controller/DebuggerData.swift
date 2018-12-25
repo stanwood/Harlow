@@ -35,6 +35,7 @@ struct AddedItem {
 class DebuggerData {
     
     var analyticsItems: AnalyticItems
+    var networkingItems: NetworkItems
     
     private lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -55,6 +56,12 @@ class DebuggerData {
             analyticsItems = AnalyticItems(items: [])
         }
         
+        if let items = try? Stanwood.Storage.retrieve(NetworkItems.fileName, of: .json, from: .documents, as: NetworkItems.self) {
+            networkingItems = items ?? NetworkItems(items: [])
+        } else {
+            networkingItems = NetworkItems(items: [])
+        }
+        
         NotificationCenter.default.addObservers(self, observers:
             Stanwood.Observer(selector: #selector(didReceiveAnalyticsItem(_:)), name: .DebuggerDidReceiveAnalyticsItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveLogItem(_:)), name: .DeuggerDidReceiveLogItem),
@@ -68,6 +75,7 @@ class DebuggerData {
     func removeAll() {
         /// Remove all stored items
         analyticsItems.removeAll()
+        networkingItems.removeAll()
     }
     
     func refresh(withDelay delay: DispatchTimeInterval = .milliseconds(500)) {
@@ -77,11 +85,13 @@ class DebuggerData {
         }
     }
     
+    // MARK: - Analytics
+    
     @objc func didReceiveAnalyticsItem(_ notification: Notification) {
         
         guard let userInfo = notification.userInfo,
             let data = try? JSONSerialization.data(withJSONObject: userInfo, options: []),
-            let item = try? decoder.decode(AnalyticsItem.self, from: data)  else { return }
+            let item = try? decoder.decode(AnalyticsItem.self, from: data) else { return }
         
         
         analyticsItems.append(item)
@@ -99,7 +109,13 @@ class DebuggerData {
     }
     
     @objc func didReceiveNetworkingItem(_ notification: Notification) {
-        // SFW-54: Phase 5
+        guard let item = notification.object as? NetworkItem else { assert(false); return }
+        
+        networkingItems.append(item)
+        let addedIems: [AddedItem] = [AddedItem(type: .networking, count: networkingItems.numberOfItems)]
+        
+        NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIems)
     }
     
     @objc func didReceiveLogItem(_ notification: Notification) {
@@ -113,6 +129,7 @@ class DebuggerData {
     @objc func save() {
         if DebuggerSettings.shouldStoreAnalyticsData {
             try? Stanwood.Storage.store(analyticsItems, to: .documents, as: .json, withName: AnalyticItems.fileName)
+            try? Stanwood.Storage.store(networkingItems, to: .documents, as: .json, withName: NetworkItems.fileName)
         }
         
         refresh()

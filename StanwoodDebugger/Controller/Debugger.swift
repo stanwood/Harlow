@@ -49,6 +49,7 @@ public class StanwoodDebugger: Debugging {
     /// Enable Debugger View
     public var isEnabled: Bool = false {
         didSet {
+            DebuggerNetworking.isEnabled = isEnabled
             configureDebuggerView()
         }
     }
@@ -61,6 +62,7 @@ public class StanwoodDebugger: Debugging {
     private let actions: DebuggerActions
     private let appData: DebuggerData
     private let paramaters: DebuggerParamaters
+    private let debuggerNetworking: DebuggerNetworking
     
     public init() {
         window = DebuggerWindow(frame: UIScreen.main.bounds)
@@ -68,6 +70,7 @@ public class StanwoodDebugger: Debugging {
         appData = DebuggerData()
         paramaters = DebuggerParamaters(appData: appData)
         actions = DebuggerActions(appData: appData)
+        debuggerNetworking = DebuggerNetworking()
         
         coordinator = DebuggerCoordinator(window: window, actionable: actions, paramaterable: paramaters)
         actions.coordinator = coordinator
