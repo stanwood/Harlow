@@ -47,6 +47,6 @@ import StanwoodCore
 //    func cellForItem(at indexPath: IndexPath) -> Filling.Type? { return nil }
 //}
 //
-//protocol Filling where Self: UITableViewCell {
+//protocol Filling where Self: UITableViewCell, Fillable {
 //    func fill(with: Item?)
 //}

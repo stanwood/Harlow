@@ -61,8 +61,7 @@ class ListPresenter: ItemPresentable {
     
     func viewDidLoad() {
         
-        viewable?.tableView.register(UINib(nibName: AnalyticsCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: AnalyticsCell.identifier)
-        viewable?.tableView.register(UINib(nibName: NetworkingCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: NetworkingCell.identifier)
+        viewable?.tableView.register(cells: AnalyticsCell.self, NetworkingCell.self, bundle: Bundle.debuggerBundle())
         
         viewable?.tableView.estimatedRowHeight = 75
         viewable?.tableView.rowHeight = UITableView.automaticDimension

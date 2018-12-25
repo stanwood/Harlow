@@ -36,7 +36,6 @@ class NetworkingPresenter: Presentable {
     // MARK:- Functions
     
     func viewDidLoad() {
-        // TODO: replace `nil` with data from paramaterable
-        viewable.setupTableView(dataType: nil)
+        viewable.setupTableView(dataType: parameterable.items)
     }
 }

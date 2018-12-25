@@ -57,6 +57,12 @@ class NetworkingViewController: UIViewController, SourceTypePresentable {
 extension NetworkingViewController: NetworkingViewable {
     
     func setupTableView(dataType: DataType?) {
+        
+        tableView.register(cells: NetworkBodyCell.self, NetworkOverviewCell.self, NetworkErrorCell.self, NetworkDataCell.self, NetworkHeadersCell.self, NetworkLatencyCell.self, NetworkResponseCell.self, bundle: Bundle.debuggerBundle())
+        
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
+        
         delegate = NetworkingDelegate(dataType: dataType)
         dataSource = NetworkingDataSource(dataType: dataType)
 

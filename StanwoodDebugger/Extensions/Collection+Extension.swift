@@ -64,9 +64,9 @@ extension UITableView {
         register(nib, forCellReuseIdentifier: cell.identifier)
     }
     
-    func register(cells: UITableViewCell.Type...) {
+    func register(cells: UITableViewCell.Type..., bundle: Bundle) {
         cells.forEach { cell in
-            let nib = UINib(nibName: cell.identifier, bundle: Bundle.debuggerBundle(from: type(of: self)))
+            let nib = UINib(nibName: cell.identifier, bundle: bundle)
             register(nib, forCellReuseIdentifier: cell.identifier)
         }
     }
