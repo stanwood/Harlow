@@ -114,8 +114,10 @@ class DebuggerData {
         networkingItems.append(item)
         let addedIems: [AddedItem] = [AddedItem(type: .networking, count: networkingItems.numberOfItems)]
         
-        NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIems)
+        main {
+            NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIems)
+        }
     }
     
     @objc func didReceiveLogItem(_ notification: Notification) {

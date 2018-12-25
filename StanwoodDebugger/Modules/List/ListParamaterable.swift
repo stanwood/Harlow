@@ -36,7 +36,8 @@ extension DebuggerParamaters: ListParamaterable {
     func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> DataType? {
         switch filter {
         case .analytics: return appData.analyticsItems
-        case .error, .logs, .networking, .uiTesting: return nil
+        case .networking: return appData.networkingItems
+        case .error, .logs, .uiTesting: assert(false, "add support"); return nil
         }
     }
 }
