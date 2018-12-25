@@ -27,7 +27,7 @@
 import Foundation
 import StanwoodCore
 
-class ListPresenter {
+class ListPresenter: ItemPresentable {
     
     private let paramaterable: ListParamaterable
     private let actionable: ListActionable
@@ -89,5 +89,9 @@ class ListPresenter {
         } else {
             viewable?.tableView.backgroundView = nil
         }
+    }
+    
+    func present(networkingItem: NetworkItem) {
+        actionable.present(call: networkingItem)
     }
 }

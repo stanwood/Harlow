@@ -112,7 +112,7 @@ class NetworkingExample: Stanwood.Elements<NetworkExample>, Headerable {
     }
     
     override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
-        return NetworkingCell.self
+        return NetworkingExampleCell.self
     }
 }
 
@@ -162,7 +162,7 @@ class ExampleViewController: UIViewController {
         
         sections = Stanwood.Sections(items: [getNetworkingExamples, postNetworkingExamples, analyticsExamples])
         
-        tableView.register(cellTypes: AnalyticsExampleCell.self, NetworkingCell.self)
+        tableView.register(cellTypes: AnalyticsExampleCell.self, NetworkingExampleCell.self)
         
         let nib = UINib(nibName: "HeaderView", bundle: nil)
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: "HeaderView")

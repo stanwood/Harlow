@@ -29,13 +29,15 @@ import StanwoodCore
 
 class ListDelegate: Stanwood.AbstractTableDelegate {
  
-    weak var presenter: ListPresenter?
+    weak var presenter: ItemPresentable?
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let cell = tableView.cellForRow(at: indexPath) as? AnalyticsCell,
-        let _ = cell.item else { return }
-        
+        if let cell = tableView.cellForRow(at: indexPath) as? NetworkingCell,
+            let item = cell.item {
+            
+            presenter?.present(networkingItem: item)
+        }
     }
 }

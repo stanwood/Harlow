@@ -1,5 +1,5 @@
 //
-//  NetworkingCell.swift
+//  NetworkingExampleCell.swift
 //  StanwoodDebugger_Example
 //
 //  Created by Tal Zion on 24/12/2018.
@@ -9,7 +9,7 @@
 import UIKit
 import StanwoodCore
 
-class NetworkingCell: UITableViewCell, Fillable {
+class NetworkingExampleCell: UITableViewCell, Fillable {
 
     @IBOutlet private weak var urlLabel: UILabel!
     @IBOutlet private weak var methodLabel: UILabel!

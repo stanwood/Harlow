@@ -28,10 +28,16 @@ import Foundation
 
 protocol ListActionable {
     func refresh(withDelay delay: DispatchTimeInterval)
+    func present(call: NetworkItem)
 }
 
 extension DebuggerActions: ListActionable {
+    
     func refresh(withDelay delay: DispatchTimeInterval = .milliseconds(500)) {
         appData.refresh(withDelay: delay)
+    }
+    
+    func present(call: NetworkItem) {
+        coordinator?.present(call: call)
     }
 }

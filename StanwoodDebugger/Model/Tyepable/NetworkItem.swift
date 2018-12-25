@@ -21,6 +21,17 @@ struct NetworkItem: Typeable, Codable {
     var errorDescription: String?
     var duration: Double?
     
+    var codeType: StatusCodes {
+        return StatusCodes(rawValue: code)
+    }
+    
+    var formattedDate: String {
+        let format = "HH:mm:ss"
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = format
+        return dateFormat.string(from: requestDate)
+    }
+    
     init?(request: URLRequest?) {
         guard let request = request else { return nil }
         requestDate = Date()

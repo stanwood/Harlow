@@ -26,7 +26,11 @@
 
 import Foundation
 
-class DebuggerPresenter {
+protocol ItemPresentable: class {
+    func present(networkingItem: NetworkItem)
+}
+
+class DebuggerPresenter: ItemPresentable {
     
     weak var debugger: Debugging!
     private var actionable: DebuggerActionable
@@ -52,5 +56,9 @@ class DebuggerPresenter {
     
     func refresh() {
         actionable.refresh(withDelay: .milliseconds(500))
+    }
+    
+    func present(networkingItem: NetworkItem) {
+        actionable.present(call: networkingItem)
     }
 }
