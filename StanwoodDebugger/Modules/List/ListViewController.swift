@@ -41,6 +41,13 @@ class ListViewController: UIViewController, ListViewable {
         super.viewDidLoad()
         
         view.backgroundColor = .clear
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        guard tableView == nil else { return }
+        
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let navigationBarHeight = navigationController?.navigationBar.frame.height ?? 0
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
@@ -64,7 +71,7 @@ class ListViewController: UIViewController, ListViewable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.reloadData()
+        tableView?.reloadData()
     }
     
     @objc func refresh() {

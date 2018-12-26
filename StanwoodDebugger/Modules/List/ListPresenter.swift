@@ -27,7 +27,7 @@
 import Foundation
 import StanwoodCore
 
-class ListPresenter {
+class ListPresenter: ItemPresentable {
     
     private let paramaterable: ListParamaterable
     private let actionable: ListActionable
@@ -61,7 +61,7 @@ class ListPresenter {
     
     func viewDidLoad() {
         
-        viewable?.tableView.register(UINib(nibName: AnalyticsCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: AnalyticsCell.identifier)
+        viewable?.tableView.register(cells: AnalyticsCell.self, NetworkingCell.self, bundle: Bundle.debuggerBundle())
         
         viewable?.tableView.estimatedRowHeight = 75
         viewable?.tableView.rowHeight = UITableView.automaticDimension
@@ -89,5 +89,9 @@ class ListPresenter {
         } else {
             viewable?.tableView.backgroundView = nil
         }
+    }
+    
+    func present(networkingItem: NetworkItem) {
+        actionable.present(call: networkingItem)
     }
 }

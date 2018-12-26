@@ -124,6 +124,7 @@ class DebuggerScallableView: UIView {
         
         listDataSource = ListDataSource(dataType: items)
         listDelegate = ListDelegate(dataType: items)
+        listDelegate.presenter = presenter
         
         tableView.dataSource = listDataSource
         tableView.delegate = listDelegate

@@ -10,12 +10,30 @@ import StanwoodCore
 
 class NetworkingCell: UITableViewCell, Fillable {
 
+    @IBOutlet weak var indicatorView: UIView!
+    @IBOutlet private var labels: [UILabel]!
+    
+    var item: NetworkItem?
+    
+    private enum Labels: Int {
+        case date, url, status
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        indicatorView.layer.cornerRadius = indicatorView.frame.width / 2
+        indicatorView.layer.masksToBounds = true
     }
     
     func fill(with type: Type?) {
+        guard let item = type as? NetworkItem else { return }
+        self.item = item
         
+        labels[Labels.date.rawValue].text = item.formattedDate
+        labels[Labels.url.rawValue].text = item.url
+        labels[Labels.status.rawValue].text = "\(item.code)"
+        
+        labels[Labels.status.rawValue].textColor = item.codeType.color
+        indicatorView.backgroundColor = item.codeType.color
     }
 }

@@ -32,6 +32,7 @@ protocol DebuggerActionable {
     
     /// Handled in ListActionable
     func refresh(withDelay delay: DispatchTimeInterval)
+    func present(call: NetworkItem)
 }
 
 extension DebuggerActions: DebuggerActionable {

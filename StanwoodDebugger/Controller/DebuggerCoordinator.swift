@@ -123,4 +123,23 @@ class DebuggerCoordinator {
         
         currentViewController(base: window.rootViewController)?.present(actionSheet, animated: true, completion: nil)
     }
+    
+    // MARK: - Networking
+    func present(call: NetworkItem) {
+        
+        let networkViewController = NetworkingWireframe.makeViewController()
+        let parameters = NetworkingParameters(appData: paramaterable.appData, item: call)
+        NetworkingWireframe.prepare(networkViewController, with: actionable, and: parameters)
+        
+        let navigationController = UINavigationController(rootViewController: networkViewController)
+        networkViewController.navigationItem.title = call.url
+        networkViewController.title = call.url
+        
+        networkViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: networkViewController, action: #selector(NetworkingViewController.dismissDebuggerView))
+        
+        let image = UIImage(named: "filter_icon", in: Bundle.debuggerBundle(from: type(of: NetworkingWireframe())), compatibleWith: nil)
+        networkViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(NetworkingViewController.showFilter))
+        
+        window.rootViewController?.present(navigationController, animated: true, completion: nil)
+    }
 }
