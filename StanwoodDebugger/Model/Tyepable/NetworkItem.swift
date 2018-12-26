@@ -8,7 +8,30 @@
 import Foundation
 import StanwoodCore
 
-struct NetworkItem: Typeable, Codable {
+protocol NetworkOverviewable {
+    var formattedDate: String { get }
+    var url: String { get }
+    var codeType: StatusCodes { get }
+    var code: Int { get }
+}
+
+protocol LatencyRecorder {
+    var duration: Double? { get }
+}
+
+protocol ResponseHeaderable {
+    var headers: [String: String]? { get }
+}
+
+protocol HTTPDataBodyRecorder {
+    var httpBody: Data? { get }
+}
+
+protocol HTTPDataResponseRecorder {
+    var dataResponse: Data? { get }
+}
+
+struct NetworkItem: Typeable, Codable, NetworkOverviewable, LatencyRecorder, ResponseHeaderable, HTTPDataBodyRecorder, HTTPDataResponseRecorder {
     
     let id: String
     let url: String

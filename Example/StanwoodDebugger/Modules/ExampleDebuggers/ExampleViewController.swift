@@ -128,7 +128,7 @@ class ExampleViewController: UIViewController {
     let getNetworkingItems: [NetworkExample] = [
         NetworkExample(method: .get, url: "https://httpbin.org/status/400"),
         NetworkExample(method: .get, url: "https://httpbin.org/status/404"),
-        NetworkExample(method: .get, url: "https://httpbin.org/status/200"),
+        NetworkExample(method: .get, url: "https://httpbin.org/headers"),
         NetworkExample(method: .get, url: "https://httpbin.org/status/410"),
         NetworkExample(method: .get, url: "https://httpbin.org/status/202"),
         NetworkExample(method: .get, url: "https://httpbin.org/status/500"),

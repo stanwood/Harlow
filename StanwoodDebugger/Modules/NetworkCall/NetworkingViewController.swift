@@ -7,6 +7,7 @@
 
 import UIKit
 import StanwoodCore
+import Toast_Swift
 
 class NetworkingViewController: UIViewController, SourceTypePresentable {
 
@@ -41,7 +42,6 @@ class NetworkingViewController: UIViewController, SourceTypePresentable {
         tableView.tableFooterView = UIView(frame: .zero)
         
         view.addSubview(tableView)
-        
         presenter.viewDidLoad()
     }
     
@@ -58,15 +58,33 @@ extension NetworkingViewController: NetworkingViewable {
     
     func setupTableView(dataType: DataType?) {
         
-        tableView.register(cells: NetworkBodyCell.self, NetworkOverviewCell.self, NetworkErrorCell.self, NetworkDataCell.self, NetworkHeadersCell.self, NetworkLatencyCell.self, NetworkResponseCell.self, bundle: Bundle.debuggerBundle())
+        tableView.register(cells: NetworkDataBodyCell.self, NetworkOverviewCell.self, NetworkErrorCell.self, NetworkHeadersCell.self, NetworkLatencyCell.self, NetworkResponseCell.self, NetworkDataResponseCell.self, bundle: Bundle.debuggerBundle())
         
+        let nib = UINib(nibName: String(describing: NetworkHeaderView.self), bundle:Bundle.debuggerBundle(from: type(of: self)))
+        
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: String(describing: NetworkHeaderView.self))
+    
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         
         delegate = NetworkingDelegate(dataType: dataType)
-        dataSource = NetworkingDataSource(dataType: dataType)
+        dataSource = NetworkingDataSource(dataType: dataType, delegate: self)
 
         tableView.delegate = delegate
         tableView.dataSource = dataSource
+    }
+}
+
+extension NetworkingViewController: NetworkCopyPasteDelegate {
+    func didCopy(text: String, sender: UIView) {
+        
+        var message = String()
+        UIPasteboard.general.string = text
+        switch sender {
+        case is NetworkHeadersCell:
+            message = "Copied header to clipboard"
+        default: break
+        }
+        view.makeToast(message, duration: 3.0, position: .bottom)
     }
 }

@@ -36,6 +36,6 @@ class NetworkingPresenter: Presentable {
     // MARK:- Functions
     
     func viewDidLoad() {
-        viewable.setupTableView(dataType: parameterable.items)
+        viewable.setupTableView(dataType: parameterable.sections)
     }
 }

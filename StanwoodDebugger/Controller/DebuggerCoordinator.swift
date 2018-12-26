@@ -132,8 +132,6 @@ class DebuggerCoordinator {
         NetworkingWireframe.prepare(networkViewController, with: actionable, and: parameters)
         
         let navigationController = UINavigationController(rootViewController: networkViewController)
-        networkViewController.navigationItem.title = call.url
-        networkViewController.title = call.url
         
         networkViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: networkViewController, action: #selector(NetworkingViewController.dismissDebuggerView))
         

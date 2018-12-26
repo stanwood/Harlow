@@ -2,6 +2,8 @@ PODS:
   - StanwoodCore (1.4.1)
   - StanwoodDebugger (0.3.0):
     - StanwoodCore (~> 1.4.1)
+    - Toast-Swift (~> 4.0.1)
+  - Toast-Swift (4.0.1)
 
 DEPENDENCIES:
   - StanwoodCore (~> 1.4.1)
@@ -10,6 +12,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - StanwoodCore
+    - Toast-Swift
 
 EXTERNAL SOURCES:
   StanwoodDebugger:
@@ -17,7 +20,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   StanwoodCore: 9f58032a58b16e9b5ebbb2906b7888d87c098642
-  StanwoodDebugger: a886d508f13fd69c9893e804c3b2db7f30f09f9e
+  StanwoodDebugger: 6d64a9bc2c9d60797f2eed4bc6f51168ef972d16
+  Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
 PODFILE CHECKSUM: b1697111f3c092fc5d25e1bcefca1007f1ade949
 
