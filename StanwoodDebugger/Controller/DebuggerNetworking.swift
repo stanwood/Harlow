@@ -130,6 +130,10 @@ extension DebuggerNetworking: URLSessionDataDelegate, URLSessionTaskDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         client?.urlProtocol(self, didLoad: data)
         responseData?.append(data)
+        
+        if let data = responseData {
+            networkItem?.dataResponse = data as Data
+        }
     }
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {

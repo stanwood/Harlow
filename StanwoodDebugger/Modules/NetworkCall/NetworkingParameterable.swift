@@ -38,8 +38,10 @@ class NetworkingParameters: DebuggerParamaters, NetworkingParameterable {
         }
         
         sections.append(NetworkResponseSection(items: [item]))
-        sections.append(NetworkErrorSection(items: [item]))
         
+        if item.errorDescription != nil {
+            sections.append(NetworkErrorSection(items: [item]))
+        }
         
         self.sections = NetworkDetailISections(items: sections)
         

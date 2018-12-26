@@ -140,4 +140,11 @@ class DebuggerCoordinator {
         
         window.rootViewController?.present(navigationController, animated: true, completion: nil)
     }
+    
+    func present(_ data: NetworkData) {
+        let viewController = DataDetailWireframe.makeViewController()
+        let parameters = DataDetailParameters(appData: self.paramaterable.appData, data: data)
+        DataDetailWireframe.prepare(viewController, with: actionable, and: parameters)
+        currentViewController(base: window.rootViewController)?.navigationController?.pushViewController(viewController, animated: true)
+    }
 }

@@ -26,7 +26,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data length:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cii-xK-TBr">
-                        <rect key="frame" x="20" y="13" width="209" height="18"/>
+                        <rect key="frame" x="12" y="13" width="217" height="18"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -34,13 +34,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="fL0-sG-Pqy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="88D-7g-0uj"/>
-                    <constraint firstItem="cii-xK-TBr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Vam-IK-Fox"/>
+                    <constraint firstItem="cii-xK-TBr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Vam-IK-Fox"/>
                     <constraint firstItem="fL0-sG-Pqy" firstAttribute="leading" secondItem="cii-xK-TBr" secondAttribute="trailing" constant="4" id="ZNQ-XD-VWH"/>
                     <constraint firstAttribute="trailingMargin" secondItem="fL0-sG-Pqy" secondAttribute="trailing" constant="12" id="a0v-i7-eNE"/>
                     <constraint firstItem="cii-xK-TBr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="xaE-XH-qzK"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.25" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="bodyLengthLabel" destination="fL0-sG-Pqy" id="QJi-kI-jUM"/>

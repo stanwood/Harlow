@@ -12,17 +12,16 @@ class NetworkDataResponseCell: UITableViewCell, Fillable {
 
     @IBOutlet private weak var bodyLengthLabel: UILabel!
     
-    private var bodyRecorder: HTTPDataResponseRecorder?
+    var item: HTTPDataResponseRecorder?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-    }
-
-    func fill(with type: Type?) {
-        guard let httpBodyRecorder = type as?  HTTPDataResponseRecorder else { return }
-        bodyRecorder = httpBodyRecorder
-        bodyLengthLabel.text = httpBodyRecorder.dataResponse?.byteString
+        selectionStyle = .default
     }
     
+    func fill(with type: Type?) {
+        guard let httpBodyRecorder = type as?  HTTPDataResponseRecorder else { return }
+        item = httpBodyRecorder
+        bodyLengthLabel.text = httpBodyRecorder.dataResponse?.prettyString
+    }
 }

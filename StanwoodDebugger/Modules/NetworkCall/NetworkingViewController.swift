@@ -68,6 +68,8 @@ extension NetworkingViewController: NetworkingViewable {
         tableView.rowHeight = UITableView.automaticDimension
         
         delegate = NetworkingDelegate(dataType: dataType)
+        delegate.dataPresentable = self
+        
         dataSource = NetworkingDataSource(dataType: dataType, delegate: self)
 
         tableView.delegate = delegate
@@ -83,8 +85,19 @@ extension NetworkingViewController: NetworkCopyPasteDelegate {
         switch sender {
         case is NetworkHeadersCell:
             message = "Copied header to clipboard"
+        case is NetworkOverviewCell:
+            message = "Copied URL to clipboard"
         default: break
         }
         view.makeToast(message, duration: 3.0, position: .bottom)
+    }
+}
+
+extension NetworkingViewController: DataPresentable {
+    
+    func present(_ data: Data?) {
+        guard let data = data else { return }
+        let networkData = NetworkData(data: data)
+        presenter.present(data: networkData)
     }
 }

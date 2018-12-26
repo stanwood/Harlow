@@ -137,6 +137,14 @@ class ExampleViewController: UIViewController {
         NetworkExample(method: .get, url: "https://httpbin.org/image/jpeg")
     ]
     
+    let responseFormatItems: [NetworkExample] = [
+        NetworkExample(method: .get, url: "https://httpbin.org/json"),
+        NetworkExample(method: .get, url: "https://httpbin.org/html"),
+        NetworkExample(method: .get, url: "https://httpbin.org/xml"),
+        NetworkExample(method: .get, url: "https://httpbin.org/robots.txt"),
+        NetworkExample(method: .get, url: "https://httpbin.org/deny")
+    ]
+    
     let postNetworkingItems: [NetworkExample] = [
         NetworkExample(method: .post, url: "https://httpbin.org/post")
     ]
@@ -152,6 +160,8 @@ class ExampleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let responseFormatsExamples = NetworkingExample(items: responseFormatItems)
+        responseFormatsExamples.title = "[GET] Response Formats Examples"
         let getNetworkingExamples = NetworkingExample(items: getNetworkingItems)
         getNetworkingExamples.title = "[GET] Networking Examples"
         let postNetworkingExamples = NetworkingExample(items: postNetworkingItems)
@@ -160,7 +170,7 @@ class ExampleViewController: UIViewController {
         
         let analyticsExamples = AnalyticsExample(items: analyticsItems)
         
-        sections = Stanwood.Sections(items: [getNetworkingExamples, postNetworkingExamples, analyticsExamples])
+        sections = Stanwood.Sections(items: [responseFormatsExamples, getNetworkingExamples, postNetworkingExamples, analyticsExamples])
         
         tableView.register(cellTypes: AnalyticsExampleCell.self, NetworkingExampleCell.self)
         

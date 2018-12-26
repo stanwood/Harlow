@@ -21,7 +21,7 @@ enum StatusCodes {
         case 300...399: self = .c300
         case 400...499: self = .c400
         case 500...600: self = .c500
-        default: self = .c200
+        default: self = .c100
         }
     }
     

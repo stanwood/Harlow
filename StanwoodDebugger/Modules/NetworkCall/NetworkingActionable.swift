@@ -7,9 +7,11 @@
 
 
 protocol NetworkingActionable {
-
+    func present(data: NetworkData)
 }
 
 extension DebuggerActions: NetworkingActionable {
-    
+    func present(data: NetworkData) {
+        coordinator?.present(data)
+    }
 }

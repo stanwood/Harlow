@@ -9,7 +9,7 @@ import Foundation
 
 extension Data {
     
-    var byteString: String {
+    var prettyString: String {
         let bcf = ByteCountFormatter()
         bcf.allowedUnits = [.useAll]
         bcf.countStyle = .file

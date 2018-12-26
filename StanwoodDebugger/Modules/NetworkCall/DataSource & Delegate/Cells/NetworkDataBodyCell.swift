@@ -12,7 +12,7 @@ class NetworkDataBodyCell: UITableViewCell, Fillable {
 
     @IBOutlet private weak var bodyLengthLabel: UILabel!
     
-    private var bodyRecorder: HTTPDataBodyRecorder?
+    var item: HTTPDataBodyRecorder?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,8 +21,8 @@ class NetworkDataBodyCell: UITableViewCell, Fillable {
 
     func fill(with type: Type?) {
         guard let httpBodyRecorder = type as?  HTTPDataBodyRecorder else { return }
-        bodyRecorder = httpBodyRecorder
-        bodyLengthLabel.text = httpBodyRecorder.httpBody?.byteString
+        item = httpBodyRecorder
+        bodyLengthLabel.text = httpBodyRecorder.httpBody?.prettyString
     }
     
 }

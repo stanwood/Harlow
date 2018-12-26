@@ -38,4 +38,8 @@ class NetworkingPresenter: Presentable {
     func viewDidLoad() {
         viewable.setupTableView(dataType: parameterable.sections)
     }
+    
+    func present(data: NetworkData) {
+        actionable.present(data: data)
+    }
 }

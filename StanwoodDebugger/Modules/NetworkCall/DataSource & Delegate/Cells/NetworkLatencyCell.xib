@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Call Latency:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzW-6R-GZM">
-                        <rect key="frame" x="20" y="12" width="235" height="19.5"/>
+                        <rect key="frame" x="12" y="12" width="243" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -34,7 +34,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="gzW-6R-GZM" secondAttribute="bottom" constant="12" id="Vj2-45-hMA"/>
-                    <constraint firstItem="gzW-6R-GZM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="YTm-bq-a4w"/>
+                    <constraint firstItem="gzW-6R-GZM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="YTm-bq-a4w"/>
                     <constraint firstItem="4vL-Fc-Q5Y" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-12" id="f8M-4y-WtF"/>
                     <constraint firstItem="gzW-6R-GZM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ghK-cP-mKo"/>
                     <constraint firstItem="4vL-Fc-Q5Y" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hgt-xJ-Z46"/>
@@ -42,7 +42,7 @@
                     <constraint firstItem="gzW-6R-GZM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="uY8-VN-6Za"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.25" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="latencyLabel" destination="4vL-Fc-Q5Y" id="jST-35-KQ8"/>

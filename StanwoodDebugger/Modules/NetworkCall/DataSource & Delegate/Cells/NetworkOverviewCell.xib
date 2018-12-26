@@ -49,11 +49,27 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxK-vr-7Bt">
+                        <rect key="frame" x="210.5" y="15" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="c3e-C0-YLY"/>
+                            <constraint firstAttribute="height" constant="44" id="mPE-Fq-ff7"/>
+                        </constraints>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                        <inset key="imageEdgeInsets" minX="15" minY="5" maxX="5" maxY="15"/>
+                        <state key="normal" image="icon_copy"/>
+                        <connections>
+                            <action selector="copyAction" destination="KGk-i7-Jjw" eventType="touchUpInside" id="H9D-LS-7Gw"/>
+                        </connections>
+                    </button>
                 </subviews>
-                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="U9Q-ym-nnW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2FG-UC-2e1"/>
+                    <constraint firstItem="KxK-vr-7Bt" firstAttribute="top" secondItem="DTd-4J-k8h" secondAttribute="top" constant="-5" id="5CC-SE-4mG"/>
                     <constraint firstAttribute="trailingMargin" secondItem="U9Q-ym-nnW" secondAttribute="trailing" constant="12" id="GFs-6C-Ffk"/>
+                    <constraint firstItem="KxK-vr-7Bt" firstAttribute="trailing" secondItem="DTd-4J-k8h" secondAttribute="trailing" id="IrQ-BN-SQa"/>
                     <constraint firstAttribute="bottom" secondItem="DTd-4J-k8h" secondAttribute="bottom" constant="20" id="Pvn-jF-r42"/>
                     <constraint firstItem="kMB-JJ-Yl5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="XaO-pI-11g"/>
                     <constraint firstItem="DTd-4J-k8h" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="aA2-xY-VmL"/>
@@ -63,7 +79,7 @@
                     <constraint firstAttribute="bottom" secondItem="kMB-JJ-Yl5" secondAttribute="bottom" constant="1" id="qdM-4a-bxt"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.25" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="indicatorView" destination="kMB-JJ-Yl5" id="El3-TM-6dM"/>
@@ -73,4 +89,7 @@
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_copy" width="25" height="25"/>
+    </resources>
 </document>

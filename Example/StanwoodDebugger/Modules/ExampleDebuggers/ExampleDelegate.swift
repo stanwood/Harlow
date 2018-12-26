@@ -49,14 +49,9 @@ class NetworkingManager {
             request.setValue(UUID().uuidString, forHTTPHeaderField: "UUID")
             request.setValue("sald;kjfnap9ew8urqoiw;fao;idhfaowfq349", forHTTPHeaderField: "token")
         }
-        request.httpMethod = item.method.rawValue.uppercased()
+        
         let task = session.dataTask(with: request, completionHandler: { _, response, error in
-            if let response = response {
-                print("response for url : [\(url)] : \(response)")
-            }
-            if let error = error {
-                print(error)
-            }
+            
         })
         task.resume()
     }

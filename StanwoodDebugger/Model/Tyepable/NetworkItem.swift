@@ -31,18 +31,28 @@ protocol HTTPDataResponseRecorder {
     var dataResponse: Data? { get }
 }
 
-struct NetworkItem: Typeable, Codable, NetworkOverviewable, LatencyRecorder, ResponseHeaderable, HTTPDataBodyRecorder, HTTPDataResponseRecorder {
+protocol HTTPResponseable {
+    var code: Int { get }
+    var responseHeaders: [String: String]? { get }
+}
+
+protocol HTTPErrorRecorder {
+    var errorDescription: String? { get }
+}
+
+struct NetworkItem: Typeable, Codable, NetworkOverviewable, LatencyRecorder, ResponseHeaderable, HTTPDataBodyRecorder, HTTPDataResponseRecorder, HTTPResponseable, HTTPErrorRecorder {
     
     let id: String
     let url: String
     let requestDate: Date
     let method: String
-    let headers: [String: String]?
+    var headers: [String: String]?
     var httpBody: Data?
     var code: Int
     var dataResponse: Data?
     var errorDescription: String?
     var duration: Double?
+    var responseHeaders: [String: String]?
     
     var codeType: StatusCodes {
         return StatusCodes(rawValue: code)
@@ -59,7 +69,7 @@ struct NetworkItem: Typeable, Codable, NetworkOverviewable, LatencyRecorder, Res
         guard let request = request else { return nil }
         requestDate = Date()
         id = UUID().uuidString
-        method = request.httpMethod ?? "N/A"
+        method = request.httpMethod ?? "GET"
         url = request.url?.absoluteString ?? ""
         headers = request.allHTTPHeaderFields
         httpBody = request.httpBody
@@ -68,6 +78,7 @@ struct NetworkItem: Typeable, Codable, NetworkOverviewable, LatencyRecorder, Res
     
     mutating func set(response: URLResponse) {
         guard let responseHttp = response as? HTTPURLResponse else {return}
+        responseHeaders = responseHttp.allHeaderFields as? [String : String]
         code = responseHttp.statusCode
     }
 }
