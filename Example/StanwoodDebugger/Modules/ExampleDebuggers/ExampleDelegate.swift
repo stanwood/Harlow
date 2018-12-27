@@ -22,13 +22,13 @@ class NetworkingManager {
         session = URLSession.shared
     }
     
-    func makePostRequest(url: String, data: String? = nil) {
-        guard let url = URL(string: url) else {return}
+    func makePostRequest(with item: NetworkExample) {
+        guard let url = URL(string: item.url) else {return}
         let request = NSMutableURLRequest(url: url)
-        let parameters = ["filter":"food"]
+        let parameters = ["username":"stanwood@debugger.io"]
         
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: JSONSerialization.WritingOptions.prettyPrinted)
-        request.httpMethod = "POST"
+        request.httpMethod = item.method.rawValue.uppercased()
         let task = session.dataTask(with: request as URLRequest, completionHandler: { _, response, error in
             if let response = response {
                 print("response for url : [\(url)] : \(response)")
@@ -44,16 +44,14 @@ class NetworkingManager {
     func makeRequest(with item: NetworkExample) {
         guard let url = URL(string: item.url) else {return}
         var request = URLRequest(url: url)
-        request.setValue(UUID().uuidString, forHTTPHeaderField: "UUID")
-        request.setValue("sald;kjfnap9ew8urqoiw;fao;idhfaowfq349", forHTTPHeaderField: "toke")
-        request.httpMethod = item.method.rawValue.uppercased()
+        
+        if item.url.contains("headers") {
+            request.setValue(UUID().uuidString, forHTTPHeaderField: "UUID")
+            request.setValue("sald;kjfnap9ew8urqoiw;fao;idhfaowfq349", forHTTPHeaderField: "token")
+        }
+        
         let task = session.dataTask(with: request, completionHandler: { _, response, error in
-            if let response = response {
-                print("response for url : [\(url)] : \(response)")
-            }
-            if let error = error {
-                print(error)
-            }
+            
         })
         task.resume()
     }
@@ -67,7 +65,12 @@ class ExampleDelegate: Stanwood.AbstractTableDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if let cell = tableView.cellForRow(at: indexPath) as? NetworkingExampleCell, let item = cell.item {
-            networkingManager.makeRequest(with: item)
+            if item.method == .post {
+                networkingManager.makePostRequest(with: item)
+            } else {
+                networkingManager.makeRequest(with: item)
+            }
+            
         } else if let cell = tableView.cellForRow(at: indexPath) as? AnalyticsExampleCell, let item = cell.item {
             item.post()
         }

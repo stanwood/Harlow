@@ -128,13 +128,21 @@ class ExampleViewController: UIViewController {
     let getNetworkingItems: [NetworkExample] = [
         NetworkExample(method: .get, url: "https://httpbin.org/status/400"),
         NetworkExample(method: .get, url: "https://httpbin.org/status/404"),
-        NetworkExample(method: .get, url: "https://httpbin.org/status/200"),
+        NetworkExample(method: .get, url: "https://httpbin.org/headers"),
         NetworkExample(method: .get, url: "https://httpbin.org/status/410"),
         NetworkExample(method: .get, url: "https://httpbin.org/status/202"),
         NetworkExample(method: .get, url: "https://httpbin.org/status/500"),
         NetworkExample(method: .get, url: "https://httpbin.org/status/300"),
         NetworkExample(method: .get, url: "https://httpbin.org/status/100"),
         NetworkExample(method: .get, url: "https://httpbin.org/image/jpeg")
+    ]
+    
+    let responseFormatItems: [NetworkExample] = [
+        NetworkExample(method: .get, url: "https://httpbin.org/json"),
+        NetworkExample(method: .get, url: "https://httpbin.org/html"),
+        NetworkExample(method: .get, url: "https://httpbin.org/xml"),
+        NetworkExample(method: .get, url: "https://httpbin.org/robots.txt"),
+        NetworkExample(method: .get, url: "https://httpbin.org/deny")
     ]
     
     let postNetworkingItems: [NetworkExample] = [
@@ -152,6 +160,8 @@ class ExampleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let responseFormatsExamples = NetworkingExample(items: responseFormatItems)
+        responseFormatsExamples.title = "[GET] Response Formats Examples"
         let getNetworkingExamples = NetworkingExample(items: getNetworkingItems)
         getNetworkingExamples.title = "[GET] Networking Examples"
         let postNetworkingExamples = NetworkingExample(items: postNetworkingItems)
@@ -160,7 +170,7 @@ class ExampleViewController: UIViewController {
         
         let analyticsExamples = AnalyticsExample(items: analyticsItems)
         
-        sections = Stanwood.Sections(items: [getNetworkingExamples, postNetworkingExamples, analyticsExamples])
+        sections = Stanwood.Sections(items: [responseFormatsExamples, getNetworkingExamples, postNetworkingExamples, analyticsExamples])
         
         tableView.register(cellTypes: AnalyticsExampleCell.self, NetworkingExampleCell.self)
         

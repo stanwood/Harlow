@@ -17,6 +17,10 @@ extension NSMutableURLRequest {
     }
     
     @objc func httpHack(body: NSData?) {
+        defer {
+            httpHack(body: body)
+        }
+        
         let key = "\(hashValue)"
         guard let body = body, bodyDictionary[key] == nil else { return }
         bodyDictionary[key] = body as Data
@@ -126,6 +130,10 @@ extension DebuggerNetworking: URLSessionDataDelegate, URLSessionTaskDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         client?.urlProtocol(self, didLoad: data)
         responseData?.append(data)
+        
+        if let data = responseData {
+            networkItem?.dataResponse = data as Data
+        }
     }
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
