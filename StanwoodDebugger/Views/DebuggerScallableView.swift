@@ -30,9 +30,10 @@ import StanwoodCore
 typealias Completion = () -> Void
 
 protocol DebuggerScallableViewDelegate: class {
-    func scallableViewIsExpanding(completion: @escaping Completion)
+    func scallableViewIsExpanding(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion)
     func scallableViewDidDismiss()
 }
+
 class DebuggerScallableView: UIView {
     
     var currentFilter: DebuggerFilterView.DebuggerFilter = .analytics
@@ -124,7 +125,7 @@ class DebuggerScallableView: UIView {
         
         listDataSource = ListDataSource(dataType: items)
         listDelegate = ListDelegate(dataType: items)
-        listDelegate.presenter = presenter
+        listDelegate.presenter = self
         
         tableView.dataSource = listDataSource
         tableView.delegate = listDelegate
@@ -158,18 +159,33 @@ class DebuggerScallableView: UIView {
     }
     
     @IBAction func expand(_ sender: Any) {
+        expand(with: nil)
+    }
+    
+    private func expand(with item: Recordable?) {
         buttons.hide(duration: 0.3)
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
             self.frame = UIApplication.shared.keyWindow?.frame ?? .zero
             self.backgroundColor = UIColor.white.withAlphaComponent(0.95)
         }) { _ in
             self.views.hide()
-            self.delegate?.scallableViewIsExpanding {
+            var filter: DebuggerFilterView.DebuggerFilter
+            switch self.currentFilter   {
+            case .networking(item: nil): filter = DebuggerFilterView.DebuggerFilter.networking(item: item)
+            default: filter = self.currentFilter
+            }
+            self.delegate?.scallableViewIsExpanding(with: filter) {
                 DispatchQueue.main.async { [weak self] in
                     self?.dismiss(fromExpandable: true)
                 }
             }
         }
+    }
+}
+
+extension DebuggerScallableView: ItemPresentable {
+    func present(networkingItem: NetworkItem) {
+        expand(with: networkingItem)
     }
 }
 

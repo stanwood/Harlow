@@ -66,6 +66,6 @@ class FilterCell: UICollectionViewCell {
     
     func select(currentFilter: DebuggerFilterView.DebuggerFilter) {
         guard let filter = filter else { return }
-        filterButton.set(selected: currentFilter == filter)
+        filterButton.set(selected: currentFilter.label == filter.label)
     }
 }

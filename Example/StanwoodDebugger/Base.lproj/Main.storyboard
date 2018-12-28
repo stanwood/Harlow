@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Test Alert-->
+        <!--Analytics Example-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="StanwoodDebugger_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ExampleViewController" customModule="StanwoodDebugger_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -21,27 +21,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJS-zX-c8R">
-                                <rect key="frame" x="162.5" y="308.5" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="1w9-JM-Mzf"/>
-                                    <constraint firstAttribute="height" constant="50" id="yQg-6u-cs1"/>
-                                </constraints>
-                                <state key="normal" title="Alert">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapMe:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="f6U-3S-FXl"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="bsY-ra-VDC">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Wd-cF-eAg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="V1F-Cg-co8">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ySf-tb-Xgb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.29187059550201289" green="0.64068571891191706" blue="0.19431464290312797" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="gJS-zX-c8R" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="KpZ-io-13w"/>
-                            <constraint firstItem="gJS-zX-c8R" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="R2K-3u-L4N"/>
+                            <constraint firstItem="ySf-tb-Xgb" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="5d4-wg-uvR"/>
+                            <constraint firstItem="0Wd-cF-eAg" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Gue-Oi-hLd"/>
+                            <constraint firstAttribute="bottom" secondItem="bsY-ra-VDC" secondAttribute="bottom" id="NEa-0J-gWu"/>
+                            <constraint firstAttribute="bottom" secondItem="ySf-tb-Xgb" secondAttribute="bottom" id="Nvg-2Y-WSY"/>
+                            <constraint firstItem="ySf-tb-Xgb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="TZC-vO-pQd"/>
+                            <constraint firstAttribute="trailing" secondItem="ySf-tb-Xgb" secondAttribute="trailing" id="b5v-Wc-EFL"/>
+                            <constraint firstItem="bsY-ra-VDC" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="hxQ-uB-P13"/>
+                            <constraint firstItem="0Wd-cF-eAg" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="kHl-pX-YEC"/>
+                            <constraint firstAttribute="trailing" secondItem="bsY-ra-VDC" secondAttribute="trailing" id="mFS-x6-Mnv"/>
+                            <constraint firstAttribute="trailing" secondItem="0Wd-cF-eAg" secondAttribute="trailing" id="nlU-l5-wQy"/>
+                            <constraint firstItem="bsY-ra-VDC" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="xah-3y-Ak7"/>
+                            <constraint firstAttribute="bottom" secondItem="0Wd-cF-eAg" secondAttribute="bottom" id="yS5-Jd-SaC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Test Alert" id="XvC-jB-bmN"/>
+                    <navigationItem key="navigationItem" title="Analytics Example" id="XvC-jB-bmN"/>
+                    <connections>
+                        <outlet property="tableView" destination="ySf-tb-Xgb" id="g5p-cZ-10n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -66,7 +81,7 @@
             </objects>
             <point key="canvasLocation" x="-267.19999999999999" y="31.484257871064472"/>
         </scene>
-        <!--Example-->
+        <!--HTTP Example-->
         <scene sceneID="Uer-0O-aSr">
             <objects>
                 <viewController id="GAq-b4-sUJ" customClass="ExampleViewController" customModule="StanwoodDebugger_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -110,7 +125,7 @@
                             <constraint firstAttribute="bottom" secondItem="59A-uZ-FTc" secondAttribute="bottom" id="vsR-Ya-YDs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Example" largeTitleDisplayMode="always" id="OyW-wP-k9t"/>
+                    <navigationItem key="navigationItem" title="HTTP Example" largeTitleDisplayMode="always" id="OyW-wP-k9t"/>
                     <connections>
                         <outlet property="tableView" destination="IC6-5J-9UI" id="blf-4J-apO"/>
                     </connections>
@@ -119,11 +134,11 @@
             </objects>
             <point key="canvasLocation" x="1493.5999999999999" y="535.68215892053979"/>
         </scene>
-        <!--Tab Two-->
+        <!--Analytics-->
         <scene sceneID="yp1-hN-vhs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="skq-Wt-7Pz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tab Two" id="zMy-md-9qE"/>
+                    <tabBarItem key="tabBarItem" title="Analytics" image="icon_ghost" id="zMy-md-9qE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ipw-lO-YFP">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -138,11 +153,11 @@
             </objects>
             <point key="canvasLocation" x="508.80000000000001" y="-147.52623688155924"/>
         </scene>
-        <!--Tab One-->
+        <!--HTTP-->
         <scene sceneID="iWP-ho-JTy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BsH-su-rFx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tab One" id="WhU-mK-Onr"/>
+                    <tabBarItem key="tabBarItem" title="HTTP" image="icon_http" id="WhU-mK-Onr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u1U-n5-7Q5">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -160,5 +175,7 @@
     </scenes>
     <resources>
         <image name="background" width="1920" height="1080"/>
+        <image name="icon_ghost" width="25" height="25"/>
+        <image name="icon_http" width="25" height="25"/>
     </resources>
 </document>

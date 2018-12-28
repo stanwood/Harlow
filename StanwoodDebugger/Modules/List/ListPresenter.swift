@@ -41,12 +41,12 @@ class ListPresenter: ItemPresentable {
         return paramaterable.getDeguggerItems(for: currentFilter)
     }
     
-    init(actionable: ListActionable, viewable: ListViewable, paramaterable: ListParamaterable, filter: DebuggerFilterView.DebuggerFilter) {
+    init(actionable: ListActionable, viewable: ListViewable, paramaterable: ListParamaterable) {
         self.actionable = actionable
         self.viewable = viewable
         self.paramaterable = paramaterable
         
-        set(current: filter)
+        set(current: paramaterable.filter)
     }
     
     func set(current filter: DebuggerFilterView.DebuggerFilter) {
@@ -79,6 +79,14 @@ class ListPresenter: ItemPresentable {
         viewable?.filterView.filterCellDid(filter: currentFilter)
         
         actionable.refresh(withDelay: .milliseconds(0))
+        
+        switch currentFilter {
+        case .networking(item: let recordable):
+            if let networItem = recordable as? NetworkItem {
+                present(networkingItem: networItem)
+            }
+        default: break
+        }
     }
     
     func refreshEmptyView() {
@@ -92,6 +100,6 @@ class ListPresenter: ItemPresentable {
     }
     
     func present(networkingItem: NetworkItem) {
-        actionable.present(call: networkingItem)
+        actionable.present(networkingItem: networkingItem)
     }
 }

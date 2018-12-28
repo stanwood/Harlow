@@ -28,16 +28,18 @@ import Foundation
 import StanwoodCore
 
 protocol ListParamaterable {
+    var filter: DebuggerFilterView.DebuggerFilter { get }
+    
+    /// Handled in DebuggerParameterable
     func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> DataType?
 }
 
-extension DebuggerParamaters: ListParamaterable {
-
-    func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> DataType? {
-        switch filter {
-        case .analytics: return appData.analyticsItems
-        case .networking: return appData.networkingItems
-        case .error, .logs, .uiTesting: return nil
-        }
+class ListParamaters: DebuggerParamaters, ListParamaterable {
+    
+    let filter: DebuggerFilterView.DebuggerFilter
+    
+    init(appData: DebuggerData, filter: DebuggerFilterView.DebuggerFilter) {
+       self.filter = filter
+        super.init(appData: appData)
     }
 }

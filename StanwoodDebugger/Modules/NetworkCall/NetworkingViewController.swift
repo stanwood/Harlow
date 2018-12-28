@@ -48,10 +48,6 @@ class NetworkingViewController: UIViewController, SourceTypePresentable {
     @objc func dismissDebuggerView() {
         navigationController?.dismiss(animated: true, completion: nil)
     }
-    
-    @objc func showFilter() {
-    
-    }
 }
 
 extension NetworkingViewController: NetworkingViewable {

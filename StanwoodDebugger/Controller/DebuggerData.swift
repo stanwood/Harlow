@@ -36,6 +36,9 @@ class DebuggerData {
     
     var analyticsItems: AnalyticItems
     var networkingItems: NetworkItems
+    var logItems: LogItems
+    var uitestingItems: UITestingItems
+    var errorItems: ErrorItems
     
     private lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -62,6 +65,24 @@ class DebuggerData {
             networkingItems = NetworkItems(items: [])
         }
         
+        if let items = try? Stanwood.Storage.retrieve(LogItems.fileName, of: .json, from: .documents, as: LogItems.self) {
+            logItems = items ?? LogItems(items: [])
+        } else {
+            logItems = LogItems(items: [])
+        }
+        
+        if let items = try? Stanwood.Storage.retrieve(ErrorItems.fileName, of: .json, from: .documents, as: ErrorItems.self) {
+            errorItems = items ?? ErrorItems(items: [])
+        } else {
+            errorItems = ErrorItems(items: [])
+        }
+        
+        if let items = try? Stanwood.Storage.retrieve(UITestingItems.fileName, of: .json, from: .documents, as: UITestingItems.self) {
+            uitestingItems = items ?? UITestingItems(items: [])
+        } else {
+            uitestingItems = UITestingItems(items: [])
+        }
+        
         NotificationCenter.default.addObservers(self, observers:
             Stanwood.Observer(selector: #selector(didReceiveAnalyticsItem(_:)), name: .DebuggerDidReceiveAnalyticsItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveLogItem(_:)), name: .DeuggerDidReceiveLogItem),
@@ -80,8 +101,14 @@ class DebuggerData {
     
     func refresh(withDelay delay: DispatchTimeInterval = .milliseconds(500)) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            let addedIems: [AddedItem] = [AddedItem(type: .analytics, count: self.analyticsItems.numberOfItems)]
-            NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIems)
+            let addedItems: [AddedItem] = [
+                AddedItem(type: .analytics, count: self.analyticsItems.numberOfItems),
+                AddedItem(type: .networking(item: nil), count: self.networkingItems.numberOfItems),
+                AddedItem(type: .logs, count: self.logItems.numberOfItems),
+                AddedItem(type: .error, count: self.errorItems.numberOfItems),
+                AddedItem(type: .uiTesting, count: self.uitestingItems.numberOfItems)
+            ]
+            NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedItems)
         }
     }
     
@@ -112,7 +139,9 @@ class DebuggerData {
         guard let item = notification.object as? NetworkItem else { assert(false); return }
         
         networkingItems.append(item)
-        let addedIems: [AddedItem] = [AddedItem(type: .networking, count: networkingItems.numberOfItems)]
+        networkingItems.move(item, to: 0)
+        
+        let addedIems: [AddedItem] = [AddedItem(type: .networking(item: nil), count: networkingItems.numberOfItems)]
         
         main {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)

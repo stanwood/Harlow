@@ -40,7 +40,7 @@ protocol HTTPErrorRecorder {
     var errorDescription: String? { get }
 }
 
-struct NetworkItem: Typeable, Codable, NetworkOverviewable, LatencyRecorder, ResponseHeaderable, HTTPDataBodyRecorder, HTTPDataResponseRecorder, HTTPResponseable, HTTPErrorRecorder {
+struct NetworkItem: Typeable, Codable, NetworkOverviewable, LatencyRecorder, ResponseHeaderable, HTTPDataBodyRecorder, HTTPDataResponseRecorder, HTTPResponseable, HTTPErrorRecorder, Recordable {
     
     let id: String
     let url: String
@@ -69,7 +69,7 @@ struct NetworkItem: Typeable, Codable, NetworkOverviewable, LatencyRecorder, Res
         guard let request = request else { return nil }
         requestDate = Date()
         id = UUID().uuidString
-        method = request.httpMethod ?? "GET"
+        method = request.httpMethod ?? "N/A"
         url = request.url?.absoluteString ?? ""
         headers = request.allHTTPHeaderFields
         httpBody = request.httpBody

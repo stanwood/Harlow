@@ -33,14 +33,18 @@ protocol DebuggerFilterViewDelegate: class {
 
 class DebuggerFilterView: UIView {
     
-    enum DebuggerFilter: String {
-        case
-        analytics = "   Analytics   ",
-        error = "   Errors   ",
-        uiTesting = "   UI Testing   ",
-        networking = "   Networking   ",
-        logs = "   Logs   "
+    enum DebuggerFilter {
+        case analytics, error, uiTesting, networking(item: Recordable?), logs
         
+        var label: String {
+            switch self {
+            case .analytics: return "   Analytics   "
+            case .error: return "   Errors   "
+            case .logs: return "   Logs   "
+            case .networking: return "   Networking   "
+            case .uiTesting: return "   UI Testing   "
+            }
+        }
         var isUnderConstruction: Bool {
             switch self {
             case .analytics, .networking: return false
@@ -58,7 +62,7 @@ class DebuggerFilterView: UIView {
             }
         }
         
-        static var allFilters: [DebuggerFilter] = [.analytics, .networking, .error, .uiTesting, .logs]
+        static var allFilters: [DebuggerFilter] = [.analytics, .networking(item: nil), .error, .uiTesting, .logs]
     }
     
     var currnetFilter: DebuggerFilter = .analytics
@@ -99,7 +103,7 @@ extension DebuggerFilterView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(cellType: FilterCell.self, for: indexPath)
         cell.delegate = self
-        cell.fill(with: DebuggerFilter.allFilters[indexPath.row], isSelected: DebuggerFilter.allFilters[indexPath.row] == currnetFilter)
+        cell.fill(with: DebuggerFilter.allFilters[indexPath.row], isSelected: DebuggerFilter.allFilters[indexPath.row].label == currnetFilter.label)
         return cell
     }
 }

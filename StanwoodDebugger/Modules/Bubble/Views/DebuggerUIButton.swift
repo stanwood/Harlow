@@ -211,7 +211,7 @@ class DebuggerUIButton: UIButton {
                 animate(.analytics)
             case .networking:
                 animate(.networking)
-            case .error, .logs, .uiTesting: assert(false, "Add another case to support the animation")
+            case .error, .logs, .uiTesting: break
             }
             
             
@@ -219,7 +219,6 @@ class DebuggerUIButton: UIButton {
     }
     
     private func animate(_ icon: DebuggerIconLabel.DebuggerIcons) {
-        print(icon)
         main(deadline: .milliseconds(500)) { [weak self] in
             guard let `self` = self else { return }
             

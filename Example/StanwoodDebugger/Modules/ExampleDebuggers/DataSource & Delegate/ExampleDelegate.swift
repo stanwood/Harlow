@@ -44,7 +44,7 @@ class NetworkingManager {
     func makeRequest(with item: NetworkExample) {
         guard let url = URL(string: item.url) else {return}
         var request = URLRequest(url: url)
-        
+        request.httpMethod = item.method.rawValue.uppercased()
         if item.url.contains("headers") {
             request.setValue(UUID().uuidString, forHTTPHeaderField: "UUID")
             request.setValue("sald;kjfnap9ew8urqoiw;fao;idhfaowfq349", forHTTPHeaderField: "token")

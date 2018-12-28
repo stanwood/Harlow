@@ -73,7 +73,7 @@ extension DebuggerFilterOutletView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(cellType: FilterCell.self, for: indexPath)
         cell.delegate = self
-        cell.fill(with: DebuggerFilterView.DebuggerFilter.allFilters[indexPath.row], isSelected: DebuggerFilterView.DebuggerFilter.allFilters[indexPath.row] == currnetFilter)
+        cell.fill(with: DebuggerFilterView.DebuggerFilter.allFilters[indexPath.row], isSelected: DebuggerFilterView.DebuggerFilter.allFilters[indexPath.row].label == currnetFilter.label)
         return cell
     }
 }

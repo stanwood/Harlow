@@ -81,6 +81,10 @@ class ListViewController: UIViewController, ListViewable {
     @objc func dismissDebuggerView() {
         tabBarController?.dismiss(animated: true, completion: nil)
     }
+    
+    @objc func showFilter() {
+        assert(false)
+    }
 }
 
 extension ListViewController: DebuggerFilterViewDelegate {

@@ -36,31 +36,8 @@ class DataDetailViewController: UIViewController {
             self.scrollView?.zoomScale = 1.0
         }, completion: nil)
     }
-}
-
-extension DataDetailViewController: DataDetailViewable, UIScrollViewDelegate {
     
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return imageView
-    }
-    
-    func show(_ networkData: NetworkData) {
-        
-        let heightOffset: CGFloat = navigationController?.navigationBar.frame.height ?? 0
-        let statusBarOffset: CGFloat = UIApplication.shared.statusBarFrame.height
-        let offset = heightOffset + statusBarOffset
-        let frame = CGRect(x: 0, y: offset, width: view.frame.width, height: view.frame.height - offset)
-        
-        if let image = networkData.image {
-            present(image, frame: frame)
-        } else if networkData.isHTML {
-            present(htmlString: networkData.text ?? "", frame: frame)
-        } else if let text = networkData.text {
-            present(text: text, frame: frame)
-        }
-    }
-    
-    func present(text: String, frame: CGRect) {
+    fileprivate func present(text: String, frame: CGRect) {
         let textView = UITextView(frame: frame)
         textView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.25)
         textView.addInnerShadow(onSide: .all)
@@ -74,13 +51,13 @@ extension DataDetailViewController: DataDetailViewable, UIScrollViewDelegate {
         view.addSubview(textView)
     }
     
-    func present(htmlString: String, frame: CGRect) {
+    fileprivate func present(htmlString: String, frame: CGRect) {
         let webView = WKWebView(frame: frame)
         view.addSubview(webView)
         webView.loadHTMLString(htmlString, baseURL: nil)
     }
     
-    func present(_ image: UIImage, frame: CGRect) {
+    fileprivate func present(_ image: UIImage, frame: CGRect) {
         scrollView = UIScrollView(frame: frame)
         scrollView?.isUserInteractionEnabled = true
         scrollView?.zoomScale = 1.0
@@ -106,6 +83,29 @@ extension DataDetailViewController: DataDetailViewable, UIScrollViewDelegate {
             }, completion:  { _ in
                 self.imageViewFrame = imageView.frame
             })
+        }
+    }
+}
+
+extension DataDetailViewController: DataDetailViewable, UIScrollViewDelegate {
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    
+    func show(_ networkData: NetworkData) {
+        
+        let heightOffset: CGFloat = navigationController?.navigationBar.frame.height ?? 0
+        let statusBarOffset: CGFloat = UIApplication.shared.statusBarFrame.height
+        let offset = heightOffset + statusBarOffset
+        let frame = CGRect(x: 0, y: offset, width: view.frame.width, height: view.frame.height - offset)
+        
+        if let image = networkData.image {
+            present(image, frame: frame)
+        } else if networkData.isHTML {
+            present(htmlString: networkData.text ?? "", frame: frame)
+        } else if let text = networkData.text {
+            present(text: text, frame: frame)
         }
     }
 

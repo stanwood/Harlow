@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import StanwoodCore
 
 class DebuggerCoordinator {
     
@@ -51,6 +52,52 @@ class DebuggerCoordinator {
         return base
     }
     
+    init(window: UIWindow, actionable: DebuggerActions, paramaterable: DebuggerParamaters) {
+        self.window = window
+        self.actionable = actionable
+        self.paramaterable = paramaterable
+    }
+    
+    // MARK: - List View
+    
+    func presentListView(with filter: DebuggerFilterView.DebuggerFilter, animated: Bool = false, completion: @escaping Completion) {
+        
+        let title = "Debugger"
+        
+        // Detail Nav Controller
+        let detailControllers = ListWireframe.makeViewController(withTitle: title)
+        let paramaters = ListParamaters(appData: self.paramaterable.appData, filter: filter)
+        ListWireframe.prepare(detailControllers.viewController, with: actionable, paramaters)
+        
+        // Settings Nav Controller
+        let settingsControllers = SettingsWireframe.makeViewController(withTitle: title)
+        SettingsWireframe.prepare(settingsControllers.viewController, with: actionable, paramaterable)
+        
+        let tabBarController = DebuggerUITabBarController()
+        tabBarController.setViewControllers([
+            detailControllers.navigationController,
+            settingsControllers.navigationController], animated: false)
+        
+        window.rootViewController?.present(tabBarController, animated: animated, completion: completion)
+    }
+    
+    // MARK: - Networking
+    func present(call: NetworkItem) {
+        let viewController = NetworkingWireframe.makeViewController()
+        let parameters = NetworkingParameters(appData: self.paramaterable.appData, item: call)
+        NetworkingWireframe.prepare(viewController, with: self.actionable, and: parameters)
+        currentViewController(base: window.rootViewController)?.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func present(_ data: NetworkData) {
+        let viewController = DataDetailWireframe.makeViewController()
+        let parameters = DataDetailParameters(appData: self.paramaterable.appData, data: data)
+        DataDetailWireframe.prepare(viewController, with: actionable, and: parameters)
+        currentViewController(base: window.rootViewController)?.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    // MARK: - Settings
+    
     enum ActionSheet: String {
         case analytics, allData, settings
         
@@ -71,32 +118,6 @@ class DebuggerCoordinator {
                 return "Reset to default settings?"
             }
         }
-    }
-    
-    init(window: UIWindow, actionable: DebuggerActions, paramaterable: DebuggerParamaters) {
-        self.window = window
-        self.actionable = actionable
-        self.paramaterable = paramaterable
-    }
-    
-    func presentListView(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion) {
-        
-        let title = "Debugger"
-        
-        // Detail Nav Controller
-        let detailControllers = ListWireframe.makeViewController(withTitle: title)
-        ListWireframe.prepare(detailControllers.viewController, with: actionable, paramaterable, filter: filter)
-        
-        // Settings Nav Controller
-        let settingsControllers = SettingsWireframe.makeViewController(withTitle: title)
-        SettingsWireframe.prepare(settingsControllers.viewController, with: actionable, paramaterable)
-        
-        let tabBarController = DebuggerUITabBarController()
-        tabBarController.setViewControllers([
-            detailControllers.navigationController,
-            settingsControllers.navigationController], animated: false)
-        
-        window.rootViewController?.present(tabBarController, animated: false, completion: completion)
     }
     
     func shouldReset(_ type: ActionSheet, _ completion: @escaping () -> Void) {
@@ -122,29 +143,5 @@ class DebuggerCoordinator {
         })
         
         currentViewController(base: window.rootViewController)?.present(actionSheet, animated: true, completion: nil)
-    }
-    
-    // MARK: - Networking
-    func present(call: NetworkItem) {
-        
-        let networkViewController = NetworkingWireframe.makeViewController()
-        let parameters = NetworkingParameters(appData: paramaterable.appData, item: call)
-        NetworkingWireframe.prepare(networkViewController, with: actionable, and: parameters)
-        
-        let navigationController = UINavigationController(rootViewController: networkViewController)
-        
-        networkViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: networkViewController, action: #selector(NetworkingViewController.dismissDebuggerView))
-        
-        let image = UIImage(named: "filter_icon", in: Bundle.debuggerBundle(from: type(of: NetworkingWireframe())), compatibleWith: nil)
-        networkViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(NetworkingViewController.showFilter))
-        
-        window.rootViewController?.present(navigationController, animated: true, completion: nil)
-    }
-    
-    func present(_ data: NetworkData) {
-        let viewController = DataDetailWireframe.makeViewController()
-        let parameters = DataDetailParameters(appData: self.paramaterable.appData, data: data)
-        DataDetailWireframe.prepare(viewController, with: actionable, and: parameters)
-        currentViewController(base: window.rootViewController)?.navigationController?.pushViewController(viewController, animated: true)
     }
 }
