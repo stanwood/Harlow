@@ -37,7 +37,10 @@ class ListDelegate: Stanwood.AbstractTableDelegate {
         if let cell = tableView.cellForRow(at: indexPath) as? NetworkingCell,
             let item = cell.item {
             
-            presenter?.present(networkingItem: item)
+            presenter?.present(item: item)
+        } else if let cell = tableView.cellForRow(at: indexPath) as? ErrorCell,
+            let item = cell.item {
+            presenter?.present(item: item)
         }
     }
 }

@@ -34,7 +34,7 @@ protocol DebuggerFilterViewDelegate: class {
 class DebuggerFilterView: UIView {
     
     enum DebuggerFilter {
-        case analytics, error, uiTesting, networking(item: Recordable?), logs
+        case analytics, error(item: Recordable?), uiTesting, networking(item: Recordable?), logs
         
         var label: String {
             switch self {
@@ -47,8 +47,8 @@ class DebuggerFilterView: UIView {
         }
         var isUnderConstruction: Bool {
             switch self {
-            case .analytics, .networking: return false
-            case .error, .logs, .uiTesting: return true
+            case .error, .analytics, .networking: return false
+            case .logs, .uiTesting: return true
             }
         }
         
@@ -62,7 +62,7 @@ class DebuggerFilterView: UIView {
             }
         }
         
-        static var allFilters: [DebuggerFilter] = [.analytics, .networking(item: nil), .error, .uiTesting, .logs]
+        static var allFilters: [DebuggerFilter] = [.analytics, .networking(item: nil), .error(item: nil), .uiTesting, .logs]
     }
     
     var currnetFilter: DebuggerFilter = .analytics

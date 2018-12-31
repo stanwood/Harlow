@@ -64,7 +64,7 @@ class SettingsData: DataType {
             switch sectionType {
             case .information: settings = [Setting(type: .version), Setting(type: .device)]
             case .data: settings = [Setting(type: .storeAnalytics)]
-            case .settings: settings = [Setting(type: .resetAll), Setting(type: .removeData), Setting(type: .removeAnalytics)]
+            case .settings: settings = [Setting(type: .resetAll), Setting(type: .removeData), Setting(type: .removeAnalytics), Setting(type: .removeNetworking), Setting(type: .removeLogs), Setting(type: .removeError)]
             case .animation: settings = [Setting(type: .bubblePulse), Setting(type: .debuggerIcons)]
             }
         }
@@ -100,7 +100,7 @@ class SettingsData: DataType {
         }
         
         enum SettingType: String {
-            case device, version, storeAnalytics, resetAll, removeData, removeAnalytics, bubblePulse, debuggerIcons
+            case device, version, storeAnalytics, resetAll, removeData, removeAnalytics, bubblePulse, debuggerIcons, removeError, removeNetworking, removeLogs
         }
         
         struct Setting: Type {
@@ -109,7 +109,7 @@ class SettingsData: DataType {
             
             var isOn: Bool {
                 switch type {
-                case .device, .version, .resetAll, .removeData, .removeAnalytics: return false
+                case .device, .version, .resetAll, .removeData, .removeAnalytics, .removeLogs, .removeError, .removeNetworking: return false
                 case .storeAnalytics:
                     return DebuggerSettings.shouldStoreAnalyticsData
                 case .bubblePulse:
@@ -123,13 +123,13 @@ class SettingsData: DataType {
             var isActionable: Bool {
                 switch type {
                 case .device, .version, .storeAnalytics, .bubblePulse, .debuggerIcons: return false
-                case .resetAll, .removeData, .removeAnalytics: return true
+                case .resetAll, .removeData, .removeAnalytics, .removeNetworking, .removeError, .removeLogs: return true
                 }
             }
     
             var hasSwitch: Bool {
                 switch type {
-                case .device, .version, .resetAll, .removeData, .removeAnalytics: return false
+                case .device, .version, .resetAll, .removeData, .removeAnalytics, .removeNetworking, .removeError, .removeLogs: return false
                 case .storeAnalytics, .bubblePulse, .debuggerIcons: return true
                 }
             }
@@ -146,6 +146,9 @@ class SettingsData: DataType {
                 case .resetAll: return "Restore to Default Settings"
                 case .removeData: return "Delete Cached Data"
                 case .removeAnalytics: return "Delete Analytics Data"
+                case .removeNetworking: return "Delete Networking Data"
+                case .removeError: return "Delete Error Data"
+                case .removeLogs: return "Delete Logs Data"
                 case .bubblePulse: return "Enable Bubble Pulse Animation"
                 case .debuggerIcons: return "Enable Bubble Emoji Animation"
                 }

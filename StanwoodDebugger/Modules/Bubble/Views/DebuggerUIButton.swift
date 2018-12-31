@@ -142,7 +142,7 @@ class DebuggerUIButton: UIButton {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panning(_:)))
         addGestureRecognizer(pan)
         
-        NotificationCenter.default.addObservers(self, observers: Stanwood.Observer(selector: #selector(didAddDebuggerItem(_:)), name: Notification.Name.DeuggerDidAddDebuggerItem))
+        NotificationCenter.default.addObservers(self, observers: Stanwood.Observer(selector: #selector(didAddDebuggerItem(_:)), name: Notification.Name.DebuggerDidAddDebuggerItem))
     }
     
     func preparePulse() {
@@ -211,7 +211,9 @@ class DebuggerUIButton: UIButton {
                 animate(.analytics)
             case .networking:
                 animate(.networking)
-            case .error, .logs, .uiTesting: break
+            case .error:
+                animate(.error)
+            case .logs, .uiTesting: break
             }
             
             

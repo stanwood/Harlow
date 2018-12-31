@@ -29,6 +29,9 @@ class ExampleViewController: UIViewController {
         
         exampleType = ExampleType(rawValue: tabBarController!.selectedIndex)!
         
+        main(deadline: .seconds(3)) {
+            let err = NSError(domain: "com.debugger.test", code: -1, userInfo: [:])
+        }
         switch exampleType! {
         case .http:
             

@@ -105,10 +105,10 @@ class DebuggerData {
                 AddedItem(type: .analytics, count: self.analyticsItems.numberOfItems),
                 AddedItem(type: .networking(item: nil), count: self.networkingItems.numberOfItems),
                 AddedItem(type: .logs, count: self.logItems.numberOfItems),
-                AddedItem(type: .error, count: self.errorItems.numberOfItems),
+                AddedItem(type: .error(item: nil), count: self.errorItems.numberOfItems),
                 AddedItem(type: .uiTesting, count: self.uitestingItems.numberOfItems)
             ]
-            NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedItems)
+            NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedItems)
         }
     }
     
@@ -128,11 +128,21 @@ class DebuggerData {
         let addedIems: [AddedItem] = [AddedItem(type: .analytics, count: analyticsItems.numberOfItems)]
         
         NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIems)
+        NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
     }
     
     @objc func didReceiveErrorItem(_ notification: Notification) {
-        // SFW-52: Phase 3
+        guard let item = notification.object as? ErrorItem else { assert(false); return }
+        
+        errorItems.append(item)
+        errorItems.move(item, to: 0)
+        
+        let addedIems: [AddedItem] = [AddedItem(type: .error(item: nil), count: errorItems.numberOfItems)]
+        
+        main {
+            NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendErrorItem, object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
+        }
     }
     
     @objc func didReceiveNetworkingItem(_ notification: Notification) {
@@ -145,7 +155,7 @@ class DebuggerData {
         
         main {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
-            NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: addedIems)
+            NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
         }
     }
     
@@ -158,11 +168,21 @@ class DebuggerData {
     }
     
     @objc func save() {
-        if DebuggerSettings.shouldStoreAnalyticsData {
-            try? Stanwood.Storage.store(analyticsItems, to: .documents, as: .json, withName: AnalyticItems.fileName)
-            try? Stanwood.Storage.store(networkingItems, to: .documents, as: .json, withName: NetworkItems.fileName)
+        if DebuggerSettings.shouldStoreLogsData {
+            try? Stanwood.Storage.store(logItems, to: .documents, as: .json, withName: LogItems.fileName)
         }
         
+        if DebuggerSettings.shouldStoreAnalyticsData {
+            try? Stanwood.Storage.store(analyticsItems, to: .documents, as: .json, withName: AnalyticItems.fileName)
+        }
+        
+        if DebuggerSettings.shouldStoreErrorData {
+            try? Stanwood.Storage.store(errorItems, to: .documents, as: .json, withName: ErrorItems.fileName)
+        }
+        
+        if DebuggerSettings.shouldStoreNetowrkingData {
+            try? Stanwood.Storage.store(networkingItems, to: .documents, as: .json, withName: NetworkItems.fileName)
+        }
         refresh()
     }
 }

@@ -2,11 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>should_store_analytics_data</key>
+	<key>shouldStoreAnalyticsData</key>
 	<true/>
-	<key>is_debugger_bubble_pulse_animation_enabled</key>
+	<key>shouldStoreErrorData</key>
 	<true/>
-	<key>is_debugger_item_icons_animation_enabled</key>
+	<key>isDebuggerItemIconsAnimationEnabled</key>
 	<true/>
+	<key>isDebuggerBubblePulseAnimationEnabled</key>
+	<string>YES</string>
+	<key>shouldStoreNetowrkingData</key>
+	<string>YES</string>
+	<key>shouldStoreLogsData</key>
+	<string>YES</string>
 </dict>
 </plist>

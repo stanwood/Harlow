@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="61" id="KGk-i7-Jjw" customClass="ErrorCell" customModule="StanwoodDebugger" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="286" height="49.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsl-XU-noC">
+                        <rect key="frame" x="2" y="1" width="10" height="47.5"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.20000000000000001" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="kcR-2i-tJs"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="NDu-tp-Z2D">
+                        <rect key="frame" x="24" y="8" width="254" height="33.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Domain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xS1-wj-rni">
+                                <rect key="frame" x="0.0" y="0.0" width="254" height="16"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Localised Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFR-UG-4ZU">
+                                <rect key="frame" x="0.0" y="20" width="254" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="NDu-tp-Z2D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="4UI-EI-pVL"/>
+                    <constraint firstItem="NDu-tp-Z2D" firstAttribute="leading" secondItem="gsl-XU-noC" secondAttribute="trailing" constant="12" id="5hA-JA-H4m"/>
+                    <constraint firstItem="gsl-XU-noC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="Bfu-56-C3O"/>
+                    <constraint firstItem="gsl-XU-noC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="Qdh-9m-Jex"/>
+                    <constraint firstAttribute="trailing" secondItem="NDu-tp-Z2D" secondAttribute="trailing" constant="8" id="XLF-ly-Xr6"/>
+                    <constraint firstAttribute="bottom" secondItem="gsl-XU-noC" secondAttribute="bottom" constant="1" id="l36-0t-x5l"/>
+                    <constraint firstAttribute="bottom" secondItem="NDu-tp-Z2D" secondAttribute="bottom" constant="8" id="n7t-PM-Qyf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="NFR-UG-4ZU" id="TLt-Q3-yGj"/>
+                <outlet property="domainLabel" destination="xS1-wj-rni" id="qir-ua-ebf"/>
+                <outlet property="indicatorView" destination="gsl-XU-noC" id="eui-RO-AJm"/>
+            </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="161.46926536731635"/>
+        </tableViewCell>
+    </objects>
+</document>

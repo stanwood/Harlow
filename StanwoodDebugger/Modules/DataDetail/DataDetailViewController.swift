@@ -11,6 +11,7 @@ import WebKit
 class DataDetailViewController: UIViewController {
     
     var presenter: DataDetailPresenter!
+    private var dataItem: NetworkData?
     private var scrollView: UIScrollView?
     private var imageView: UIImageView?
     private var imageViewFrame: CGRect = .zero
@@ -49,6 +50,24 @@ class DataDetailViewController: UIViewController {
         textView.textColor = UIColor.black.withAlphaComponent(0.9)
         textView.font = UIFont(name: "Menlo-Regular", size: 15)
         view.addSubview(textView)
+        
+        let copyButton = UIButton(frame: CGRect(x: textView.frame.width - 44, y: textView.frame.origin.y, width: 44, height: 44))
+        let image = UIImage(named: "icon_copy", in: Bundle.debuggerBundle(), compatibleWith: nil)
+        copyButton.setImage(image, for: .normal)
+        copyButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 15, bottom: 15, right: 5)
+        copyButton.addTarget(self, action: #selector(copyToClipboard(_:)), for: .touchUpInside)
+        view.insertSubview(copyButton, aboveSubview: textView)
+    }
+    
+    @objc func copyToClipboard(_ sender: UIButton) {
+        guard let text = dataItem?.text, !text.isEmpty else {
+            
+            view.makeToast("No text to copy to clipboard", duration: 3.0, position: .bottom)
+            return
+        }
+        
+        UIPasteboard.general.string = dataItem?.text
+        view.makeToast("Copied text to clipboard", duration: 3.0, position: .bottom)
     }
     
     fileprivate func present(htmlString: String, frame: CGRect) {
@@ -94,6 +113,8 @@ extension DataDetailViewController: DataDetailViewable, UIScrollViewDelegate {
     }
     
     func show(_ networkData: NetworkData) {
+        
+        dataItem = networkData
         
         let heightOffset: CGFloat = navigationController?.navigationBar.frame.height ?? 0
         let statusBarOffset: CGFloat = UIApplication.shared.statusBarFrame.height

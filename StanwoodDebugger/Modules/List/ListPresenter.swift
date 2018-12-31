@@ -61,6 +61,9 @@ class ListPresenter: ItemPresentable {
     
     func viewDidLoad() {
         
+        
+        viewable?.tableView.register(cells: ErrorCell.self, ErrorCell.self, bundle: Bundle.debuggerBundle())
+        
         viewable?.tableView.register(cells: AnalyticsCell.self, NetworkingCell.self, bundle: Bundle.debuggerBundle())
         
         viewable?.tableView.estimatedRowHeight = 75
@@ -82,8 +85,12 @@ class ListPresenter: ItemPresentable {
         
         switch currentFilter {
         case .networking(item: let recordable):
-            if let networItem = recordable as? NetworkItem {
-                present(networkingItem: networItem)
+            if let recordable = recordable {
+                present(item: recordable)
+            }
+        case .error(item: let recordable):
+            if let recordable = recordable {
+                present(item: recordable)
             }
         default: break
         }
@@ -99,7 +106,7 @@ class ListPresenter: ItemPresentable {
         }
     }
     
-    func present(networkingItem: NetworkItem) {
-        actionable.present(networkingItem: networkingItem)
+    func present(item: Recordable) {
+        actionable.present(item: item)
     }
 }

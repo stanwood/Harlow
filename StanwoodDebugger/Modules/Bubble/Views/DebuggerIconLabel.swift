@@ -42,7 +42,8 @@ class DebuggerIconLabel: UILabel {
             switch self {
             case .analytics: return 5
             case .networking: return 4
-            case .error, .logs, .uiTesting: assert(false, "add duration"); return 0
+            case .error: return 6
+            case .logs, .uiTesting: assert(false, "add duration"); return 0
             }
         }
         
@@ -53,7 +54,7 @@ class DebuggerIconLabel: UILabel {
             }
             
             switch self {
-            case .analytics, .networking:
+            case .error, .analytics, .networking:
                 
                 let numberOfTurnPoints = 3
                 let durationUntilChange = duration / Double(numberOfTurnPoints)
@@ -85,7 +86,7 @@ class DebuggerIconLabel: UILabel {
                 anim.isRemovedOnCompletion = true
                 label.layer.add(anim, forKey: "animateLabel")
                 
-            case .error, .uiTesting, .logs: assert(false, "Add support for a new item")
+            case .uiTesting, .logs: assert(false, "Add support for a new item")
             }
         }
         

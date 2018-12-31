@@ -46,10 +46,18 @@ public class StanwoodDebugger: Debugging {
         static let defaultColor: UIColor = UIColor(r: 51, g: 51, b: 51)
     }
     
+    /// Error code exceptions
+    public var errorCodesExceptions: [Int] = [] {
+        didSet {
+            DebuggerNSError.errorCodesExceptions = errorCodesExceptions
+        }
+    }
+    
     /// Enable Debugger View
     public var isEnabled: Bool = false {
         didSet {
             DebuggerNetworking.isEnabled = isEnabled
+            DebuggerNSError.isEnabled = isEnabled
             configureDebuggerView()
         }
     }

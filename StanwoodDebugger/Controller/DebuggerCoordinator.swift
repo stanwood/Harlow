@@ -82,10 +82,26 @@ class DebuggerCoordinator {
     }
     
     // MARK: - Networking
-    func present(call: NetworkItem) {
+    func present(_ item: Recordable) {
+        
+        if let item = item as? NetworkItem {
+            present(item)
+        } else if let item = item as? ErrorItem {
+            present(item)
+        }
+    }
+    
+    private func present(_ item: NetworkItem) {
         let viewController = NetworkingWireframe.makeViewController()
-        let parameters = NetworkingParameters(appData: self.paramaterable.appData, item: call)
+        let parameters = NetworkingParameters(appData: self.paramaterable.appData, item: item)
         NetworkingWireframe.prepare(viewController, with: self.actionable, and: parameters)
+        currentViewController(base: window.rootViewController)?.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func present(_ item: ErrorItem) {
+        let viewController = ErrorWireframe.makeViewController()
+        let parameters = ErrorParameters(appData: self.paramaterable.appData, item: item)
+        ErrorWireframe.prepare(viewController, with: self.actionable, and: parameters)
         currentViewController(base: window.rootViewController)?.navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -99,20 +115,20 @@ class DebuggerCoordinator {
     // MARK: - Settings
     
     enum ActionSheet: String {
-        case analytics, allData, settings
+        case analytics, allData, settings, networking, logs, errors
         
         var value: String {
             switch self {
             case .allData:
                 return "all"
-            case .settings, .analytics:
+            case .settings, .analytics, .errors, .logs, .networking:
                 return rawValue
             }
         }
         
         var title: String {
             switch self {
-            case .allData, .analytics:
+            case .allData, .analytics, .errors, .logs, .networking:
                 return "Would you like to remove \(value) data?"
             case .settings:
                 return "Reset to default settings?"

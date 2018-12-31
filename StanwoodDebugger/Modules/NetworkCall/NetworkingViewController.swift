@@ -57,7 +57,6 @@ extension NetworkingViewController: NetworkingViewable {
         tableView.register(cells: NetworkDataBodyCell.self, NetworkOverviewCell.self, NetworkErrorCell.self, NetworkHeadersCell.self, NetworkLatencyCell.self, NetworkResponseCell.self, NetworkDataResponseCell.self, bundle: Bundle.debuggerBundle())
         
         let nib = UINib(nibName: String(describing: NetworkHeaderView.self), bundle:Bundle.debuggerBundle(from: type(of: self)))
-        
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: String(describing: NetworkHeaderView.self))
     
         tableView.estimatedRowHeight = 100

@@ -36,7 +36,8 @@ extension DebuggerParamaters: DebuggerParameterable {
         switch filter {
         case .analytics: return appData.analyticsItems
         case .networking: return appData.networkingItems
-        case .error, .logs, .uiTesting: return nil
+        case .error: return appData.errorItems
+        case .logs, .uiTesting: return nil
         }
     }
 }

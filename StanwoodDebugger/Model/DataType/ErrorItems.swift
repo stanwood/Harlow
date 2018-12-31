@@ -17,6 +17,6 @@ class ErrorItems: Stanwood.Elements<ErrorItem> {
     }
     
     override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
-        return NetworkingCell.self
+        return ErrorCell.self
     }
 }

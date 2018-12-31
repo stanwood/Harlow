@@ -79,7 +79,7 @@ class DebuggerScallableView: UIView {
         layer.borderColor = UIColor.black.withAlphaComponent(0.3).cgColor
         layer.borderWidth = 1
         
-        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: nil)
         
         filterView.delegate = self
     }
@@ -107,6 +107,7 @@ class DebuggerScallableView: UIView {
     
     func configureTableView(with items: DataType?) {
         
+        tableView.register(UINib(nibName: ErrorCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: ErrorCell.identifier)
         tableView.register(UINib(nibName: AnalyticsCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: AnalyticsCell.identifier)
         tableView.register(UINib(nibName: NetworkingCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: NetworkingCell.identifier)
         
@@ -172,6 +173,7 @@ class DebuggerScallableView: UIView {
             var filter: DebuggerFilterView.DebuggerFilter
             switch self.currentFilter   {
             case .networking(item: nil): filter = DebuggerFilterView.DebuggerFilter.networking(item: item)
+            case .error(item: nil): filter = DebuggerFilterView.DebuggerFilter.error(item: item)
             default: filter = self.currentFilter
             }
             self.delegate?.scallableViewIsExpanding(with: filter) {
@@ -184,8 +186,9 @@ class DebuggerScallableView: UIView {
 }
 
 extension DebuggerScallableView: ItemPresentable {
-    func present(networkingItem: NetworkItem) {
-        expand(with: networkingItem)
+    
+    func present(item: Recordable) {
+        expand(with: item)
     }
 }
 

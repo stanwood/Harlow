@@ -62,7 +62,7 @@ class FilterUIButton: UIButton {
         
         badgeLabel.layer.cornerRadius = badgeLabel.frame.width / 2
         
-        NotificationCenter.default.addObservers(self, observers: Stanwood.Observer(selector: #selector(didAddNewItem(_:)), name: Notification.Name.DeuggerDidAddDebuggerItem))
+        NotificationCenter.default.addObservers(self, observers: Stanwood.Observer(selector: #selector(didAddNewItem(_:)), name: Notification.Name.DebuggerDidAddDebuggerItem))
     }
     
     func setTitle(_ filter: DebuggerFilterView.DebuggerFilter?) {
