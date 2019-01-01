@@ -213,7 +213,7 @@ class DebuggerUIButton: UIButton {
                 animate(.networking)
             case .error:
                 animate(.error)
-            case .logs, .uiTesting: break
+            case .logs, .crashes: break
             }
             
             

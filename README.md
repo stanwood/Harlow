@@ -1,7 +1,7 @@
 
 # StanwoodCore framework
 
-[![Swift Version](https://img.shields.io/badge/Swift-4.1.x-orange.svg)]()
+[![Swift Version](https://img.shields.io/badge/Swift-4.2.x-orange.svg)]()
 [![iOS 10+](https://img.shields.io/badge/iOS-10+-EB7943.svg)]()
 
 Debugging and testing iOS applications can be quite a long task due to the nature of Software Development. _StanwoodDebugger_ tool provides reach information on Analytics, Errors, Logging, Networking, and UITesting to simplify this process.
@@ -136,6 +136,15 @@ let session = URLSession(configuration: configuration)
 <img src="Media/stanwood_debugger_networking.gif" alt="Module" width="300">
 
 ### Error
+
+`StanwoodDebugger` will log `NSError` by default.  To add log exceptions:
+
+```swift
+debugger.errorCodesExceptions = [4097] /// Add error code exceptions
+```
+
+### Logs
+
 
 
 ## Licence

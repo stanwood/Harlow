@@ -37,7 +37,7 @@ extension DebuggerParamaters: DebuggerParameterable {
         case .analytics: return appData.analyticsItems
         case .networking: return appData.networkingItems
         case .error: return appData.errorItems
-        case .logs, .uiTesting: return nil
+        case .logs, .crashes: return nil
         }
     }
 }

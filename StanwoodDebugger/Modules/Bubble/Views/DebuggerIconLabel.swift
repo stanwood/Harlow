@@ -35,7 +35,7 @@ class DebuggerIconLabel: UILabel {
         case analytics = "👻"
         case error = "⚠️"
         case logs = "✏️"
-        case uiTesting = "📱"
+        case crashes = "📱"
         case networking = "📶"
         
         private var duration: TimeInterval {
@@ -43,7 +43,7 @@ class DebuggerIconLabel: UILabel {
             case .analytics: return 5
             case .networking: return 4
             case .error: return 6
-            case .logs, .uiTesting: assert(false, "add duration"); return 0
+            case .logs, .crashes: assert(false, "add duration"); return 0
             }
         }
         
@@ -86,7 +86,7 @@ class DebuggerIconLabel: UILabel {
                 anim.isRemovedOnCompletion = true
                 label.layer.add(anim, forKey: "animateLabel")
                 
-            case .uiTesting, .logs: assert(false, "Add support for a new item")
+            case .crashes, .logs: assert(false, "Add support for a new item")
             }
         }
         

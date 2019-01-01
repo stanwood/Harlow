@@ -106,7 +106,7 @@ class DebuggerData {
                 AddedItem(type: .networking(item: nil), count: self.networkingItems.numberOfItems),
                 AddedItem(type: .logs, count: self.logItems.numberOfItems),
                 AddedItem(type: .error(item: nil), count: self.errorItems.numberOfItems),
-                AddedItem(type: .uiTesting, count: self.uitestingItems.numberOfItems)
+                AddedItem(type: .crashes, count: self.uitestingItems.numberOfItems)
             ]
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedItems)
         }
