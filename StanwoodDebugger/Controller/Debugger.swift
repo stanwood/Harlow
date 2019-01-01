@@ -34,16 +34,16 @@ protocol Debugging: class {
 /// StanwoodDebugger acts as the framework controller, delegating logs
 public class StanwoodDebugger: Debugging {
     
-    /// Debugger tintColor
-    public var tintColor: UIColor {
-        get { return Style.tintColor }
-        set { Style.tintColor = newValue; configureStyle() }
-    }
-    
     struct Style {
         private init () {}
         static var tintColor: UIColor = UIColor(r: 210, g: 78, b: 79)
         static let defaultColor: UIColor = UIColor(r: 51, g: 51, b: 51)
+    }
+    
+    /// Debugger tintColor
+    public var tintColor: UIColor {
+        get { return Style.tintColor }
+        set { Style.tintColor = newValue; configureStyle() }
     }
     
     /// Error code exceptions
@@ -86,6 +86,27 @@ public class StanwoodDebugger: Debugging {
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         
         configureStyle()
+    }
+    
+    /**
+     Register custom `URLSessionConfiguration`
+     
+     ### Example Usage
+     ```swift
+     let configuration = URLSessionConfiguration.waitsForConnectivity
+     
+     debugger.regsiter(custom: configuration)
+     
+     /// Use with URLSession || any networking libraries such as Alamofire and Moya
+     let session = URLSession(configuration: configuration)
+     ```
+     - Parameters:
+        - configuration: URLSessionConfiguration
+     
+     - SeeAlso: `DebuggerNetworking`
+     */
+    public func regsiter(custom configuration: URLSessionConfiguration) {
+        DebuggerNetworking.register(custom: configuration)
     }
     
     @objc func applicationDidEnterBackground() {

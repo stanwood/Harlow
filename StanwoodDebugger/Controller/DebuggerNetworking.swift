@@ -77,6 +77,10 @@ class DebuggerNetworking: URLProtocol {
         }
     }
     
+    class func register(custom configuration: URLSessionConfiguration) {
+        configuration.protocolClasses?.insert(DebuggerNetworking.self, at: 0)
+    }
+    
     class func register() {
         NSMutableURLRequest.httpSwizzle()
         URLProtocol.registerClass(DebuggerNetworking.classForCoder())
