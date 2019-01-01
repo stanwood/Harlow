@@ -1,5 +1,5 @@
 //
-//  DebuggerEmptyView.swift
+//  DebuggerLogs.swift
 //
 //  The MIT License (MIT)
 //
@@ -26,13 +26,39 @@
 
 import Foundation
 
-class DebuggerEmptyView: UIView {
+class DebuggerLogs {
     
-    @IBOutlet private weak var iconLabel: UILabel!
-    @IBOutlet private weak var subtitleLabel: UILabel!
-    
-    func setLabel(with filter: DebuggerFilterView.DebuggerFilter) {
-        iconLabel.text = filter.icon.rawValue
-        subtitleLabel.text = filter.isUnderConstruction ? "Under construction... ¯\\_(〴)_/¯" : "Waiting for logs... ¯\\_(ツ)_/¯"
+    static var isEnabled: Bool = true {
+        didSet {
+            switch isEnabled {
+            case true:
+                DebuggerLogs.register()
+            case false:
+                DebuggerLogs.unregister()
+            }
+        }
     }
+    
+    class func register() {
+        print("")
+        DebuggerLogs.printSwizzle()
+    }
+    
+    class func unregister() {
+        DebuggerLogs.printUnSwizzle()
+    }
+    
+    @objc class func printSwizzle() {
+//        guard let instance = class_getInstanceMethod(self, #selector(print(separator:terminator:))),
+//            let swizzleInstance = class_getInstanceMethod(self, #selector(swizzlePrint(separator:terminator:))) else { return }
+//        method_exchangeImplementations(instance, swizzleInstance)
+    }
+    
+    @objc class func printUnSwizzle() {
+//        guard let instance = class_getInstanceMethod(self, #selector(NSError.init(domain:code:userInfo:))),
+//            let swizzleInstance = class_getInstanceMethod(self, #selector(NSError.init(swizzleDomain:code:info:))) else { return }
+//        method_exchangeImplementations(swizzleInstance, instance)
+    }
+    
+   
 }
