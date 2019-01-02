@@ -145,7 +145,27 @@ debugger.errorCodesExceptions = [4097] /// Add error code exceptions
 
 ### Logs
 
+`StanwoodDebugger` will log `print` && `debugPrint` by default.
 
+#### Configuration:
+
+1. Create a new `Bridging-Header` file and add `-DEBUG` suffix
+
+![logs-1](Media/logs-1.png)
+
+2. Import `StanwoodDebugger`
+
+```swift
+#import <StanwoodDebugger/StanwoodDebugger-Swift.h>
+```
+
+>Note: Make sure to add any other imported libraries from your main header file
+
+![logs-2](Media/logs-2.png)
+
+3. Set `Bridging-Header-DEBUG.h` in the relevant configuratiosn in the build settings.
+
+![logs-3](Media/logs-3.png)
 
 ## Licence
 
