@@ -1,5 +1,5 @@
 //
-//  UITestingItems.swift
+//  CrashItem.swift
 //
 //  The MIT License (MIT)
 //
@@ -27,15 +27,6 @@
 import Foundation
 import StanwoodCore
 
-class UITestingItems: Stanwood.Elements<UITestingItem> {
+struct CrashItem: Typeable, Codable {
     
-    static let fileName: String = "uitesting_items"
-    
-    func removeAll() {
-        items.removeAll()
-    }
-    
-    override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
-        return NetworkingCell.self
-    }
 }

@@ -38,8 +38,8 @@ extension Notification.Name {
         return NSNotification.Name(rawValue: "io.stanwood.debugger.didReceiveErrorItem")
     }
     
-    public static var DeuggerDidReceiveUITestingItem: Notification.Name {
-        return NSNotification.Name(rawValue: "io.stanwood.debugger.didReceiveUITestingItem")
+    public static var DeuggerDidReceiveCrashItem: Notification.Name {
+        return NSNotification.Name(rawValue: "io.stanwood.debugger.didReceiveCrashItem")
     }
     
     public static var DeuggerDidReceiveNetworkingItem: Notification.Name {
@@ -60,8 +60,8 @@ extension Notification.Name {
         return NSNotification.Name(rawValue: "io.stanwood.debugger.didAppendErrorItem")
     }
     
-    static var DebuggerDidAppendUITestingItem: Notification.Name {
-        return NSNotification.Name(rawValue: "io.stanwood.debugger.didAppendUITestingItem")
+    static var DebuggerDidAppendCrashItem: Notification.Name {
+        return NSNotification.Name(rawValue: "io.stanwood.debugger.didAppendCrashItem")
     }
     
     static var DebuggerDidAppendNetworkingItem: Notification.Name {

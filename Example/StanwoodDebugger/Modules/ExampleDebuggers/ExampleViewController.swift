@@ -31,9 +31,10 @@ class ExampleViewController: UIViewController {
         
         main(deadline: .seconds(3)) {
             let err = NSError(domain: "com.debugger.test", code: -1, userInfo: [:])
-            
-            
         }
+        
+        print(" Testting Debugger Logs ")
+        debugPrint(" Testting Debugger Logs ")
         
         switch exampleType! {
         case .http:

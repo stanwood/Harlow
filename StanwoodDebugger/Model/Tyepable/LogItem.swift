@@ -28,5 +28,5 @@ import Foundation
 import StanwoodCore
 
 struct LogItem: Typeable, Codable {
-    
+    let text: String
 }

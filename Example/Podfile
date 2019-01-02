@@ -1,7 +1,7 @@
 use_frameworks!
 
 target 'StanwoodDebugger_Example' do
-  pod 'StanwoodDebugger', :path => '../'
+  pod 'StanwoodDebugger', :path => '../', :configurations => ['Debug']
   pod 'StanwoodCore', '~> 1.4.1'
   
   target 'StanwoodDebugger_Tests' do
