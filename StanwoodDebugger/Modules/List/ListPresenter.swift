@@ -89,7 +89,7 @@ class ListPresenter: ItemPresentable {
             if let recordable = recordable {
                 present(item: recordable)
             }
-        default: break
+        default: break // @lukas
         }
     }
     

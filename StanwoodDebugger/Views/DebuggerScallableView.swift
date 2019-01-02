@@ -174,6 +174,7 @@ class DebuggerScallableView: UIView {
             switch self.currentFilter   {
             case .networking(item: nil): filter = DebuggerFilterView.DebuggerFilter.networking(item: item)
             case .error(item: nil): filter = DebuggerFilterView.DebuggerFilter.error(item: item)
+            // @lukasz add support
             default: filter = self.currentFilter
             }
             self.delegate?.scallableViewIsExpanding(with: filter) {

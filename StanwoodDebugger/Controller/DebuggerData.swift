@@ -179,6 +179,8 @@ class DebuggerData {
         crashItems.append(item)
         crashItems.move(item, to: 0)
         
+        // @lukasz save
+        
         let addedIems: [AddedItem] = [AddedItem(type: .crashes, count: crashItems.numberOfItems)]
         
         main {

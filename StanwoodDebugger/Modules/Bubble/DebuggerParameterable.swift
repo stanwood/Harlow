@@ -38,7 +38,7 @@ extension DebuggerParamaters: DebuggerParameterable {
         case .networking: return appData.networkingItems
         case .error: return appData.errorItems
         case .logs: return appData.logItems
-        case .crashes: return nil
+        case .crashes: return nil // @lukasz
         }
     }
 }
