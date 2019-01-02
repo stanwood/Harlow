@@ -36,6 +36,6 @@ class LogItems: Stanwood.Elements<LogItem> {
     }
     
     override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
-        return NetworkingCell.self
+        return LogCell.self
     }
 }

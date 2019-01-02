@@ -47,8 +47,8 @@ class DebuggerFilterView: UIView {
         }
         var isUnderConstruction: Bool {
             switch self {
-            case .error, .analytics, .networking: return false
-            case .logs, .crashes: return true
+            case .error, .analytics, .networking, .logs: return false
+            case .crashes: return true
             }
         }
         

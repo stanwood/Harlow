@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias AnimationCompletion = (UILabel) -> Void
 typealias DoneCompletion = (Bool) -> Void
@@ -43,7 +44,8 @@ class DebuggerIconLabel: UILabel {
             case .analytics: return 5
             case .networking: return 4
             case .error: return 6
-            case .logs, .crashes: assert(false, "add duration"); return 0
+            case .logs: return 4
+            case .crashes: return 7
             }
         }
         
@@ -53,41 +55,34 @@ class DebuggerIconLabel: UILabel {
                 completion(label)
             }
             
-            switch self {
-            case .error, .analytics, .networking:
+            let numberOfTurnPoints = 3
+            let durationUntilChange = duration / Double(numberOfTurnPoints)
+            
+            /// Fade out
+            UIView.animate(withDuration: duration / 2, delay: duration / 2, options: .curveEaseOut, animations: { [label = label] in
+                label.alpha = 0
+                }, completion: nil)
+            
+            /// Ghost kind animation
+            for index in 0..<Int(numberOfTurnPoints) {
                 
-                let numberOfTurnPoints = 3
-                let durationUntilChange = duration / Double(numberOfTurnPoints)
-                
-                /// Fade out
-                UIView.animate(withDuration: duration / 2, delay: duration / 2, options: .curveEaseOut, animations: { [label = label] in
-                    label.alpha = 0
-                    }, completion: nil)
-                
-                /// Ghost kind animation
-                for index in 0..<Int(numberOfTurnPoints) {
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + (Double(index) * durationUntilChange)) { [currentIndex = index, label = label] in
-                        self.performAnimation(to: label, with: durationUntilChange, delay: 0, completion: currentIndex == (numberOfTurnPoints - 1) ? completed : nil)
-                        
-                    }
+                DispatchQueue.main.asyncAfter(deadline: .now() + (Double(index) * durationUntilChange)) { [currentIndex = index, label = label] in
+                    self.performAnimation(to: label, with: durationUntilChange, delay: 0, completion: currentIndex == (numberOfTurnPoints - 1) ? completed : nil)
                 }
-                
-                /// Path animation
-                let path = UIBezierPath()
-                
-                path.move(to: label.center)
-                path.addLine(to: point)
-                
-                let anim = CAKeyframeAnimation(keyPath: "position")
-                anim.path = path.cgPath
-                anim.repeatCount = 0
-                anim.duration = duration
-                anim.isRemovedOnCompletion = true
-                label.layer.add(anim, forKey: "animateLabel")
-                
-            case .crashes, .logs: assert(false, "Add support for a new item")
             }
+            
+            /// Path animation
+            let path = UIBezierPath()
+            
+            path.move(to: label.center)
+            path.addLine(to: point)
+            
+            let anim = CAKeyframeAnimation(keyPath: "position")
+            anim.path = path.cgPath
+            anim.repeatCount = 0
+            anim.duration = duration
+            anim.isRemovedOnCompletion = true
+            label.layer.add(anim, forKey: "animateLabel")
         }
         
         private func performAnimation(to label: UILabel, with duration: Double, delay: Double, completion: DoneCompletion?){
