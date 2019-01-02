@@ -163,7 +163,7 @@ debugger.errorCodesExceptions = [4097] /// Add error code exceptions
 
 ![logs-2](Media/logs-2.png)
 
-3. Set `Bridging-Header-DEBUG.h` in the relevant configuratiosn in the build settings.
+3. Set `Bridging-Header-DEBUG.h` in the relevant configurations in the build settings.
 
 ![logs-3](Media/logs-3.png)
 
