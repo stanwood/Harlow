@@ -65,7 +65,7 @@ class DebuggerSettings {
         }
     }
     
-    static var shouldStoreNetowrkingData: Bool {
+    static var shouldStoreNetworkingData: Bool {
         get {
             return defaults.bool(forKey: #function)
         }
@@ -106,7 +106,7 @@ class DebuggerSettings {
     }
     
     static func restoreDefaults() {
-        shouldStoreNetowrkingData = true
+        shouldStoreNetworkingData = true
         shouldStoreErrorData = true
         isDebuggerItemIconsAnimationEnabled = true
         isDebuggerBubblePulseAnimationEnabled = true

@@ -112,7 +112,7 @@ class SettingsData: DataType {
                 case .device, .version, .resetAll, .removeData, .removeAnalytics, .removeLogs, .removeError, .removeNetworking: return false
                 case .storeLogs: return DebuggerSettings.shouldStoreLogsData
                 case .storeError: return DebuggerSettings.shouldStoreErrorData
-                case .storeNetworking: return DebuggerSettings.shouldStoreNetowrkingData
+                case .storeNetworking: return DebuggerSettings.shouldStoreNetworkingData
                 case .storeAnalytics: return DebuggerSettings.shouldStoreAnalyticsData
                 case .bubblePulse: return DebuggerSettings.isDebuggerBubblePulseAnimationEnabled
                 case .debuggerIcons: return DebuggerSettings.isDebuggerItemIconsAnimationEnabled

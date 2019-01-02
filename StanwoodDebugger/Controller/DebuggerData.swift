@@ -37,7 +37,7 @@ class DebuggerData {
     var analyticsItems: AnalyticItems
     var networkingItems: NetworkItems
     var logItems: LogItems
-    var uitestingItems: UITestingItems
+    var crashItems: CrashItems
     var errorItems: ErrorItems
     
     private lazy var formatter: DateFormatter = {
@@ -77,10 +77,10 @@ class DebuggerData {
             errorItems = ErrorItems(items: [])
         }
         
-        if let items = try? Stanwood.Storage.retrieve(UITestingItems.fileName, of: .json, from: .documents, as: UITestingItems.self) {
-            uitestingItems = items ?? UITestingItems(items: [])
+        if let items = try? Stanwood.Storage.retrieve(CrashItems.fileName, of: .json, from: .documents, as: CrashItems.self) {
+            crashItems = items ?? CrashItems(items: [])
         } else {
-            uitestingItems = UITestingItems(items: [])
+            crashItems = CrashItems(items: [])
         }
         
         NotificationCenter.default.addObservers(self, observers:
@@ -88,7 +88,7 @@ class DebuggerData {
                                                 Stanwood.Observer(selector: #selector(didReceiveLogItem(_:)), name: .DeuggerDidReceiveLogItem),
                                                 Stanwood.Observer(selector: #selector(save), name: UIApplication.willTerminateNotification),
                                                 Stanwood.Observer(selector: #selector(didReceiveErrorItem(_:)), name: .DeuggerDidReceiveErrorItem),
-                                                Stanwood.Observer(selector: #selector(didReceiveUITestingItem(_:)), name: .DeuggerDidReceiveUITestingItem),
+                                                Stanwood.Observer(selector: #selector(didReceiveCrashItem(_:)), name: .DeuggerDidReceiveCrashItem),
                                                 Stanwood.Observer(selector: #selector(didReceiveNetworkingItem(_:)), name: .DeuggerDidReceiveNetworkingItem)
         )
     }
@@ -106,7 +106,7 @@ class DebuggerData {
                 AddedItem(type: .networking(item: nil), count: self.networkingItems.numberOfItems),
                 AddedItem(type: .logs, count: self.logItems.numberOfItems),
                 AddedItem(type: .error(item: nil), count: self.errorItems.numberOfItems),
-                AddedItem(type: .crashes, count: self.uitestingItems.numberOfItems)
+                AddedItem(type: .crashes, count: self.crashItems.numberOfItems)
             ]
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedItems)
         }
@@ -160,11 +160,33 @@ class DebuggerData {
     }
     
     @objc func didReceiveLogItem(_ notification: Notification) {
-        // SFW-55: Phase 6
+        guard let item = notification.object as? LogItem else { assert(false); return }
+        
+        logItems.append(item)
+        logItems.move(item, to: 0)
+        
+        let addedIems: [AddedItem] = [AddedItem(type: .logs, count: logItems.numberOfItems)]
+        
+        main {
+            NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendLogItem, object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
+        }
     }
     
-    @objc func didReceiveUITestingItem(_ notification: Notification) {
-        // SFW-53: Phase 4
+    @objc func didReceiveCrashItem(_ notification: Notification) {
+        guard let item = notification.object as? CrashItem else { assert(false); return }
+        
+        crashItems.append(item)
+        crashItems.move(item, to: 0)
+        
+        // @lukasz save
+        
+        let addedIems: [AddedItem] = [AddedItem(type: .crashes, count: crashItems.numberOfItems)]
+        
+        main {
+            NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendCrashItem, object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
+        }
     }
     
     @objc func save() {
@@ -180,7 +202,7 @@ class DebuggerData {
             try? Stanwood.Storage.store(errorItems, to: .documents, as: .json, withName: ErrorItems.fileName)
         }
         
-        if DebuggerSettings.shouldStoreNetowrkingData {
+        if DebuggerSettings.shouldStoreNetworkingData {
             try? Stanwood.Storage.store(networkingItems, to: .documents, as: .json, withName: NetworkItems.fileName)
         }
         refresh()

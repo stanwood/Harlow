@@ -89,6 +89,8 @@ class DebuggerCoordinator {
         } else if let item = item as? ErrorItem {
             present(item)
         }
+        
+        /// @lukasz
     }
     
     private func present(_ item: NetworkItem) {

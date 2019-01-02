@@ -1,5 +1,5 @@
 //
-//  UITestingItem.swift
+//  DebuggerLogs.swift
 //
 //  The MIT License (MIT)
 //
@@ -25,8 +25,41 @@
 //
 
 import Foundation
-import StanwoodCore
 
-struct UITestingItem: Typeable, Codable {
+public func debugPrint(_ items: Any...) {
+    let output = items.map { "\($0)" }.joined(separator: " ") + "\n"
+    DebuggerLogs.log(output: output)
+    NSLog(output)
+}
+
+public func print(_ items: Any...) {
+    let output = items.map { "\($0)" }.joined(separator: " ") + "\n"
+    DebuggerLogs.log(output: output)
+    NSLog(output)
+}
+
+public enum Swift {
+    public static func print(_ items: Any..., separator: String = " ", terminator: String = " ") {
+        let output = items.map { "\($0)" }.joined(separator: " ") + "\n"
+        DebuggerLogs.log(output: output)
+        NSLog(output)
+    }
     
+    public static func debugPrint(_ items: Any..., separator: String = " ", terminator: String = " ") {
+        let output = items.map { "\($0)" }.joined(separator: " ") + "\n"
+        DebuggerLogs.log(output: output)
+        NSLog(output)
+    }
+}
+
+class DebuggerLogs {
+    
+    static var isEnabled: Bool = true
+    
+    fileprivate static func log(output: String) {
+        if DebuggerLogs.isEnabled {
+            let logItem = LogItem(text: output)
+            NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidReceiveLogItem, object: logItem)
+        }
+    }
 }

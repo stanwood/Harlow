@@ -1,5 +1,5 @@
 //
-//  UITestingItems.swift
+//  CrashItems.swift
 //
 //  The MIT License (MIT)
 //
@@ -27,9 +27,9 @@
 import Foundation
 import StanwoodCore
 
-class UITestingItems: Stanwood.Elements<UITestingItem> {
+class CrashItems: Stanwood.Elements<CrashItem> {
     
-    static let fileName: String = "uitesting_items"
+    static let fileName: String = "crash_items"
     
     func removeAll() {
         items.removeAll()

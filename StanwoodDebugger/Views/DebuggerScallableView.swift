@@ -107,10 +107,7 @@ class DebuggerScallableView: UIView {
     
     func configureTableView(with items: DataType?) {
         
-        tableView.register(UINib(nibName: ErrorCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: ErrorCell.identifier)
-        tableView.register(UINib(nibName: AnalyticsCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: AnalyticsCell.identifier)
-        tableView.register(UINib(nibName: NetworkingCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: NetworkingCell.identifier)
-        
+        tableView.register(cells: ErrorCell.self, AnalyticsCell.self, NetworkingCell.self, LogCell.self, bundle: Bundle.debuggerBundle())
         tableView.estimatedRowHeight = 75
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
@@ -174,6 +171,7 @@ class DebuggerScallableView: UIView {
             switch self.currentFilter   {
             case .networking(item: nil): filter = DebuggerFilterView.DebuggerFilter.networking(item: item)
             case .error(item: nil): filter = DebuggerFilterView.DebuggerFilter.error(item: item)
+            // @lukasz add support
             default: filter = self.currentFilter
             }
             self.delegate?.scallableViewIsExpanding(with: filter) {

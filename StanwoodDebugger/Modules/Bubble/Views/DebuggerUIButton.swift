@@ -205,18 +205,13 @@ class DebuggerUIButton: UIButton {
         guard let addedItems = notification.object as? [AddedItem] else { return }
         
         addedItems.forEach({
-            
             switch $0.type {
-            case .analytics:
-                animate(.analytics)
-            case .networking:
-                animate(.networking)
-            case .error:
-                animate(.error)
-            case .logs, .crashes: break
+            case .analytics: animate(.analytics)
+            case .networking: animate(.networking)
+            case .error: animate(.error)
+            case .logs: animate(.logs)
+            case .crashes: animate(.crashes)
             }
-            
-            
         })
     }
     

@@ -1,5 +1,5 @@
 //
-//  DebuggerLogs.swift
+//  CrashItem.swift
 //
 //  The MIT License (MIT)
 //
@@ -25,40 +25,8 @@
 //
 
 import Foundation
+import StanwoodCore
 
-class DebuggerLogs {
+struct CrashItem: Typeable, Codable {
     
-    static var isEnabled: Bool = true {
-        didSet {
-            switch isEnabled {
-            case true:
-                DebuggerLogs.register()
-            case false:
-                DebuggerLogs.unregister()
-            }
-        }
-    }
-    
-    class func register() {
-        print("")
-        DebuggerLogs.printSwizzle()
-    }
-    
-    class func unregister() {
-        DebuggerLogs.printUnSwizzle()
-    }
-    
-    @objc class func printSwizzle() {
-//        guard let instance = class_getInstanceMethod(self, #selector(print(separator:terminator:))),
-//            let swizzleInstance = class_getInstanceMethod(self, #selector(swizzlePrint(separator:terminator:))) else { return }
-//        method_exchangeImplementations(instance, swizzleInstance)
-    }
-    
-    @objc class func printUnSwizzle() {
-//        guard let instance = class_getInstanceMethod(self, #selector(NSError.init(domain:code:userInfo:))),
-//            let swizzleInstance = class_getInstanceMethod(self, #selector(NSError.init(swizzleDomain:code:info:))) else { return }
-//        method_exchangeImplementations(swizzleInstance, instance)
-    }
-    
-   
 }
