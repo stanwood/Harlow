@@ -46,13 +46,6 @@ class DebuggerFilterView: UIView {
             }
         }
         
-        var isUnderConstruction: Bool {
-            switch self {
-            case .error, .analytics, .networking, .logs: return false
-            case .crashes: return true //@lukasz
-            }
-        }
-        
         var icon: DebuggerIconLabel.DebuggerIcons {
             switch self {
             case .analytics: return .analytics

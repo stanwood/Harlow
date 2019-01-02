@@ -110,6 +110,8 @@ class DebuggerScallableView: UIView {
         tableView.register(UINib(nibName: ErrorCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: ErrorCell.identifier)
         tableView.register(UINib(nibName: AnalyticsCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: AnalyticsCell.identifier)
         tableView.register(UINib(nibName: NetworkingCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: NetworkingCell.identifier)
+        tableView.register(UINib(nibName: CrashCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: CrashCell.identifier)
+        tableView.register(UINib(nibName: LogCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: LogCell.identifier)
         
         tableView.estimatedRowHeight = 75
         tableView.rowHeight = UITableView.automaticDimension

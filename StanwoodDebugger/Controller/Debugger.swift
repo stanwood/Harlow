@@ -60,6 +60,7 @@ public class StanwoodDebugger: Debugging {
             DebuggerLogs.isEnabled = isEnabled
             DebuggerNetworking.isEnabled = isEnabled
             DebuggerNSError.isEnabled = isEnabled
+            DebuggerCrash.isEnabled = isEnabled
             configureDebuggerView()
         }
     }

@@ -83,6 +83,11 @@ class ExampleViewController: UIViewController {
         
         tableView.delegate = delegate
         tableView.dataSource = dataSource
+
+        //let array: [String]? = nil
+        //let itemsCount = array!.count
+        //self.delete(nil)
+        //let _ = (view as! UIButton).showsTouchWhenHighlighted
     }
     
 }

@@ -33,6 +33,6 @@ class DebuggerEmptyView: UIView {
     
     func setLabel(with filter: DebuggerFilterView.DebuggerFilter) {
         iconLabel.text = filter.icon.rawValue
-        subtitleLabel.text = filter.isUnderConstruction ? "Under construction... ¯\\_(〴)_/¯" : "Waiting for logs... ¯\\_(ツ)_/¯"
+        subtitleLabel.text = "Waiting for logs... ¯\\_(ツ)_/¯"
     }
 }
