@@ -155,7 +155,7 @@ debugger.errorCodesExceptions = [4097] /// Add error code exceptions
 
 2. Import `StanwoodDebugger`
 
-```swift
+```objc
 #import <StanwoodDebugger/StanwoodDebugger-Swift.h>
 ```
 
