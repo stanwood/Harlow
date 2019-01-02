@@ -56,7 +56,6 @@ public class StanwoodDebugger: Debugging {
     /// Enable Debugger View
     public var isEnabled: Bool = false {
         didSet {
-            // @lukasz
             DebuggerLogs.isEnabled = isEnabled
             DebuggerNetworking.isEnabled = isEnabled
             DebuggerNSError.isEnabled = isEnabled

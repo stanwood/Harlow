@@ -27,7 +27,7 @@
 import Foundation
 import StanwoodCore
 
-struct CrashItem: Typeable, Codable {
+struct CrashItem: Typeable, Codable, Recordable {
 
     enum CrashType: String, Codable {
         case signal, exception

@@ -1,5 +1,5 @@
 //
-//  ListDelegate.swift
+//  ErrorWireframe.swift
 //
 //  The MIT License (MIT)
 //
@@ -24,26 +24,36 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
 import StanwoodCore
 
-class ListDelegate: Stanwood.AbstractTableDelegate {
- 
-    weak var presenter: ItemPresentable?
+protocol CrashViewable: class {
+    func setupTableView(dataType: DataType?)
+}
+
+class CrashPresenter: Presentable {
+
+    // MARK:- Properties
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        if let cell = tableView.cellForRow(at: indexPath) as? NetworkingCell,
-            let item = cell.item {
-            
-            presenter?.present(item: item)
-        } else if let cell = tableView.cellForRow(at: indexPath) as? ErrorCell,
-            let item = cell.item {
-            presenter?.present(item: item)
-        } else if let cell = tableView.cellForRow(at: indexPath) as? CrashCell,
-            let item = cell.item {
-            presenter?.present(item: item)
-        }
+    unowned var viewable: CrashViewable
+    var actionable: CrashActionable
+    var parameterable: CrashParameterable
+    var dataSource: CrashDataSource!
+    var delegate: CrashDelegate!
+    
+    // MARK:- Typealias
+    
+    typealias Actionable = CrashActionable
+    typealias Parameterable = CrashParameterable
+    typealias Viewable = CrashViewable
+
+    required init(actionable: CrashActionable, parameterable: CrashParameterable, viewable: CrashViewable) {
+        self.viewable = viewable
+        self.actionable = actionable
+        self.parameterable = parameterable
     }
+    
+    func viewDidLoad() {
+        viewable.setupTableView(dataType: parameterable.sections)
+    }
+    
 }

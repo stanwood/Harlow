@@ -1,5 +1,5 @@
 //
-//  ListDelegate.swift
+//  ErrorWireframe.swift
 //
 //  The MIT License (MIT)
 //
@@ -24,26 +24,23 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
 import StanwoodCore
 
-class ListDelegate: Stanwood.AbstractTableDelegate {
- 
-    weak var presenter: ItemPresentable?
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        if let cell = tableView.cellForRow(at: indexPath) as? NetworkingCell,
-            let item = cell.item {
-            
-            presenter?.present(item: item)
-        } else if let cell = tableView.cellForRow(at: indexPath) as? ErrorCell,
-            let item = cell.item {
-            presenter?.present(item: item)
-        } else if let cell = tableView.cellForRow(at: indexPath) as? CrashCell,
-            let item = cell.item {
-            presenter?.present(item: item)
-        }
+protocol CrashParameterable {
+    var item: CrashItem { get }
+    var sections: Stanwood.Sections { get set }
+}
+
+class CrashParameters: DebuggerParamaters, CrashParameterable {
+
+    let item: CrashItem
+    var sections: Stanwood.Sections
+
+    init(appData: DebuggerData, item: CrashItem) {
+        self.item = item
+        var sections: [Stanwood.Sections.Section] = []
+        self.sections = Stanwood.Sections(items: sections)
+        super.init(appData: appData)
     }
+
 }
