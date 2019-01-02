@@ -11,6 +11,7 @@ import StanwoodCore
 class LogCell: UITableViewCell, Fillable {
 
     @IBOutlet private weak var textView: UITextView!
+    @IBOutlet private weak var textViewTopLayoutConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,4 +26,6 @@ class LogCell: UITableViewCell, Fillable {
         guard let item = type as? LogItem else { return }
         textView.text = item.text
     }
+    
+
 }

@@ -202,7 +202,7 @@ class DebuggerData {
             try? Stanwood.Storage.store(errorItems, to: .documents, as: .json, withName: ErrorItems.fileName)
         }
         
-        if DebuggerSettings.shouldStoreNetowrkingData {
+        if DebuggerSettings.shouldStoreNetworkingData {
             try? Stanwood.Storage.store(networkingItems, to: .documents, as: .json, withName: NetworkItems.fileName)
         }
         refresh()

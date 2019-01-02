@@ -38,6 +38,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="textView" destination="8Hk-t8-t17" id="PEn-xi-yhq"/>
+                <outlet property="textViewTopLayoutConstraint" destination="bMV-Oc-hK8" id="27f-lK-leq"/>
             </connections>
             <point key="canvasLocation" x="52.799999999999997" y="76.911544227886068"/>
         </tableViewCell>
