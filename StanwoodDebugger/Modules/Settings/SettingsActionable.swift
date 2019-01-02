@@ -65,6 +65,18 @@ extension DebuggerActions: SettingsActionable {
             coordinator?.shouldReset(.settings) {
                 DebuggerSettings.restoreDefaults()
             }
+        case .removeError:
+            coordinator?.shouldReset(.settings) { [unowned self] in
+                self.appData.errorItems.removeAll()
+            }
+        case .removeLogs:
+            coordinator?.shouldReset(.settings) { [unowned self] in
+                self.appData.logItems.removeAll()
+            }
+        case .removeNetworking:
+            coordinator?.shouldReset(.settings) { [unowned self] in
+                self.appData.networkingItems.removeAll()
+            }
         default: break
         }
     }

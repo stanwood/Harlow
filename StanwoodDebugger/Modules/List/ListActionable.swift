@@ -25,10 +25,11 @@
 //
 
 import Foundation
+import StanwoodCore
 
 protocol ListActionable {
     func refresh(withDelay delay: DispatchTimeInterval)
-    func present(call: NetworkItem)
+    func present(item: Recordable)
 }
 
 extension DebuggerActions: ListActionable {
@@ -37,7 +38,7 @@ extension DebuggerActions: ListActionable {
         appData.refresh(withDelay: delay)
     }
     
-    func present(call: NetworkItem) {
-        coordinator?.present(call: call)
+    func present(item: Recordable) {
+        coordinator?.present(item)
     }
 }

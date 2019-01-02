@@ -1,7 +1,7 @@
 
 # StanwoodCore framework
 
-[![Swift Version](https://img.shields.io/badge/Swift-4.1.x-orange.svg)]()
+[![Swift Version](https://img.shields.io/badge/Swift-4.2.x-orange.svg)]()
 [![iOS 10+](https://img.shields.io/badge/iOS-10+-EB7943.svg)]()
 
 Debugging and testing iOS applications can be quite a long task due to the nature of Software Development. _StanwoodDebugger_ tool provides reach information on Analytics, Errors, Logging, Networking, and UITesting to simplify this process.
@@ -26,7 +26,7 @@ Tal Zion tal.zion@stanwood.io
 ## Installation
 
 ```ruby
-pod 'StanwoodDebugger', :configurations => ['Debug'] # Make sure to not add this framework to Release
+pod 'StanwoodDebugger', :configurations => ['Debug'] # Make sure to only use StanwoodDebugger for development only.
 ```
 
 ## Usage
@@ -54,6 +54,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
+### Other options
+
+```swift
+debugger.tintColor = .red /// Change the tint color
+debugger.errorCodesExceptions = [4097] /// Add error code exceptions
+debugger.isEnabled = true
+```
+
 ## Adding logs
 
 ### Analytics
@@ -66,11 +74,11 @@ Set up your tracking payload:
 public func payload() -> [String:String] {
 
     var payload: [String:String] = ["eventName": eventName]
-    
+
     if let itemId = itemId {
         payload["itemId"] = itemId
     }
-    
+
     if let category = category {
         payload["category"] = category
     }
@@ -79,11 +87,15 @@ public func payload() -> [String:String] {
         payload["contentType"] = contentType
     }
 
+    if let screenName = screenName {
+        payload["screenName"] = screenName
+    }
+
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-    
+
     payload["createdAt"] = dateFormatter.string(from: Date())
-    
+
     return payload
 }
 ```
@@ -104,11 +116,56 @@ Use [StanwoodAnalytics](https://github.com/stanwood/Stanwood_Analytics_iOS) as y
 
 ```swift
 #if DEBUG
-        analyticsBuilder = analyticsBuilder.setDebuggerNotifications(enabled: true)
+analyticsBuilder = analyticsBuilder.setDebuggerNotifications(enabled: true)
 #endif
 ```
 
-### Error, UITesing, Networking, Print logs **[WIP]**
+### Networking
+
+`StanwoodDebugger` works by default with `URLSessiosn.shared` and request are beeing logged for free. You can also register a custom condiguration: 
+
+```swift
+let configuration = URLSessionConfiguration.waitsForConnectivity
+
+debugger.regsiter(custom: configuration)
+
+/// Use with URLSession || any networking libraries such as Alamofire and Moya
+let session = URLSession(configuration: configuration)
+```
+
+<img src="Media/stanwood_debugger_networking.gif" alt="Module" width="300">
+
+### Error
+
+`StanwoodDebugger` will log `NSError` by default.  To add log exceptions:
+
+```swift
+debugger.errorCodesExceptions = [4097] /// Add error code exceptions
+```
+
+### Logs
+
+`StanwoodDebugger` will log `print` && `debugPrint` by default.
+
+#### Configuration:
+
+1. Create a new `Bridging-Header` file and add `-DEBUG` suffix
+
+![logs-1](Media/logs-1.png)
+
+2. Import `StanwoodDebugger`
+
+```objc
+#import <StanwoodDebugger/StanwoodDebugger-Swift.h>
+```
+
+>Note: Make sure to add any other imported libraries from your main header file
+
+![logs-2](Media/logs-2.png)
+
+3. Set `Bridging-Header-DEBUG.h` in the relevant configurations in the build settings.
+
+![logs-3](Media/logs-3.png)
 
 ## Licence
 

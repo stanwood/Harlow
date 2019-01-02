@@ -64,7 +64,7 @@ class ListViewController: UIViewController, ListViewable {
         
         view.addSubview(tableView)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: nil)
         presenter.viewDidLoad()
     }
     
@@ -80,6 +80,10 @@ class ListViewController: UIViewController, ListViewable {
     
     @objc func dismissDebuggerView() {
         tabBarController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func showFilter() {
+        assert(false)
     }
 }
 

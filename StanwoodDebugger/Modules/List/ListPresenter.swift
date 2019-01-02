@@ -41,12 +41,12 @@ class ListPresenter: ItemPresentable {
         return paramaterable.getDeguggerItems(for: currentFilter)
     }
     
-    init(actionable: ListActionable, viewable: ListViewable, paramaterable: ListParamaterable, filter: DebuggerFilterView.DebuggerFilter) {
+    init(actionable: ListActionable, viewable: ListViewable, paramaterable: ListParamaterable) {
         self.actionable = actionable
         self.viewable = viewable
         self.paramaterable = paramaterable
         
-        set(current: filter)
+        set(current: paramaterable.filter)
     }
     
     func set(current filter: DebuggerFilterView.DebuggerFilter) {
@@ -61,7 +61,7 @@ class ListPresenter: ItemPresentable {
     
     func viewDidLoad() {
         
-        viewable?.tableView.register(cells: AnalyticsCell.self, NetworkingCell.self, bundle: Bundle.debuggerBundle())
+        viewable?.tableView.register(cells: AnalyticsCell.self, NetworkingCell.self, LogCell.self, ErrorCell.self, bundle: Bundle.debuggerBundle())
         
         viewable?.tableView.estimatedRowHeight = 75
         viewable?.tableView.rowHeight = UITableView.automaticDimension
@@ -79,6 +79,18 @@ class ListPresenter: ItemPresentable {
         viewable?.filterView.filterCellDid(filter: currentFilter)
         
         actionable.refresh(withDelay: .milliseconds(0))
+        
+        switch currentFilter {
+        case .networking(item: let recordable):
+            if let recordable = recordable {
+                present(item: recordable)
+            }
+        case .error(item: let recordable):
+            if let recordable = recordable {
+                present(item: recordable)
+            }
+        default: break // @lukas
+        }
     }
     
     func refreshEmptyView() {
@@ -91,7 +103,7 @@ class ListPresenter: ItemPresentable {
         }
     }
     
-    func present(networkingItem: NetworkItem) {
-        actionable.present(call: networkingItem)
+    func present(item: Recordable) {
+        actionable.present(item: item)
     }
 }

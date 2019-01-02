@@ -35,12 +35,16 @@ class ListWireframe {
         let listNavigationController = UINavigationController(rootViewController: listViewController)
         let listItem = UIBarButtonItem(barButtonSystemItem: .done, target: listViewController, action: #selector(ListViewController.dismissDebuggerView))
         listViewController.navigationItem.leftBarButtonItem = listItem
+        
+        let image = UIImage(named: "filter_icon", in: Bundle.debuggerBundle(), compatibleWith: nil)
+        listNavigationController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(ListViewController.showFilter))
+        
         listNavigationController.tabBarItem = UITabBarItem(title: "Debugger", image: UIImage(named: "bug_icon", in: Bundle.debuggerBundle(from: type(of: ListWireframe())), compatibleWith: nil), selectedImage: nil)
         return (listNavigationController, listViewController)
     }
     
-    static func prepare(_ viewController: ListViewController, with actionable: ListActionable, _ paramaterable: ListParamaterable, filter: DebuggerFilterView.DebuggerFilter) {
-        let preseter = ListPresenter(actionable: actionable, viewable: viewController, paramaterable: paramaterable, filter: filter)
+    static func prepare(_ viewController: ListViewController, with actionable: ListActionable, _ paramaterable: ListParamaterable) {
+        let preseter = ListPresenter(actionable: actionable, viewable: viewController, paramaterable: paramaterable)
         viewController.presenter = preseter
     }
 }

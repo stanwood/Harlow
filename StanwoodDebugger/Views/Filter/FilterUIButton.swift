@@ -62,12 +62,12 @@ class FilterUIButton: UIButton {
         
         badgeLabel.layer.cornerRadius = badgeLabel.frame.width / 2
         
-        NotificationCenter.default.addObservers(self, observers: Stanwood.Observer(selector: #selector(didAddNewItem(_:)), name: Notification.Name.DeuggerDidAddDebuggerItem))
+        NotificationCenter.default.addObservers(self, observers: Stanwood.Observer(selector: #selector(didAddNewItem(_:)), name: Notification.Name.DebuggerDidAddDebuggerItem))
     }
     
     func setTitle(_ filter: DebuggerFilterView.DebuggerFilter?) {
         self.filter = filter
-        [UIControl.State.normal, UIControl.State.highlighted].forEach({ setTitle(filter?.rawValue, for: $0) })
+        [UIControl.State.normal, UIControl.State.highlighted].forEach({ setTitle(filter?.label, for: $0) })
     }
     
     func set(selected: Bool) {
@@ -88,7 +88,7 @@ class FilterUIButton: UIButton {
     @objc private func didAddNewItem(_ notification: Notification) {
         
         guard let addedItems = notification.object as? [AddedItem],
-            let addedItem = addedItems.filter({ $0.type == self.filter }).first else { return }
+            let addedItem = addedItems.filter({ $0.type.label == self.filter?.label }).first else { return }
         
         UIView.animate(withDuration: 0.3,  animations: {
             self.badgeLabel.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)

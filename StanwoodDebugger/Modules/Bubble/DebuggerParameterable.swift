@@ -31,4 +31,14 @@ protocol DebuggerParameterable {
     func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> DataType?
 }
 
-extension DebuggerParamaters: DebuggerParameterable {}
+extension DebuggerParamaters: DebuggerParameterable {
+    func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> DataType? {
+        switch filter {
+        case .analytics: return appData.analyticsItems
+        case .networking: return appData.networkingItems
+        case .error: return appData.errorItems
+        case .logs: return appData.logItems
+        case .crashes: return nil // @lukasz
+        }
+    }
+}

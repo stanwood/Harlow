@@ -30,9 +30,10 @@ import StanwoodCore
 typealias Completion = () -> Void
 
 protocol DebuggerScallableViewDelegate: class {
-    func scallableViewIsExpanding(completion: @escaping Completion)
+    func scallableViewIsExpanding(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion)
     func scallableViewDidDismiss()
 }
+
 class DebuggerScallableView: UIView {
     
     var currentFilter: DebuggerFilterView.DebuggerFilter = .analytics
@@ -78,7 +79,7 @@ class DebuggerScallableView: UIView {
         layer.borderColor = UIColor.black.withAlphaComponent(0.3).cgColor
         layer.borderWidth = 1
         
-        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.DeuggerDidAddDebuggerItem, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: nil)
         
         filterView.delegate = self
     }
@@ -106,9 +107,7 @@ class DebuggerScallableView: UIView {
     
     func configureTableView(with items: DataType?) {
         
-        tableView.register(UINib(nibName: AnalyticsCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: AnalyticsCell.identifier)
-        tableView.register(UINib(nibName: NetworkingCell.identifier, bundle: Bundle.debuggerBundle()), forCellReuseIdentifier: NetworkingCell.identifier)
-        
+        tableView.register(cells: ErrorCell.self, AnalyticsCell.self, NetworkingCell.self, LogCell.self, bundle: Bundle.debuggerBundle())
         tableView.estimatedRowHeight = 75
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
@@ -124,7 +123,7 @@ class DebuggerScallableView: UIView {
         
         listDataSource = ListDataSource(dataType: items)
         listDelegate = ListDelegate(dataType: items)
-        listDelegate.presenter = presenter
+        listDelegate.presenter = self
         
         tableView.dataSource = listDataSource
         tableView.delegate = listDelegate
@@ -158,18 +157,36 @@ class DebuggerScallableView: UIView {
     }
     
     @IBAction func expand(_ sender: Any) {
+        expand(with: nil)
+    }
+    
+    private func expand(with item: Recordable?) {
         buttons.hide(duration: 0.3)
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
             self.frame = UIApplication.shared.keyWindow?.frame ?? .zero
             self.backgroundColor = UIColor.white.withAlphaComponent(0.95)
         }) { _ in
             self.views.hide()
-            self.delegate?.scallableViewIsExpanding {
+            var filter: DebuggerFilterView.DebuggerFilter
+            switch self.currentFilter   {
+            case .networking(item: nil): filter = DebuggerFilterView.DebuggerFilter.networking(item: item)
+            case .error(item: nil): filter = DebuggerFilterView.DebuggerFilter.error(item: item)
+            // @lukasz add support
+            default: filter = self.currentFilter
+            }
+            self.delegate?.scallableViewIsExpanding(with: filter) {
                 DispatchQueue.main.async { [weak self] in
                     self?.dismiss(fromExpandable: true)
                 }
             }
         }
+    }
+}
+
+extension DebuggerScallableView: ItemPresentable {
+    
+    func present(item: Recordable) {
+        expand(with: item)
     }
 }
 

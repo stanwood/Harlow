@@ -28,23 +28,6 @@ import Foundation
 
 class DebuggerSettings {
     
-    private enum LocalKeys: String {
-        case shouldStoreAnalyticsData,
-        isDebuggerBubblePulseAnimationEnabled,
-        isDebuggerItemIconsAnimationEnabled
-        
-        var key: String {
-            switch self {
-            case .shouldStoreAnalyticsData:
-                return "should_store_analytics_data"
-            case .isDebuggerBubblePulseAnimationEnabled:
-                return "is_debugger_bubble_pulse_animation_enabled"
-            case .isDebuggerItemIconsAnimationEnabled:
-                return "is_debugger_item_icons_animation_enabled"
-            }
-        }
-    }
-    
     private static var defaults: UserDefaults {
         return UserDefaults.standard
     }
@@ -64,35 +47,70 @@ class DebuggerSettings {
     
     static var shouldStoreAnalyticsData: Bool {
         get {
-            return defaults.bool(forKey: LocalKeys.shouldStoreAnalyticsData.key)
+            return defaults.bool(forKey: #function)
         }
         
         set {
-            defaults.set(newValue, forKey: LocalKeys.shouldStoreAnalyticsData.key)
+            defaults.set(newValue, forKey: #function)
+        }
+    }
+    
+    static var shouldStoreErrorData: Bool {
+        get {
+            return defaults.bool(forKey: #function)
+        }
+        
+        set {
+            defaults.set(newValue, forKey: #function)
+        }
+    }
+    
+    static var shouldStoreNetworkingData: Bool {
+        get {
+            return defaults.bool(forKey: #function)
+        }
+        
+        set {
+            defaults.set(newValue, forKey: #function)
+        }
+    }
+    
+    static var shouldStoreLogsData: Bool {
+        get {
+            return defaults.bool(forKey: #function)
+        }
+        
+        set {
+            defaults.set(newValue, forKey: #function)
         }
     }
     
     static var isDebuggerBubblePulseAnimationEnabled: Bool {
         get {
-            return defaults.bool(forKey: LocalKeys.isDebuggerBubblePulseAnimationEnabled.key)
+            return defaults.bool(forKey: #function)
         }
         
         set {
-            defaults.set(newValue, forKey: LocalKeys.isDebuggerBubblePulseAnimationEnabled.key)
+            defaults.set(newValue, forKey: #function)
         }
     }
     
     static var isDebuggerItemIconsAnimationEnabled: Bool {
         get {
-            return defaults.bool(forKey: LocalKeys.isDebuggerItemIconsAnimationEnabled.key)
+            return defaults.bool(forKey: #function)
         }
         
         set {
-            defaults.set(newValue, forKey: LocalKeys.isDebuggerItemIconsAnimationEnabled.key)
+            defaults.set(newValue, forKey: #function)
         }
     }
     
     static func restoreDefaults() {
-        /// Handle: Low prio later feature
+        shouldStoreNetworkingData = true
+        shouldStoreErrorData = true
+        isDebuggerItemIconsAnimationEnabled = true
+        isDebuggerBubblePulseAnimationEnabled = true
+        shouldStoreAnalyticsData = true
+        shouldStoreLogsData = true
     }
 }

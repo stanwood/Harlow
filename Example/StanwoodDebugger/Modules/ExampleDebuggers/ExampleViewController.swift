@@ -10,113 +10,6 @@ import Foundation
 import UIKit
 import StanwoodCore
 
-
-struct AnalyticExample: Typeable, Codable {
-    
-    let eventName: String
-    let screenName: String?
-    
-    let itemId: String?
-    let category: String?
-    let contentType: String?
-    
-    var type: AnalyticsType {
-        return screenName != nil ? .screen : AnalyticsType.type(forCount: [itemId, category, contentType].compactMap({$0}).count)
-    }
-    
-    enum AnalyticsType {
-        case screen, contentLong, contentShort, contentMedium
-        
-        var title: String {
-            switch self {
-            case .screen: return "Analytics screen event"
-            case .contentShort: return "Analytics short event"
-            case .contentMedium: return "Analytics medium event"
-            case .contentLong: return "Analytics long event"
-            }
-        }
-        
-        static func type(forCount count: Int) -> AnalyticsType {
-            switch count {
-            case 1: return .contentShort
-            case 2: return .contentMedium
-            case 3: return .contentLong
-            default: return .contentShort
-            }
-        }
-    }
-    
-    private func payload() -> [String:String] {
-        
-        var payload: [String:String] = ["eventName": eventName]
-        
-        if let itemId = itemId {
-            payload["itemId"] = itemId
-        }
-        
-        if let category = category {
-            payload["category"] = category
-        }
-        
-        if let contentType = contentType {
-            payload["contentType"] = contentType
-        }
-        
-        if let screenName = screenName {
-            payload["screenName"] = screenName
-        }
-  
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
-        payload["createdAt"] = dateFormatter.string(from: Date())
-        
-        return payload
-    }
-    
-    func post() {
-        let notificationCentre = NotificationCenter.default
-        let notification = Notification.init(name: Notification.Name(rawValue: "io.stanwood.debugger.didReceiveAnalyticsItem"), object: nil, userInfo: payload())
-        notificationCentre.post(notification)
-    }
-}
-
-class AnalyticsExample: Stanwood.Elements<AnalyticExample>, Headerable {
-    
-    var headerView: UIView {
-        let view = HeaderView.loadFromNib()
-        view?.backgroundColor = UIColor.white.withAlphaComponent(0.9)
-        view?.set(title: "Analytics Example")
-        return view ?? UIView()
-    }
-    
-    override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
-        return AnalyticsExampleCell.self
-    }
-}
-
-struct NetworkExample: Typeable, Codable {
-    let method: NetworkingManager.Method
-    let url: String
-}
-
-class NetworkingExample: Stanwood.Elements<NetworkExample>, Headerable {
-    
-    var title: String = ""
-    
-    var headerView: UIView {
-        let view = HeaderView.loadFromNib()
-        view?.backgroundColor = UIColor.white.withAlphaComponent(0.9)
-        view?.set(title: title)
-        return view ?? UIView()
-    }
-    
-    override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
-        return NetworkingExampleCell.self
-    }
-}
-
-
 class ExampleViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -125,52 +18,57 @@ class ExampleViewController: UIViewController {
     var delegate: ExampleDelegate!
     var sections: Stanwood.Sections!
     
-    let getNetworkingItems: [NetworkExample] = [
-        NetworkExample(method: .get, url: "https://httpbin.org/status/400"),
-        NetworkExample(method: .get, url: "https://httpbin.org/status/404"),
-        NetworkExample(method: .get, url: "https://httpbin.org/headers"),
-        NetworkExample(method: .get, url: "https://httpbin.org/status/410"),
-        NetworkExample(method: .get, url: "https://httpbin.org/status/202"),
-        NetworkExample(method: .get, url: "https://httpbin.org/status/500"),
-        NetworkExample(method: .get, url: "https://httpbin.org/status/300"),
-        NetworkExample(method: .get, url: "https://httpbin.org/status/100"),
-        NetworkExample(method: .get, url: "https://httpbin.org/image/jpeg")
-    ]
+    enum ExampleType: Int {
+        case http, analytics, error, logs, uiTesting
+    }
     
-    let responseFormatItems: [NetworkExample] = [
-        NetworkExample(method: .get, url: "https://httpbin.org/json"),
-        NetworkExample(method: .get, url: "https://httpbin.org/html"),
-        NetworkExample(method: .get, url: "https://httpbin.org/xml"),
-        NetworkExample(method: .get, url: "https://httpbin.org/robots.txt"),
-        NetworkExample(method: .get, url: "https://httpbin.org/deny")
-    ]
+    var exampleType: ExampleType!
     
-    let postNetworkingItems: [NetworkExample] = [
-        NetworkExample(method: .post, url: "https://httpbin.org/post")
-    ]
-    
-    let analyticsItems: [AnalyticExample] = [
-        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "09873rf", category: "articles", contentType: "website"),
-        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "asdf987", category: "foood", contentType: nil),
-        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "cnaiodnc", category: nil, contentType: "product"),
-        AnalyticExample(eventName: "content_type", screenName: nil, itemId: nil, category: nil, contentType: nil),
-        AnalyticExample(eventName: "", screenName: "home_view", itemId: nil, category: nil, contentType: nil)
-    ]
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let responseFormatsExamples = NetworkingExample(items: responseFormatItems)
-        responseFormatsExamples.title = "[GET] Response Formats Examples"
-        let getNetworkingExamples = NetworkingExample(items: getNetworkingItems)
-        getNetworkingExamples.title = "[GET] Networking Examples"
-        let postNetworkingExamples = NetworkingExample(items: postNetworkingItems)
-        postNetworkingExamples.title = "[POST] Networking Examples"
-
+        exampleType = ExampleType(rawValue: tabBarController!.selectedIndex)!
         
-        let analyticsExamples = AnalyticsExample(items: analyticsItems)
+        main(deadline: .seconds(3)) {
+            let err = NSError(domain: "com.debugger.test", code: -1, userInfo: [:])
+            print("Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. It helps to outline the visual elements of a document or presentation, eg typography, font, or layout. Lorem ipsum is mostly a part of a Latin text by the classical author and philosopher Cicero. Its words and letters have been changed by a")
+            print(err)
+        }
         
-        sections = Stanwood.Sections(items: [responseFormatsExamples, getNetworkingExamples, postNetworkingExamples, analyticsExamples])
+        print(" Testting Debugger Logs ")
+        print(" Testting Debugger Logs ")
+        print(" Testting Debugger Logs ")
+        print(" Testting Debugger Logs ")
+        print(" Testting Debugger Logs ")
+        print(" Testting Debugger Logs ")
+        print(" Testting Debugger Logs ")
+        print("Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. It helps to outline the visual elements of a document or presentation, eg typography, font, or layout. Lorem ipsum is mostly a part of a Latin text by the classical author and philosopher Cicero. Its words and letters have been changed by a")
+        
+        debugPrint(" Testting Debugger Logs ")
+        
+        switch exampleType! {
+        case .http:
+            
+            let responseFormatsExamples = NetworkingExample(items: ModelItems.responseFormatItems)
+            responseFormatsExamples.title = "Response Formats"
+            let getImgesNetworkingExample = NetworkingExample(items: ModelItems.getImgesNetworkingItems)
+            getImgesNetworkingExample.title = "Image Formats"
+            let getNetworkingExamples = NetworkingExample(items: ModelItems.getNetworkingItems)
+            getNetworkingExamples.title = "[GET] Calls"
+            let postNetworkingExamples = NetworkingExample(items: ModelItems.postNetworkingItems)
+            postNetworkingExamples.title = "[POST] Calls"
+            
+            sections = Stanwood.Sections(items: [responseFormatsExamples, getImgesNetworkingExample, getNetworkingExamples, postNetworkingExamples])
+        case .analytics:
+            
+            let analyticsContentExamples = AnalyticsExample(items: ModelItems.analyticsContentItems)
+            analyticsContentExamples.title = "Content Tracking"
+            let analyticsScreenExamples = AnalyticsExample(items: ModelItems.analyticsScreenItems)
+            analyticsScreenExamples.title = "Screen Tracking"
+            
+            sections = Stanwood.Sections(items: [analyticsScreenExamples, analyticsContentExamples])
+        default: break
+        }
         
         tableView.register(cellTypes: AnalyticsExampleCell.self, NetworkingExampleCell.self)
         

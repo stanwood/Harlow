@@ -25,12 +25,13 @@
 //
 
 import Foundation
+import StanwoodCore
 
 protocol ItemPresentable: class {
-    func present(networkingItem: NetworkItem)
+    func present(item: Recordable)
 }
 
-class DebuggerPresenter: ItemPresentable {
+class DebuggerPresenter {
     
     weak var debugger: Debugging!
     private var actionable: DebuggerActionable
@@ -50,15 +51,11 @@ class DebuggerPresenter: ItemPresentable {
     
     func presentScaled(_ view: DebuggerScallableView) {
         view.presenter = self
-        viewable?.debuggerScallableView?.configureTableView(with: parameterable.getDeguggerItems(for: .analytics))
+        viewable?.debuggerScallableView?.configureTableView(with: parameterable.getDeguggerItems(for: view.currentFilter))
         actionable.presentScaleable(view)
     }
     
     func refresh() {
         actionable.refresh(withDelay: .milliseconds(500))
-    }
-    
-    func present(networkingItem: NetworkItem) {
-        actionable.present(call: networkingItem)
     }
 }

@@ -38,8 +38,8 @@ extension Notification.Name {
         return NSNotification.Name(rawValue: "io.stanwood.debugger.didReceiveErrorItem")
     }
     
-    public static var DeuggerDidReceiveUITestingItem: Notification.Name {
-        return NSNotification.Name(rawValue: "io.stanwood.debugger.didReceiveUITestingItem")
+    public static var DeuggerDidReceiveCrashItem: Notification.Name {
+        return NSNotification.Name(rawValue: "io.stanwood.debugger.didReceiveCrashItem")
     }
     
     public static var DeuggerDidReceiveNetworkingItem: Notification.Name {
@@ -56,23 +56,23 @@ extension Notification.Name {
         return NSNotification.Name(rawValue: "io.stanwood.debugger.didAppendAnalyticsItem")
     }
     
-    static var DeuggerDidAppendErrorItem: Notification.Name {
+    static var DebuggerDidAppendErrorItem: Notification.Name {
         return NSNotification.Name(rawValue: "io.stanwood.debugger.didAppendErrorItem")
     }
     
-    static var DeuggerDidAppendUITestingItem: Notification.Name {
-        return NSNotification.Name(rawValue: "io.stanwood.debugger.didAppendUITestingItem")
+    static var DebuggerDidAppendCrashItem: Notification.Name {
+        return NSNotification.Name(rawValue: "io.stanwood.debugger.didAppendCrashItem")
     }
     
-    static var DeuggerDidAppendNetworkingItem: Notification.Name {
+    static var DebuggerDidAppendNetworkingItem: Notification.Name {
         return NSNotification.Name(rawValue: "io.stanwood.debugger.didAppendNetworkingItem")
     }
     
-    static var DeuggerDidAppendLogItem: Notification.Name {
+    static var DebuggerDidAppendLogItem: Notification.Name {
         return NSNotification.Name(rawValue: "io.stanwood.debugger.didAppendLogItem")
     }
     
-    static var DeuggerDidAddDebuggerItem: Notification.Name {
+    static var DebuggerDidAddDebuggerItem: Notification.Name {
         return NSNotification.Name(rawValue: "io.stanwood.debugger.didAddDebuggerItem")
     }
 }
