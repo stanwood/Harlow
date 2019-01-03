@@ -3,3 +3,5 @@
 //
 
 #import <StanwoodDebugger/StanwoodDebugger-Swift.h>
+
+// >Note: Make sure to add any other imported libraries from your main header file
