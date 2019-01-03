@@ -91,7 +91,7 @@ extension NetworkingViewController: NetworkingViewable {
     }
 }
 
-extension NetworkingViewController: NetworkCopyPasteDelegate {
+extension NetworkingViewController: CopyPasteDelegate {
     func didCopy(text: String, sender: UIView) {
         
         var message = String()

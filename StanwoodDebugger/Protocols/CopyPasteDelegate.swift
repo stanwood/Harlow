@@ -1,5 +1,5 @@
 //
-//  NetworkHeadersCell.swift
+//  Sourceable.swift
 //
 //  The MIT License (MIT)
 //
@@ -24,34 +24,6 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
-import StanwoodCore
-
-class NetworkHeadersCell: UITableViewCell, Fillable, Delegateble {
-
-    @IBOutlet private weak var textView: UITextView!
-    private weak var delegate: CopyPasteDelegate?
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        selectionStyle = .none
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.textView.addInnerShadow(onSide: .all)
-    }
-
-    func fill(with type: Type?) {
-        guard let headerable = type as? ResponseHeaderable else { return }
-        textView.text = headerable.headers?.prettyString
-    }
-    
-    func set(delegate: AnyObject) {
-        self.delegate = delegate as? CopyPasteDelegate
-    }
-    
-    @IBAction func actionCopy() {
-        delegate?.didCopy(text: textView.text, sender: self)
-    }
+protocol CopyPasteDelegate: class {
+    func didCopy(text: String, sender: UIView)
 }

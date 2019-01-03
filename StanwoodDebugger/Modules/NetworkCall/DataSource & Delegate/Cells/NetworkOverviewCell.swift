@@ -32,7 +32,7 @@ class NetworkOverviewCell: UITableViewCell, Fillable, Delegateble {
     @IBOutlet weak var indicatorView: UIView!
     @IBOutlet private var labels: [UILabel]!
     
-    private weak var delegate: NetworkCopyPasteDelegate?
+    private weak var delegate: CopyPasteDelegate?
     private var item: NetworkOverviewable?
     
     private enum Labels: Int {
@@ -59,7 +59,7 @@ class NetworkOverviewCell: UITableViewCell, Fillable, Delegateble {
     }
     
     func set(delegate: AnyObject) {
-        self.delegate = delegate as? NetworkCopyPasteDelegate
+        self.delegate = delegate as? CopyPasteDelegate
     }
     
     @IBAction func copyAction() {

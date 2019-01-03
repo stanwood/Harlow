@@ -27,24 +27,41 @@
 import UIKit
 import StanwoodCore
 
-class CrashOverviewCell: UITableViewCell, Fillable {
+class CrashOverviewCell: UITableViewCell, Fillable, Delegateble {
 
     @IBOutlet private weak var indicatorView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var infoLabel: UILabel!
 
+    private var item: CrashItem?
+
+    private weak var delegate: CopyPasteDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         indicatorView.layer.cornerRadius = indicatorView.frame.width / 2
     }
 
+    func set(delegate: AnyObject) {
+        self.delegate = delegate as? CopyPasteDelegate
+    }
+
     func fill(with type: Type?) {
         guard let item = type as? CrashItem else { return }
-
+        self.item = item
         titleLabel.text = item.name
         descriptionLabel.text = item.description
         infoLabel.text = item.appInfo
     }
     
+    @IBAction private func copyAction() {
+        guard let item = self.item else { return }
+        var copyText = "\(item.name)\n"
+            + "\(item.description)\n"
+            + "\(item.appInfo)\n"
+        item.stack.forEach { copyText += "\($0)\n" }
+        delegate?.didCopy(text: copyText, sender: self)
+    }
+
 }

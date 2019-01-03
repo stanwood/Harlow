@@ -20,22 +20,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Dpi-L5-2Q7">
-                        <rect key="frame" x="24" y="8" width="288" height="67.5"/>
+                        <rect key="frame" x="24" y="8" width="232" height="67.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="253" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyK-l9-z1g">
-                                <rect key="frame" x="0.0" y="0.0" width="288" height="16"/>
+                                <rect key="frame" x="0.0" y="0.0" width="232" height="16"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Localised Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xth-Hi-0d1">
-                                <rect key="frame" x="0.0" y="20" width="288" height="18"/>
+                                <rect key="frame" x="0.0" y="20" width="232" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pni-7R-Ij4" userLabel="Info">
-                                <rect key="frame" x="0.0" y="42" width="288" height="25.5"/>
+                                <rect key="frame" x="0.0" y="42" width="232" height="25.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -49,14 +49,30 @@
                             <constraint firstAttribute="width" constant="10" id="LJG-U7-R7U"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8s-rN-hSu">
+                        <rect key="frame" x="264" y="8" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="u2X-5E-Q5V"/>
+                            <constraint firstAttribute="height" constant="44" id="xLD-a4-jpv"/>
+                        </constraints>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                        <inset key="imageEdgeInsets" minX="15" minY="5" maxX="5" maxY="15"/>
+                        <state key="normal" image="icon_copy"/>
+                        <connections>
+                            <action selector="copyAction" destination="FYd-Yc-vi3" eventType="touchUpInside" id="cnu-qu-bBB"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="R8s-rN-hSu" firstAttribute="top" secondItem="Dpi-L5-2Q7" secondAttribute="top" id="7se-M0-pCN"/>
                     <constraint firstItem="Dpi-L5-2Q7" firstAttribute="top" secondItem="IFf-dA-6W1" secondAttribute="top" constant="8" id="Cs0-VJ-FT2"/>
                     <constraint firstAttribute="bottom" secondItem="QRA-qA-aTt" secondAttribute="bottom" constant="1" id="HFh-Bg-70u"/>
                     <constraint firstItem="QRA-qA-aTt" firstAttribute="leading" secondItem="IFf-dA-6W1" secondAttribute="leading" constant="2" id="RAr-CP-2CA"/>
-                    <constraint firstAttribute="trailing" secondItem="Dpi-L5-2Q7" secondAttribute="trailing" constant="8" id="Ra0-sC-vq2"/>
+                    <constraint firstItem="R8s-rN-hSu" firstAttribute="leading" secondItem="Dpi-L5-2Q7" secondAttribute="trailing" constant="8" id="U2L-XB-04U"/>
                     <constraint firstAttribute="bottom" secondItem="Dpi-L5-2Q7" secondAttribute="bottom" constant="8" id="X6f-vs-bSv"/>
                     <constraint firstItem="Dpi-L5-2Q7" firstAttribute="leading" secondItem="QRA-qA-aTt" secondAttribute="trailing" constant="12" id="YsZ-fh-ruL"/>
+                    <constraint firstAttribute="trailing" secondItem="R8s-rN-hSu" secondAttribute="trailing" constant="12" id="e7L-Td-pUy"/>
                     <constraint firstItem="QRA-qA-aTt" firstAttribute="top" secondItem="IFf-dA-6W1" secondAttribute="top" constant="1" id="gPV-lo-7dM"/>
                 </constraints>
             </tableViewCellContentView>
@@ -71,4 +87,7 @@
             <point key="canvasLocation" x="137.59999999999999" y="171.81409295352324"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_copy" width="25" height="25"/>
+    </resources>
 </document>

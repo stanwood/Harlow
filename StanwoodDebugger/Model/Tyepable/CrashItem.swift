@@ -54,10 +54,10 @@ struct CrashItem: Typeable, Codable, Recordable {
         }
     }
 
-    var description: String? {
+    var description: String {
         switch type {
         case .exception:
-            return exception?.coding?.description
+            return exception?.coding?.description ?? ""
         case .signal:
             return "Signal \(name): \(signal ?? 0) was raised."
         }
