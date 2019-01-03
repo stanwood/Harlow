@@ -27,6 +27,18 @@
 import Foundation
 import StanwoodCore
 
+struct StackItem: Typeable, Codable {
+    let text: String
+
+    var isAppStack: Bool {
+        if let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String {
+            return text.contains(appName)
+        }
+        return false
+    }
+    
+}
+
 struct CrashItem: Typeable, Codable, Recordable {
 
     enum CrashType: String, Codable {
@@ -53,24 +65,27 @@ struct CrashItem: Typeable, Codable, Recordable {
 
     let date: Date
     let signal: Int32?
-    let stack: [String]?
+    let stack: [StackItem]
     let exception: Stanwood.CodingBridge<NSException>?
     let type: CrashType
+    let appInfo: String
 
-    init(exception: NSException) {
-        self.stack = exception.callStackSymbols
+    init(exception: NSException, appInfo: String) {
+        self.stack = exception.callStackSymbols.map { StackItem(text: $0) }
         self.exception = Stanwood.CodingBridge<NSException>(exception)
         self.signal = nil
         self.type = .exception
         self.date = Date()
+        self.appInfo = appInfo
     }
 
-    init(signal: Int32, stack: [String]?) {
-        self.stack = stack
+    init(signal: Int32, stack: [String]?, appInfo: String) {
+        self.stack = (stack ?? []).map { StackItem(text: $0) }
         self.exception = nil
         self.signal = signal
         self.type = .signal
         self.date = Date()
+        self.appInfo = appInfo
     }
 
     var formattedDate: String {

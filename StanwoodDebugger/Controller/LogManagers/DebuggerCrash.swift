@@ -66,18 +66,30 @@ class DebuggerCrash {
 
     private static let didCatchException: @convention(c) (NSException) -> Void = { exception in
         guard DebuggerCrash.isEnabled else { return }
-        let crashItem = CrashItem(exception: exception)
+        let crashItem = CrashItem(exception: exception, appInfo: appInfo)
         didCatch(crash: crashItem)
     }
 
     private static let didCatchSignal: @convention(c) (Int32) -> Void = { signal in
         guard DebuggerCrash.isEnabled else { return }
-        let crashItem = CrashItem(signal: signal, stack: Thread.callStackSymbols)
+        let crashItem = CrashItem(signal: signal, stack: Thread.callStackSymbols, appInfo: appInfo)
         didCatch(crash: crashItem)
     }
 
     private static func didCatch(crash: CrashItem) {
         NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidReceiveCrashItem, object: crash)
+    }
+
+    private static var appInfo: String {
+        let displayName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") ?? ""
+        let shortVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? ""
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") ?? ""
+        let deviceModel = UIDevice.current.model
+        let systemName = UIDevice.current.systemName
+        let systemVersion = UIDevice.current.systemVersion
+        return "App: \(displayName) \(shortVersion)(\(version))\n"
+            + "Device: \(deviceModel)\n"
+            + "OS Version: \(systemName) \(systemVersion)"
     }
 
 }

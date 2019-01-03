@@ -63,7 +63,7 @@ extension CrashViewController: CrashViewable {
 
     func setupTableView(dataType: DataType?) {
 
-        tableView.register(cells: ErrorOverviewCell.self, ErrorCodeCell.self, ErrorUserInfoCell.self, bundle: Bundle.debuggerBundle())
+        tableView.register(cells: CrashOverviewCell.self, CrashStackCell.self, bundle: Bundle.debuggerBundle())
 
         let nib = UINib(nibName: String(describing: NetworkHeaderView.self), bundle:Bundle.debuggerBundle(from: type(of: self)))
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: String(describing: NetworkHeaderView.self))

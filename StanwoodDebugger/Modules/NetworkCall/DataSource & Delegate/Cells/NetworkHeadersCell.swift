@@ -39,10 +39,11 @@ class NetworkHeadersCell: UITableViewCell, Fillable, Delegateble {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        
-        main(deadline: .milliseconds(50)) { /// There is a weird black stripe added
-            self.textView.addInnerShadow(onSide: .all)
-        }
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.textView.addInnerShadow(onSide: .all)
     }
 
     func fill(with type: Type?) {

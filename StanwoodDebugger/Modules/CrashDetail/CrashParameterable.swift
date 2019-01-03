@@ -38,8 +38,12 @@ class CrashParameters: DebuggerParamaters, CrashParameterable {
 
     init(appData: DebuggerData, item: CrashItem) {
         self.item = item
+
         var sections: [Stanwood.Sections.Section] = []
+        sections.append(CrashOverviewSection(items: [item]))
+        sections.append(CrashStackSection(items: item.stack))
         self.sections = Stanwood.Sections(items: sections)
+
         super.init(appData: appData)
     }
 

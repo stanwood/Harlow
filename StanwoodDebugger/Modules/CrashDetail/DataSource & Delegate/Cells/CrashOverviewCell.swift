@@ -1,5 +1,5 @@
 //
-//  NetworkResponseCell.swift
+//  SettingsData.swift
 //
 //  The MIT License (MIT)
 //
@@ -27,30 +27,24 @@
 import UIKit
 import StanwoodCore
 
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).uppercased() + lowercased().dropFirst()
-    }
-}
+class CrashOverviewCell: UITableViewCell, Fillable {
 
-class NetworkResponseCell: UITableViewCell, Fillable {
+    @IBOutlet private weak var indicatorView: UIView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var infoLabel: UILabel!
 
-    @IBOutlet private weak var responseLabel: UILabel!
-    @IBOutlet private weak var responseHeadersTextView: UITextView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectionStyle = .none
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.responseHeadersTextView.addInnerShadow(onSide: .all)
+        indicatorView.layer.cornerRadius = indicatorView.frame.width / 2
     }
 
     func fill(with type: Type?) {
-        guard let response = type as? HTTPResponseable else { return }
-        responseLabel.text = HTTPURLResponse.localizedString(forStatusCode: response.code).capitalizingFirstLetter()
-        responseHeadersTextView.text = response.responseHeaders?.prettyString
+        guard let item = type as? CrashItem else { return }
+
+        titleLabel.text = item.name
+        descriptionLabel.text = item.description
+        infoLabel.text = item.appInfo
     }
+    
 }
