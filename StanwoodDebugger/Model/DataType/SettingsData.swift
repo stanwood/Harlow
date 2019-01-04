@@ -109,28 +109,29 @@ class SettingsData: DataType {
             
             var isOn: Bool {
                 switch type {
-                case .device, .version, .resetAll, .removeData, .removeAnalytics, .removeLogs, .removeError, .removeNetworking, .removeCrashes, .storeCrashes: return false
+                case .device, .version, .resetAll, .removeData, .removeAnalytics, .removeLogs, .removeError, .removeNetworking, .removeCrashes: return false
                 case .storeLogs: return DebuggerSettings.shouldStoreLogsData
                 case .storeError: return DebuggerSettings.shouldStoreErrorData
                 case .storeNetworking: return DebuggerSettings.shouldStoreNetworkingData
                 case .storeAnalytics: return DebuggerSettings.shouldStoreAnalyticsData
                 case .bubblePulse: return DebuggerSettings.isDebuggerBubblePulseAnimationEnabled
                 case .debuggerIcons: return DebuggerSettings.isDebuggerItemIconsAnimationEnabled
+                case .storeCrashes: return DebuggerSettings.shouldStoreCrashesData
                 }
             }
             
             var isSeparatorVisible: Bool = true
             var isActionable: Bool {
                 switch type {
-                case .device, .version, .storeAnalytics, .bubblePulse, .debuggerIcons, .storeNetworking, .storeError, .storeLogs: return false
-                case .resetAll, .removeData, .removeAnalytics, .removeNetworking, .removeError, .removeLogs, .removeCrashes, .storeCrashes: return true
+                case .device, .version, .storeAnalytics, .bubblePulse, .debuggerIcons, .storeNetworking, .storeError, .storeLogs, .storeCrashes: return false
+                case .resetAll, .removeData, .removeAnalytics, .removeNetworking, .removeError, .removeLogs, .removeCrashes: return true
                 }
             }
     
             var hasSwitch: Bool {
                 switch type {
-                case .device, .version, .resetAll, .removeData, .removeAnalytics, .removeNetworking, .removeError, .removeLogs, .removeCrashes, .storeCrashes: return false
-                case .storeAnalytics, .storeNetworking, .storeError, .storeLogs, .bubblePulse, .debuggerIcons: return true
+                case .device, .version, .resetAll, .removeData, .removeAnalytics, .removeNetworking, .removeError, .removeLogs, .removeCrashes: return false
+                case .storeAnalytics, .storeNetworking, .storeError, .storeLogs, .bubblePulse, .debuggerIcons, .storeCrashes: return true
                 }
             }
             
@@ -153,7 +154,7 @@ class SettingsData: DataType {
                 case .removeNetworking: return "Delete Networking Data"
                 case .removeError: return "Delete Error Data"
                 case .removeLogs: return "Delete Logs Data"
-                case .removeCrashes: return "Delete Logs Data"
+                case .removeCrashes: return "Delete Crashes Data"
                 case .bubblePulse: return "Enable Bubble Pulse Animation"
                 case .debuggerIcons: return "Enable Bubble Emoji Animation"
                 }
