@@ -14,5 +14,7 @@
 	<string>YES</string>
 	<key>shouldStoreLogsData</key>
 	<string>YES</string>
+	<key>shouldStoreCrashesData</key>
+	<string>YES</string>
 </dict>
 </plist>

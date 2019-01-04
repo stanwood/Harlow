@@ -75,6 +75,16 @@ class DebuggerSettings {
         }
     }
     
+    static var shouldStoreCrashesData: Bool {
+        get {
+            return defaults.bool(forKey: #function)
+        }
+        
+        set {
+            defaults.set(newValue, forKey: #function)
+        }
+    }
+    
     static var shouldStoreLogsData: Bool {
         get {
             return defaults.bool(forKey: #function)

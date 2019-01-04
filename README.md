@@ -167,6 +167,8 @@ debugger.errorCodesExceptions = [4097] /// Add error code exceptions
 
 ![logs-3](Media/logs-3.png)
 
+### Crashes
+
 ## Licence
 
 StanwoodDebugger is under MIT licence. See the [LICENSE](https://github.com/stanwood/Stanwood_Debugger_iOS/blob/master/LICENSE.md) file for more info.
