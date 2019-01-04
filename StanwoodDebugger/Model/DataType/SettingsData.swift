@@ -141,8 +141,8 @@ class SettingsData: DataType {
                 let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
                 let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
                 switch type {
-                case .device: return "Device \(device)"
-                case .version: return "Version \(version)(\(build))"
+                case .device: return "Device: \(device)"
+                case .version: return "Version: \(version)(\(build))"
                 case .storeAnalytics: return "Save Analytics Information"
                 case .storeNetworking: return "Save Networking Information"
                 case .storeError: return "Save NSError Information"
