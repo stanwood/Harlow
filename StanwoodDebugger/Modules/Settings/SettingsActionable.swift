@@ -41,6 +41,30 @@ extension DebuggerActions: SettingsActionable {
             appData.analyticsItems.removeAll()
             appData.save()
             DebuggerSettings.shouldStoreAnalyticsData = value
+        case .storeLogs where value:
+            DebuggerSettings.shouldStoreLogsData = value
+        case .storeLogs where !value:
+            appData.logItems.removeAll()
+            appData.save()
+            DebuggerSettings.shouldStoreLogsData = value
+        case .storeNetworking where value:
+            DebuggerSettings.shouldStoreNetworkingData = value
+        case .storeNetworking where !value:
+            appData.networkingItems.removeAll()
+            appData.save()
+            DebuggerSettings.shouldStoreNetworkingData = value
+        case .storeCrashes where value:
+            DebuggerSettings.shouldStoreCrashesData = value
+        case .storeCrashes where !value:
+            appData.crashItems.removeAll()
+            appData.save()
+            DebuggerSettings.shouldStoreCrashesData = value
+        case .storeError where value:
+            DebuggerSettings.shouldStoreErrorData = value
+        case .storeError where !value:
+            appData.errorItems.removeAll()
+            appData.save()
+            DebuggerSettings.shouldStoreErrorData = value
         case .bubblePulse:
             DebuggerSettings.isDebuggerBubblePulseAnimationEnabled = value
         case .debuggerIcons:
@@ -76,6 +100,10 @@ extension DebuggerActions: SettingsActionable {
         case .removeNetworking:
             coordinator?.shouldReset(.settings) { [unowned self] in
                 self.appData.networkingItems.removeAll()
+            }
+        case .removeCrashes:
+            coordinator?.shouldReset(.crashes) { [unowned self] in
+                self.appData.crashItems.removeAll()
             }
         default: break
         }

@@ -63,8 +63,8 @@ class SettingsData: DataType {
             
             switch sectionType {
             case .information: settings = [Setting(type: .version), Setting(type: .device)]
-            case .data: settings = [Setting(type: .storeAnalytics), Setting(type: .storeLogs), Setting(type: .storeNetworking), Setting(type: .storeError)]
-            case .settings: settings = [Setting(type: .resetAll), Setting(type: .removeData), Setting(type: .removeAnalytics), Setting(type: .removeNetworking), Setting(type: .removeLogs), Setting(type: .removeError)]
+            case .data: settings = [Setting(type: .storeAnalytics), Setting(type: .storeLogs), Setting(type: .storeNetworking), Setting(type: .storeError), Setting(type: .storeCrashes)]
+            case .settings: settings = [Setting(type: .resetAll), Setting(type: .removeData), Setting(type: .removeAnalytics), Setting(type: .removeNetworking), Setting(type: .removeLogs), Setting(type: .removeError), Setting(type: .removeCrashes)]
             case .animation: settings = [Setting(type: .bubblePulse), Setting(type: .debuggerIcons)]
             }
         }
@@ -100,7 +100,7 @@ class SettingsData: DataType {
         }
         
         enum SettingType: String {
-            case device, version, storeAnalytics, storeError, storeNetworking, storeLogs, resetAll, removeData, removeAnalytics, bubblePulse, debuggerIcons, removeError, removeNetworking, removeLogs
+            case device, version, storeAnalytics, storeError, storeNetworking, storeLogs, resetAll, removeData, removeAnalytics, bubblePulse, debuggerIcons, removeError, removeNetworking, removeLogs, removeCrashes, storeCrashes
         }
         
         struct Setting: Type {
@@ -109,7 +109,7 @@ class SettingsData: DataType {
             
             var isOn: Bool {
                 switch type {
-                case .device, .version, .resetAll, .removeData, .removeAnalytics, .removeLogs, .removeError, .removeNetworking: return false
+                case .device, .version, .resetAll, .removeData, .removeAnalytics, .removeLogs, .removeError, .removeNetworking, .removeCrashes, .storeCrashes: return false
                 case .storeLogs: return DebuggerSettings.shouldStoreLogsData
                 case .storeError: return DebuggerSettings.shouldStoreErrorData
                 case .storeNetworking: return DebuggerSettings.shouldStoreNetworkingData
@@ -123,13 +123,13 @@ class SettingsData: DataType {
             var isActionable: Bool {
                 switch type {
                 case .device, .version, .storeAnalytics, .bubblePulse, .debuggerIcons, .storeNetworking, .storeError, .storeLogs: return false
-                case .resetAll, .removeData, .removeAnalytics, .removeNetworking, .removeError, .removeLogs: return true
+                case .resetAll, .removeData, .removeAnalytics, .removeNetworking, .removeError, .removeLogs, .removeCrashes, .storeCrashes: return true
                 }
             }
     
             var hasSwitch: Bool {
                 switch type {
-                case .device, .version, .resetAll, .removeData, .removeAnalytics, .removeNetworking, .removeError, .removeLogs: return false
+                case .device, .version, .resetAll, .removeData, .removeAnalytics, .removeNetworking, .removeError, .removeLogs, .removeCrashes, .storeCrashes: return false
                 case .storeAnalytics, .storeNetworking, .storeError, .storeLogs, .bubblePulse, .debuggerIcons: return true
                 }
             }
@@ -146,12 +146,14 @@ class SettingsData: DataType {
                 case .storeNetworking: return "Save Networking Information"
                 case .storeError: return "Save NSError Information"
                 case .storeLogs: return "Save Log Information"
+                case .storeCrashes: return "Save Crash Information"
                 case .resetAll: return "Restore to Default Settings"
                 case .removeData: return "Delete Cached Data"
                 case .removeAnalytics: return "Delete Analytics Data"
                 case .removeNetworking: return "Delete Networking Data"
                 case .removeError: return "Delete Error Data"
                 case .removeLogs: return "Delete Logs Data"
+                case .removeCrashes: return "Delete Logs Data"
                 case .bubblePulse: return "Enable Bubble Pulse Animation"
                 case .debuggerIcons: return "Enable Bubble Emoji Animation"
                 }
