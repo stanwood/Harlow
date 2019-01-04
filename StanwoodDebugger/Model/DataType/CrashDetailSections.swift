@@ -1,5 +1,5 @@
 //
-//  NetworkResponseCell.swift
+//  SettingsData.swift
 //
 //  The MIT License (MIT)
 //
@@ -27,30 +27,30 @@
 import UIKit
 import StanwoodCore
 
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).uppercased() + lowercased().dropFirst()
+class CrashOverviewSection: Stanwood.Elements<CrashItem>, Headerable {
+
+    var headerView: UIView {
+        let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())
+        view?.backgroundColor = UIColor.white.withAlphaComponent(0.9)
+        view?.set(title: "OVERVIEW")
+        return view ?? UIView()
+    }
+
+    override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
+        return CrashOverviewCell.self
     }
 }
 
-class NetworkResponseCell: UITableViewCell, Fillable {
+class CrashStackSection: Stanwood.Elements<StackItem>, Headerable {
 
-    @IBOutlet private weak var responseLabel: UILabel!
-    @IBOutlet private weak var responseHeadersTextView: UITextView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        selectionStyle = .none
+    var headerView: UIView {
+        let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())
+        view?.backgroundColor = UIColor.white.withAlphaComponent(0.9)
+        view?.set(title: "STACK")
+        return view ?? UIView()
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.responseHeadersTextView.addInnerShadow(onSide: .all)
-    }
-
-    func fill(with type: Type?) {
-        guard let response = type as? HTTPResponseable else { return }
-        responseLabel.text = HTTPURLResponse.localizedString(forStatusCode: response.code).capitalizingFirstLetter()
-        responseHeadersTextView.text = response.responseHeaders?.prettyString
+    override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
+        return CrashStackCell.self
     }
 }

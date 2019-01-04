@@ -31,7 +31,7 @@ import Foundation
 extension UIView {
     
     // different inner shadow styles
-    enum InnerShadowSide {
+    enum InnerShadowSide: String {
         case all, left, right, top, bottom, topAndLeft, topAndRight, bottomAndLeft, bottomAndRight, exceptLeft, exceptRight, exceptTop, exceptBottom
     }
     
@@ -39,7 +39,10 @@ extension UIView {
     @discardableResult
     func addInnerShadow(onSide: InnerShadowSide, shadowColor: UIColor = .black, shadowSize: CGFloat = 2, cornerRadius: CGFloat = 0.0, shadowOpacity: Float = 0.35) -> CAShapeLayer {
         // define and set a shaow layer
+
+        let layerName = "shadow\(onSide.rawValue)"
         let shadowLayer = CAShapeLayer()
+        shadowLayer.name = layerName
         shadowLayer.frame = bounds
         shadowLayer.shadowColor = shadowColor.cgColor
         shadowLayer.shadowOffset = CGSize(width: 0.0, height: 0.0)
@@ -92,7 +95,9 @@ extension UIView {
         
         // set shadow path as show layer's
         shadowLayer.path = shadowPath
-        
+
+        //remove any old shadow layer
+        layer.sublayers?.filter { $0.name == layerName }.forEach{ $0.removeFromSuperlayer() }
         // add shadow layer as a sublayer
         layer.addSublayer(shadowLayer)
         

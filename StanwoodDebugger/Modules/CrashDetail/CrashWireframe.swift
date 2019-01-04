@@ -1,5 +1,5 @@
 //
-//  NetworkResponseCell.swift
+//  ErrorWireframe.swift
 //
 //  The MIT License (MIT)
 //
@@ -24,33 +24,15 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
-import StanwoodCore
-
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).uppercased() + lowercased().dropFirst()
-    }
-}
-
-class NetworkResponseCell: UITableViewCell, Fillable {
-
-    @IBOutlet private weak var responseLabel: UILabel!
-    @IBOutlet private weak var responseHeadersTextView: UITextView!
+class CrashWireframe {
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        selectionStyle = .none
+    static func makeViewController() -> CrashViewController {
+    	return CrashViewController()
     }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.responseHeadersTextView.addInnerShadow(onSide: .all)
+    
+    static func prepare(_ viewController: CrashViewController, with  actions: CrashActionable, and parameters: CrashParameterable) {
+    	let presenter =  CrashPresenter(actionable: actions, parameterable: parameters, viewable: viewController)
+        viewController.presenter = presenter
     }
-
-    func fill(with type: Type?) {
-        guard let response = type as? HTTPResponseable else { return }
-        responseLabel.text = HTTPURLResponse.localizedString(forStatusCode: response.code).capitalizingFirstLetter()
-        responseHeadersTextView.text = response.responseHeaders?.prettyString
-    }
+    
 }

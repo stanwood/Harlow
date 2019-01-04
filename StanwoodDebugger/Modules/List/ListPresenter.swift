@@ -61,7 +61,7 @@ class ListPresenter: ItemPresentable {
     
     func viewDidLoad() {
         
-        viewable?.tableView.register(cells: AnalyticsCell.self, NetworkingCell.self, LogCell.self, ErrorCell.self, bundle: Bundle.debuggerBundle())
+        viewable?.tableView.register(cells: AnalyticsCell.self, NetworkingCell.self, LogCell.self, ErrorCell.self, CrashCell.self, bundle: Bundle.debuggerBundle())
         
         viewable?.tableView.estimatedRowHeight = 75
         viewable?.tableView.rowHeight = UITableView.automaticDimension
@@ -89,7 +89,11 @@ class ListPresenter: ItemPresentable {
             if let recordable = recordable {
                 present(item: recordable)
             }
-        default: break // @lukas
+        case .crashes(item: let recordable):
+            if let recordable = recordable {
+                present(item: recordable)
+            }
+        default: break
         }
     }
     

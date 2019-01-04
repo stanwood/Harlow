@@ -1,5 +1,5 @@
 //
-//  NetworkResponseCell.swift
+//  ErrorWireframe.swift
 //
 //  The MIT License (MIT)
 //
@@ -24,33 +24,36 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
 import StanwoodCore
 
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).uppercased() + lowercased().dropFirst()
-    }
+protocol CrashViewable: class {
+    func setupTableView(dataType: DataType?)
 }
 
-class NetworkResponseCell: UITableViewCell, Fillable {
+class CrashPresenter: Presentable {
 
-    @IBOutlet private weak var responseLabel: UILabel!
-    @IBOutlet private weak var responseHeadersTextView: UITextView!
+    // MARK:- Properties
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        selectionStyle = .none
-    }
+    unowned var viewable: CrashViewable
+    var actionable: CrashActionable
+    var parameterable: CrashParameterable
+    var dataSource: CrashDataSource!
+    var delegate: CrashDelegate!
+    
+    // MARK:- Typealias
+    
+    typealias Actionable = CrashActionable
+    typealias Parameterable = CrashParameterable
+    typealias Viewable = CrashViewable
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.responseHeadersTextView.addInnerShadow(onSide: .all)
+    required init(actionable: CrashActionable, parameterable: CrashParameterable, viewable: CrashViewable) {
+        self.viewable = viewable
+        self.actionable = actionable
+        self.parameterable = parameterable
     }
-
-    func fill(with type: Type?) {
-        guard let response = type as? HTTPResponseable else { return }
-        responseLabel.text = HTTPURLResponse.localizedString(forStatusCode: response.code).capitalizingFirstLetter()
-        responseHeadersTextView.text = response.responseHeaders?.prettyString
+    
+    func viewDidLoad() {
+        viewable.setupTableView(dataType: parameterable.sections)
     }
+    
 }

@@ -27,22 +27,19 @@
 import UIKit
 import StanwoodCore
 
-protocol NetworkCopyPasteDelegate: class {
-    func didCopy(text: String, sender: UIView)
-}
-
 class NetworkHeadersCell: UITableViewCell, Fillable, Delegateble {
 
     @IBOutlet private weak var textView: UITextView!
-    private weak var delegate: NetworkCopyPasteDelegate?
-    
+    private weak var delegate: CopyPasteDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        
-        main(deadline: .milliseconds(50)) { /// There is a weird black stripe added
-            self.textView.addInnerShadow(onSide: .all)
-        }
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.textView.addInnerShadow(onSide: .all)
     }
 
     func fill(with type: Type?) {
@@ -51,7 +48,7 @@ class NetworkHeadersCell: UITableViewCell, Fillable, Delegateble {
     }
     
     func set(delegate: AnyObject) {
-        self.delegate = delegate as? NetworkCopyPasteDelegate
+        self.delegate = delegate as? CopyPasteDelegate
     }
     
     @IBAction func actionCopy() {

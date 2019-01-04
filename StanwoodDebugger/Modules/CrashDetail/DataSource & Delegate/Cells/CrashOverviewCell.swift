@@ -1,5 +1,5 @@
 //
-//  NetworkResponseCell.swift
+//  SettingsData.swift
 //
 //  The MIT License (MIT)
 //
@@ -27,30 +27,41 @@
 import UIKit
 import StanwoodCore
 
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).uppercased() + lowercased().dropFirst()
-    }
-}
+class CrashOverviewCell: UITableViewCell, Fillable, Delegateble {
 
-class NetworkResponseCell: UITableViewCell, Fillable {
+    @IBOutlet private weak var indicatorView: UIView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var infoLabel: UILabel!
 
-    @IBOutlet private weak var responseLabel: UILabel!
-    @IBOutlet private weak var responseHeadersTextView: UITextView!
-    
+    private var item: CrashItem?
+
+    private weak var delegate: CopyPasteDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectionStyle = .none
+        indicatorView.layer.cornerRadius = indicatorView.frame.width / 2
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.responseHeadersTextView.addInnerShadow(onSide: .all)
+    func set(delegate: AnyObject) {
+        self.delegate = delegate as? CopyPasteDelegate
     }
 
     func fill(with type: Type?) {
-        guard let response = type as? HTTPResponseable else { return }
-        responseLabel.text = HTTPURLResponse.localizedString(forStatusCode: response.code).capitalizingFirstLetter()
-        responseHeadersTextView.text = response.responseHeaders?.prettyString
+        guard let item = type as? CrashItem else { return }
+        self.item = item
+        titleLabel.text = item.name
+        descriptionLabel.text = item.description
+        infoLabel.text = item.appInfo
     }
+    
+    @IBAction private func copyAction() {
+        guard let item = self.item else { return }
+        var copyText = "\(item.name)\n"
+            + "\(item.description)\n"
+            + "\(item.appInfo)\n"
+        item.stack.forEach { copyText += "\($0)\n" }
+        delegate?.didCopy(text: copyText, sender: self)
+    }
+
 }

@@ -36,6 +36,6 @@ class CrashItems: Stanwood.Elements<CrashItem> {
     }
     
     override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
-        return NetworkingCell.self
+        return CrashCell.self
     }
 }

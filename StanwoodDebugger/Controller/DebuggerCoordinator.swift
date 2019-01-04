@@ -83,14 +83,13 @@ class DebuggerCoordinator {
     
     // MARK: - Networking
     func present(_ item: Recordable) {
-        
         if let item = item as? NetworkItem {
             present(item)
         } else if let item = item as? ErrorItem {
             present(item)
+        } else if let item = item as? CrashItem {
+            present(item)
         }
-        
-        /// @lukasz
     }
     
     private func present(_ item: NetworkItem) {
@@ -113,7 +112,13 @@ class DebuggerCoordinator {
         DataDetailWireframe.prepare(viewController, with: actionable, and: parameters)
         currentViewController(base: window.rootViewController)?.navigationController?.pushViewController(viewController, animated: true)
     }
-    
+
+    private func present(_ item: CrashItem) {
+        let viewController = CrashWireframe.makeViewController()
+        let parameters = CrashParameters(appData: self.paramaterable.appData, item: item)
+        CrashWireframe.prepare(viewController, with: self.actionable, and: parameters)
+        currentViewController(base: window.rootViewController)?.navigationController?.pushViewController(viewController, animated: true)
+    }
     // MARK: - Settings
     
     enum ActionSheet: String {

@@ -106,7 +106,7 @@ class DebuggerData {
                 AddedItem(type: .networking(item: nil), count: self.networkingItems.numberOfItems),
                 AddedItem(type: .logs, count: self.logItems.numberOfItems),
                 AddedItem(type: .error(item: nil), count: self.errorItems.numberOfItems),
-                AddedItem(type: .crashes, count: self.crashItems.numberOfItems)
+                AddedItem(type: .crashes(item: nil), count: self.crashItems.numberOfItems)
             ]
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedItems)
         }
@@ -179,10 +179,9 @@ class DebuggerData {
         crashItems.append(item)
         crashItems.move(item, to: 0)
         
-        // @lukasz save
-        
-        let addedIems: [AddedItem] = [AddedItem(type: .crashes, count: crashItems.numberOfItems)]
-        
+        let addedIems: [AddedItem] = [AddedItem(type: .crashes(item: nil), count: crashItems.numberOfItems)]
+        try? Stanwood.Storage.store(crashItems, to: .documents, as: .json, withName: CrashItems.fileName)
+
         main {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendCrashItem, object: nil)
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
@@ -205,6 +204,9 @@ class DebuggerData {
         if DebuggerSettings.shouldStoreNetworkingData {
             try? Stanwood.Storage.store(networkingItems, to: .documents, as: .json, withName: NetworkItems.fileName)
         }
+
+        try? Stanwood.Storage.store(crashItems, to: .documents, as: .json, withName: CrashItems.fileName)
+
         refresh()
     }
 }

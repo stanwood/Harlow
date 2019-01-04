@@ -27,6 +27,100 @@
 import Foundation
 import StanwoodCore
 
-struct CrashItem: Typeable, Codable {
+struct StackItem: Typeable, Codable {
+    let text: String
+
+    var isAppStack: Bool {
+        if let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String {
+            return text.contains(appName)
+        }
+        return false
+    }
     
+}
+
+struct CrashItem: Typeable, Codable, Recordable {
+
+    enum CrashType: String, Codable {
+        case signal, exception
+    }
+
+    var name: String {
+        switch type {
+        case .exception:
+            return exception?.coding?.name.rawValue ?? ""
+        case .signal:
+            return name(for: signal)
+        }
+    }
+
+    var description: String {
+        switch type {
+        case .exception:
+            return exception?.coding?.description ?? ""
+        case .signal:
+            return "Signal \(name): \(signal ?? 0) was raised."
+        }
+    }
+
+    let date: Date
+    let signal: Int32?
+    let stack: [StackItem]
+    let exception: Stanwood.CodingBridge<NSException>?
+    let type: CrashType
+    let appInfo: String
+
+    init(exception: NSException, appInfo: String) {
+        self.stack = exception.callStackSymbols.map { StackItem(text: $0) }
+        self.exception = Stanwood.CodingBridge<NSException>(exception)
+        self.signal = nil
+        self.type = .exception
+        self.date = Date()
+        self.appInfo = appInfo
+    }
+
+    init(signal: Int32, stack: [String]?, appInfo: String) {
+        self.stack = (stack ?? []).map { StackItem(text: $0) }
+        self.exception = nil
+        self.signal = signal
+        self.type = .signal
+        self.date = Date()
+        self.appInfo = appInfo
+    }
+
+    var formattedDate: String {
+        let format = "HH:mm:ss"
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = format
+        return dateFormat.string(from: date)
+    }
+
+    static func == (lhs: CrashItem, rhs: CrashItem) -> Bool {
+        return lhs.exception?.coding == rhs.exception?.coding
+    }
+
+    private func name(for signal:Int32?) -> String {
+        guard let signal = signal else {
+            return "MISSING"
+        }
+
+        switch (signal) {
+        case SIGABRT:
+            return "SIGTRAP"
+        case SIGABRT:
+            return "SIGABRT"
+        case SIGILL:
+            return "SIGILL"
+        case SIGSEGV:
+            return "SIGSEGV"
+        case SIGFPE:
+            return "SIGFPE"
+        case SIGBUS:
+            return "SIGBUS"
+        case SIGPIPE:
+            return "SIGPIPE"
+        default:
+            return "OTHER"
+        }
+    }
 }

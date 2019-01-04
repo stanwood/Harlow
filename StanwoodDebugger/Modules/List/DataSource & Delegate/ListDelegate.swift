@@ -41,6 +41,9 @@ class ListDelegate: Stanwood.AbstractTableDelegate {
         } else if let cell = tableView.cellForRow(at: indexPath) as? ErrorCell,
             let item = cell.item {
             presenter?.present(item: item)
+        } else if let cell = tableView.cellForRow(at: indexPath) as? CrashCell,
+            let item = cell.item {
+            presenter?.present(item: item)
         }
     }
 }
