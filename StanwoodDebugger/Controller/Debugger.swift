@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import StanwoodCore
 
 protocol Debugging: class {
     var isEnabled: Bool { get set }
@@ -130,6 +131,11 @@ public class StanwoodDebugger: Debugging {
             window.rootViewController = debuggerViewController
             window.makeKeyAndVisible()
             window.delegate = self
+
+            if DebuggerCrash.didReceiveCrash {
+                DebuggerCrash.didReceiveCrash = false
+                NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: [AddedItem(type: .crashes(item: nil), count: 1)])
+            }
         case false:
             window.rootViewController = nil
             window.resignKey()
