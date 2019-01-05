@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071C1A4321E0E86500E05FB0 /* CrashSampleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071C1A4121E0E86500E05FB0 /* CrashSampleCell.swift */; };
+		071C1A4421E0E86500E05FB0 /* CrashSampleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 071C1A4221E0E86500E05FB0 /* CrashSampleCell.xib */; };
+		071C1A4721E0E9C600E05FB0 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071C1A4621E0E9C600E05FB0 /* Action.swift */; };
 		3B44CE0FC1D4E8A371BC6249 /* Pods_StanwoodDebugger_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D616574E63FCAB9304FB817F /* Pods_StanwoodDebugger_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -43,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		071C1A4121E0E86500E05FB0 /* CrashSampleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashSampleCell.swift; sourceTree = "<group>"; };
+		071C1A4221E0E86500E05FB0 /* CrashSampleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CrashSampleCell.xib; sourceTree = "<group>"; };
+		071C1A4621E0E9C600E05FB0 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		2F50920E66D3E4454EC1A82A /* StanwoodDebugger.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = StanwoodDebugger.podspec; path = ../StanwoodDebugger.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		336996636B23604025BAA6DF /* Pods-StanwoodDebugger_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodDebugger_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodDebugger_Tests/Pods-StanwoodDebugger_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4632D065D08652DB82DFC8F8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -101,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		071C1A4521E0E9BA00E05FB0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				071C1A4621E0E9C600E05FB0 /* Action.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +139,7 @@
 		607FACD21AFB9204008FA782 /* Example for StanwoodDebugger */ = {
 			isa = PBXGroup;
 			children = (
+				071C1A4521E0E9BA00E05FB0 /* Protocols */,
 				6C20952621D615150077B2AC /* Model */,
 				6C72B03321D1243600FD949A /* Modules */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -231,6 +246,8 @@
 				6C72B03921D1247B00FD949A /* NetworkingExampleCell.xib */,
 				6C72B04121D1289D00FD949A /* HeaderView.swift */,
 				6C72B03F21D1289800FD949A /* HeaderView.xib */,
+				071C1A4121E0E86500E05FB0 /* CrashSampleCell.swift */,
+				071C1A4221E0E86500E05FB0 /* CrashSampleCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -351,6 +368,7 @@
 				6C7F86E321DB54FA0051133E /* stanwood_debugger_networking.gif in Resources */,
 				6CC66A9121DCB95900310EB4 /* logs-3.png in Resources */,
 				6C72B03721D1246C00FD949A /* AnalyticsExampleCell.xib in Resources */,
+				071C1A4421E0E86500E05FB0 /* CrashSampleCell.xib in Resources */,
 				6CC66A8F21DCB95900310EB4 /* logs-1.png in Resources */,
 				6CC66A9021DCB95900310EB4 /* logs-2.png in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -438,6 +456,8 @@
 				6C72B02E21D1229E00FD949A /* ExampleDataSource.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				6C72B03021D123B300FD949A /* ExampleViewController.swift in Sources */,
+				071C1A4321E0E86500E05FB0 /* CrashSampleCell.swift in Sources */,
+				071C1A4721E0E9C600E05FB0 /* Action.swift in Sources */,
 				6C20952821D615970077B2AC /* SourceType.swift in Sources */,
 				6C72B03A21D1247B00FD949A /* NetworkingExampleCell.swift in Sources */,
 				6C20952521D615110077B2AC /* ModelItems.swift in Sources */,
