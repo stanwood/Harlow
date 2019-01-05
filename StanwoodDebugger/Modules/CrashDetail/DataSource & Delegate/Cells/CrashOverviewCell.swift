@@ -59,8 +59,8 @@ class CrashOverviewCell: UITableViewCell, Fillable, Delegateble {
         guard let item = self.item else { return }
         var copyText = "\(item.name)\n"
             + "\(item.description)\n"
-            + "\(item.appInfo)\n"
-        item.stack.forEach { copyText += "\($0)\n" }
+            + "\(item.appInfo)\n\n"
+        item.stack.forEach { copyText += "\($0.text)\n" }
         delegate?.didCopy(text: copyText, sender: self)
     }
 
