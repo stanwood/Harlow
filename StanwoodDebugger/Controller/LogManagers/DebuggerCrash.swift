@@ -29,6 +29,20 @@ import StanwoodCore
 
 class DebuggerCrash {
 
+    private static var defaults: UserDefaults {
+        return UserDefaults.standard
+    }
+
+    static var didReceiveCrash: Bool {
+        get {
+            return defaults.bool(forKey: #function)
+        }
+
+        set {
+            defaults.set(newValue, forKey: #function)
+        }
+    }
+
     static var isEnabled: Bool = true {
         didSet {
             switch isEnabled {
@@ -77,6 +91,7 @@ class DebuggerCrash {
     }
 
     private static func didCatch(crash: CrashItem) {
+        self.didReceiveCrash = true
         NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidReceiveCrashItem, object: crash)
     }
 

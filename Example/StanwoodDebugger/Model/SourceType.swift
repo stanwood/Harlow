@@ -10,7 +10,7 @@ import Foundation
 import StanwoodCore
 
 
-struct AnalyticExample: Typeable, Codable {
+struct AnalyticExample: ActionItemable, Typeable, Codable {
     
     let eventName: String
     let screenName: String?
@@ -73,7 +73,7 @@ struct AnalyticExample: Typeable, Codable {
         return payload
     }
     
-    func post() {
+    func postAction() {
         let notificationCentre = NotificationCenter.default
         let notification = Notification.init(name: Notification.Name(rawValue: "io.stanwood.debugger.didReceiveAnalyticsItem"), object: nil, userInfo: payload())
         notificationCentre.post(notification)
@@ -114,5 +114,50 @@ class NetworkingExample: Stanwood.Elements<NetworkExample>, Headerable {
     
     override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
         return NetworkingExampleCell.self
+    }
+}
+
+class CrashExample: NSObject, Type, Codable, ActionItemable {
+    enum CrashType: Int, Codable {
+        case crash, signal
+
+        var displayName: String {
+            switch self {
+            case .crash:
+                return "Crash"
+            case .signal:
+                return "Signal"
+            }
+        }
+    }
+    let type: CrashType
+
+    init(type: CrashType) {
+        self.type = type
+    }
+
+    func postAction() {
+        switch type {
+        case .crash:
+            self.perform(Selector(("missingSelector")), with: nil, afterDelay: 0.0)
+        case .signal:
+            (self.type as! UIView)
+        }
+    }
+}
+
+class CrashesExample: Stanwood.Elements<CrashExample>, Headerable {
+
+    var title: String = ""
+
+    var headerView: UIView {
+        let view = HeaderView.loadFromNib()
+        view?.backgroundColor = UIColor.white.withAlphaComponent(0.9)
+        view?.set(title: title)
+        return view ?? UIView()
+    }
+
+    override func cellType(forItemAt indexPath: IndexPath) -> Fillable.Type? {
+        return CrashSampleCell.self
     }
 }

@@ -9,11 +9,10 @@
 import UIKit
 import StanwoodCore
 
-class AnalyticsExampleCell: UITableViewCell, Fillable {
-
+class AnalyticsExampleCell: UITableViewCell, Fillable, ActionItemCellable {
     @IBOutlet private weak var analyticsLabel: UILabel!
     
-    var item: AnalyticExample?
+    var item: ActionItemable?
     
     func fill(with type: Type?) {
         guard let item = type as? AnalyticExample else { return }

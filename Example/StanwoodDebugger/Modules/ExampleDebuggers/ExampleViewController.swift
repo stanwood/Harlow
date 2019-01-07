@@ -19,7 +19,7 @@ class ExampleViewController: UIViewController {
     var sections: Stanwood.Sections!
     
     enum ExampleType: Int {
-        case http, analytics, error, logs, uiTesting
+        case http, analytics, crashes, error, logs, uiTesting
     }
     
     var exampleType: ExampleType!
@@ -62,10 +62,16 @@ class ExampleViewController: UIViewController {
             analyticsScreenExamples.title = "Screen Tracking"
             
             sections = Stanwood.Sections(items: [analyticsScreenExamples, analyticsContentExamples])
+        case .crashes:
+
+            let crahesContentExamples = CrashesExample(items: ModelItems.crashesContentItems)
+            crahesContentExamples.title = "Sample crashes"
+
+            sections = Stanwood.Sections(items: [crahesContentExamples])
         default: break
         }
         
-        tableView.register(cellTypes: AnalyticsExampleCell.self, NetworkingExampleCell.self)
+        tableView.register(cellTypes: AnalyticsExampleCell.self, NetworkingExampleCell.self, CrashSampleCell.self)
         
         let nib = UINib(nibName: "HeaderView", bundle: nil)
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: "HeaderView")

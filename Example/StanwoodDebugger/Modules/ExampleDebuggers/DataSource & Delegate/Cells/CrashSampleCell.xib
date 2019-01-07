@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" id="LeA-fS-cra" customClass="CrashSampleCell" customModule="StanwoodDebugger_Example" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LeA-fS-cra" id="P7D-RT-uBT">
+                <rect key="frame" x="0.0" y="0.0" width="272" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feQ-Tu-aPL">
+                        <rect key="frame" x="20" y="13.5" width="232" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="feQ-Tu-aPL" secondAttribute="trailing" constant="12" id="jHF-FF-7el"/>
+                    <constraint firstItem="feQ-Tu-aPL" firstAttribute="centerY" secondItem="P7D-RT-uBT" secondAttribute="centerY" id="nbh-pN-aCY"/>
+                    <constraint firstItem="feQ-Tu-aPL" firstAttribute="leading" secondItem="P7D-RT-uBT" secondAttribute="leading" constant="20" id="nbr-vl-oQh"/>
+                    <constraint firstItem="feQ-Tu-aPL" firstAttribute="centerY" secondItem="P7D-RT-uBT" secondAttribute="centerY" id="pc8-ym-NXX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.78000000000000003" colorSpace="calibratedRGB"/>
+            <viewLayoutGuide key="safeArea" id="zET-H0-HEM"/>
+            <connections>
+                <outlet property="titleLabel" destination="feQ-Tu-aPL" id="fPX-YM-HLJ"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

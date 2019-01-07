@@ -63,16 +63,15 @@ class ExampleDelegate: Stanwood.AbstractTableDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        if let cell = tableView.cellForRow(at: indexPath) as? NetworkingExampleCell, let item = cell.item {
+        if let cell = tableView.cellForRow(at: indexPath) as? ActionItemCellable, let item = cell.item {
+            item.postAction()
+        } else if let cell = tableView.cellForRow(at: indexPath) as? NetworkingExampleCell, let item = cell.item {
             if item.method == .post {
                 networkingManager.makePostRequest(with: item)
             } else {
                 networkingManager.makeRequest(with: item)
             }
             
-        } else if let cell = tableView.cellForRow(at: indexPath) as? AnalyticsExampleCell, let item = cell.item {
-            item.post()
         }
     }
 }

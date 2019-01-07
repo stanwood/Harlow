@@ -48,4 +48,9 @@ class ModelItems {
     static let analyticsScreenItems: [AnalyticExample] = [
         AnalyticExample(eventName: "", screenName: "home_view", itemId: nil, category: nil, contentType: nil)
     ]
+
+    static let crashesContentItems: [CrashExample] = [
+        CrashExample(type: .crash),
+        CrashExample(type: .signal)
+    ]
 }
