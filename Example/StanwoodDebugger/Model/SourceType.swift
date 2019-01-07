@@ -124,7 +124,7 @@ class CrashExample: NSObject, Type, Codable, ActionItemable {
         var displayName: String {
             switch self {
             case .crash:
-                return "Crash"
+                return "NSException"
             case .signal:
                 return "Signal"
             }

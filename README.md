@@ -99,6 +99,7 @@ public func payload() -> [String:String] {
     return payload
 }
 ```
+
 Post it to:
 
 ```swift
@@ -108,7 +109,6 @@ func post(_ payload: [String:String]) {
     notificationCentre.post(notification)
 }
 ```
-
 
 ##### Option 2.
 
@@ -168,6 +168,8 @@ debugger.errorCodesExceptions = [4097] /// Add error code exceptions
 ![logs-3](Media/logs-3.png)
 
 ### Crashes
+
+`StanwoodDebugger` will log `Signal` and `NSException` by default.
 
 ## Licence
 

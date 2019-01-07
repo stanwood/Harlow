@@ -64,6 +64,7 @@ class DebuggerCrash {
         signal(SIGPIPE, DebuggerCrash.didCatchSignal)
         signal(SIGTRAP, DebuggerCrash.didCatchSignal)
         signal(SIGSYS, DebuggerCrash.didCatchSignal)
+        signal(EXC_BAD_ACCESS, DebuggerCrash.didCatchSignal)
     }
 
     private class func unregister() {
@@ -106,5 +107,4 @@ class DebuggerCrash {
             + "Device: \(deviceModel)\n"
             + "OS Version: \(systemName) \(systemVersion)"
     }
-
 }
