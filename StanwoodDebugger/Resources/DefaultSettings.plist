@@ -10,7 +10,7 @@
 	<true/>
 	<key>isDebuggerBubblePulseAnimationEnabled</key>
 	<string>YES</string>
-	<key>shouldStoreNetowrkingData</key>
+	<key>shouldStoreNetworkingData</key>
 	<string>YES</string>
 	<key>shouldStoreLogsData</key>
 	<string>YES</string>

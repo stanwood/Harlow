@@ -20,13 +20,17 @@ class LogCell: UITableViewCell, Fillable {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.textView.addInnerShadow(onSide: .left)
-        self.textView.addInnerShadow(onSide: .right)
+        main(deadline: .milliseconds(50)) {
+            self.textView.addInnerShadow(onSide: .left, shadowColor: .white)
+            self.textView.addInnerShadow(onSide: .right, shadowColor: .white)
+        }
     }
 
     func fill(with type: Type?) {
         guard let item = type as? LogItem else { return }
         textView.text = item.text
+        
+        layoutSubviews()
     }
     
 

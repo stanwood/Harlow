@@ -35,10 +35,10 @@ class ErrorUserInfoCell: UITableViewCell, Fillable, Delegateble {
 
     @IBOutlet weak var userInfoTextView: UITextView!
     private weak var delegate: ErrorUserInfoCellDelegate?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        main(deadline: .milliseconds(50)) { /// There is a weird black stripe added
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        main(deadline: .milliseconds(50)) {
             self.userInfoTextView.addInnerShadow(onSide: .all)
         }
     }
@@ -46,6 +46,8 @@ class ErrorUserInfoCell: UITableViewCell, Fillable, Delegateble {
     func fill(with type: Type?) {
         guard let item = type as? ErrorItem else { return }
         userInfoTextView.text = item.error.coding?.userInfo.prettyString
+        
+        layoutSubviews()
     }
     
     func set(delegate: AnyObject) {
