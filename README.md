@@ -6,8 +6,11 @@
 
 Debugging and testing iOS applications can be quite a long task due to the nature of Software Development. _StanwoodDebugger_ tool provides reach information on Analytics, Errors, Logging, Networking, and UITesting to simplify this process.
 
-
-<img src="Media/stanwood_debugger.gif" alt="Module" width="300">
+<div class="row post-image-bg">
+<video width="99%" height="540" autoplay loop muted >
+<source src="Media/stanwood_debugger.mov" type="video/mp4" >
+</video>
+</div>
 
 
 ## Table of contents

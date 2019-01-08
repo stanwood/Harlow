@@ -48,6 +48,6 @@ struct ErrorItem: Typeable, Codable, Recordable {
     }
     
     static func == (lhs: ErrorItem, rhs: ErrorItem) -> Bool {
-        return lhs.code == rhs.code
+        return lhs.code == rhs.code && lhs.domain == rhs.domain
     }
 }

@@ -45,9 +45,8 @@ class NetworkResponseCell: UITableViewCell, Fillable {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        main(deadline: .milliseconds(50)) {
-            self.responseHeadersTextView.addInnerShadow(onSide: .all)
-        }
+        contentView.layoutSubviews()
+        self.responseHeadersTextView.addInnerShadow(onSide: .all)
     }
 
     func fill(with type: Type?) {

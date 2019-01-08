@@ -200,6 +200,7 @@ class DebuggerData {
     }
     
     func store(type: DebuggerIconLabel.DebuggerIcons) {
+
         switch type {
         case .analytics:
             if DebuggerSettings.shouldStoreAnalyticsData {
