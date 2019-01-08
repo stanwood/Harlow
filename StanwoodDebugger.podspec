@@ -25,8 +25,7 @@ Pod::Spec.new do |s|
     'StanwoodDebugger/Modules/**/*',
     'StanwoodDebugger/Model/**/*',
     'StanwoodDebugger/Protocols/**/*',
-    'StanwoodDebugger/Extensions/**/*',
-    'StanwoodDebugger/Services/**/*'
+    'StanwoodDebugger/Extensions/**/*'
   ]
   
   s.resource_bundles = {
@@ -34,8 +33,7 @@ Pod::Spec.new do |s|
       'StanwoodDebugger/Assets/*',
       'StanwoodDebugger/Resources/*',
       'StanwoodDebugger/Views/**/*.xib',
-      'StanwoodDebugger/Modules/**/*.xib',
-      'StanwoodDebugger/Services/**/*.xib'
+      'StanwoodDebugger/Modules/**/*.xib'
       ]
   }
 

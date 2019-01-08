@@ -60,7 +60,12 @@ class CrashViewController: UIViewController {
 }
 
 extension CrashViewController: CrashViewable {
-
+    
+    var navigationBarTitle: String? {
+        get { return navigationItem.title }
+        set { navigationItem.title = newValue }
+    }
+    
     func setupTableView(dataType: DataType?) {
 
         tableView.register(cells: CrashOverviewCell.self, CrashStackCell.self, bundle: Bundle.debuggerBundle())

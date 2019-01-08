@@ -40,8 +40,6 @@ class DebuggerData {
     var crashItems: CrashItems
     var errorItems: ErrorItems
     
-    private let operations: GroupOperation
-    
     private lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -84,8 +82,6 @@ class DebuggerData {
         } else {
             crashItems = CrashItems(items: [])
         }
-        
-        operations = GroupOperation(name: nil)
         
         NotificationCenter.default.addObservers(self, observers:
             Stanwood.Observer(selector: #selector(didReceiveAnalyticsItem(_:)), name: .DebuggerDidReceiveAnalyticsItem),
