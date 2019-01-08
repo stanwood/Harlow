@@ -27,8 +27,8 @@ Pod::Spec.new do |s|
     'StanwoodDebugger/Protocols/**/*',
     'StanwoodDebugger/Extensions/**/*',
     'StanwoodDebugger/Services/**/*'
-
   ]
+  
   s.resource_bundles = {
       'StanwoodDebugger' => [
       'StanwoodDebugger/Assets/*',

@@ -169,7 +169,7 @@ debugger.errorCodesExceptions = [4097] /// Add error code exceptions
 
 ### Crashes
 
-`StanwoodDebugger` will log `Signal` and `NSException` by default.
+`StanwoodDebugger` will log `Signal` and `NSException` crashes by default.
 
 ## Licence
 
