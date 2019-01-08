@@ -29,13 +29,17 @@ import StanwoodCore
 protocol CrashParameterable {
     var item: CrashItem { get }
     var sections: Stanwood.Sections { get set }
+    var crashTitle: String? { get }
 }
 
 class CrashParameters: DebuggerParamaters, CrashParameterable {
 
     let item: CrashItem
     var sections: Stanwood.Sections
-
+    var crashTitle: String? {
+        return item.name
+    }
+    
     init(appData: DebuggerData, item: CrashItem) {
         self.item = item
 

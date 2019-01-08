@@ -76,6 +76,7 @@ class ListViewController: UIViewController, ListViewable {
     
     @objc func refresh() {
         tableView.reloadData()
+        presenter.refreshEmptyView()
     }
     
     @objc func dismissDebuggerView() {

@@ -65,7 +65,7 @@ class ExampleViewController: UIViewController {
         case .crashes:
 
             let crahesContentExamples = CrashesExample(items: ModelItems.crashesContentItems)
-            crahesContentExamples.title = "Sample crashes"
+            crahesContentExamples.title = "Crashes"
 
             sections = Stanwood.Sections(items: [crahesContentExamples])
         default: break

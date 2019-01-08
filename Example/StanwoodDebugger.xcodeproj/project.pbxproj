@@ -27,7 +27,6 @@
 		6C72B03E21D1267100FD949A /* ExampleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C72B03D21D1267100FD949A /* ExampleDelegate.swift */; };
 		6C72B04021D1289800FD949A /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C72B03F21D1289800FD949A /* HeaderView.xib */; };
 		6C72B04221D1289D00FD949A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C72B04121D1289D00FD949A /* HeaderView.swift */; };
-		6C7F86DF21DB54290051133E /* stanwood_debugger.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6C7F86DE21DB54290051133E /* stanwood_debugger.gif */; };
 		6C7F86E321DB54FA0051133E /* stanwood_debugger_networking.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6C7F86E221DB54FA0051133E /* stanwood_debugger_networking.gif */; };
 		6CC66A8F21DCB95900310EB4 /* logs-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC66A8C21DCB95800310EB4 /* logs-1.png */; };
 		6CC66A9021DCB95900310EB4 /* logs-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC66A8D21DCB95900310EB4 /* logs-2.png */; };
@@ -76,7 +75,6 @@
 		6C72B03D21D1267100FD949A /* ExampleDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleDelegate.swift; sourceTree = "<group>"; };
 		6C72B03F21D1289800FD949A /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		6C72B04121D1289D00FD949A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		6C7F86DE21DB54290051133E /* stanwood_debugger.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = stanwood_debugger.gif; path = ../Media/stanwood_debugger.gif; sourceTree = "<group>"; };
 		6C7F86E221DB54FA0051133E /* stanwood_debugger_networking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = stanwood_debugger_networking.gif; path = ../Media/stanwood_debugger_networking.gif; sourceTree = "<group>"; };
 		6C7F86E421DC9EDF0051133E /* StanwoodDebugger_Example-Bridging-Header-DEBUG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StanwoodDebugger_Example-Bridging-Header-DEBUG.h"; sourceTree = "<group>"; };
 		6CC66A8C21DCB95800310EB4 /* logs-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logs-1.png"; path = "../Media/logs-1.png"; sourceTree = "<group>"; };
@@ -256,7 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				6C7F86E221DB54FA0051133E /* stanwood_debugger_networking.gif */,
-				6C7F86DE21DB54290051133E /* stanwood_debugger.gif */,
 				6CC66A8C21DCB95800310EB4 /* logs-1.png */,
 				6CC66A8D21DCB95900310EB4 /* logs-2.png */,
 				6CC66A8E21DCB95900310EB4 /* logs-3.png */,
@@ -372,7 +369,6 @@
 				6CC66A8F21DCB95900310EB4 /* logs-1.png in Resources */,
 				6CC66A9021DCB95900310EB4 /* logs-2.png in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				6C7F86DF21DB54290051133E /* stanwood_debugger.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -94,9 +94,11 @@ class DebuggerData {
     }
     
     func removeAll() {
-        /// Remove all stored items
         analyticsItems.removeAll()
         networkingItems.removeAll()
+        logItems.removeAll()
+        errorItems.removeAll()
+        crashItems.removeAll()
     }
     
     func refresh(withDelay delay: DispatchTimeInterval = .milliseconds(500)) {
@@ -127,8 +129,10 @@ class DebuggerData {
         
         let addedIems: [AddedItem] = [AddedItem(type: .analytics, count: analyticsItems.numberOfItems)]
         
-        NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
+        main {
+            NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
+        }
     }
     
     @objc func didReceiveErrorItem(_ notification: Notification) {
@@ -166,7 +170,7 @@ class DebuggerData {
         logItems.move(item, to: 0)
         
         let addedIems: [AddedItem] = [AddedItem(type: .logs, count: logItems.numberOfItems)]
-        
+    
         main {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendLogItem, object: nil)
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
@@ -180,8 +184,8 @@ class DebuggerData {
         crashItems.move(item, to: 0)
         
         let addedIems: [AddedItem] = [AddedItem(type: .crashes(item: nil), count: crashItems.numberOfItems)]
-        try? Stanwood.Storage.store(crashItems, to: .documents, as: .json, withName: CrashItems.fileName)
-
+        store(type: .crashes)
+        
         main {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendCrashItem, object: nil)
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
@@ -189,24 +193,36 @@ class DebuggerData {
     }
     
     @objc func save() {
-        if DebuggerSettings.shouldStoreLogsData {
-            try? Stanwood.Storage.store(logItems, to: .documents, as: .json, withName: LogItems.fileName)
-        }
         
-        if DebuggerSettings.shouldStoreAnalyticsData {
-            try? Stanwood.Storage.store(analyticsItems, to: .documents, as: .json, withName: AnalyticItems.fileName)
+        for type in DebuggerIconLabel.DebuggerIcons.allCases {
+            self.store(type: type)
         }
-        
-        if DebuggerSettings.shouldStoreErrorData {
-            try? Stanwood.Storage.store(errorItems, to: .documents, as: .json, withName: ErrorItems.fileName)
-        }
-        
-        if DebuggerSettings.shouldStoreNetworkingData {
-            try? Stanwood.Storage.store(networkingItems, to: .documents, as: .json, withName: NetworkItems.fileName)
-        }
+    }
+    
+    func store(type: DebuggerIconLabel.DebuggerIcons) {
 
-        try? Stanwood.Storage.store(crashItems, to: .documents, as: .json, withName: CrashItems.fileName)
+        switch type {
+        case .analytics:
+            if DebuggerSettings.shouldStoreAnalyticsData {
+                try? Stanwood.Storage.store(analyticsItems, to: .documents, as: .json, withName: AnalyticItems.fileName)
+            }
+        case .logs:
+            if DebuggerSettings.shouldStoreLogsData {
+                try? Stanwood.Storage.store(logItems, to: .documents, as: .json, withName: LogItems.fileName)
+            }
+        case .crashes:
+            if DebuggerSettings.shouldStoreCrashesData {
+                try? Stanwood.Storage.store(crashItems, to: .documents, as: .json, withName: CrashItems.fileName)
+            }
 
-        refresh()
+        case .error:
+            if DebuggerSettings.shouldStoreErrorData {
+                try? Stanwood.Storage.store(errorItems, to: .documents, as: .json, withName: ErrorItems.fileName)
+            }
+        case .networking:
+            if DebuggerSettings.shouldStoreNetworkingData {
+                try? Stanwood.Storage.store(networkingItems, to: .documents, as: .json, withName: NetworkItems.fileName)
+            }
+        }
     }
 }

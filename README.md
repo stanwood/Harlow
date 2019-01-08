@@ -6,9 +6,7 @@
 
 Debugging and testing iOS applications can be quite a long task due to the nature of Software Development. _StanwoodDebugger_ tool provides reach information on Analytics, Errors, Logging, Networking, and UITesting to simplify this process.
 
-
-<img src="Media/stanwood_debugger.gif" alt="Module" width="300">
-
+[![Demo StanwoodDebugger](https://j.gifs.com/Q0ZWr9.gif)]()
 
 ## Table of contents
 
@@ -99,6 +97,7 @@ public func payload() -> [String:String] {
     return payload
 }
 ```
+
 Post it to:
 
 ```swift
@@ -108,7 +107,6 @@ func post(_ payload: [String:String]) {
     notificationCentre.post(notification)
 }
 ```
-
 
 ##### Option 2.
 
@@ -168,6 +166,8 @@ debugger.errorCodesExceptions = [4097] /// Add error code exceptions
 ![logs-3](Media/logs-3.png)
 
 ### Crashes
+
+`StanwoodDebugger` will log `Signal` and `NSException` crashes by default.
 
 ## Licence
 

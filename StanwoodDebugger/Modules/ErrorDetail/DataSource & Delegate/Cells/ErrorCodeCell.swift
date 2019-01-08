@@ -38,6 +38,6 @@ class ErrorCodeCell: UITableViewCell, Fillable {
 
     func fill(with type: Type?) {
         guard let item = type as? ErrorItem else { return }
-        codeLabel.text = String(item.error.coding?.code ?? 0)
+        codeLabel.text = String(item.code)
     }
 }

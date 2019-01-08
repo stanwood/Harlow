@@ -44,7 +44,7 @@ class ErrorCell: UITableViewCell, Fillable {
         guard let item = type as? ErrorItem else { return }
         self.item = item
         
-        domainLabel.text = item.error.coding?.domain
-        descriptionLabel.text = item.error.coding?.localizedDescription
+        domainLabel.text = item.domain
+        descriptionLabel.text = item.localizedDescription
     }
 }

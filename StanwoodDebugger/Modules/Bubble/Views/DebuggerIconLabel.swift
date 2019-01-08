@@ -32,7 +32,7 @@ typealias DoneCompletion = (Bool) -> Void
 
 class DebuggerIconLabel: UILabel {
     
-    enum DebuggerIcons: String {
+    enum DebuggerIcons: String, CaseIterable {
         case analytics = "👻"
         case error = "⚠️"
         case logs = "✏️"

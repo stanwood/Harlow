@@ -28,23 +28,26 @@ import UIKit
 import StanwoodCore
 
 class NetworkHeadersCell: UITableViewCell, Fillable, Delegateble {
-
+    
     @IBOutlet private weak var textView: UITextView!
     private weak var delegate: CopyPasteDelegate?
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
+        contentView.layoutSubviews()
         self.textView.addInnerShadow(onSide: .all)
     }
-
+    
     func fill(with type: Type?) {
         guard let headerable = type as? ResponseHeaderable else { return }
         textView.text = headerable.headers?.prettyString
+        
+        layoutSubviews()
     }
     
     func set(delegate: AnyObject) {

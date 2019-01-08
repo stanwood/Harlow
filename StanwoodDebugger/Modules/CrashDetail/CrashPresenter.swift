@@ -27,6 +27,7 @@
 import StanwoodCore
 
 protocol CrashViewable: class {
+    var navigationBarTitle: String? { get set }
     func setupTableView(dataType: DataType?)
 }
 
@@ -54,6 +55,7 @@ class CrashPresenter: Presentable {
     
     func viewDidLoad() {
         viewable.setupTableView(dataType: parameterable.sections)
+        viewable.navigationBarTitle = parameterable.crashTitle
     }
     
 }

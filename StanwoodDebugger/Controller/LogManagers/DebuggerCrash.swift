@@ -27,6 +27,8 @@
 import Foundation
 import StanwoodCore
 
+typealias CrashCompletion = () -> Void
+
 class DebuggerCrash {
 
     private static var defaults: UserDefaults {
@@ -42,7 +44,9 @@ class DebuggerCrash {
             defaults.set(newValue, forKey: #function)
         }
     }
-
+    
+    static var crashCompletion: CrashCompletion?
+    
     static var isEnabled: Bool = true {
         didSet {
             switch isEnabled {
@@ -91,6 +95,7 @@ class DebuggerCrash {
     }
 
     private static func didCatch(crash: CrashItem) {
+        DebuggerCrash.crashCompletion?()
         self.didReceiveCrash = true
         NotificationCenter.default.post(name: NSNotification.Name.DeuggerDidReceiveCrashItem, object: crash)
     }
@@ -106,5 +111,4 @@ class DebuggerCrash {
             + "Device: \(deviceModel)\n"
             + "OS Version: \(systemName) \(systemVersion)"
     }
-
 }

@@ -45,6 +45,7 @@ class NetworkResponseCell: UITableViewCell, Fillable {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        contentView.layoutSubviews()
         self.responseHeadersTextView.addInnerShadow(onSide: .all)
     }
 
@@ -52,5 +53,7 @@ class NetworkResponseCell: UITableViewCell, Fillable {
         guard let response = type as? HTTPResponseable else { return }
         responseLabel.text = HTTPURLResponse.localizedString(forStatusCode: response.code).capitalizingFirstLetter()
         responseHeadersTextView.text = response.responseHeaders?.prettyString
+        
+        layoutSubviews()
     }
 }
