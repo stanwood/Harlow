@@ -31,7 +31,6 @@
 		6CC66A8F21DCB95900310EB4 /* logs-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC66A8C21DCB95800310EB4 /* logs-1.png */; };
 		6CC66A9021DCB95900310EB4 /* logs-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC66A8D21DCB95900310EB4 /* logs-2.png */; };
 		6CC66A9121DCB95900310EB4 /* logs-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC66A8E21DCB95900310EB4 /* logs-3.png */; };
-		6CDCA8FF21E4D90D00D35ADD /* stanwood_debugger.mov in Resources */ = {isa = PBXBuildFile; fileRef = 6CDCA8FE21E4D90D00D35ADD /* stanwood_debugger.mov */; };
 		89F8D9C6B4EE3DED32ADE410 /* Pods_StanwoodDebugger_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA92C32315114F699B1686E /* Pods_StanwoodDebugger_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,7 +80,6 @@
 		6CC66A8C21DCB95800310EB4 /* logs-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logs-1.png"; path = "../Media/logs-1.png"; sourceTree = "<group>"; };
 		6CC66A8D21DCB95900310EB4 /* logs-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logs-2.png"; path = "../Media/logs-2.png"; sourceTree = "<group>"; };
 		6CC66A8E21DCB95900310EB4 /* logs-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logs-3.png"; path = "../Media/logs-3.png"; sourceTree = "<group>"; };
-		6CDCA8FE21E4D90D00D35ADD /* stanwood_debugger.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = stanwood_debugger.mov; path = ../Media/stanwood_debugger.mov; sourceTree = "<group>"; };
 		88753D26D2805B63EAE6D1B1 /* Pods-StanwoodDebugger_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodDebugger_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodDebugger_Tests/Pods-StanwoodDebugger_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		BFA92C32315114F699B1686E /* Pods_StanwoodDebugger_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StanwoodDebugger_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D616574E63FCAB9304FB817F /* Pods_StanwoodDebugger_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StanwoodDebugger_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -255,7 +253,6 @@
 		6C7F86DD21DB54140051133E /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				6CDCA8FE21E4D90D00D35ADD /* stanwood_debugger.mov */,
 				6C7F86E221DB54FA0051133E /* stanwood_debugger_networking.gif */,
 				6CC66A8C21DCB95800310EB4 /* logs-1.png */,
 				6CC66A8D21DCB95900310EB4 /* logs-2.png */,
@@ -361,7 +358,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CDCA8FF21E4D90D00D35ADD /* stanwood_debugger.mov in Resources */,
 				6C72B03B21D1247B00FD949A /* NetworkingExampleCell.xib in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
