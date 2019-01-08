@@ -45,7 +45,7 @@ class ErrorUserInfoCell: UITableViewCell, Fillable, Delegateble {
     
     func fill(with type: Type?) {
         guard let item = type as? ErrorItem else { return }
-        userInfoTextView.text = item.error.coding?.userInfo.prettyString
+        userInfoTextView.text = item.userInfo.prettyString
         
         layoutSubviews()
     }

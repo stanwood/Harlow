@@ -99,7 +99,7 @@ struct CrashItem: Typeable, Codable, Recordable {
         return lhs.exception?.coding == rhs.exception?.coding
     }
 
-    private func name(for signal:Int32?) -> String {
+    private func name(for signal: Int32?) -> String {
         guard let signal = signal else {
             return "MISSING"
         }
@@ -120,7 +120,7 @@ struct CrashItem: Typeable, Codable, Recordable {
         case SIGPIPE:
             return "SIGPIPE"
         default:
-            return "OTHER"
+            return "OTHER: signal(\(signal))"
         }
     }
 }

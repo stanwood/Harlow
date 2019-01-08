@@ -41,7 +41,7 @@ class ErrorParameters: DebuggerParamaters, ErrorParameterable {
         var sections: [Stanwood.Sections.Section] = []
         
         sections.append(ErrorOverviewSection(items: [item]))
-        if item.error.coding?.userInfo.count ?? 0 > 0 {
+        if item.userInfo.count > 0 {
             sections.append(ErrorUserInfoSection(items: [item]))
         }
         sections.append(ErrorCodeSection(items: [item]))

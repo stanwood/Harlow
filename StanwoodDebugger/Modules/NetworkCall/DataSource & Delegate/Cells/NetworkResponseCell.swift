@@ -45,12 +45,16 @@ class NetworkResponseCell: UITableViewCell, Fillable {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.responseHeadersTextView.addInnerShadow(onSide: .all)
+        main(deadline: .milliseconds(50)) {
+            self.responseHeadersTextView.addInnerShadow(onSide: .all)
+        }
     }
 
     func fill(with type: Type?) {
         guard let response = type as? HTTPResponseable else { return }
         responseLabel.text = HTTPURLResponse.localizedString(forStatusCode: response.code).capitalizingFirstLetter()
         responseHeadersTextView.text = response.responseHeaders?.prettyString
+        
+        layoutSubviews()
     }
 }

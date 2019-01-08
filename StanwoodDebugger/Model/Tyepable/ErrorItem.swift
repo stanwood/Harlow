@@ -29,13 +29,25 @@ import StanwoodCore
 
 struct ErrorItem: Typeable, Codable, Recordable {
 
-    let error: Stanwood.CodingBridge<NSError>
+    let domain: String
+    let code: Int
+    let localizedDescription: String
+    var userInfo: [String: String]
     
     init(error: NSError) {
-        self.error = Stanwood.CodingBridge<NSError>(error)
+        domain = error.domain
+        code = error.code
+        localizedDescription = error.localizedDescription
+        userInfo = [:]
+        
+        error.userInfo.forEach({
+            if let value = $0.value as? String {
+                userInfo[$0.key] = value
+            }
+        })
     }
     
     static func == (lhs: ErrorItem, rhs: ErrorItem) -> Bool {
-        return lhs.error.coding == rhs.error.coding
+        return lhs.code == rhs.code
     }
 }

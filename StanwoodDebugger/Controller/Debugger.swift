@@ -85,9 +85,7 @@ public class StanwoodDebugger: Debugging {
         
         coordinator = DebuggerCoordinator(window: window, actionable: actions, paramaterable: paramaters)
         actions.coordinator = coordinator
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        
+
         configureStyle()
     }
     
@@ -110,10 +108,6 @@ public class StanwoodDebugger: Debugging {
      */
     public func regsiter(custom configuration: URLSessionConfiguration) {
         DebuggerNetworking.register(custom: configuration)
-    }
-    
-    @objc func applicationDidEnterBackground() {
-        appData.save()
     }
     
     private func configureStyle() {

@@ -98,9 +98,11 @@ class DebuggerData {
     }
     
     func removeAll() {
-        /// Remove all stored items
         analyticsItems.removeAll()
         networkingItems.removeAll()
+        logItems.removeAll()
+        errorItems.removeAll()
+        crashItems.removeAll()
     }
     
     func refresh(withDelay delay: DispatchTimeInterval = .milliseconds(500)) {
@@ -131,13 +133,6 @@ class DebuggerData {
         
         let addedIems: [AddedItem] = [AddedItem(type: .analytics, count: analyticsItems.numberOfItems)]
         
-        let operation = BlockOperation { [unowned self] in
-            self.store(type: .analytics)
-        }
-        
-        operations.add(operation: operation)
-        operations.execute()
-        
         main {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
@@ -151,13 +146,6 @@ class DebuggerData {
         errorItems.move(item, to: 0)
         
         let addedIems: [AddedItem] = [AddedItem(type: .error(item: nil), count: errorItems.numberOfItems)]
-        
-        let operation = BlockOperation { [unowned self] in
-            self.store(type: .error)
-        }
-        
-        operations.add(operation: operation)
-        operations.execute()
         
         main {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendErrorItem, object: nil)
@@ -173,13 +161,6 @@ class DebuggerData {
         
         let addedIems: [AddedItem] = [AddedItem(type: .networking(item: nil), count: networkingItems.numberOfItems)]
         
-        let operation = BlockOperation { [unowned self] in
-            self.store(type: .networking)
-        }
-        
-        operations.add(operation: operation)
-        operations.execute()
-        
         main {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
@@ -193,14 +174,7 @@ class DebuggerData {
         logItems.move(item, to: 0)
         
         let addedIems: [AddedItem] = [AddedItem(type: .logs, count: logItems.numberOfItems)]
-        
-        let operation = BlockOperation { [unowned self] in
-            self.store(type: .logs)
-        }
-        
-        operations.add(operation: operation)
-        operations.execute()
-        
+    
         main {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendLogItem, object: nil)
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
@@ -214,13 +188,6 @@ class DebuggerData {
         crashItems.move(item, to: 0)
         
         let addedIems: [AddedItem] = [AddedItem(type: .crashes(item: nil), count: crashItems.numberOfItems)]
-    
-        let operation = BlockOperation { [unowned self] in
-            self.store(type: .crashes)
-        }
-        
-        operations.add(operation: operation)
-        operations.execute()
         
         main {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendCrashItem, object: nil)
@@ -239,8 +206,6 @@ class DebuggerData {
             operations.add(operation: operation)
             operations.execute()
         }
-        
-        refresh()
     }
     
     private func store(type: DebuggerIconLabel.DebuggerIcons) {
