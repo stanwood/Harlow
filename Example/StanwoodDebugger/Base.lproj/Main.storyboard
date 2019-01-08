@@ -192,7 +192,7 @@
             </objects>
             <point key="canvasLocation" x="532" y="1255"/>
         </scene>
-        <!--Sample crashes-->
+        <!--Crashes Example-->
         <scene sceneID="Ogq-mz-QOq">
             <objects>
                 <viewController id="RJ5-8S-0RQ" customClass="ExampleViewController" customModule="StanwoodDebugger_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -236,7 +236,7 @@
                             <constraint firstItem="CVr-OG-Nkc" firstAttribute="top" secondItem="u2H-vs-Ij2" secondAttribute="top" id="xgJ-LK-Cvx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Sample crashes" largeTitleDisplayMode="always" id="B0I-W8-ksa"/>
+                    <navigationItem key="navigationItem" title="Crashes Example" largeTitleDisplayMode="always" id="B0I-W8-ksa"/>
                     <connections>
                         <outlet property="tableView" destination="CVr-OG-Nkc" id="lxA-T1-Wob"/>
                     </connections>
