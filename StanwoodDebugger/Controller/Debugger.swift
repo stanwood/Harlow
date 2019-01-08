@@ -87,6 +87,7 @@ public class StanwoodDebugger: Debugging {
         actions.coordinator = coordinator
 
         configureStyle()
+        observeCrashes()
     }
     
     /**
@@ -112,6 +113,13 @@ public class StanwoodDebugger: Debugging {
     
     private func configureStyle() {
         window.tintColor = Style.tintColor
+    }
+    
+    private func observeCrashes() {
+        DebuggerCrash.crashCompletion = {
+            [unowned self] in
+            self.appData.save()
+        }
     }
     
     private func configureDebuggerView() {

@@ -188,6 +188,7 @@ class DebuggerData {
         crashItems.move(item, to: 0)
         
         let addedIems: [AddedItem] = [AddedItem(type: .crashes(item: nil), count: crashItems.numberOfItems)]
+        store(type: .crashes)
         
         main {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendCrashItem, object: nil)
