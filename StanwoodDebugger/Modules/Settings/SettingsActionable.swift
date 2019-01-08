@@ -78,32 +78,42 @@ extension DebuggerActions: SettingsActionable {
         case .removeAnalytics:
             coordinator?.shouldReset(.analytics) { [unowned self] in
                 self.appData.analyticsItems.removeAll()
-                self.appData.save()
+                self.appData.store(type: .analytics)
+                self.appData.refresh()
             }
         case .removeData:
             coordinator?.shouldReset(.allData) { [unowned self] in
                 self.appData.removeAll()
                 self.appData.save()
+                self.appData.refresh()
             }
         case .resetAll:
             coordinator?.shouldReset(.settings) {
                 DebuggerSettings.restoreDefaults()
             }
         case .removeError:
-            coordinator?.shouldReset(.settings) { [unowned self] in
+            coordinator?.shouldReset(.errors) { [unowned self] in
                 self.appData.errorItems.removeAll()
+                self.appData.store(type: .error)
+                self.appData.refresh()
             }
         case .removeLogs:
-            coordinator?.shouldReset(.settings) { [unowned self] in
+            coordinator?.shouldReset(.logs) { [unowned self] in
                 self.appData.logItems.removeAll()
+                self.appData.store(type: .logs)
+                self.appData.refresh()
             }
         case .removeNetworking:
-            coordinator?.shouldReset(.settings) { [unowned self] in
+            coordinator?.shouldReset(.networking) { [unowned self] in
                 self.appData.networkingItems.removeAll()
+                self.appData.store(type: .networking)
+                self.appData.refresh()
             }
         case .removeCrashes:
             coordinator?.shouldReset(.crashes) { [unowned self] in
                 self.appData.crashItems.removeAll()
+                self.appData.store(type: .crashes)
+                self.appData.refresh()
             }
         default: break
         }

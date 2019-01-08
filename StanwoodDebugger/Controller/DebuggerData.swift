@@ -199,17 +199,11 @@ class DebuggerData {
     @objc func save() {
         
         for type in DebuggerIconLabel.DebuggerIcons.allCases {
-            
-            let operation = BlockOperation { [unowned self] in
-                self.store(type: type)
-            }
-            
-            operations.add(operation: operation)
-            operations.execute()
+            self.store(type: type)
         }
     }
     
-    private func store(type: DebuggerIconLabel.DebuggerIcons) {
+    func store(type: DebuggerIconLabel.DebuggerIcons) {
         switch type {
         case .analytics:
             if DebuggerSettings.shouldStoreAnalyticsData {
