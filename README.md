@@ -159,8 +159,6 @@ debugger.errorCodesExceptions = [4097] /// Add error code exceptions
 
 >Note: Make sure to add any other imported libraries from your main header file
 
-![logs-2](Media/logs-2.png)
-
 3. Set `Bridging-Header-DEBUG.h` in the relevant configurations in the build settings.
 
 ![logs-3](Media/logs-3.png)
