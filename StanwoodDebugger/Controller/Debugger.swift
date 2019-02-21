@@ -35,6 +35,11 @@ protocol Debugging: class {
 /// StanwoodDebugger acts as the framework controller, delegating logs
 public class StanwoodDebugger: Debugging {
     
+    /// Supported Services
+    public enum Service: CaseIterable {
+        case logs, networking, errors, crashes, analytics
+    }
+    
     struct Style {
         private init () {}
         static var tintColor: UIColor = UIColor(r: 210, g: 78, b: 79)
@@ -54,13 +59,21 @@ public class StanwoodDebugger: Debugging {
         }
     }
     
+    /// Enabled Services: `default = .all`
+    /// Note> You must call `isEnabled  = true` to enable the debugger
+    public var enabledServices: [Service] = Service.allCases {
+        didSet {
+            self.isEnabled = isEnabled ? true : false
+        }
+    }
+    
     /// Enable Debugger View
     public var isEnabled: Bool = false {
         didSet {
-            DebuggerLogs.isEnabled = isEnabled
-            DebuggerNetworking.isEnabled = isEnabled
-            DebuggerNSError.isEnabled = isEnabled
-            DebuggerCrash.isEnabled = isEnabled
+            DebuggerLogs.isEnabled = enabledServices.contains(.logs) ? isEnabled : false
+            DebuggerNetworking.isEnabled = enabledServices.contains(.networking) ? isEnabled : false
+            DebuggerNSError.isEnabled = enabledServices.contains(.errors) ? isEnabled : false
+            DebuggerCrash.isEnabled = enabledServices.contains(.crashes) ? isEnabled : false
             configureDebuggerView()
         }
     }

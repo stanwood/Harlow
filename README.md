@@ -55,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ### Other options
 
 ```swift
+debugger.enabledServices: [Service] = [.logs, .errors] /// The services you would like to enable. Default is se to `allCases`
 debugger.tintColor = .red /// Change the tint color
 debugger.errorCodesExceptions = [4097] /// Add error code exceptions
 debugger.isEnabled = true
