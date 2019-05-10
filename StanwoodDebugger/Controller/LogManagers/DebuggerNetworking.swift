@@ -37,7 +37,7 @@ extension NSMutableURLRequest {
     
     @objc func httpHack(body: NSData?) {
         defer {
-//            httpHack(body: body)
+            httpHack(body: body)
         }
         
         let key = "\(hashValue)"
