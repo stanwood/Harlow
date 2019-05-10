@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'StanwoodDebugger'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'Stanwood debugger provide live view debugging'
   s.description      = <<-DESC
     Live debugger for:
