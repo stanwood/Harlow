@@ -78,6 +78,14 @@ public class StanwoodDebugger: Debugging {
         }
     }
     
+    /// Enable Shake to enable / disable
+    public var isShakeEnabled: Bool = true {
+        didSet {
+            if isShakeEnabled { UIApplication.swizzleEvents() }
+            else { UIApplication.unswizzleEvents() }
+        }
+    }
+    
     var isDisplayed: Bool = false
     
     fileprivate var debuggerViewController: DebuggerViewController?
@@ -179,15 +187,24 @@ extension StanwoodDebugger: DebuggerWindowDelegate {
 }
 
 extension UIApplication {
-    static var shakeEnded = true // Events are called twice, only respond to the ended state
+    private static var shakeEnded = true // Events are called twice, only respond to the ended state
     
-    class func swizzleEvents() {
+    fileprivate class func swizzleEvents() {
         guard
             let eventCall = class_getInstanceMethod(self, #selector(sendEvent(_:))),
             let eventSwizzleCall = class_getInstanceMethod(self, #selector(eventHack(_:)))
         else { return }
         
         method_exchangeImplementations(eventCall, eventSwizzleCall)
+    }
+    
+    fileprivate class func unswizzleEvents() {
+        guard
+            let eventCall = class_getInstanceMethod(self, #selector(sendEvent(_:))),
+            let eventSwizzleCall = class_getInstanceMethod(self, #selector(eventHack(_:)))
+            else { return }
+        
+        method_exchangeImplementations(eventSwizzleCall, eventCall)
     }
     
     @objc private func eventHack(_ event: UIEvent) {
