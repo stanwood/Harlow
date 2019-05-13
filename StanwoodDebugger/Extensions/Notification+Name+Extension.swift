@@ -75,4 +75,7 @@ extension Notification.Name {
     static var DebuggerDidAddDebuggerItem: Notification.Name {
         return NSNotification.Name(rawValue: "io.stanwood.debugger.didAddDebuggerItem")
     }
+    
+    // MARK: - Shake
+    static let Shake = Notification.Name("io.stanwood.debugger.shake")
 }

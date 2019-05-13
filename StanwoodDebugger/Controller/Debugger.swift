@@ -103,6 +103,12 @@ public class StanwoodDebugger: Debugging {
         
         configureStyle()
         observeCrashes()
+        
+        // Shake to enable
+        UIApplication.swizzleEvents()
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.Shake, object: nil, queue: .main) { [weak self] (_) in
+            self?.isEnabled.toggle()
+        }
     }
     
     /**
@@ -169,5 +175,29 @@ extension StanwoodDebugger: DebuggerWindowDelegate {
     
     func isPoint(inside point: CGPoint) -> Bool {
         return debuggerViewController?.shouldHandle(point) ?? false
+    }
+}
+
+extension UIApplication {
+    static var shakeEnded = true // Events are called twice, only respond to the ended state
+    
+    class func swizzleEvents() {
+        guard
+            let eventCall = class_getInstanceMethod(self, #selector(sendEvent(_:))),
+            let eventSwizzleCall = class_getInstanceMethod(self, #selector(eventHack(_:)))
+        else { return }
+        
+        method_exchangeImplementations(eventCall, eventSwizzleCall)
+    }
+    
+    @objc private func eventHack(_ event: UIEvent) {
+        defer { eventHack(event) }
+        
+        if event.type == .motion && event.subtype == .motionShake {
+            UIApplication.shakeEnded.toggle()
+            if UIApplication.shakeEnded {
+                NotificationCenter.default.post(name: Notification.Name.Shake, object: nil)
+            }
+        }
     }
 }
