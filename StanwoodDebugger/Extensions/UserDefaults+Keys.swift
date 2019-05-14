@@ -8,10 +8,6 @@
 import Foundation
 
 extension UserDefaults {
-    struct Keys {
-        static let isHintShown = "isHintShown"
-    }
-    
     static var isHintShown: Bool {
         get { return standard.bool(forKey: #function) }
         set { standard.set(newValue, forKey: #function) }
