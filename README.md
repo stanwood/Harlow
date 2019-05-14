@@ -59,6 +59,7 @@ debugger.enabledServices: [Service] = [.logs, .errors] /// The services you woul
 debugger.tintColor = .red /// Change the tint color
 debugger.errorCodesExceptions = [4097] /// Add error code exceptions
 debugger.isEnabled = true
+debugger.isShakeEnabled = true // Defaults to `true`. When this is `true`, shaking the device will enable/disable the Debugger
 ```
 
 ## Adding logs

@@ -1,6 +1,6 @@
 PODS:
   - StanwoodCore (1.4.1)
-  - StanwoodDebugger (1.0.1):
+  - StanwoodDebugger (1.0.2):
     - StanwoodCore (~> 1.4.1)
     - Toast-Swift (~> 4.0.1)
   - Toast-Swift (4.0.1)
@@ -20,9 +20,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   StanwoodCore: 9f58032a58b16e9b5ebbb2906b7888d87c098642
-  StanwoodDebugger: c73f2adf4cff7c1c148242209ca7fdd088137255
+  StanwoodDebugger: 89fdd39feeee00a65d1862d1cae48b7749e80b2c
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
 PODFILE CHECKSUM: d9da7538a1f96fc96c8e13d2f601e09605b903af
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

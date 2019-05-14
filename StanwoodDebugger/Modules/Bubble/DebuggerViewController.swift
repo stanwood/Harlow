@@ -25,6 +25,8 @@
 //
 
 import Foundation
+import StanwoodCore
+import Toast_Swift
 
 protocol DebuggerViewable: class {
     var debuggerScallableView: DebuggerScallableView? { get set }
@@ -42,6 +44,26 @@ class DebuggerViewController: UIViewController, DebuggerViewable {
         debuggerButton = DebuggerUIButton(debugger: presenter.debugger)
         debuggerButton.addTarget(self, action: #selector(didTapDebuggerButton(target:)), for: .touchUpInside)
         view.addSubview(debuggerButton)
+
+        showShakeHint()
+    }
+    
+    private func showShakeHint() {
+        if !UserDefaults.isHintShown {
+            UserDefaults.isHintShown = true
+            
+            // Shake
+            debuggerButton.shake(toward: .right, amount: 0.18, duration: 1.5, delay: 0.5)
+            
+            // Toast
+            main {
+                var style = ToastStyle(); style.backgroundColor = StanwoodDebugger.Style.tintColor
+                let toast = try? self.view.toastViewForMessage("Shake to disable the Debugger", title: nil, image: nil, style: style)
+                let screen = UIApplication.shared.keyWindow?.rootViewController?.topMostViewController()
+                guard let toastDone = toast else { return }
+                screen?.view.showToast(toastDone)
+            }
+        }
     }
 
     @objc func didTapDebuggerButton(target: DebuggerUIButton) {
