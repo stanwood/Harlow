@@ -9,9 +9,11 @@ import Foundation
 
 extension UserDefaults {
     struct Keys {
-        static let hintShown = "showHint"
+        static let isHintShown = "isHintShown"
     }
     
-    static var hintShown: Bool { return UserDefaults.standard.bool(forKey: UserDefaults.Keys.hintShown) }
-    static func set(hintShown: Bool) { UserDefaults.standard.set(hintShown, forKey: UserDefaults.Keys.hintShown) }
+    static var isHintShown: Bool {
+        get { return standard.bool(forKey: #function) }
+        set { standard.set(newValue, forKey: #function) }
+    }
 }

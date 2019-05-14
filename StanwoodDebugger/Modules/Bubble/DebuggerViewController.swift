@@ -49,14 +49,19 @@ class DebuggerViewController: UIViewController, DebuggerViewable {
     }
     
     private func showShakeHint() {
-        if !UserDefaults.hintShown {
-            UserDefaults.set(hintShown: true)
+        if !UserDefaults.isHintShown {
+            UserDefaults.isHintShown = true
+            
+            // Shake
             debuggerButton.shake(toward: .right, amount: 0.18, duration: 1.5, delay: 0.5)
-            DispatchQueue.main.asyncAfter(deadline: .now()+0.8) {
+            
+            // Toast
+            main {
                 var style = ToastStyle(); style.backgroundColor = StanwoodDebugger.Style.tintColor
-                let toast = try! self.view.toastViewForMessage("Shake to disable the Debugger", title: nil, image: nil, style: style)
+                let toast = try? self.view.toastViewForMessage("Shake to disable the Debugger", title: nil, image: nil, style: style)
                 let screen = UIApplication.shared.keyWindow?.rootViewController?.topMostViewController()
-                screen?.view.showToast(toast)
+                guard let toastDone = toast else { return }
+                screen?.view.showToast(toastDone)
             }
         }
     }
