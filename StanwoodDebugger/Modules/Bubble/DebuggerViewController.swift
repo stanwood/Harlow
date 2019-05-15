@@ -82,7 +82,6 @@ class DebuggerViewController: UIViewController, DebuggerViewable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.debugger.isDisplayed = false
         debuggerButton.preparePulse()
         debuggerButton.isPulseEnabled = true
     }

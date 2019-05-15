@@ -80,6 +80,7 @@ class ListViewController: UIViewController, ListViewable {
     }
     
     @objc func dismissDebuggerView() {
+        NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidDismissFullscreen, object: nil)
         tabBarController?.dismiss(animated: true, completion: nil)
     }
     
