@@ -58,7 +58,7 @@ class DebuggerViewController: UIViewController, DebuggerViewable {
             // Toast
             main {
                 var style = ToastStyle(); style.backgroundColor = StanwoodDebugger.Style.tintColor
-                let toast = try? self.view.toastViewForMessage("Shake to disable the Debugger", title: nil, image: nil, style: style)
+                let toast = try? self.view.toastViewForMessage("Shake me to dismiss the Debugger", title: nil, image: nil, style: style)
                 let screen = UIApplication.shared.keyWindow?.rootViewController?.topMostViewController()
                 guard let toastDone = toast else { return }
                 screen?.view.showToast(toastDone)
