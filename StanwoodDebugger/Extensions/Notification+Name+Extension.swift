@@ -78,4 +78,7 @@ extension Notification.Name {
     
     // MARK: - Shake
     static let Shake = Notification.Name("io.stanwood.debugger.shake")
+    
+    // MARK: - Dismissal
+    static let DebuggerDidDismissFullscreen = Notification.Name("io.stanwood.debugger.didDismissFullscreen")
 }

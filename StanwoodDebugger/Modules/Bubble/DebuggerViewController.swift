@@ -58,7 +58,7 @@ class DebuggerViewController: UIViewController, DebuggerViewable {
             // Toast
             main {
                 var style = ToastStyle(); style.backgroundColor = StanwoodDebugger.Style.tintColor
-                let toast = try? self.view.toastViewForMessage("Shake to disable the Debugger", title: nil, image: nil, style: style)
+                let toast = try? self.view.toastViewForMessage("Shake me to dismiss the Debugger", title: nil, image: nil, style: style)
                 let screen = UIApplication.shared.keyWindow?.rootViewController?.topMostViewController()
                 guard let toastDone = toast else { return }
                 screen?.view.showToast(toastDone)
@@ -82,7 +82,6 @@ class DebuggerViewController: UIViewController, DebuggerViewable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.debugger.isDisplayed = false
         debuggerButton.preparePulse()
         debuggerButton.isPulseEnabled = true
     }

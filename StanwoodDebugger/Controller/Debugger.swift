@@ -108,6 +108,7 @@ public class StanwoodDebugger: Debugging {
         actions.coordinator = coordinator
         
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didDismissFullscreen), name: NSNotification.Name.DebuggerDidDismissFullscreen, object: nil)
         
         configureStyle()
         observeCrashes()
@@ -162,20 +163,25 @@ public class StanwoodDebugger: Debugging {
             if debuggerViewController == nil {
                 debuggerViewController = DebuggerWireframe.makeViewController()
                 DebuggerWireframe.prepare(debuggerViewController, with: actions, paramaters, self)
+                window.rootViewController = debuggerViewController
+                window.makeKeyAndVisible()
+                window.delegate = self
             }
-            window.rootViewController = debuggerViewController
-            window.makeKeyAndVisible()
-            window.delegate = self
-
+            window.isHidden = false
+            window.isUserInteractionEnabled = true
+            
             if DebuggerCrash.didReceiveCrash {
                 DebuggerCrash.didReceiveCrash = false
                 NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: [AddedItem(type: .crashes(item: nil), count: 1)])
             }
         case false:
-            window.rootViewController = nil
-            window.resignKey()
-            window.removeFromSuperview()
+            window.isHidden = true
+            window.isUserInteractionEnabled = false
        }
+    }
+    
+    @objc private func didDismissFullscreen() {
+        isDisplayed = false
     }
 }
 
