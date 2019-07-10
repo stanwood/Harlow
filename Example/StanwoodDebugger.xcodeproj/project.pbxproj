@@ -193,8 +193,8 @@
 			children = (
 				65CC5593567DABE1E1A8E37C /* Pods-StanwoodDebugger_Example.debug.xcconfig */,
 				46FEBF1507183EAB8371E0F9 /* Pods-StanwoodDebugger_Example.release.xcconfig */,
-				88753D26D2805B63EAE6D1B1 /* Pods-StanwoodDebugger_Tests.debug.xcconfig */,
 				336996636B23604025BAA6DF /* Pods-StanwoodDebugger_Tests.release.xcconfig */,
+				88753D26D2805B63EAE6D1B1 /* Pods-StanwoodDebugger_Tests.debug.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -339,6 +339,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
