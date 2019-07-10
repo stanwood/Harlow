@@ -8,6 +8,7 @@ language: objective-c
 branches:
   only:
     - testRun
+    - develop
 before_install:
   - gem install cocoapods
   - pod install --project-directory=Example
