@@ -3,7 +3,7 @@
 
 [![Swift Version](https://img.shields.io/badge/Swift-4.2.x-orange.svg)]()
 [![iOS 10+](https://img.shields.io/badge/iOS-10+-EB7943.svg)]() [![Maintainability](https://api.codeclimate.com/v1/badges/1a2096a936f5ea9548ac/maintainability)](https://codeclimate.com/github/stanwood/Stanwood_Debugger_iOS/maintainability)
-
+[![Build Status](https://travis-ci.org/stanwood/Stanwood_Debugger_iOS.svg?branch=master)](https://travis-ci.org/stanwood/Stanwood_Debugger_iOS)
 Debugging and testing iOS applications can be quite a long task due to the nature of Software Development. _StanwoodDebugger_ tool provides reach information on Analytics, Errors, Logging, Networking, and UITesting to simplify this process.
 
 [![Demo StanwoodDebugger](https://j.gifs.com/Q0ZWr9.gif)]()
