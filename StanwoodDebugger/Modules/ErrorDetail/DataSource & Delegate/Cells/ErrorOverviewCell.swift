@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class ErrorOverviewCell: ErrorCell {
 

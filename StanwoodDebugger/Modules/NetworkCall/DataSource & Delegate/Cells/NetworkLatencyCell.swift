@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class NetworkLatencyCell: UITableViewCell, Fillable {
 
@@ -36,8 +36,8 @@ class NetworkLatencyCell: UITableViewCell, Fillable {
         selectionStyle = .none
     }
 
-    func fill(with type: Type?) {
-        guard let latency = type as? LatencyRecorder else { return }
+    func fill(with model: Model?) {
+        guard let latency = model as? LatencyRecorder else { return }
        
         
         let duration = latency.duration ?? 0

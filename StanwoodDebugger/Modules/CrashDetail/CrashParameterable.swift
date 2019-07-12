@@ -24,18 +24,18 @@
 //  THE SOFTWARE.
 //
 
-import StanwoodCore
+import SourceModel
 
 protocol CrashParameterable {
     var item: CrashItem { get }
-    var sections: Stanwood.Sections { get set }
+    var sections: Sections { get set }
     var crashTitle: String? { get }
 }
 
 class CrashParameters: DebuggerParamaters, CrashParameterable {
 
     let item: CrashItem
-    var sections: Stanwood.Sections
+    var sections: Sections
     var crashTitle: String? {
         return item.name
     }
@@ -43,10 +43,10 @@ class CrashParameters: DebuggerParamaters, CrashParameterable {
     init(appData: DebuggerData, item: CrashItem) {
         self.item = item
 
-        var sections: [Stanwood.Sections.Section] = []
+        var sections: [Sections.Section] = []
         sections.append(CrashOverviewSection(items: [item]))
         sections.append(CrashStackSection(items: item.stack))
-        self.sections = Stanwood.Sections(items: sections)
+        self.sections = Sections(items: sections)
 
         super.init(appData: appData)
     }

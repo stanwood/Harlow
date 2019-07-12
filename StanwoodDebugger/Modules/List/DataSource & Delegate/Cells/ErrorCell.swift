@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class ErrorCell: UITableViewCell, Fillable {
 
@@ -40,8 +40,8 @@ class ErrorCell: UITableViewCell, Fillable {
         indicatorView.layer.cornerRadius = indicatorView.frame.width / 2
     }
     
-    func fill(with type: Type?) {
-        guard let item = type as? ErrorItem else { return }
+    func fill(with model: Model?) {
+        guard let item = model as? ErrorItem else { return }
         self.item = item
         
         domainLabel.text = item.domain

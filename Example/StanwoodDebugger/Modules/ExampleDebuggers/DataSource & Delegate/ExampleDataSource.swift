@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-class ExampleDataSource: Stanwood.AbstractTableDataSource {
+class ExampleDataSource: TableDataSource {
     
 }

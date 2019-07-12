@@ -390,12 +390,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-StanwoodDebugger_Example/Pods-StanwoodDebugger_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SourceModel/SourceModel.framework",
 				"${BUILT_PRODUCTS_DIR}/StanwoodCore/StanwoodCore.framework",
 				"${BUILT_PRODUCTS_DIR}/StanwoodDebugger/StanwoodDebugger.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SourceModel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StanwoodCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StanwoodDebugger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",

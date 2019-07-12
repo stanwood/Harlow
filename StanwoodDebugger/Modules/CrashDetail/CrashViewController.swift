@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class CrashViewController: UIViewController {
 
@@ -66,7 +66,7 @@ extension CrashViewController: CrashViewable {
         set { navigationItem.title = newValue }
     }
     
-    func setupTableView(dataType: DataType?) {
+    func setupTableView(modelCollection: ModelCollection?) {
 
         tableView.register(cells: CrashOverviewCell.self, CrashStackCell.self, bundle: Bundle.debuggerBundle())
 
@@ -76,8 +76,8 @@ extension CrashViewController: CrashViewable {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
 
-        delegate = CrashDelegate(dataType: dataType)
-        dataSource = CrashDataSource(dataType: dataType, delegate: self)
+        delegate = CrashDelegate(modelCollection: modelCollection)
+        dataSource = CrashDataSource(modelCollection: modelCollection, delegate: self)
 
         tableView.delegate = delegate
         tableView.dataSource = dataSource

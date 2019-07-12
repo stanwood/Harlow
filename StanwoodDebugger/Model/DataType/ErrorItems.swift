@@ -25,9 +25,9 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-class ErrorItems: Stanwood.Elements<ErrorItem> {
+class ErrorItems: Elements<ErrorItem> {
     
     static let fileName: String = "error_items"
     

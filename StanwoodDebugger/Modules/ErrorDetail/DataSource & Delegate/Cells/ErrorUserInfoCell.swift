@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 protocol ErrorUserInfoCellDelegate: class {
     func didCopy(text: String)
@@ -43,8 +43,8 @@ class ErrorUserInfoCell: UITableViewCell, Fillable, Delegateble {
         
     }
     
-    func fill(with type: Type?) {
-        guard let item = type as? ErrorItem else { return }
+    func fill(with model: Model?) {
+        guard let item = model as? ErrorItem else { return }
         userInfoTextView.text = item.userInfo.prettyString
         
         layoutSubviews()

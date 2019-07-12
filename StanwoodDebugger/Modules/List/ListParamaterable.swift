@@ -25,13 +25,13 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
 protocol ListParamaterable {
     var filter: DebuggerFilterView.DebuggerFilter { get }
     
     /// Handled in DebuggerParameterable
-    func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> DataType?
+    func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> ModelCollection?
 }
 
 class ListParamaters: DebuggerParamaters, ListParamaterable {

@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 extension String {
     func capitalizingFirstLetter() -> String {
@@ -49,8 +49,8 @@ class NetworkResponseCell: UITableViewCell, Fillable {
         self.responseHeadersTextView.addInnerShadow(onSide: .all)
     }
 
-    func fill(with type: Type?) {
-        guard let response = type as? HTTPResponseable else { return }
+    func fill(with model: Model?) {
+        guard let response = model as? HTTPResponseable else { return }
         responseLabel.text = HTTPURLResponse.localizedString(forStatusCode: response.code).capitalizingFirstLetter()
         responseHeadersTextView.text = response.responseHeaders?.prettyString
         

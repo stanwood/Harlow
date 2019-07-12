@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
 class NetworkingManager {
     
@@ -57,7 +57,7 @@ class NetworkingManager {
     }
 }
 
-class ExampleDelegate: Stanwood.AbstractTableDelegate {
+class ExampleDelegate: TableDelegate {
     
     let networkingManager = NetworkingManager()
     

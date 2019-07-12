@@ -25,7 +25,7 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
 class ListPresenter: ItemPresentable {
     
@@ -37,7 +37,7 @@ class ListPresenter: ItemPresentable {
     private var delegate: ListDelegate!
     private var currentFilter: DebuggerFilterView.DebuggerFilter = .analytics
     
-    private var items: DataType? {
+    private var modelCollection: ModelCollection? {
         return paramaterable.getDeguggerItems(for: currentFilter)
     }
     
@@ -55,8 +55,8 @@ class ListPresenter: ItemPresentable {
     }
     
     private func refreshSource() {
-        dataSource?.update(with: items)
-        delegate?.update(with: items)
+        dataSource?.update(modelCollection: modelCollection)
+        delegate?.update(modelCollection: modelCollection)
     }
     
     func viewDidLoad() {
@@ -66,8 +66,8 @@ class ListPresenter: ItemPresentable {
         viewable?.tableView.estimatedRowHeight = 75
         viewable?.tableView.rowHeight = UITableView.automaticDimension
         
-        dataSource = ListDataSource(dataType: items)
-        delegate = ListDelegate(dataType: items)
+        dataSource = ListDataSource(modelCollection: modelCollection)
+        delegate = ListDelegate(modelCollection: modelCollection)
         
         delegate.presenter = self
         
@@ -98,7 +98,7 @@ class ListPresenter: ItemPresentable {
     }
     
     func refreshEmptyView() {
-        if (items?.numberOfItems ?? 0) == 0 {
+        if (modelCollection?.numberOfItems ?? 0) == 0 {
             let emptyView = DebuggerEmptyView.loadFromNib(withFrame: viewable?.tableView.frame, bundle: Bundle.debuggerBundle())
             emptyView?.setLabel(with: currentFilter)
             viewable?.tableView.backgroundView = emptyView

@@ -31,7 +31,7 @@ class ErrorWireframe {
     }
 
     static func prepare(_ viewController: ErrorViewController, with  actions: ErrorActionable, and parameters: ErrorParameterable) {
-    	let presenter =  ErrorPresenter(actionable: actions, parameterable: parameters, viewable: viewController)
+        let presenter =  ErrorPresenter(actions: actions, parameters: parameters, view: viewController)
         viewController.presenter = presenter
     }
 

@@ -24,19 +24,20 @@
 //  THE SOFTWARE.
 //
 
+import SourceModel
 import StanwoodCore
 
 protocol NetworkingViewable: class {
-    func setupTableView(dataType: DataType?)
+    func setupTableView(modelCollection: ModelCollection?)
 }
 
 class NetworkingPresenter: Presentable {
     
     // MARK:- Properties
     
-    unowned var viewable: NetworkingViewable
-    var actionable: NetworkingActionable
-    var parameterable: NetworkingParameterable
+    weak var view: NetworkingViewable?
+    var actions: NetworkingActionable
+    var parameters: NetworkingParameterable
     
     // MARK:- Typealias
     
@@ -46,19 +47,19 @@ class NetworkingPresenter: Presentable {
     
     // MARK:- Initialiser
     
-    required init(actionable: NetworkingActionable, parameterable: NetworkingParameterable, viewable: NetworkingViewable) {
-        self.viewable = viewable
-        self.actionable = actionable
-        self.parameterable = parameterable
+    required init(actions: NetworkingActionable, parameters: NetworkingParameterable, view: NetworkingViewable) {
+        self.view = view
+        self.actions = actions
+        self.parameters = parameters
     }
     
     // MARK:- Functions
     
     func viewDidLoad() {
-        viewable.setupTableView(dataType: parameterable.sections)
+        view?.setupTableView(modelCollection: parameters.sections)
     }
     
     func present(data: NetworkData) {
-        actionable.present(data: data)
+        actions.present(data: data)
     }
 }

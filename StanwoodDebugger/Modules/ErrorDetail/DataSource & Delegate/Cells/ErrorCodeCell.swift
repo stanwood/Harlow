@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class ErrorCodeCell: UITableViewCell, Fillable {
 
@@ -36,8 +36,8 @@ class ErrorCodeCell: UITableViewCell, Fillable {
         selectionStyle = .none
     }
 
-    func fill(with type: Type?) {
-        guard let item = type as? ErrorItem else { return }
+    func fill(with model: Model?) {
+        guard let item = model as? ErrorItem else { return }
         codeLabel.text = String(item.code)
     }
 }

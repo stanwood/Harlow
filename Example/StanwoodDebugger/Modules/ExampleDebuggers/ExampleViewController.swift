@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SourceModel
 import StanwoodCore
 
 class ExampleViewController: UIViewController {
@@ -16,7 +17,7 @@ class ExampleViewController: UIViewController {
     
     var dataSource: ExampleDataSource!
     var delegate: ExampleDelegate!
-    var sections: Stanwood.Sections!
+    var sections: Sections!
     
     enum ExampleType: Int {
         case http, analytics, crashes, error, logs, uiTesting
@@ -54,7 +55,7 @@ class ExampleViewController: UIViewController {
             let postNetworkingExamples = NetworkingExample(items: ModelItems.postNetworkingItems)
             postNetworkingExamples.title = "[POST] Calls"
             
-            sections = Stanwood.Sections(items: [responseFormatsExamples, getImgesNetworkingExample, getNetworkingExamples, postNetworkingExamples])
+            sections = Sections(items: [responseFormatsExamples, getImgesNetworkingExample, getNetworkingExamples, postNetworkingExamples])
         case .analytics:
             
             let analyticsContentExamples = AnalyticsExample(items: ModelItems.analyticsContentItems)
@@ -62,13 +63,13 @@ class ExampleViewController: UIViewController {
             let analyticsScreenExamples = AnalyticsExample(items: ModelItems.analyticsScreenItems)
             analyticsScreenExamples.title = "Screen Tracking"
             
-            sections = Stanwood.Sections(items: [analyticsScreenExamples, analyticsContentExamples])
+            sections = Sections(items: [analyticsScreenExamples, analyticsContentExamples])
         case .crashes:
 
             let crahesContentExamples = CrashesExample(items: ModelItems.crashesContentItems)
             crahesContentExamples.title = "Crashes"
 
-            sections = Stanwood.Sections(items: [crahesContentExamples])
+            sections = Sections(items: [crahesContentExamples])
         default: break
         }
         
@@ -80,8 +81,8 @@ class ExampleViewController: UIViewController {
         tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableView.automaticDimension
         
-        dataSource = ExampleDataSource(dataType: sections)
-        delegate = ExampleDelegate(dataType: sections)
+        dataSource = ExampleDataSource(modelCollection: sections)
+        delegate = ExampleDelegate(modelCollection: sections)
         
         tableView.delegate = delegate
         tableView.dataSource = dataSource

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class CrashStackCell: UITableViewCell, Fillable {
 
@@ -19,8 +19,8 @@ class CrashStackCell: UITableViewCell, Fillable {
         self.textView.addInnerShadow(onSide: .right, shadowColor: .white)
     }
 
-    func fill(with type: Type?) {
-        guard let item = type as? StackItem else { return }
+    func fill(with model: Model?) {
+        guard let item = model as? StackItem else { return }
         textView.text = item.text
         if item.isAppStack {
             textView.textColor = UIColor(r: 219, g: 44, b: 56)

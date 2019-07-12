@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class NetworkErrorCell: UITableViewCell, Fillable {
 
@@ -36,8 +36,8 @@ class NetworkErrorCell: UITableViewCell, Fillable {
         selectionStyle = .none
     }
     
-    func fill(with type: Type?) {
-        guard let errorRcording = type as? HTTPErrorRecorder else { return }
+    func fill(with model: Model?) {
+        guard let errorRcording = model as? HTTPErrorRecorder else { return }
         errorLabel.text = errorRcording.errorDescription
     }
 }

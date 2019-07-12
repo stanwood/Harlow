@@ -25,8 +25,8 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-class ListDataSource: Stanwood.AbstractTableDataSource {
+class ListDataSource: TableDataSource {
     
 }

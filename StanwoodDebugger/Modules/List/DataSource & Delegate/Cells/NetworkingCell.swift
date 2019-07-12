@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class NetworkingCell: UITableViewCell, Fillable {
 
@@ -25,8 +25,8 @@ class NetworkingCell: UITableViewCell, Fillable {
         indicatorView.layer.masksToBounds = true
     }
     
-    func fill(with type: Type?) {
-        guard let item = type as? NetworkItem else { return }
+    func fill(with model: Model?) {
+        guard let item = model as? NetworkItem else { return }
         self.item = item
         
         labels[Labels.date.rawValue].text = item.formattedDate

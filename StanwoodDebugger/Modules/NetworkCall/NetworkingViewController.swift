@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 import Toast_Swift
 
 class NetworkingViewController: UIViewController, SourceTypePresentable {
@@ -71,7 +71,7 @@ class NetworkingViewController: UIViewController, SourceTypePresentable {
 
 extension NetworkingViewController: NetworkingViewable {
     
-    func setupTableView(dataType: DataType?) {
+    func setupTableView(modelCollection: ModelCollection?) {
         
         tableView.register(cells: NetworkDataBodyCell.self, NetworkOverviewCell.self, NetworkErrorCell.self, NetworkHeadersCell.self, NetworkLatencyCell.self, NetworkResponseCell.self, NetworkDataResponseCell.self, bundle: Bundle.debuggerBundle())
         
@@ -81,10 +81,10 @@ extension NetworkingViewController: NetworkingViewable {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         
-        delegate = NetworkingDelegate(dataType: dataType)
+        delegate = NetworkingDelegate(modelCollection: modelCollection)
         delegate.dataPresentable = self
         
-        dataSource = NetworkingDataSource(dataType: dataType, delegate: self)
+        dataSource = NetworkingDataSource(modelCollection: modelCollection, delegate: self)
 
         tableView.delegate = delegate
         tableView.dataSource = dataSource

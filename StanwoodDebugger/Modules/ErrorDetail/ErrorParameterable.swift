@@ -24,7 +24,7 @@
 //  THE SOFTWARE.
 //
 
-import StanwoodCore
+import SourceModel
 
 protocol ErrorParameterable {
     var item: ErrorItem { get }
@@ -38,7 +38,7 @@ class ErrorParameters: DebuggerParamaters, ErrorParameterable {
     init(appData: DebuggerData, item: ErrorItem) {
         self.item = item
         
-        var sections: [Stanwood.Sections.Section] = []
+        var sections: [Sections.Section] = []
         
         sections.append(ErrorOverviewSection(items: [item]))
         if !item.userInfo.isEmpty {

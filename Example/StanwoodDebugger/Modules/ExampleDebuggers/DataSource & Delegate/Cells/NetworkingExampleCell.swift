@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class NetworkingExampleCell: UITableViewCell, Fillable {
 
@@ -21,8 +21,8 @@ class NetworkingExampleCell: UITableViewCell, Fillable {
         // Initialization code
     }
 
-    func fill(with type: Type?) {
-        guard let item = type as? NetworkExample else { return }
+    func fill(with model: Model?) {
+        guard let item = model as? NetworkExample else { return }
         urlLabel.text = item.url
         methodLabel.text = "[\(item.method.rawValue.uppercased())]"
         self.item = item

@@ -24,8 +24,8 @@
 //  THE SOFTWARE.
 //
 
-import StanwoodCore
+import SourceModel
 
-class ErrorDataSource: Stanwood.AbstractTableDataSource {
+class ErrorDataSource: TableDataSource {
     
 }

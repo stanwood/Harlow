@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class CrashOverviewCell: UITableViewCell, Fillable, Delegateble {
 
@@ -47,8 +47,8 @@ class CrashOverviewCell: UITableViewCell, Fillable, Delegateble {
         self.delegate = delegate as? CopyPasteDelegate
     }
 
-    func fill(with type: Type?) {
-        guard let item = type as? CrashItem else { return }
+    func fill(with model: Model?) {
+        guard let item = model as? CrashItem else { return }
         self.item = item
         titleLabel.text = item.name
         descriptionLabel.text = item.description

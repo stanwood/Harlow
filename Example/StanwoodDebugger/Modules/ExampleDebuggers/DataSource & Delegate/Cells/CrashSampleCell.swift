@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class CrashSampleCell: UITableViewCell, Fillable, ActionItemCellable {
     @IBOutlet private weak var titleLabel: UILabel!
     var item: ActionItemable?
 
-    func fill(with type: Type?) {
-        guard let item = type as? CrashExample else { return }
+    func fill(with model: Model?) {
+        guard let item = model as? CrashExample else { return }
         titleLabel.text = item.type.displayName
         self.item = item
     }

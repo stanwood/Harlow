@@ -25,9 +25,9 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-class CrashItems: Stanwood.Elements<CrashItem> {
+class CrashItems: Elements<CrashItem> {
     
     static let fileName: String = "crash_items"
     

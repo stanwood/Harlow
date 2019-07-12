@@ -24,19 +24,20 @@
 //  THE SOFTWARE.
 //
 
+import SourceModel
 import StanwoodCore
 
 protocol ErrorViewable: class {
-    func setupTableView(dataType: DataType?)
+    func setupTableView(modelCollection: ModelCollection?)
 }
 
 class ErrorPresenter: Presentable {
     
     // MARK:- Properties
     
-    unowned var viewable: ErrorViewable
-    var actionable: ErrorActionable
-    var parameterable: ErrorParameterable
+    weak var view: ErrorViewable?
+    var actions: ErrorActionable
+    var parameters: ErrorParameterable
     
     // MARK:- Typealias
     
@@ -46,15 +47,15 @@ class ErrorPresenter: Presentable {
     
     // MARK:- Initialiser
     
-    required init(actionable: ErrorActionable, parameterable: ErrorParameterable, viewable: ErrorViewable) {
-        self.viewable = viewable
-        self.actionable = actionable
-        self.parameterable = parameterable
+    required init(actions: ErrorActionable, parameters: ErrorParameterable, view: ErrorViewable) {
+        self.view = view
+        self.actions = actions
+        self.parameters = parameters
     }
     
     // MARK:- Functions
     
     func viewDidLoad() {
-        viewable.setupTableView(dataType: parameterable.sections)
+        view?.setupTableView(modelCollection: parameters.sections)
     }
 }

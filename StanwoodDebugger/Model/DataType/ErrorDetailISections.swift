@@ -25,11 +25,11 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-class ErrorDetailISections: Stanwood.Sections {}
+class ErrorDetailISections: Sections {}
 
-class ErrorOverviewSection: Stanwood.Elements<ErrorItem>, Headerable {
+class ErrorOverviewSection: Elements<ErrorItem>, Headerable {
     
     var headerView: UIView {
         let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())
@@ -43,7 +43,7 @@ class ErrorOverviewSection: Stanwood.Elements<ErrorItem>, Headerable {
     }
 }
 
-class ErrorCodeSection: Stanwood.Elements<ErrorItem>, Headerable {
+class ErrorCodeSection: Elements<ErrorItem>, Headerable {
     
     var headerView: UIView {
         let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())
@@ -57,7 +57,7 @@ class ErrorCodeSection: Stanwood.Elements<ErrorItem>, Headerable {
     }
 }
 
-class ErrorUserInfoSection: Stanwood.Elements<ErrorItem>, Headerable {
+class ErrorUserInfoSection: Elements<ErrorItem>, Headerable {
     
     var headerView: UIView {
         let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())

@@ -25,9 +25,9 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-struct ErrorItem: Typeable, Codable, Recordable {
+struct ErrorItem: Model, Equatable, Codable, Recordable {
 
     let domain: String
     let code: Int

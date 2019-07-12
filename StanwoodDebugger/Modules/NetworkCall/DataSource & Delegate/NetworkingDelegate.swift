@@ -24,12 +24,12 @@
 //  THE SOFTWARE.
 //
 
-import StanwoodCore
+import SourceModel
 
 protocol DataPresentable: class {
     func present(_ data: Data?)
 }
-class NetworkingDelegate: Stanwood.AbstractTableDelegate {
+class NetworkingDelegate: TableDelegate {
     
     weak var dataPresentable: DataPresentable?
     

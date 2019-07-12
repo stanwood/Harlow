@@ -25,9 +25,9 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-struct AnalyticsItem: Typeable, Codable {
+struct AnalyticsItem: Model, Codable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case eventName, category, contentType, itemId, createdAt, screenName
