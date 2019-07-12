@@ -24,7 +24,7 @@
 //  THE SOFTWARE.
 //
 
-import StanwoodCore
+import SourceModel
 
 protocol NetworkingParameterable {
     var item: NetworkItem { get }
@@ -39,7 +39,7 @@ class NetworkingParameters: DebuggerParamaters, NetworkingParameterable {
     init(appData: DebuggerData, item: NetworkItem) {
         self.item = item
         
-        var sections: [Stanwood.Sections.Section] = []
+        var sections: [Sections.Section] = []
         
         sections.append(NetworkOverviewSection(items: [item]))
         sections.append(NetworkLatencySection(items: [item]))

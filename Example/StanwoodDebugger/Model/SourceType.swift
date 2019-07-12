@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
 
 struct AnalyticExample: ActionItemable, Typeable, Codable {
@@ -80,7 +80,7 @@ struct AnalyticExample: ActionItemable, Typeable, Codable {
     }
 }
 
-class AnalyticsExample: Stanwood.Elements<AnalyticExample>, Headerable {
+class AnalyticsExample: Elements<AnalyticExample>, Headerable {
     
     var title: String = ""
     
@@ -101,7 +101,7 @@ struct NetworkExample: Typeable, Codable {
     let url: String
 }
 
-class NetworkingExample: Stanwood.Elements<NetworkExample>, Headerable {
+class NetworkingExample: Elements<NetworkExample>, Headerable {
     
     var title: String = ""
     
@@ -117,7 +117,7 @@ class NetworkingExample: Stanwood.Elements<NetworkExample>, Headerable {
     }
 }
 
-class CrashExample: NSObject, Type, Codable, ActionItemable {
+class CrashExample: NSObject, Model, Codable, ActionItemable {
     enum CrashType: Int, Codable {
         case crash, signal
 
@@ -146,7 +146,7 @@ class CrashExample: NSObject, Type, Codable, ActionItemable {
     }
 }
 
-class CrashesExample: Stanwood.Elements<CrashExample>, Headerable {
+class CrashesExample: Elements<CrashExample>, Headerable {
 
     var title: String = ""
 

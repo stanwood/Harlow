@@ -53,31 +53,31 @@ class DebuggerData {
     }()
     
     init() {
-        if let items = try? Stanwood.Storage.retrieve(AnalyticItems.fileName, of: .json, from: .documents, as: AnalyticItems.self) {
+        if let items = try? Stanwood.Storage.retrieve(AnalyticItems.fileName, of: .json, from: .documents(customDirectory: nil), as: AnalyticItems.self) {
             analyticsItems = items ?? AnalyticItems(items: [])
         } else {
             analyticsItems = AnalyticItems(items: [])
         }
         
-        if let items = try? Stanwood.Storage.retrieve(NetworkItems.fileName, of: .json, from: .documents, as: NetworkItems.self) {
+        if let items = try? Stanwood.Storage.retrieve(NetworkItems.fileName, of: .json, from: .documents(customDirectory: nil), as: NetworkItems.self) {
             networkingItems = items ?? NetworkItems(items: [])
         } else {
             networkingItems = NetworkItems(items: [])
         }
         
-        if let items = try? Stanwood.Storage.retrieve(LogItems.fileName, of: .json, from: .documents, as: LogItems.self) {
+        if let items = try? Stanwood.Storage.retrieve(LogItems.fileName, of: .json, from: .documents(customDirectory: nil), as: LogItems.self) {
             logItems = items ?? LogItems(items: [])
         } else {
             logItems = LogItems(items: [])
         }
         
-        if let items = try? Stanwood.Storage.retrieve(ErrorItems.fileName, of: .json, from: .documents, as: ErrorItems.self) {
+        if let items = try? Stanwood.Storage.retrieve(ErrorItems.fileName, of: .json, from: .documents(customDirectory: nil), as: ErrorItems.self) {
             errorItems = items ?? ErrorItems(items: [])
         } else {
             errorItems = ErrorItems(items: [])
         }
         
-        if let items = try? Stanwood.Storage.retrieve(CrashItems.fileName, of: .json, from: .documents, as: CrashItems.self) {
+        if let items = try? Stanwood.Storage.retrieve(CrashItems.fileName, of: .json, from: .documents(customDirectory: nil), as: CrashItems.self) {
             crashItems = items ?? CrashItems(items: [])
         } else {
             crashItems = CrashItems(items: [])
@@ -204,24 +204,24 @@ class DebuggerData {
         switch type {
         case .analytics:
             if DebuggerSettings.shouldStoreAnalyticsData {
-                try? Stanwood.Storage.store(analyticsItems, to: .documents, as: .json, withName: AnalyticItems.fileName)
+                try? Stanwood.Storage.store(analyticsItems, to: .documents(customDirectory: nil), as: .json, withName: AnalyticItems.fileName)
             }
         case .logs:
             if DebuggerSettings.shouldStoreLogsData {
-                try? Stanwood.Storage.store(logItems, to: .documents, as: .json, withName: LogItems.fileName)
+                try? Stanwood.Storage.store(logItems, to: .documents(customDirectory: nil), as: .json, withName: LogItems.fileName)
             }
         case .crashes:
             if DebuggerSettings.shouldStoreCrashesData {
-                try? Stanwood.Storage.store(crashItems, to: .documents, as: .json, withName: CrashItems.fileName)
+                try? Stanwood.Storage.store(crashItems, to: .documents(customDirectory: nil), as: .json, withName: CrashItems.fileName)
             }
 
         case .error:
             if DebuggerSettings.shouldStoreErrorData {
-                try? Stanwood.Storage.store(errorItems, to: .documents, as: .json, withName: ErrorItems.fileName)
+                try? Stanwood.Storage.store(errorItems, to: .documents(customDirectory: nil), as: .json, withName: ErrorItems.fileName)
             }
         case .networking:
             if DebuggerSettings.shouldStoreNetworkingData {
-                try? Stanwood.Storage.store(networkingItems, to: .documents, as: .json, withName: NetworkItems.fileName)
+                try? Stanwood.Storage.store(networkingItems, to: .documents(customDirectory: nil), as: .json, withName: NetworkItems.fileName)
             }
         }
     }

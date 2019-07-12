@@ -25,7 +25,7 @@
 
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
 protocol NetworkOverviewable {
     var formattedDate: String { get }

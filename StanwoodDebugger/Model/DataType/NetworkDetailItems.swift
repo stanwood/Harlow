@@ -25,11 +25,11 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-class NetworkDetailISections: Stanwood.Sections {}
+class NetworkDetailISections: Sections {}
 
-class NetworkLatencySection: Stanwood.Elements<NetworkItem>, Headerable {
+class NetworkLatencySection: Elements<NetworkItem>, Headerable {
     
     var headerView: UIView {
         let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())
@@ -43,7 +43,7 @@ class NetworkLatencySection: Stanwood.Elements<NetworkItem>, Headerable {
     }
 }
 
-class NetworkErrorSection: Stanwood.Elements<NetworkItem>, Headerable {
+class NetworkErrorSection: Elements<NetworkItem>, Headerable {
     
     var headerView: UIView {
         let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())
@@ -58,7 +58,7 @@ class NetworkErrorSection: Stanwood.Elements<NetworkItem>, Headerable {
     }
 }
 
-class NetworkOverviewSection: Stanwood.Elements<NetworkItem>, Headerable {
+class NetworkOverviewSection: Elements<NetworkItem>, Headerable {
     
     var headerView: UIView {
         let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())
@@ -72,7 +72,7 @@ class NetworkOverviewSection: Stanwood.Elements<NetworkItem>, Headerable {
     }
 }
 
-class NetworkResponseSection: Stanwood.Elements<NetworkItem>, Headerable {
+class NetworkResponseSection: Elements<NetworkItem>, Headerable {
     
     var headerView: UIView {
         let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())
@@ -86,7 +86,7 @@ class NetworkResponseSection: Stanwood.Elements<NetworkItem>, Headerable {
     }
 }
 
-class NetworkHeadersSection: Stanwood.Elements<NetworkItem>, Headerable {
+class NetworkHeadersSection: Elements<NetworkItem>, Headerable {
     
     var headerView: UIView {
         let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())
@@ -100,7 +100,7 @@ class NetworkHeadersSection: Stanwood.Elements<NetworkItem>, Headerable {
     }
 }
 
-class NetworkDataSection: Stanwood.Elements<NetworkItem>, Headerable {
+class NetworkDataSection: Elements<NetworkItem>, Headerable {
     
     var headerView: UIView {
         let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())
@@ -114,7 +114,7 @@ class NetworkDataSection: Stanwood.Elements<NetworkItem>, Headerable {
     }
 }
 
-class NetworkBodySection: Stanwood.Elements<NetworkItem>, Headerable {
+class NetworkBodySection: Elements<NetworkItem>, Headerable {
     
     var headerView: UIView {
         let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())

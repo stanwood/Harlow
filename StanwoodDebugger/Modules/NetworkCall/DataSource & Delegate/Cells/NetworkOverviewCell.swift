@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class NetworkOverviewCell: UITableViewCell, Fillable, Delegateble {
     
@@ -46,8 +46,8 @@ class NetworkOverviewCell: UITableViewCell, Fillable, Delegateble {
         selectionStyle = .none
     }
     
-    func fill(with type: Type?) {
-        guard let item = type as? NetworkOverviewable else { return }
+    func fill(with model: Model?) {
+        guard let item = model as? NetworkOverviewable else { return }
         self.item = item
         
         labels[Labels.date.rawValue].text = item.formattedDate

@@ -24,9 +24,9 @@
 //  THE SOFTWARE.
 //
 
-import StanwoodCore
+import SourceModel
 
-class CrashDelegate: Stanwood.AbstractTableDelegate {
+class CrashDelegate: TableDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 

@@ -25,9 +25,9 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-class SettingsDelegate: Stanwood.AbstractCollectionDelegate {
+class SettingsDelegate: CollectionDelegate {
     
     weak var presenter: SettingsPresenter?
     

@@ -25,9 +25,9 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-class ListDelegate: Stanwood.AbstractTableDelegate {
+class ListDelegate: TableDelegate {
  
     weak var presenter: ItemPresentable?
     

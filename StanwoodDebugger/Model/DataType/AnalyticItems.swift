@@ -25,9 +25,9 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-class AnalyticItems: Stanwood.Elements<AnalyticsItem> {
+class AnalyticItems: Elements<AnalyticsItem> {
     
     static let fileName: String = "analytics_items"
     

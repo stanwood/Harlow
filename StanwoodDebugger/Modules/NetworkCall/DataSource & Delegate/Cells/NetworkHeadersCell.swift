@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class NetworkHeadersCell: UITableViewCell, Fillable, Delegateble {
     
@@ -43,8 +43,8 @@ class NetworkHeadersCell: UITableViewCell, Fillable, Delegateble {
         self.textView.addInnerShadow(onSide: .all)
     }
     
-    func fill(with type: Type?) {
-        guard let headerable = type as? ResponseHeaderable else { return }
+    func fill(with model: Model?) {
+        guard let headerable = model as? ResponseHeaderable else { return }
         textView.text = headerable.headers?.prettyString
         
         layoutSubviews()

@@ -35,9 +35,9 @@ class DataDetailPresenter: Presentable {
     
     // MARK:- Properties
     
-    unowned var viewable: DataDetailViewable
-    var actionable: DataDetailActionable
-    var parameterable: DataDetailParameterable
+    weak var view: DataDetailViewable?
+    var actions: DataDetailActionable
+    var parameters: DataDetailParameterable
     
     // MARK:- Typealias
     
@@ -46,14 +46,14 @@ class DataDetailPresenter: Presentable {
     typealias Viewable = DataDetailViewable
     
     
-    required init(actionable: DataDetailActionable, parameterable: DataDetailParameterable, viewable: DataDetailViewable) {
-        self.viewable = viewable
-        self.actionable = actionable
-        self.parameterable = parameterable
+    required init(actions: DataDetailActionable, parameters: DataDetailParameterable, view: DataDetailViewable) {
+        self.view = view
+        self.actions = actions
+        self.parameters = parameters
     }
     
     func viewDidLoad() {
-        viewable.navigationBarTitle = parameterable.networkData.data.prettyString
-        viewable.show(parameterable.networkData)
+        view?.navigationBarTitle = parameters.networkData.data.prettyString
+        view?.show(parameters.networkData)
     }
 }

@@ -31,7 +31,7 @@ class CrashWireframe {
     }
     
     static func prepare(_ viewController: CrashViewController, with  actions: CrashActionable, and parameters: CrashParameterable) {
-    	let presenter =  CrashPresenter(actionable: actions, parameterable: parameters, viewable: viewController)
+    	let presenter =  CrashPresenter(actions: actions, parameters: parameters, view: viewController)
         viewController.presenter = presenter
     }
     

@@ -25,9 +25,9 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
-class CrashOverviewSection: Stanwood.Elements<CrashItem>, Headerable {
+class CrashOverviewSection: Elements<CrashItem>, Headerable {
 
     var headerView: UIView {
         let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())
@@ -41,7 +41,7 @@ class CrashOverviewSection: Stanwood.Elements<CrashItem>, Headerable {
     }
 }
 
-class CrashStackSection: Stanwood.Elements<StackItem>, Headerable {
+class CrashStackSection: Elements<StackItem>, Headerable {
 
     var headerView: UIView {
         let view = NetworkHeaderView.loadFromNib(bundle: Bundle.debuggerBundle())

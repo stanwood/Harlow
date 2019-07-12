@@ -25,7 +25,7 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
 typealias Completion = () -> Void
 
@@ -105,7 +105,7 @@ class DebuggerScallableView: UIView {
         }
     }
     
-    func configureTableView(with items: DataType?) {
+    func configureTableView(with modelCollection: ModelCollection?) {
 
         tableView.register(cells: ErrorCell.self, AnalyticsCell.self, NetworkingCell.self, LogCell.self, CrashCell.self, bundle: Bundle.debuggerBundle())
 
@@ -114,7 +114,7 @@ class DebuggerScallableView: UIView {
         tableView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         tableView.tableFooterView = UIView(frame: .zero)
         
-        if (items?.numberOfItems ?? 0) == 0 {
+        if (modelCollection?.numberOfItems ?? 0) == 0 {
             let emptyView = DebuggerEmptyView.loadFromNib(withFrame: tableView.frame, bundle: Bundle.debuggerBundle())
             emptyView?.setLabel(with: currentFilter)
             tableView.backgroundView = emptyView
@@ -122,8 +122,8 @@ class DebuggerScallableView: UIView {
             tableView.backgroundView = nil
         }
         
-        listDataSource = ListDataSource(dataType: items)
-        listDelegate = ListDelegate(dataType: items)
+        listDataSource = ListDataSource(modelCollection: modelCollection)
+        listDelegate = ListDelegate(modelCollection: modelCollection)
         listDelegate.presenter = self
         
         tableView.dataSource = listDataSource
@@ -196,17 +196,17 @@ extension DebuggerScallableView: DebuggerFilterViewDelegate {
     func debuggerFilterViewDidFilter(_ filter: DebuggerFilterView.DebuggerFilter) {
         self.currentFilter = filter
         
-        let items = presenter.parameterable.getDeguggerItems(for: filter)
+        let modelCollection = presenter.parameterable.getDeguggerItems(for: filter)
         
-        if (items?.numberOfItems ?? 0) == 0 {
+        if (modelCollection?.numberOfItems ?? 0) == 0 {
             let emptyView = DebuggerEmptyView.loadFromNib(withFrame: tableView.frame, bundle: Bundle.debuggerBundle())
             emptyView?.setLabel(with: filter)
             tableView.backgroundView = emptyView
         } else {
             tableView.backgroundView = nil
         }
-        listDataSource.update(with: items)
-        listDelegate.update(with: items)
+        listDataSource.update(modelCollection: modelCollection)
+        listDelegate.update(modelCollection: modelCollection)
         
         tableView.reloadData()
     }

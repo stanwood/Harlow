@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class CrashCell: UITableViewCell, Fillable {
 
@@ -25,8 +25,8 @@ class CrashCell: UITableViewCell, Fillable {
         indicatorView.layer.masksToBounds = true
     }
     
-    func fill(with type: Type?) {
-        guard let item = type as? CrashItem else { return }
+    func fill(with model: Model?) {
+        guard let item = model as? CrashItem else { return }
         self.item = item
 
         labels[Labels.dateAndName.rawValue].text = item.formattedDate + ": " + item.name

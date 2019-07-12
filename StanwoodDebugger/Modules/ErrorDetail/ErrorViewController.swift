@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class ErrorViewController: UIViewController, SourceTypePresentable {
 
@@ -66,7 +66,7 @@ class ErrorViewController: UIViewController, SourceTypePresentable {
 
 extension ErrorViewController: ErrorViewable {
     
-    func setupTableView(dataType: DataType?) {
+    func setupTableView(modelCollection: ModelCollection?) {
         
         tableView.register(cells: ErrorOverviewCell.self, ErrorCodeCell.self, ErrorUserInfoCell.self, bundle: Bundle.debuggerBundle())
         
@@ -76,8 +76,8 @@ extension ErrorViewController: ErrorViewable {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         
-        delegate = ErrorDelegate(dataType: dataType)
-        dataSource = ErrorDataSource(dataType: dataType, delegate: self)
+        delegate = ErrorDelegate(modelCollection: modelCollection)
+        dataSource = ErrorDataSource(modelCollection: modelCollection, delegate: self)
 
         tableView.delegate = delegate
         tableView.dataSource = dataSource

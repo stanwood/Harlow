@@ -24,20 +24,21 @@
 //  THE SOFTWARE.
 //
 
+import SourceModel
 import StanwoodCore
 
 protocol CrashViewable: class {
     var navigationBarTitle: String? { get set }
-    func setupTableView(dataType: DataType?)
+    func setupTableView(modelCollection: ModelCollection?)
 }
 
 class CrashPresenter: Presentable {
 
     // MARK:- Properties
     
-    unowned var viewable: CrashViewable
-    var actionable: CrashActionable
-    var parameterable: CrashParameterable
+    weak var view: CrashViewable?
+    var actions: CrashActionable
+    var parameters: CrashParameterable
     var dataSource: CrashDataSource!
     var delegate: CrashDelegate!
     
@@ -47,15 +48,15 @@ class CrashPresenter: Presentable {
     typealias Parameterable = CrashParameterable
     typealias Viewable = CrashViewable
 
-    required init(actionable: CrashActionable, parameterable: CrashParameterable, viewable: CrashViewable) {
-        self.viewable = viewable
-        self.actionable = actionable
-        self.parameterable = parameterable
+    required init(actions: CrashActionable, parameters: CrashParameterable, view: CrashViewable) {
+        self.view = view
+        self.actions = actions
+        self.parameters = parameters
     }
     
     func viewDidLoad() {
-        viewable.setupTableView(dataType: parameterable.sections)
-        viewable.navigationBarTitle = parameterable.crashTitle
+        view?.setupTableView(modelCollection: parameters.sections)
+        view?.navigationBarTitle = parameters.crashTitle
     }
     
 }

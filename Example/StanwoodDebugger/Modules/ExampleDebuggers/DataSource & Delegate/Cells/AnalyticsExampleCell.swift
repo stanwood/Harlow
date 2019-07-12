@@ -7,15 +7,15 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class AnalyticsExampleCell: UITableViewCell, Fillable, ActionItemCellable {
     @IBOutlet private weak var analyticsLabel: UILabel!
     
     var item: ActionItemable?
     
-    func fill(with type: Type?) {
-        guard let item = type as? AnalyticExample else { return }
+    func fill(with model: Model?) {
+        guard let item = model as? AnalyticExample else { return }
         self.item = item
         analyticsLabel.text = item.type.title
     }

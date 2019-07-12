@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class NetworkDataResponseCell: UITableViewCell, Fillable {
 
@@ -38,8 +38,8 @@ class NetworkDataResponseCell: UITableViewCell, Fillable {
         selectionStyle = .default
     }
     
-    func fill(with type: Type?) {
-        guard let httpBodyRecorder = type as?  HTTPDataResponseRecorder else { return }
+    func fill(with model: Model?) {
+        guard let httpBodyRecorder = model as?  HTTPDataResponseRecorder else { return }
         item = httpBodyRecorder
         bodyLengthLabel.text = httpBodyRecorder.dataResponse?.prettyString
     }

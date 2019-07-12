@@ -25,9 +25,9 @@
 
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-class NetworkItems: Stanwood.Elements<NetworkItem> {
+class NetworkItems: Elements<NetworkItem> {
     
     static let fileName: String = "network_items"
     

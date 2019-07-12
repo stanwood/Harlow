@@ -44,7 +44,7 @@ class SettingsWireframe {
     }
     
     static func prepare(_ viewController: SettingsViewController, with actions: SettingsActionable, _ parameters: SettingsParameterable) {
-        let presenter = SettingsPresenter(actionable: actions, parameterable: parameters, viewable: viewController)
+        let presenter = SettingsPresenter(actions: actions, parameters: parameters, view: viewController)
         viewController.presenter = presenter
     }
 }

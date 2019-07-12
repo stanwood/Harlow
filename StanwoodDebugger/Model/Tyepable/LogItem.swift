@@ -25,7 +25,7 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
 struct LogItem: Typeable, Codable {
     let text: String

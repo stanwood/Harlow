@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class LogCell: UITableViewCell, Fillable {
 
@@ -25,8 +25,8 @@ class LogCell: UITableViewCell, Fillable {
         self.textView.addInnerShadow(onSide: .right, shadowColor: .white)
     }
 
-    func fill(with type: Type?) {
-        guard let item = type as? LogItem else { return }
+    func fill(with model: Model?) {
+        guard let item = model as? LogItem else { return }
         textView.text = item.text
         
         layoutSubviews()

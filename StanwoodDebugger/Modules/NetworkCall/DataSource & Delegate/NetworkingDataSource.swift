@@ -24,8 +24,8 @@
 //  THE SOFTWARE.
 //
 
-import StanwoodCore
+import SourceModel
 
-class NetworkingDataSource: Stanwood.AbstractTableDataSource {
+class NetworkingDataSource: TableDataSource {
     
 }

@@ -25,9 +25,9 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-class SettingsData: DataType {
+class SettingsData: ModelCollection {
     
     var numberOfItems: Int {
         return sections[0].numberOfItems
@@ -44,11 +44,11 @@ class SettingsData: DataType {
         return sections.count
     }
     
-    subscript(indexPath: IndexPath) -> Type? {
+    subscript(indexPath: IndexPath) -> Model? {
         return sections[indexPath.section].settings[indexPath.row]
     }
     
-    subscript(section: Int) -> DataType {
+    subscript(section: Int) -> ModelCollection {
         return sections[section]
     }
     
@@ -56,7 +56,7 @@ class SettingsData: DataType {
         return SettingsCell.self
     }
     
-    class Section: DataType {
+    class Section: ModelCollection {
         
         init(withType sectionType: SectionType) {
             self.sectionType = sectionType
@@ -78,11 +78,11 @@ class SettingsData: DataType {
         
         var numberOfSections: Int { return 1 }
         
-        subscript(indexPath: IndexPath) -> Type? {
+        subscript(indexPath: IndexPath) -> Model? {
             return settings[indexPath.row]
         }
         
-        subscript(section: Int) -> DataType {
+        subscript(section: Int) -> ModelCollection {
             return self
         }
         
@@ -103,7 +103,7 @@ class SettingsData: DataType {
             case device, version, storeAnalytics, storeError, storeNetworking, storeLogs, resetAll, removeData, removeAnalytics, bubblePulse, debuggerIcons, removeError, removeNetworking, removeLogs, removeCrashes, storeCrashes
         }
         
-        struct Setting: Type {
+        struct Setting: Model {
             var type: SettingType
             var id: String?
             

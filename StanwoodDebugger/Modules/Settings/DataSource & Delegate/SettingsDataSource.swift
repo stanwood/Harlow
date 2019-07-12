@@ -25,9 +25,9 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-class SettingsDataSource: Stanwood.AbstractCollectionDataSource {
+class SettingsDataSource: CollectionDataSource {
     
     weak var presenter: SettingsPresenter?
     
@@ -39,7 +39,7 @@ class SettingsDataSource: Stanwood.AbstractCollectionDataSource {
         
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueHeader(cellType: SettingsHeaderView.self, for: indexPath)
-        if let section = dataType?[indexPath.section] as? SettingsData.Section {
+        if let section = modelCollection?[indexPath.section] as? SettingsData.Section {
             header.set(title: section.title)
         }
         return header

@@ -31,7 +31,7 @@ class DataDetailWireframe {
     }
     
     static func prepare(_ viewController: DataDetailViewController, with  actions: DataDetailActionable, and parameters: DataDetailParameterable) {
-        let presenter =  DataDetailPresenter(actionable: actions, parameterable: parameters, viewable: viewController)
+        let presenter =  DataDetailPresenter(actions: actions, parameters: parameters, view: viewController)
         viewController.presenter = presenter
     }
 }

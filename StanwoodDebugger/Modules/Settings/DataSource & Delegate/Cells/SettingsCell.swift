@@ -25,6 +25,7 @@
 //
 
 import UIKit
+import SourceModel
 import StanwoodCore
 
 protocol SettingsCellDelegate: class {
@@ -32,7 +33,7 @@ protocol SettingsCellDelegate: class {
     func didTapAction(_ type: SettingsData.Section.SettingType)
 }
 
-class SettingsCell: Stanwood.AutoSizeableCell, Fillable {
+class SettingsCell: Stanwood.AutoSizeableCell, SourceModel.Fillable {
 
     @IBOutlet private weak var actionButton: UIButton!
     @IBOutlet private weak var switchButton: UISwitch!
@@ -48,8 +49,8 @@ class SettingsCell: Stanwood.AutoSizeableCell, Fillable {
         type = nil
     }
 
-    func fill(with type: Type?) {
-        guard let data = type as? SettingsData.Section.Setting else { return }
+    func fill(with model: SourceModel.Model?) {
+        guard let data = model as? SettingsData.Section.Setting else { return }
         actionButton.setTitle(data.title, for: .normal)
         switchButton.isHidden = !data.hasSwitch
         switchButton.setOn(data.isOn, animated: false)

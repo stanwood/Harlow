@@ -25,14 +25,14 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
 protocol DebuggerParameterable {
-    func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> DataType?
+    func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> ModelCollection?
 }
 
 extension DebuggerParamaters: DebuggerParameterable {
-    func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> DataType? {
+    func getDeguggerItems(for filter: DebuggerFilterView.DebuggerFilter) -> ModelCollection? {
         switch filter {
         case .analytics: return appData.analyticsItems
         case .networking: return appData.networkingItems

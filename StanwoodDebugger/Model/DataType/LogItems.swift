@@ -25,9 +25,9 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
-class LogItems: Stanwood.Elements<LogItem> {
+class LogItems: Elements<LogItem> {
     
     static let fileName: String = "log_items"
     

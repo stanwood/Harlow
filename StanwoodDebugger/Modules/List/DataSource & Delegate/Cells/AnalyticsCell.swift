@@ -25,7 +25,7 @@
 //
 
 import UIKit
-import StanwoodCore
+import SourceModel
 
 class AnalyticsCell: UITableViewCell, Fillable {
 
@@ -48,8 +48,8 @@ class AnalyticsCell: UITableViewCell, Fillable {
         labels.forEach({ $0.text = nil })
     }
     
-    func fill(with type: Type?) {
-        guard let item = type as? AnalyticsItem else { return }
+    func fill(with model: Model?) {
+        guard let item = model as? AnalyticsItem else { return }
         self.item = item
         
         labels[Labels.eventName.rawValue].text = item.eventName ?? String.defaultValue

@@ -31,7 +31,7 @@ class NetworkingWireframe {
     }
 
     static func prepare(_ viewController: NetworkingViewController, with  actions: NetworkingActionable, and parameters: NetworkingParameterable) {
-    	let presenter =  NetworkingPresenter(actionable: actions, parameterable: parameters, viewable: viewController)
+        let presenter =  NetworkingPresenter(actions: actions, parameters: parameters, view: viewController)
         viewController.presenter = presenter
     }
 

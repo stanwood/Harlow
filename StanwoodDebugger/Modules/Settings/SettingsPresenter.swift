@@ -31,7 +31,7 @@ protocol SettingsViewable: class {
     
 }
 
-class SettingsPresenter: Presentable, SourceTypePresentable {
+class SettingsPresenter: Presentable {
     
     typealias DataSource = SettingsDataSource
     typealias Delegate = SettingsDelegate
@@ -41,29 +41,29 @@ class SettingsPresenter: Presentable, SourceTypePresentable {
     
     var dataSource: SettingsDataSource!
     var delegate: SettingsDelegate!
-    var actionable: SettingsActionable
-    var parameterable: SettingsParameterable
-    unowned var viewable: SettingsViewable
+    var actions: SettingsActionable
+    var parameters: SettingsParameterable
+    weak var view: SettingsViewable?
     
     private var settingsData = SettingsData()
     
-    required init(actionable: SettingsActionable, parameterable: SettingsParameterable, viewable: SettingsViewable) {
-        self.actionable = actionable
-        self.parameterable = parameterable
-        self.viewable = viewable
+    required init(actions: SettingsActionable, parameters: SettingsParameterable, view: SettingsViewable) {
+        self.actions = actions
+        self.parameters = parameters
+        self.view = view
         
-        dataSource = SettingsDataSource(dataType: settingsData)
-        delegate = SettingsDelegate(dataType: settingsData)
-        
+        dataSource = SettingsDataSource(modelCollection: settingsData)
+        delegate = SettingsDelegate(modelCollection: settingsData)
+
         dataSource.presenter = self
         delegate.presenter = self
     }
     
     func switchDidChange(to value: Bool, for type: SettingsData.Section.SettingType) {
-        actionable.switchDidChange(to: value, for: type)
+        actions.switchDidChange(to: value, for: type)
     }
     
     func didTapAction(_ type: SettingsData.Section.SettingType) {
-        actionable.didTap(action: type)
+        actions.didTap(action: type)
     }
 }
