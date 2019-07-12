@@ -27,6 +27,6 @@
 import Foundation
 import SourceModel
 
-struct LogItem: Model, Equatable, Codable {
+struct LogItem: Typeable, Codable {
     let text: String
 }

@@ -10,7 +10,7 @@ import Foundation
 import SourceModel
 
 
-struct AnalyticExample: ActionItemable, Model, Equatable, Codable {
+struct AnalyticExample: ActionItemable, Typeable, Codable {
     
     let eventName: String
     let screenName: String?

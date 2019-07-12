@@ -27,7 +27,7 @@
 import Foundation
 import SourceModel
 
-struct AnalyticsItem: Model, Codable, Equatable {
+struct AnalyticsItem: Typeable, Codable {
     
     enum CodingKeys: String, CodingKey {
         case eventName, category, contentType, itemId, createdAt, screenName

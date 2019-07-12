@@ -27,7 +27,7 @@
 import Foundation
 import SourceModel
 
-struct ErrorItem: Model, Equatable, Codable, Recordable {
+struct ErrorItem: Typeable, Codable, Recordable {
 
     let domain: String
     let code: Int

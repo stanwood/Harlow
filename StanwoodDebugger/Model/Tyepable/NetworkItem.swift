@@ -59,7 +59,7 @@ protocol HTTPErrorRecorder {
     var errorDescription: String? { get }
 }
 
-struct NetworkItem: Model, Equatable, Codable, NetworkOverviewable, LatencyRecorder, ResponseHeaderable, HTTPDataBodyRecorder, HTTPDataResponseRecorder, HTTPResponseable, HTTPErrorRecorder, Recordable {
+struct NetworkItem: Typeable, Codable, NetworkOverviewable, LatencyRecorder, ResponseHeaderable, HTTPDataBodyRecorder, HTTPDataResponseRecorder, HTTPResponseable, HTTPErrorRecorder, Recordable {
     
     let id: String
     let url: String
