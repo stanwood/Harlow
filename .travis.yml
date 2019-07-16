@@ -17,4 +17,4 @@ script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
-  - pod lib lint --allow-warnings
+  - pod lib lint --allow-warnings --verbose

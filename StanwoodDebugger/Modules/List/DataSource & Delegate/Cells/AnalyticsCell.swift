@@ -31,8 +31,9 @@ class AnalyticsCell: UITableViewCell, Fillable {
 
     @IBOutlet private var labels: [UILabel]!
     
+    @IBOutlet private var collapsingStacks: [UIStackView]!
+    @IBOutlet private weak var superPropertyStackView: UIStackView!
     private(set) var item: AnalyticsItem?
-    
     private enum Labels: Int {
         case eventName, date, screenName, category, itemId, contentType
     }
@@ -49,7 +50,11 @@ class AnalyticsCell: UITableViewCell, Fillable {
     }
     
     func fill(with model: Model?) {
+      
         guard let item = model as? AnalyticsItem else { return }
+        
+        /// Show or hide properties depending on type
+        let hasSuperProperty = item.superProperties != nil
         self.item = item
         
         labels[Labels.eventName.rawValue].text = item.eventName ?? String.defaultValue
@@ -59,6 +64,11 @@ class AnalyticsCell: UITableViewCell, Fillable {
         labels[Labels.category.rawValue].text = item.category ?? String.defaultValue
         labels[Labels.itemId.rawValue].text = item.itemId ?? String.defaultValue
         labels[Labels.contentType.rawValue].text = item.contentType ?? String.defaultValue
+        
+        collapsingStacks.forEach { (stack) in
+            stack.isHidden = hasSuperProperty
+        }
+        
+        superPropertyStackView.isHidden = !hasSuperProperty
     }
-    
 }

@@ -27,7 +27,11 @@
 import Foundation
 import SourceModel
 
-struct AnalyticsItem: Typeable, Codable {
+struct AnalyticsItem: Typeable, Codable, Recordable {
+    
+    static func == (lhs: AnalyticsItem, rhs: AnalyticsItem) -> Bool {
+        return lhs.itemId == rhs.itemId && lhs.superProperties == rhs.superProperties && lhs.eventName == rhs.eventName && lhs.contentType == rhs.contentType && lhs.screenName == rhs.screenName && lhs.createdAt == rhs.createdAt
+    }
     
     enum CodingKeys: String, CodingKey {
         case eventName, category, contentType, itemId, createdAt, screenName
@@ -39,7 +43,7 @@ struct AnalyticsItem: Typeable, Codable {
     var contentType: String?
     var screenName: String?
     var createdAt: Date?
-    
+    var superProperties: PanelTypeWrapperItems?
     var formattedDate: String {
         guard let date = createdAt else { return "" }
         let format = "HH:mm:ss"
@@ -47,4 +51,49 @@ struct AnalyticsItem: Typeable, Codable {
         dateFormat.dateFormat = format
         return dateFormat.string(from: date)
     }
+}
+
+public class PanelTypeWrapper: NSObject, Model, Codable {
+    
+    //var stringValue: DebugString?
+    var stringValue: DebugString?
+
+    var key: String
+//    var numberValue: NSNumber?
+//    var dateValue: Date?
+//    var urlValue: URL?
+    
+//    var dictValue: NSArray?
+//    var arrayValue: NSDictionary?
+    
+    /// TODO:- init with Mixpanel type
+    
+    public init(key: String, stringValue: String) {
+        self.stringValue = stringValue as? DebugString
+        self.key = key
+    }
+}
+
+//public struct SuperPropertyWrapper: Model, Codable, Equatable {
+//
+//    public static func == (lhs: SuperPropertyWrapper, rhs: SuperPropertyWrapper) -> Bool {
+//        return lhs.values ?? [:] == rhs.values ?? [:]
+//    }
+//
+//    var values: [String: PanelTypeWrapper]?
+//
+//}
+
+
+
+public class PanelTypeWrapperItems: Elements<PanelTypeWrapper>, Equatable {
+    
+    public static func == (lhs: PanelTypeWrapperItems, rhs: PanelTypeWrapperItems) -> Bool {
+        return lhs.items == rhs.items
+    }
+}
+
+
+class DebugString: NSString, Codable {
+    
 }

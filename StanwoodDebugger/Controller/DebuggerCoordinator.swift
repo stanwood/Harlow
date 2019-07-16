@@ -157,6 +157,14 @@ class DebuggerCoordinator {
         presentAction(withTitle: type.title, completionItem: items, completion)
     }
     
+    func showDetails(for collection: PanelTypeWrapperItems) {
+        
+        let detailsContoller = PropertyDetailsWireframe.makeViewController()
+        let parameters = PropertyDetailsParemters(collection: collection, appData: actionable.appData)
+        PropertyDetailsWireframe.prepare(detailsContoller, with: actionable, and: parameters)
+        currentViewController(base: window.rootViewController)?.navigationController?.pushViewController(detailsContoller, animated: true)
+    }
+    
     private func presentAction(withTitle title: String, completionItem: [String: Bool], _ actionCompletion: @escaping (UIAlertAction) -> Void) {
         
         let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)

@@ -29,7 +29,7 @@ import Foundation
 protocol DebuggerActionable {
     func presentListView(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion)
     func presentScaleable(_ view: DebuggerScallableView)
-    
+    func showDetails(for collection: PanelTypeWrapperItems)
     /// Handled in ListActionable
     func refresh(withDelay delay: DispatchTimeInterval)
 }
@@ -42,5 +42,9 @@ extension DebuggerActions: DebuggerActionable {
     
     func presentScaleable(_ view: DebuggerScallableView) {
         view.show()
+    }
+    
+    func showDetails(for collection: PanelTypeWrapperItems) {
+        coordinator?.showDetails(for: collection)
     }
 }
