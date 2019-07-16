@@ -27,10 +27,16 @@
 import Foundation
 import SourceModel
 
+protocol ListDelegateHandler: class {
+    func showPeopleProperties()
+    var hasUserProperties: Bool { get }
+}
+
 class ListDelegate: TableDelegate {
  
     weak var presenter: ItemPresentable?
-    
+    weak var handler: ListDelegateHandler?
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -44,6 +50,28 @@ class ListDelegate: TableDelegate {
         } else if let cell = tableView.cellForRow(at: indexPath) as? CrashCell,
             let item = cell.item {
             presenter?.present(item: item)
+        } else if let cell = tableView.cellForRow(at: indexPath) as? AnalyticsCell,
+            let item = cell.item {
+            presenter?.present(item: item)
         }
+
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = PeoplePropertyHeader.loadFromNib(bundle: Bundle.debuggerBundle())
+        header?.delegate = self
+        return header
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return handler?.hasUserProperties == true ? 50 : 0
+    }
+}
+
+
+extension ListDelegate: PeoplePropertyHeaderDelegate {
+    
+    func showPeopleProperties() {
+        handler?.showPeopleProperties()
     }
 }

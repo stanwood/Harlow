@@ -122,10 +122,10 @@ class DebuggerScallableView: UIView {
             tableView.backgroundView = nil
         }
         
-        listDataSource = ListDataSource(modelCollection: modelCollection)
+        listDataSource = ListDataSource(modelCollection: modelCollection, delegate: self)
         listDelegate = ListDelegate(modelCollection: modelCollection)
         listDelegate.presenter = self
-        
+        listDelegate.handler = self
         tableView.dataSource = listDataSource
         tableView.delegate = listDelegate
     
@@ -209,5 +209,19 @@ extension DebuggerScallableView: DebuggerFilterViewDelegate {
         listDelegate.update(modelCollection: modelCollection)
         
         tableView.reloadData()
+    }
+}
+
+extension DebuggerScallableView: ListDelegateHandler {
+
+    func showPeopleProperties() {
+        
+        // Show people properties
+        //expand(with: item)
+    }
+    
+    /// Set this depending on if the people proerties exist
+    var hasUserProperties: Bool {
+        return true
     }
 }

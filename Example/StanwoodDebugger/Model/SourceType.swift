@@ -9,22 +9,21 @@
 import Foundation
 import SourceModel
 
-
-struct AnalyticExample: ActionItemable, Typeable, Codable {
+struct AnalyticExample: ActionItemable, Model, Codable, Equatable {
     
     let eventName: String
     let screenName: String?
-    
     let itemId: String?
     let category: String?
     let contentType: String?
+    let superProperty: PanelTypeWrapperItems?
     
     var type: AnalyticsType {
-        return screenName != nil ? .screen : AnalyticsType.type(forCount: [itemId, category, contentType].compactMap({$0}).count)
+        return superProperty != nil ? .superProperty : (screenName != nil ? .screen : AnalyticsType.type(forCount: [itemId, category, contentType].compactMap({$0}).count))
     }
     
     enum AnalyticsType {
-        case screen, contentLong, contentShort, contentMedium
+        case screen, contentLong, contentShort, contentMedium, superProperty
         
         var title: String {
             switch self {
@@ -32,6 +31,7 @@ struct AnalyticExample: ActionItemable, Typeable, Codable {
             case .contentShort: return "Analytics short event"
             case .contentMedium: return "Analytics medium event"
             case .contentLong: return "Analytics long event"
+            case .superProperty: return "Super Property"
             }
         }
         
@@ -45,9 +45,9 @@ struct AnalyticExample: ActionItemable, Typeable, Codable {
         }
     }
     
-    private func payload() -> [String:String] {
+    private func payload() -> [String:Any] {
         
-        var payload: [String:String] = ["eventName": eventName]
+        var payload: [String:Any] = ["eventName": eventName]
         
         if let itemId = itemId {
             payload["itemId"] = itemId
@@ -63,6 +63,14 @@ struct AnalyticExample: ActionItemable, Typeable, Codable {
         
         if let screenName = screenName {
             payload["screenName"] = screenName
+        }
+        
+        if let screenName = screenName {
+            payload["screenName"] = screenName
+        }
+        
+        if let superProperty = superProperty {
+            payload["superProperty"] = "superProperty" // Crashing when using dictionary
         }
         
         let dateFormatter = DateFormatter()
@@ -96,7 +104,7 @@ class AnalyticsExample: Elements<AnalyticExample>, Headerable {
     }
 }
 
-struct NetworkExample: Typeable, Codable {
+struct NetworkExample: Model, Codable, Equatable {
     let method: NetworkingManager.Method
     let url: String
 }
@@ -161,3 +169,12 @@ class CrashesExample: Elements<CrashExample>, Headerable {
         return CrashSampleCell.self
     }
 }
+
+typealias Fillable = SourceModel.Fillable
+typealias Delegateble = SourceModel.Delegateble
+typealias Model = SourceModel.Model
+typealias SourceTypePresentable = SourceModel.SourceTypePresentable
+typealias DataSourceType = SourceModel.DataSourceType
+typealias DelegateSourceType = SourceModel.DelegateSourceType
+typealias Headerable = SourceModel.Headerable
+

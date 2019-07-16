@@ -38,15 +38,18 @@ class ModelItems {
         NetworkExample(method: .post, url: "https://httpbin.org/post")
     ]
     
+    
     static let analyticsContentItems: [AnalyticExample] = [
-        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "09873rf", category: "articles", contentType: "website"),
-        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "asdf987", category: "foood", contentType: nil),
-        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "cnaiodnc", category: nil, contentType: "product"),
-        AnalyticExample(eventName: "content_type", screenName: nil, itemId: nil, category: nil, contentType: nil)
+        
+        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "09873rf", category: "articles", contentType: "website", superProperty: nil),
+        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "asdf987", category: "foood", contentType: nil, superProperty: nil),
+        AnalyticExample(eventName: "content_type", screenName: nil, itemId: "cnaiodnc", category: nil, contentType: "product", superProperty: nil),
+        AnalyticExample(eventName: "content_type", screenName: nil, itemId: nil, category: nil, contentType: nil, superProperty: nil),
+        AnalyticExample(eventName: "content_type", screenName: nil, itemId: nil, category: nil, contentType: nil, superProperty: PanelTypeWrapperItems(items: [PanelTypeWrapper(key: "Error Code", stringValue: "098j98832")]))
     ]
     
     static let analyticsScreenItems: [AnalyticExample] = [
-        AnalyticExample(eventName: "", screenName: "home_view", itemId: nil, category: nil, contentType: nil)
+        AnalyticExample(eventName: "", screenName: "home_view", itemId: nil, category: nil, contentType: nil, superProperty: nil)
     ]
 
     static let crashesContentItems: [CrashExample] = [

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PeoplePropertyHeader" customModule="StanwoodDebugger" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="337" height="55"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNO-Fw-tCb">
+                    <rect key="frame" x="0.0" y="0.0" width="337" height="55"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dAW-Qd-TZA">
+                        <rect key="frame" x="0.0" y="0.0" width="337" height="55"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People Properties" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1V-oF-0uN">
+                                <rect key="frame" x="20" y="17" width="136" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ekd-GL-RLZ">
+                                <rect key="frame" x="295" y="16.5" width="22" height="22"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="didSelectItem:" destination="iN0-l3-epB" eventType="touchUpInside" id="dcq-7f-WyA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="p1V-oF-0uN" firstAttribute="centerY" secondItem="dAW-Qd-TZA" secondAttribute="centerY" id="fSH-d9-UoJ"/>
+                            <constraint firstItem="Ekd-GL-RLZ" firstAttribute="centerY" secondItem="dAW-Qd-TZA" secondAttribute="centerY" id="oQa-Y5-kge"/>
+                            <constraint firstItem="p1V-oF-0uN" firstAttribute="leading" secondItem="dAW-Qd-TZA" secondAttribute="leading" constant="20" id="u2e-P7-Yoa"/>
+                            <constraint firstAttribute="trailing" secondItem="Ekd-GL-RLZ" secondAttribute="trailing" constant="20" id="yTf-du-cuq"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="light"/>
+                </visualEffectView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="KNO-Fw-tCb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Bxl-Rw-mCA"/>
+                <constraint firstAttribute="bottom" secondItem="KNO-Fw-tCb" secondAttribute="bottom" id="VjP-hB-DJb"/>
+                <constraint firstItem="KNO-Fw-tCb" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="W3V-1Z-g1W"/>
+                <constraint firstItem="KNO-Fw-tCb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xJb-gm-xkO"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="titleLabel" destination="p1V-oF-0uN" id="pCn-9H-NAB"/>
+            </connections>
+            <point key="canvasLocation" x="85" y="217"/>
+        </view>
+    </objects>
+</document>

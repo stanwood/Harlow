@@ -4,5 +4,6 @@
 
 
 @import StanwoodDebugger;
-
+@import StanwoodCore;
+@import SourceModel;
 // >Note: Make sure to add any other imported libraries from your main header file

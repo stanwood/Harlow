@@ -58,4 +58,8 @@ class DebuggerPresenter {
     func refresh() {
         actionable.refresh(withDelay: .milliseconds(500))
     }
+    
+    func showDetails(for collection: PanelTypeWrapperItems) {
+        actionable.showDetails(for: collection)
+    }
 }
