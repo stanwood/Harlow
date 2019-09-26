@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
   }
 
 #  s.dependency 'Pulsator' /// Wait for Swift 4.2 support
-  s.dependency 'StanwoodCore', '~> 1.5.0'
+  s.dependency 'StanwoodCore', '~> 1.6'
   s.dependency 'SourceModel'
   s.dependency 'Toast-Swift', '~> 4.0.1'
 end
