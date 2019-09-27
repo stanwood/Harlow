@@ -1,7 +1,9 @@
 PODS:
+  - Pulsator (0.6.0)
   - SourceModel (1.2)
   - StanwoodCore (1.7)
   - StanwoodDebugger (1.2):
+    - Pulsator
     - SourceModel
     - StanwoodCore
     - Toast-Swift (~> 4.0.1)
@@ -12,6 +14,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Pulsator
     - SourceModel
     - StanwoodCore
     - Toast-Swift
@@ -21,11 +24,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Pulsator: eb5a9f9be4bdcbd19903984c65deca6aabe50a17
   SourceModel: 08957a4ee4eb94a2c10bac753af8833efa4143e7
   StanwoodCore: b00bb3703d843d583fd884b603f0b88a77bc84b4
-  StanwoodDebugger: 9e504991d28babcec76352c875c9436df48761f5
+  StanwoodDebugger: 2853373e16348e59ba2f041e1710b28c925e4d79
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
-PODFILE CHECKSUM: ab1ff916781fc586b580a407b47c73cc6c2bc217
+PODFILE CHECKSUM: 80aa72b8771808efa86091b70d5bfe6c847c9e5c
 
 COCOAPODS: 1.7.4

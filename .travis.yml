@@ -10,7 +10,7 @@ branches:
     - master
 before_install:
   - gem install cocoapods
-  - pod update SourceModel --repo-update --project-directory=Example
+  - pod update StanwoodCore --repo-update --project-directory=Example
 before_script:
   - 'echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
 script:
