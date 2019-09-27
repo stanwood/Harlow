@@ -3,14 +3,15 @@
 # * https://github.com/supermarin/xcpretty#usage
 
 os: osx
-osx_image: xcode10.2
+osx_image: xcode10.3
 language: objective-c
 branches:
   only:
     - master
 before_install:
   - gem install cocoapods
-  - pod update StanwoodCore --repo-update --project-directory=Example
+  - pod repo update
+  - pod install --repo-update --project-directory=Example
 before_script:
   - 'echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
 script:

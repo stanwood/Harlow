@@ -16,6 +16,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		6C0518CE233DDCD100681DAE /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 6C0518CD233DDCD100681DAE /* .travis.yml */; };
 		6C20952521D615110077B2AC /* ModelItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20952421D615110077B2AC /* ModelItems.swift */; };
 		6C20952821D615970077B2AC /* SourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20952721D615970077B2AC /* SourceType.swift */; };
 		6C72B02E21D1229E00FD949A /* ExampleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C72B02D21D1229E00FD949A /* ExampleDataSource.swift */; };
@@ -63,6 +64,7 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		65CC5593567DABE1E1A8E37C /* Pods-StanwoodDebugger_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodDebugger_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodDebugger_Example/Pods-StanwoodDebugger_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		67DAF73079A463A8E75BA380 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		6C0518CD233DDCD100681DAE /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		6C20952421D615110077B2AC /* ModelItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelItems.swift; sourceTree = "<group>"; };
 		6C20952721D615970077B2AC /* SourceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceType.swift; sourceTree = "<group>"; };
 		6C6C30DB213E9B7100360AC7 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				67DAF73079A463A8E75BA380 /* README.md */,
 				6C6C30DB213E9B7100360AC7 /* CHANGELOG.md */,
 				4632D065D08652DB82DFC8F8 /* LICENSE */,
+				6C0518CD233DDCD100681DAE /* .travis.yml */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				6C72B04021D1289800FD949A /* HeaderView.xib in Resources */,
 				6C7F86E321DB54FA0051133E /* stanwood_debugger_networking.gif in Resources */,
 				6CC66A9121DCB95900310EB4 /* logs-3.png in Resources */,
+				6C0518CE233DDCD100681DAE /* .travis.yml in Resources */,
 				6C72B03721D1246C00FD949A /* AnalyticsExampleCell.xib in Resources */,
 				071C1A4421E0E86500E05FB0 /* CrashSampleCell.xib in Resources */,
 				6CC66A8F21DCB95900310EB4 /* logs-1.png in Resources */,
