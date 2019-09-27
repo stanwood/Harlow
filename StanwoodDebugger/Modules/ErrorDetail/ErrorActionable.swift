@@ -24,7 +24,6 @@
 //  THE SOFTWARE.
 //
 
-import StanwoodCore
 
 protocol ErrorActionable {
 

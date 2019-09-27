@@ -33,7 +33,7 @@ protocol SettingsCellDelegate: class {
     func didTapAction(_ type: SettingsData.Section.SettingType)
 }
 
-class SettingsCell: Stanwood.AutoSizeableCell, SourceModel.Fillable {
+class SettingsCell: Stanwood.AutoSizeableCell, Fillable {
 
     @IBOutlet private weak var actionButton: UIButton!
     @IBOutlet private weak var switchButton: UISwitch!
@@ -49,7 +49,7 @@ class SettingsCell: Stanwood.AutoSizeableCell, SourceModel.Fillable {
         type = nil
     }
 
-    func fill(with model: SourceModel.Model?) {
+    func fill(with model: Model?) {
         guard let data = model as? SettingsData.Section.Setting else { return }
         actionButton.setTitle(data.title, for: .normal)
         switchButton.isHidden = !data.hasSwitch

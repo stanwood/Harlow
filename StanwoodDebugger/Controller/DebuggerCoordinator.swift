@@ -25,7 +25,6 @@
 //
 
 import Foundation
-import StanwoodCore
 
 class DebuggerCoordinator {
     

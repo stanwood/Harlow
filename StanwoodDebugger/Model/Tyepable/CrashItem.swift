@@ -28,7 +28,7 @@ import Foundation
 import SourceModel
 import StanwoodCore
 
-struct StackItem: SourceModel.Typeable, Codable {
+struct StackItem: Typeable, Codable {
     let text: String
 
     var isAppStack: Bool {
@@ -40,7 +40,7 @@ struct StackItem: SourceModel.Typeable, Codable {
     
 }
 
-struct CrashItem: SourceModel.Typeable, Codable, Recordable {
+struct CrashItem: Typeable, Codable, Recordable {
 
     enum CrashType: String, Codable {
         case signal, exception

@@ -25,7 +25,7 @@
 //
 
 import Foundation
-//import Pulsator // Wait for Swift 4.2 support
+import Pulsator
 import StanwoodCore
 
 class DebuggerUIButton: UIButton {
@@ -111,13 +111,13 @@ class DebuggerUIButton: UIButton {
         }
     }
     
-//    private lazy var pulsator: Pulsator = Pulsator() // Wait for Swift 4.2 support
+    private lazy var pulsator: Pulsator = Pulsator()
     
     var isPulseEnabled: Bool = false {
         didSet {
             switch isPulseEnabled {
-            case true: break // pulsator.start()
-            case false: break // pulsator.stop()
+            case true: pulsator.start()
+            case false: pulsator.stop()
             }
         }
     }
@@ -147,7 +147,6 @@ class DebuggerUIButton: UIButton {
     
     func preparePulse() {
         guard DebuggerSettings.isDebuggerBubblePulseAnimationEnabled else { return }
-        /*
         pulsator.backgroundColor = StanwoodDebugger.Style.tintColor.cgColor
         pulsator.radius = Positions.buttonSize.width * 0.875
         pulsator.numPulse = 3
@@ -155,7 +154,6 @@ class DebuggerUIButton: UIButton {
         pulsator.position = center
         
         superview?.layer.insertSublayer(pulsator, below: layer)
-         */
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -171,12 +169,12 @@ class DebuggerUIButton: UIButton {
         center.x += translation.x
         center.y += translation.y
         self.center = center
-//        pulsator.position = center
+        pulsator.position = center
         
         switch pan.state {
         case .ended, .cancelled:
             let position = Positions.position(for: center)
-//            pulsator.position = position.origin
+            pulsator.position = position.origin
             
             main {
                 Stanwood.FeedbackGenerator.generate(style: .light)
@@ -188,14 +186,14 @@ class DebuggerUIButton: UIButton {
             }, completion: { _ in
                 
                 UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: {
-//                    self.pulsator.opacity = 1
+                    self.pulsator.opacity = 1
                 }, completion: nil)
             })
         case .began:
             
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
                 self.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
-//                self.pulsator.opacity = 0
+                self.pulsator.opacity = 0
             }, completion: nil)
         default: break
         }
