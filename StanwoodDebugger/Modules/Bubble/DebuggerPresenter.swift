@@ -25,7 +25,6 @@
 //
 
 import Foundation
-import StanwoodCore
 
 protocol ItemPresentable: class {
     func present(item: Recordable)

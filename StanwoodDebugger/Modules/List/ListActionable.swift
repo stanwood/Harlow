@@ -25,7 +25,6 @@
 //
 
 import Foundation
-import StanwoodCore
 
 protocol ListActionable {
     func refresh(withDelay delay: DispatchTimeInterval)

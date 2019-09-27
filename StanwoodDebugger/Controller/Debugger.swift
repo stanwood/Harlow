@@ -25,7 +25,6 @@
 //
 
 import Foundation
-import StanwoodCore
 
 protocol Debugging: class {
     var isEnabled: Bool { get set }

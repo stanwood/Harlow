@@ -25,7 +25,6 @@
 //
 
 import Foundation
-import StanwoodCore
 //
 //typealias Itemable = Item & Codable
 //typealias CellFilling = UITableViewCell & Filling

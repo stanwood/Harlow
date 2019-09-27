@@ -1,10 +1,9 @@
 PODS:
-  - SourceModel (1.1.0):
-    - StanwoodCore (= 1.6.0)
-  - StanwoodCore (1.6)
-  - StanwoodDebugger (1.2.0):
+  - SourceModel (1.2)
+  - StanwoodCore (1.7)
+  - StanwoodDebugger (1.2):
     - SourceModel
-    - StanwoodCore (~> 1.6)
+    - StanwoodCore
     - Toast-Swift (~> 4.0.1)
   - Toast-Swift (4.0.1)
 
@@ -22,9 +21,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SourceModel: 53ea040fe503c48a8d9cace5587db7e9200c8a01
-  StanwoodCore: ce5d19884a5756ee4c10983580a6ffc060b7d6df
-  StanwoodDebugger: d5ff639a91ed057133ee7049b67b3f34347a02ff
+  SourceModel: 08957a4ee4eb94a2c10bac753af8833efa4143e7
+  StanwoodCore: b00bb3703d843d583fd884b603f0b88a77bc84b4
+  StanwoodDebugger: 9e504991d28babcec76352c875c9436df48761f5
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
 PODFILE CHECKSUM: ab1ff916781fc586b580a407b47c73cc6c2bc217
