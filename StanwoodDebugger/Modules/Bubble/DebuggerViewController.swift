@@ -98,18 +98,17 @@ class DebuggerViewController: UIViewController, DebuggerViewable {
         }
         return debuggerButton.frame.contains(point)
     }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        // TODO
-    }
 }
 
 extension DebuggerViewController: DebuggerScallableViewDelegate {
+    
     func scallableViewIsExpanding(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion) {
         presenter.presentDetailView(with: filter, completion: completion)
     }
     
-    func scallableViewDidDismiss() {
-        presenter.debugger.isDisplayed = false
+    func scallableViewDidDismiss(whileExpanding isExpanding: Bool) {
+        presenter.debugger.isDisplayed = isExpanding
+        debuggerScallableView?.removeFromSuperview()
+        debuggerScallableView = nil
     }
 }
