@@ -31,7 +31,7 @@ typealias Completion = () -> Void
 
 protocol DebuggerScallableViewDelegate: class {
     func scallableViewIsExpanding(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion)
-    func scallableViewDidDismiss()
+    func scallableViewDidDismiss(whileExpanding: Bool)
 }
 
 class DebuggerScallableView: UIView {
@@ -150,9 +150,7 @@ class DebuggerScallableView: UIView {
                 self.button.isEnabled = true
             }, completion: { _ in
                 self.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-                if !isExpandable {
-                    self.delegate?.scallableViewDidDismiss()
-                }
+                self.delegate?.scallableViewDidDismiss(whileExpanding: isExpandable)
             })
         }
     }

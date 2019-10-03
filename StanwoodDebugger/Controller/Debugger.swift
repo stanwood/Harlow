@@ -187,7 +187,8 @@ public class StanwoodDebugger: Debugging {
 extension StanwoodDebugger: DebuggerWindowDelegate {
     
     func isPoint(inside point: CGPoint) -> Bool {
-        return debuggerViewController?.shouldHandle(point) ?? false
+        let isPoint = debuggerViewController?.shouldHandle(point) ?? false
+        return isPoint
     }
 }
 

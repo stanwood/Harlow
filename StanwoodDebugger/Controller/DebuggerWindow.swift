@@ -46,6 +46,7 @@ class DebuggerWindow: UIWindow {
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        return delegate?.isPoint(inside: point) ?? false
+        let isPoint = delegate?.isPoint(inside: point) ?? false
+        return isPoint
     }
 }

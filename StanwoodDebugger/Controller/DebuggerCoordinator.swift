@@ -76,7 +76,7 @@ class DebuggerCoordinator {
         tabBarController.setViewControllers([
             detailControllers.navigationController,
             settingsControllers.navigationController], animated: false)
-        
+        tabBarController.modalPresentationStyle = .overFullScreen
         window.rootViewController?.present(tabBarController, animated: animated, completion: completion)
     }
     
