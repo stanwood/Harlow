@@ -115,9 +115,17 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		13124D5423EDB455004F461F /* Asseets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Asseets;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				13124D5423EDB455004F461F /* Asseets */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for StanwoodDebugger */,
 				607FACE81AFB9204008FA782 /* Tests */,

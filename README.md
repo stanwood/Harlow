@@ -1,12 +1,12 @@
 
-# StanwoodDebugger framework
+![banner](assets/banner.png)
 
 [![Swift Version](https://img.shields.io/badge/Swift-5.x-orange.svg)]()
-[![iOS 10+](https://img.shields.io/badge/iOS-10+-EB7943.svg)]() [![Maintainability](https://api.codeclimate.com/v1/badges/1a2096a936f5ea9548ac/maintainability)](https://codeclimate.com/github/stanwood/Stanwood_Debugger_iOS/maintainability)
-[![Build Status](https://travis-ci.org/stanwood/Stanwood_Debugger_iOS.svg?branch=master)](https://travis-ci.org/stanwood/Stanwood_Debugger_iOS)
-Debugging and testing iOS applications can be quite a long task due to the nature of Software Development. _StanwoodDebugger_ tool provides reach information on Analytics, Errors, Logging, Networking, and UITesting to simplify this process.
+[![iOS 10+](https://img.shields.io/badge/iOS-10+-EB7943.svg)]() [![Maintainability](https://api.codeclimate.com/v1/badges/1a2096a936f5ea9548ac/maintainability)](https://codeclimate.com/github/stanwood/Harlow/maintainability)
+[![Build Status](https://travis-ci.org/stanwood/Harlow.svg?branch=master)](https://travis-ci.org/stanwood/Harlow)
+Debugging and testing iOS applications can be quite a long task due to the nature of Software Development. _Harlow_ tool provides reach information on Analytics, Errors, Logging, Networking, and UITesting to simplify this process.
 
-[![Demo StanwoodDebugger](https://j.gifs.com/Q0ZWr9.gif)]()
+[![Demo Harlow](https://j.gifs.com/Q0ZWr9.gif)]()
 
 ## Table of contents
 
@@ -24,14 +24,14 @@ Tal Zion tal.zion@stanwood.io
 ## Installation
 
 ```ruby
-pod 'StanwoodDebugger', :configurations => ['Debug'] # Make sure to only use StanwoodDebugger for development only.
+pod 'Harlow', :configurations => ['Debug'] # Make sure to only use Harlow for development only.
 ```
 
 ## Usage
 
 ```swift
 #if DEBUG
-import StanwoodDebugger
+import Harlow
 #endif
 
 @UIApplicationMain
@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     #if DEBUG
-    lazy var debugger: StanwoodDebugger = StanwoodDebugger()
+    lazy var debugger: Harlow = Harlow()
     #endif
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -122,7 +122,7 @@ analyticsBuilder = analyticsBuilder.setDebuggerNotifications(enabled: true)
 
 ### Networking
 
-`StanwoodDebugger` works by default with `URLSessiosn.shared` and request are beeing logged for free. You can also register a custom condiguration: 
+`Harlow` works by default with `URLSessiosn.shared` and request are beeing logged for free. You can also register a custom condiguration: 
 
 ```swift
 let configuration = URLSessionConfiguration.waitsForConnectivity
@@ -137,7 +137,7 @@ let session = URLSession(configuration: configuration)
 
 ### Error
 
-`StanwoodDebugger` will log `NSError` by default.  To add log exceptions:
+`Harlow` will log `NSError` by default.  To add log exceptions:
 
 ```swift
 debugger.errorCodesExceptions = [4097] /// Add error code exceptions
@@ -145,7 +145,7 @@ debugger.errorCodesExceptions = [4097] /// Add error code exceptions
 
 ### Logs
 
-`StanwoodDebugger` will log `print` && `debugPrint` by default.
+`Harlow` will log `print` && `debugPrint` by default.
 
 #### Configuration:
 
@@ -153,10 +153,10 @@ debugger.errorCodesExceptions = [4097] /// Add error code exceptions
 
 ![logs-1](Media/logs-1.png)
 
-2. Import `StanwoodDebugger`
+2. Import `Harlow`
 
 ```objc
-@import StanwoodDebugger;
+@import Harlow;
 ```
 
 >Note: Make sure to add any other imported libraries from your main header file
@@ -167,13 +167,13 @@ debugger.errorCodesExceptions = [4097] /// Add error code exceptions
 
 ### Crashes
 
-`StanwoodDebugger` will log `Signal` and `NSException` crashes by default.
+`Harlow` will log `Signal` and `NSException` crashes by default.
 
 ## Licence
 
-StanwoodDebugger is under MIT licence. See the [LICENSE](https://github.com/stanwood/Stanwood_Debugger_iOS/blob/master/LICENSE.md) file for more info.
+Harlow is under MIT licence. See the [LICENSE](https://github.com/stanwood/Harlow/blob/master/LICENSE.md) file for more info.
 
 ## Changelog
 
-A brief summary of each StanwoodDebugger release can be found in the [CHANGELOG](https://github.com/stanwood/Stanwood_Debugger_iOS/blob/master/CHANGELOG.md).
+A brief summary of each Harlow release can be found in the [CHANGELOG](https://github.com/stanwood/Harlow/blob/master/CHANGELOG.md).
 
