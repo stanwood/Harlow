@@ -177,3 +177,4 @@ StanwoodDebugger is under MIT licence. See the [LICENSE](https://github.com/stan
 
 A brief summary of each StanwoodDebugger release can be found in the [CHANGELOG](https://github.com/stanwood/Stanwood_Debugger_iOS/blob/master/CHANGELOG.md).
 
+
