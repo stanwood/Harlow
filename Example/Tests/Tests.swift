@@ -1,5 +1,5 @@
 import XCTest
-import StanwoodDebugger
+import Harlow
 
 class Tests: XCTestCase {
     

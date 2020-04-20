@@ -1,16 +1,16 @@
 PODS:
-  - Pulsator (0.6.0)
-  - SourceModel (1.2)
-  - StanwoodCore (1.7)
-  - StanwoodDebugger (1.3):
+  - Harlow (1.3.1):
     - Pulsator
     - SourceModel
     - StanwoodCore
     - Toast-Swift (~> 4.0.1)
+  - Pulsator (0.6.0)
+  - SourceModel (1.3)
+  - StanwoodCore (1.7)
   - Toast-Swift (4.0.1)
 
 DEPENDENCIES:
-  - StanwoodDebugger (from `../`)
+  - Harlow (from `../`)
 
 SPEC REPOS:
   trunk:
@@ -20,16 +20,16 @@ SPEC REPOS:
     - Toast-Swift
 
 EXTERNAL SOURCES:
-  StanwoodDebugger:
+  Harlow:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Harlow: 4f2eee56ad4a28602be993e023a0441704065a09
   Pulsator: eb5a9f9be4bdcbd19903984c65deca6aabe50a17
-  SourceModel: 08957a4ee4eb94a2c10bac753af8833efa4143e7
+  SourceModel: f8638583dfd8eef728769b8bc4124fdc3fa13b7c
   StanwoodCore: b00bb3703d843d583fd884b603f0b88a77bc84b4
-  StanwoodDebugger: 58b505410f0c98df032d04e5d01d145f14af75d6
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
-PODFILE CHECKSUM: 80aa72b8771808efa86091b70d5bfe6c847c9e5c
+PODFILE CHECKSUM: 2c5b42ec1a563fd41c09368b7a007eadff3154ec
 
-COCOAPODS: 1.8.0
+COCOAPODS: 1.8.4
