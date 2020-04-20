@@ -39,7 +39,7 @@ class FilterCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         filterButton.layer.borderWidth = 1
-        filterButton.layer.borderColor = StanwoodDebugger.Style.tintColor.cgColor
+        filterButton.layer.borderColor = Harlow.Style.tintColor.cgColor
         filterButton.layer.cornerRadius = filterButton.frame.height / 2
         backgroundColor = .clear
     }

@@ -1,6 +1,6 @@
 //
 //  LogCell.swift
-//  StanwoodDebugger
+//  Harlow
 //
 //  Created by Tal Zion on 02/01/2019.
 //

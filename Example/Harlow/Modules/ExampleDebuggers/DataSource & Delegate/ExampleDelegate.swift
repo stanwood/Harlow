@@ -1,6 +1,6 @@
 //
 //  ExampleDelegate.swift
-//  StanwoodDebugger_Example
+//  Harlow_Example
 //
 //  Created by Tal Zion on 24/12/2018.
 //  Copyright © 2018 CocoaPods. All rights reserved.

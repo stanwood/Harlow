@@ -1,6 +1,6 @@
 //
 //  CrashCell.swift
-//  StanwoodDebugger
+//  Harlow
 //
 //  Created by Lukasz Lenkiewicz on 02/01/2019.
 //

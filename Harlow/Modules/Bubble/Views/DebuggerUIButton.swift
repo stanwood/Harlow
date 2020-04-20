@@ -137,7 +137,7 @@ class DebuggerUIButton: UIButton {
         setImage(image, for: .normal)
         tintColor = .white
         setTitleColor(.white, for: .normal)
-        backgroundColor = StanwoodDebugger.Style.tintColor
+        backgroundColor = Harlow.Style.tintColor
         
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panning(_:)))
         addGestureRecognizer(pan)
@@ -147,7 +147,7 @@ class DebuggerUIButton: UIButton {
     
     func preparePulse() {
         guard DebuggerSettings.isDebuggerBubblePulseAnimationEnabled else { return }
-        pulsator.backgroundColor = StanwoodDebugger.Style.tintColor.cgColor
+        pulsator.backgroundColor = Harlow.Style.tintColor.cgColor
         pulsator.radius = Positions.buttonSize.width * 0.875
         pulsator.numPulse = 3
         pulsator.animationDuration = 3

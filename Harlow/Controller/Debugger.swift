@@ -31,8 +31,8 @@ protocol Debugging: class {
     var isDisplayed: Bool { get set }
 }
 
-/// StanwoodDebugger acts as the framework controller, delegating logs
-public class StanwoodDebugger: Debugging {
+/// Harlow acts as the framework controller, delegating logs
+public class Harlow: Debugging {
     
     /// Supported Services
     public enum Service: CaseIterable {
@@ -184,7 +184,7 @@ public class StanwoodDebugger: Debugging {
     }
 }
 
-extension StanwoodDebugger: DebuggerWindowDelegate {
+extension Harlow: DebuggerWindowDelegate {
     
     func isPoint(inside point: CGPoint) -> Bool {
         return debuggerViewController?.shouldHandle(point) ?? false

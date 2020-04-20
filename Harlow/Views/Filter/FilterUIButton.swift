@@ -74,13 +74,13 @@ class FilterUIButton: UIButton {
         switch selected {
         case true:
             setTitleColor(.white, for: .normal)
-            backgroundColor = StanwoodDebugger.Style.tintColor
+            backgroundColor = Harlow.Style.tintColor
             badgeLabel.backgroundColor = .white
-            badgeLabel.textColor = StanwoodDebugger.Style.tintColor
+            badgeLabel.textColor = Harlow.Style.tintColor
         case false:
-            setTitleColor(StanwoodDebugger.Style.tintColor, for: .normal)
+            setTitleColor(Harlow.Style.tintColor, for: .normal)
             backgroundColor = .white
-            badgeLabel.backgroundColor = StanwoodDebugger.Style.tintColor
+            badgeLabel.backgroundColor = Harlow.Style.tintColor
             badgeLabel.textColor = .white
         }
     }

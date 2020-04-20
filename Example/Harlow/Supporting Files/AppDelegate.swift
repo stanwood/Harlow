@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  StanwoodDebugger
+//  Harlow
 //
 //  Created by talezion on 03/12/2018.
 //  Copyright (c) 2018 talezion. All rights reserved.
@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     #if DEBUG
-    lazy var debugger: StanwoodDebugger = StanwoodDebugger()
+    lazy var debugger: Harlow = Harlow()
     #endif
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

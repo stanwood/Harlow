@@ -1,6 +1,6 @@
 //
 //  DebuggerSettings.swift
-//  Pods-StanwoodDebugger_Example
+//  Pods-Harlow_Example
 //
 //  Created by Tal Zion on 25/04/2018.
 //

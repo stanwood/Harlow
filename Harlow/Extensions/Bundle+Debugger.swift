@@ -29,12 +29,12 @@ import Foundation
 extension Bundle {
     
     static func debuggerBundle() -> Bundle {
-        return Bundle(for: StanwoodDebugger.self)
+        return Bundle(for: Harlow.self)
     }
     
     static func debuggerBundle(from target: AnyClass) -> Bundle {
         let podBundle = Bundle(for:  target)
-        guard let bundleURL = podBundle.url(forResource: "StanwoodDebugger", withExtension: "bundle"),
+        guard let bundleURL = podBundle.url(forResource: "Harlow", withExtension: "bundle"),
         let bundle = Bundle(url: bundleURL) else { fatalError("Must have a local bundle") }
         return bundle
     }

@@ -44,7 +44,7 @@ class SettingsCell: Stanwood.AutoSizeableCell, Fillable {
     
     override func prepare() {
         actionButton.setTitle(nil, for: .normal)
-        switchButton.onTintColor = StanwoodDebugger.Style.tintColor
+        switchButton.onTintColor = Harlow.Style.tintColor
         
         type = nil
     }
@@ -56,7 +56,7 @@ class SettingsCell: Stanwood.AutoSizeableCell, Fillable {
         switchButton.setOn(data.isOn, animated: false)
         switchButton.isUserInteractionEnabled = data.hasSwitch
         separatorView.isHidden = !data.isSeparatorVisible
-        actionButton.setTitleColor(data.isActionable ? StanwoodDebugger.Style.tintColor : StanwoodDebugger.Style.defaultColor, for: .normal)
+        actionButton.setTitleColor(data.isActionable ? Harlow.Style.tintColor : Harlow.Style.defaultColor, for: .normal)
         actionButton.isUserInteractionEnabled = data.isActionable
         self.type = data.type
     }
