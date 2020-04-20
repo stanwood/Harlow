@@ -10,7 +10,7 @@
 		071C1A4321E0E86500E05FB0 /* CrashSampleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071C1A4121E0E86500E05FB0 /* CrashSampleCell.swift */; };
 		071C1A4421E0E86500E05FB0 /* CrashSampleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 071C1A4221E0E86500E05FB0 /* CrashSampleCell.xib */; };
 		071C1A4721E0E9C600E05FB0 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071C1A4621E0E9C600E05FB0 /* Action.swift */; };
-		3B44CE0FC1D4E8A371BC6249 /* Pods_StanwoodDebugger_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D616574E63FCAB9304FB817F /* Pods_StanwoodDebugger_Example.framework */; };
+		5A5BD2BCA14DC974CD5783B1 /* Pods_Harlow_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53592DDD00653FFCE03AFB7D /* Pods_Harlow_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -32,7 +32,7 @@
 		6CC66A8F21DCB95900310EB4 /* logs-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC66A8C21DCB95800310EB4 /* logs-1.png */; };
 		6CC66A9021DCB95900310EB4 /* logs-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC66A8D21DCB95900310EB4 /* logs-2.png */; };
 		6CC66A9121DCB95900310EB4 /* logs-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC66A8E21DCB95900310EB4 /* logs-3.png */; };
-		89F8D9C6B4EE3DED32ADE410 /* Pods_StanwoodDebugger_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA92C32315114F699B1686E /* Pods_StanwoodDebugger_Tests.framework */; };
+		966C8DE56E76F325C1822BE8 /* Pods_Harlow_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B032C3E9F2188C06A0653FB8 /* Pods_Harlow_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,17 +49,20 @@
 		071C1A4121E0E86500E05FB0 /* CrashSampleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashSampleCell.swift; sourceTree = "<group>"; };
 		071C1A4221E0E86500E05FB0 /* CrashSampleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CrashSampleCell.xib; sourceTree = "<group>"; };
 		071C1A4621E0E9C600E05FB0 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
-		2F50920E66D3E4454EC1A82A /* StanwoodDebugger.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = StanwoodDebugger.podspec; path = ../StanwoodDebugger.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		09328F2CC96F7B664611E652 /* Pods-Harlow_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Harlow_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Harlow_Tests/Pods-Harlow_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		2DB4C518B8C62579D042055E /* Pods-Harlow_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Harlow_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Harlow_Tests/Pods-Harlow_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		2F50920E66D3E4454EC1A82A /* Harlow.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Harlow.podspec; path = ../Harlow.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		336996636B23604025BAA6DF /* Pods-StanwoodDebugger_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodDebugger_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodDebugger_Tests/Pods-StanwoodDebugger_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4632D065D08652DB82DFC8F8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		46FEBF1507183EAB8371E0F9 /* Pods-StanwoodDebugger_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodDebugger_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodDebugger_Example/Pods-StanwoodDebugger_Example.release.xcconfig"; sourceTree = "<group>"; };
-		607FACD01AFB9204008FA782 /* StanwoodDebugger_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StanwoodDebugger_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		53592DDD00653FFCE03AFB7D /* Pods_Harlow_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Harlow_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACD01AFB9204008FA782 /* Harlow_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Harlow_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		607FACE51AFB9204008FA782 /* StanwoodDebugger_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StanwoodDebugger_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACE51AFB9204008FA782 /* Harlow_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Harlow_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		65CC5593567DABE1E1A8E37C /* Pods-StanwoodDebugger_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodDebugger_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodDebugger_Example/Pods-StanwoodDebugger_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,13 +81,14 @@
 		6C72B03F21D1289800FD949A /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		6C72B04121D1289D00FD949A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		6C7F86E221DB54FA0051133E /* stanwood_debugger_networking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = stanwood_debugger_networking.gif; path = ../Media/stanwood_debugger_networking.gif; sourceTree = "<group>"; };
-		6C7F86E421DC9EDF0051133E /* StanwoodDebugger_Example-Bridging-Header-DEBUG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StanwoodDebugger_Example-Bridging-Header-DEBUG.h"; sourceTree = "<group>"; };
+		6C7F86E421DC9EDF0051133E /* Harlow_Example-Bridging-Header-DEBUG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Harlow_Example-Bridging-Header-DEBUG.h"; sourceTree = "<group>"; };
 		6CC66A8C21DCB95800310EB4 /* logs-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logs-1.png"; path = "../Media/logs-1.png"; sourceTree = "<group>"; };
 		6CC66A8D21DCB95900310EB4 /* logs-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logs-2.png"; path = "../Media/logs-2.png"; sourceTree = "<group>"; };
 		6CC66A8E21DCB95900310EB4 /* logs-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logs-3.png"; path = "../Media/logs-3.png"; sourceTree = "<group>"; };
 		88753D26D2805B63EAE6D1B1 /* Pods-StanwoodDebugger_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodDebugger_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodDebugger_Tests/Pods-StanwoodDebugger_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		BFA92C32315114F699B1686E /* Pods_StanwoodDebugger_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StanwoodDebugger_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D616574E63FCAB9304FB817F /* Pods_StanwoodDebugger_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StanwoodDebugger_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B032C3E9F2188C06A0653FB8 /* Pods_Harlow_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Harlow_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9A58CACCA0DA4FCD3A83671 /* Pods-Harlow_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Harlow_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Harlow_Example/Pods-Harlow_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		F0AFC980860B43CDBFF2F15F /* Pods-Harlow_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Harlow_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Harlow_Example/Pods-Harlow_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B44CE0FC1D4E8A371BC6249 /* Pods_StanwoodDebugger_Example.framework in Frameworks */,
+				966C8DE56E76F325C1822BE8 /* Pods_Harlow_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89F8D9C6B4EE3DED32ADE410 /* Pods_StanwoodDebugger_Tests.framework in Frameworks */,
+				5A5BD2BCA14DC974CD5783B1 /* Pods_Harlow_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +131,7 @@
 			children = (
 				13124D5423EDB455004F461F /* Asseets */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
-				607FACD21AFB9204008FA782 /* Example for StanwoodDebugger */,
+				607FACD21AFB9204008FA782 /* Example for Harlow */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				62C175E4AFBE4F2804A6B6E8 /* Pods */,
@@ -138,13 +142,13 @@
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD01AFB9204008FA782 /* StanwoodDebugger_Example.app */,
-				607FACE51AFB9204008FA782 /* StanwoodDebugger_Tests.xctest */,
+				607FACD01AFB9204008FA782 /* Harlow_Example.app */,
+				607FACE51AFB9204008FA782 /* Harlow_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		607FACD21AFB9204008FA782 /* Example for StanwoodDebugger */ = {
+		607FACD21AFB9204008FA782 /* Example for Harlow */ = {
 			isa = PBXGroup;
 			children = (
 				071C1A4521E0E9BA00E05FB0 /* Protocols */,
@@ -152,7 +156,7 @@
 				6C72B03321D1243600FD949A /* Modules */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
-			name = "Example for StanwoodDebugger";
+			name = "Example for Harlow";
 			path = StanwoodDebugger;
 			sourceTree = "<group>";
 		};
@@ -164,7 +168,7 @@
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD41AFB9204008FA782 /* Info.plist */,
-				6C7F86E421DC9EDF0051133E /* StanwoodDebugger_Example-Bridging-Header-DEBUG.h */,
+				6C7F86E421DC9EDF0051133E /* Harlow_Example-Bridging-Header-DEBUG.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -190,7 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				6C7F86DD21DB54140051133E /* Media */,
-				2F50920E66D3E4454EC1A82A /* StanwoodDebugger.podspec */,
+				2F50920E66D3E4454EC1A82A /* Harlow.podspec */,
 				67DAF73079A463A8E75BA380 /* README.md */,
 				6C6C30DB213E9B7100360AC7 /* CHANGELOG.md */,
 				4632D065D08652DB82DFC8F8 /* LICENSE */,
@@ -206,6 +210,10 @@
 				46FEBF1507183EAB8371E0F9 /* Pods-StanwoodDebugger_Example.release.xcconfig */,
 				336996636B23604025BAA6DF /* Pods-StanwoodDebugger_Tests.release.xcconfig */,
 				88753D26D2805B63EAE6D1B1 /* Pods-StanwoodDebugger_Tests.debug.xcconfig */,
+				B9A58CACCA0DA4FCD3A83671 /* Pods-Harlow_Example.debug.xcconfig */,
+				F0AFC980860B43CDBFF2F15F /* Pods-Harlow_Example.release.xcconfig */,
+				09328F2CC96F7B664611E652 /* Pods-Harlow_Tests.debug.xcconfig */,
+				2DB4C518B8C62579D042055E /* Pods-Harlow_Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -275,8 +283,8 @@
 		A82159CF6D52331FDB471FC2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D616574E63FCAB9304FB817F /* Pods_StanwoodDebugger_Example.framework */,
-				BFA92C32315114F699B1686E /* Pods_StanwoodDebugger_Tests.framework */,
+				B032C3E9F2188C06A0653FB8 /* Pods_Harlow_Example.framework */,
+				53592DDD00653FFCE03AFB7D /* Pods_Harlow_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -284,9 +292,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		607FACCF1AFB9204008FA782 /* StanwoodDebugger_Example */ = {
+		607FACCF1AFB9204008FA782 /* Harlow_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "StanwoodDebugger_Example" */;
+			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Harlow_Example" */;
 			buildPhases = (
 				C482FB05DEBDF2AE5DA44852 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
@@ -298,14 +306,14 @@
 			);
 			dependencies = (
 			);
-			name = StanwoodDebugger_Example;
+			name = Harlow_Example;
 			productName = StanwoodDebugger;
-			productReference = 607FACD01AFB9204008FA782 /* StanwoodDebugger_Example.app */;
+			productReference = 607FACD01AFB9204008FA782 /* Harlow_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		607FACE41AFB9204008FA782 /* StanwoodDebugger_Tests */ = {
+		607FACE41AFB9204008FA782 /* Harlow_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "StanwoodDebugger_Tests" */;
+			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Harlow_Tests" */;
 			buildPhases = (
 				DE9495F472BE9866C00B7898 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
@@ -317,9 +325,9 @@
 			dependencies = (
 				607FACE71AFB9204008FA782 /* PBXTargetDependency */,
 			);
-			name = StanwoodDebugger_Tests;
+			name = Harlow_Tests;
 			productName = Tests;
-			productReference = 607FACE51AFB9204008FA782 /* StanwoodDebugger_Tests.xctest */;
+			productReference = 607FACE51AFB9204008FA782 /* Harlow_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -345,7 +353,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "StanwoodDebugger" */;
+			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Harlow" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -359,8 +367,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				607FACCF1AFB9204008FA782 /* StanwoodDebugger_Example */,
-				607FACE41AFB9204008FA782 /* StanwoodDebugger_Tests */,
+				607FACCF1AFB9204008FA782 /* Harlow_Example */,
+				607FACE41AFB9204008FA782 /* Harlow_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -401,24 +409,24 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-StanwoodDebugger_Example/Pods-StanwoodDebugger_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Harlow_Example/Pods-Harlow_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Harlow/Harlow.framework",
 				"${BUILT_PRODUCTS_DIR}/Pulsator/Pulsator.framework",
 				"${BUILT_PRODUCTS_DIR}/SourceModel/SourceModel.framework",
 				"${BUILT_PRODUCTS_DIR}/StanwoodCore/StanwoodCore.framework",
-				"${BUILT_PRODUCTS_DIR}/StanwoodDebugger/StanwoodDebugger.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Harlow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulsator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SourceModel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StanwoodCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StanwoodDebugger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StanwoodDebugger_Example/Pods-StanwoodDebugger_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Harlow_Example/Pods-Harlow_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C482FB05DEBDF2AE5DA44852 /* [CP] Check Pods Manifest.lock */ = {
@@ -432,7 +440,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-StanwoodDebugger_Example-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Harlow_Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -450,7 +458,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-StanwoodDebugger_Tests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Harlow_Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -491,7 +499,7 @@
 /* Begin PBXTargetDependency section */
 		607FACE71AFB9204008FA782 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 607FACCF1AFB9204008FA782 /* StanwoodDebugger_Example */;
+			target = 607FACCF1AFB9204008FA782 /* Harlow_Example */;
 			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -617,7 +625,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65CC5593567DABE1E1A8E37C /* Pods-StanwoodDebugger_Example.debug.xcconfig */;
+			baseConfigurationReference = B9A58CACCA0DA4FCD3A83671 /* Pods-Harlow_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -628,7 +636,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "StanwoodDebugger/StanwoodDebugger_Example-Bridging-Header-DEBUG.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "StanwoodDebugger/Harlow_Example-Bridging-Header-DEBUG.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.2;
@@ -637,7 +645,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46FEBF1507183EAB8371E0F9 /* Pods-StanwoodDebugger_Example.release.xcconfig */;
+			baseConfigurationReference = F0AFC980860B43CDBFF2F15F /* Pods-Harlow_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -655,7 +663,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88753D26D2805B63EAE6D1B1 /* Pods-StanwoodDebugger_Tests.debug.xcconfig */;
+			baseConfigurationReference = 09328F2CC96F7B664611E652 /* Pods-Harlow_Tests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = ZC4L7BE562;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -677,7 +685,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 336996636B23604025BAA6DF /* Pods-StanwoodDebugger_Tests.release.xcconfig */;
+			baseConfigurationReference = 2DB4C518B8C62579D042055E /* Pods-Harlow_Tests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = ZC4L7BE562;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -696,7 +704,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "StanwoodDebugger" */ = {
+		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Harlow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACED1AFB9204008FA782 /* Debug */,
@@ -705,7 +713,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "StanwoodDebugger_Example" */ = {
+		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Harlow_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACF01AFB9204008FA782 /* Debug */,
@@ -714,7 +722,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "StanwoodDebugger_Tests" */ = {
+		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Harlow_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACF31AFB9204008FA782 /* Debug */,

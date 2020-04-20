@@ -8,7 +8,7 @@
 
 import UIKit
 #if DEBUG
-import StanwoodDebugger
+import Harlow
 #endif
 
 @UIApplicationMain
