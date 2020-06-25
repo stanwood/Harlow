@@ -45,7 +45,8 @@ class DebuggerPresenter {
     }
     
     func presentDetailView(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion) {
-        actionable.presentListView(with: filter, completion: completion)
+        let settingsData = SettingsData(isDataPersistenceEnabled: debugger.isDebuggingDataPersistenceEneabled)
+        actionable.presentListView(settingsData: settingsData, with: filter, completion: completion)
     }
     
     func presentScaled(_ view: DebuggerScallableView) {

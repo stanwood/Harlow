@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Harlow'
-  s.version          = '1.3.1'
+  s.version          = '1.4'
   s.summary          = 'Harlow provide live view debugging'
   s.description      = <<-DESC
     Live debugger for:
@@ -38,7 +38,6 @@ Pod::Spec.new do |s|
   }
 
   s.dependency 'Pulsator'
-  s.dependency 'StanwoodCore'
   s.dependency 'SourceModel'
   s.dependency 'Toast-Swift', '~> 4.0.1'
 end

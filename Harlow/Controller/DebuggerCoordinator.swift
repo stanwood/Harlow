@@ -59,7 +59,7 @@ class DebuggerCoordinator {
     
     // MARK: - List View
     
-    func presentListView(with filter: DebuggerFilterView.DebuggerFilter, animated: Bool = false, completion: @escaping Completion) {
+    func presentListView(settingsData: SettingsData, with filter: DebuggerFilterView.DebuggerFilter, animated: Bool = false, completion: @escaping Completion) {
         
         let title = "Debugger"
         
@@ -70,7 +70,7 @@ class DebuggerCoordinator {
         
         // Settings Nav Controller
         let settingsControllers = SettingsWireframe.makeViewController(withTitle: title)
-        SettingsWireframe.prepare(settingsControllers.viewController, with: actionable, paramaterable)
+        SettingsWireframe.prepare(settingsControllers.viewController, with: actionable, paramaterable, settingsData: settingsData)
         
         let tabBarController = DebuggerUITabBarController()
         tabBarController.setViewControllers([

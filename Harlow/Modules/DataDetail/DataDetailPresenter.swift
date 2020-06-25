@@ -24,14 +24,14 @@
 //  THE SOFTWARE.
 //
 
-import StanwoodCore
+
 
 protocol DataDetailViewable: class {
     var navigationBarTitle: String? { get set }
     func show(_ networkData: NetworkData)
 }
 
-class DataDetailPresenter: Presentable {
+class DataDetailPresenter {
     
     // MARK:- Properties
     

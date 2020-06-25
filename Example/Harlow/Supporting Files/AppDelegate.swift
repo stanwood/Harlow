@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         #if DEBUG
+        debugger.isDebuggingDataPersistenceEneabled = false
         debugger.errorCodesExceptions = [4097]
         debugger.isEnabled = true
         #endif

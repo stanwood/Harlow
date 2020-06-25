@@ -27,7 +27,7 @@
 import Foundation
 
 protocol DebuggerActionable {
-    func presentListView(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion)
+    func presentListView(settingsData: SettingsData, with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion)
     func presentScaleable(_ view: DebuggerScallableView)
     
     /// Handled in ListActionable
@@ -36,8 +36,8 @@ protocol DebuggerActionable {
 
 extension DebuggerActions: DebuggerActionable {
     
-    func presentListView(with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion) {
-        coordinator?.presentListView(with: filter, completion: completion)
+    func presentListView(settingsData: SettingsData, with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion) {
+        coordinator?.presentListView(settingsData: settingsData, with: filter, completion: completion)
     }
     
     func presentScaleable(_ view: DebuggerScallableView) {

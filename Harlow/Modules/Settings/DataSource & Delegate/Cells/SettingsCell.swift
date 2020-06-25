@@ -26,14 +26,14 @@
 
 import UIKit
 import SourceModel
-import StanwoodCore
+
 
 protocol SettingsCellDelegate: class {
     func switchDidChange(to value: Bool, for type: SettingsData.Section.SettingType)
     func didTapAction(_ type: SettingsData.Section.SettingType)
 }
 
-class SettingsCell: Stanwood.AutoSizeableCell, Fillable {
+class SettingsCell: AutoSizeableCell, Fillable {
 
     @IBOutlet private weak var actionButton: UIButton!
     @IBOutlet private weak var switchButton: UISwitch!
@@ -42,7 +42,9 @@ class SettingsCell: Stanwood.AutoSizeableCell, Fillable {
     private var type: SettingsData.Section.SettingType?
     weak var delegate: SettingsCellDelegate?
     
-    override func prepare() {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    
         actionButton.setTitle(nil, for: .normal)
         switchButton.onTintColor = Harlow.Style.tintColor
         

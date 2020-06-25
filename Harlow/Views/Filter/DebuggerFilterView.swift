@@ -25,7 +25,7 @@
 //
 
 import Foundation
-import StanwoodCore
+
 
 protocol DebuggerFilterViewDelegate: class {
     func debuggerFilterViewDidFilter(_ filter: DebuggerFilterView.DebuggerFilter)
@@ -80,7 +80,7 @@ class DebuggerFilterView: UIView {
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
         
-        main(deadline: .milliseconds(50)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .microseconds(50)) {
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
     }

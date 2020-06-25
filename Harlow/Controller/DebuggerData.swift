@@ -3,7 +3,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2018 Stanwood GmbH (www.stanwood.io)
+//  Copyright (c) 2018 Stanwood GmbH (www.io)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 //
 
 import Foundation
-import StanwoodCore
+import SourceModel
 
 struct AddedItem {
     let type: DebuggerFilterView.DebuggerFilter
@@ -39,6 +39,9 @@ class DebuggerData {
     var logItems: LogItems
     var crashItems: CrashItems
     var errorItems: ErrorItems
+    var isDebuggingDataPersistenceEneabled: Bool = false
+    
+    private var operations: OperationQueue = OperationQueue()
     
     private lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -53,43 +56,47 @@ class DebuggerData {
     }()
     
     init() {
-        if let items = try? Stanwood.Storage.retrieve(AnalyticItems.fileName, of: .json, from: .documents(customDirectory: nil), as: AnalyticItems.self) {
-            analyticsItems = items ?? AnalyticItems(items: [])
+        
+        operations.isSuspended = false
+        operations.maxConcurrentOperationCount = 1
+        
+        if let items = try? Storage.retrieve(AnalyticItems.fileName, of: .json, from: .documents(customDirectory: nil), as: AnalyticItems.self) {
+            analyticsItems = items
         } else {
             analyticsItems = AnalyticItems(items: [])
         }
         
-        if let items = try? Stanwood.Storage.retrieve(NetworkItems.fileName, of: .json, from: .documents(customDirectory: nil), as: NetworkItems.self) {
-            networkingItems = items ?? NetworkItems(items: [])
+        if let items = try? Storage.retrieve(NetworkItems.fileName, of: .json, from: .documents(customDirectory: nil), as: NetworkItems.self) {
+            networkingItems = items
         } else {
             networkingItems = NetworkItems(items: [])
         }
         
-        if let items = try? Stanwood.Storage.retrieve(LogItems.fileName, of: .json, from: .documents(customDirectory: nil), as: LogItems.self) {
-            logItems = items ?? LogItems(items: [])
+        if let items = try? Storage.retrieve(LogItems.fileName, of: .json, from: .documents(customDirectory: nil), as: LogItems.self) {
+            logItems = items
         } else {
             logItems = LogItems(items: [])
         }
         
-        if let items = try? Stanwood.Storage.retrieve(ErrorItems.fileName, of: .json, from: .documents(customDirectory: nil), as: ErrorItems.self) {
-            errorItems = items ?? ErrorItems(items: [])
+        if let items = try? Storage.retrieve(ErrorItems.fileName, of: .json, from: .documents(customDirectory: nil), as: ErrorItems.self) {
+            errorItems = items
         } else {
             errorItems = ErrorItems(items: [])
         }
         
-        if let items = try? Stanwood.Storage.retrieve(CrashItems.fileName, of: .json, from: .documents(customDirectory: nil), as: CrashItems.self) {
-            crashItems = items ?? CrashItems(items: [])
+        if let items = try? Storage.retrieve(CrashItems.fileName, of: .json, from: .documents(customDirectory: nil), as: CrashItems.self) {
+            crashItems = items
         } else {
             crashItems = CrashItems(items: [])
         }
         
         NotificationCenter.default.addObservers(self, observers:
-            Stanwood.Observer(selector: #selector(didReceiveAnalyticsItem(_:)), name: .DebuggerDidReceiveAnalyticsItem),
-                                                Stanwood.Observer(selector: #selector(didReceiveLogItem(_:)), name: .DeuggerDidReceiveLogItem),
-                                                Stanwood.Observer(selector: #selector(save), name: UIApplication.willTerminateNotification),
-                                                Stanwood.Observer(selector: #selector(didReceiveErrorItem(_:)), name: .DeuggerDidReceiveErrorItem),
-                                                Stanwood.Observer(selector: #selector(didReceiveCrashItem(_:)), name: .DeuggerDidReceiveCrashItem),
-                                                Stanwood.Observer(selector: #selector(didReceiveNetworkingItem(_:)), name: .DeuggerDidReceiveNetworkingItem)
+            Observer(selector: #selector(didReceiveAnalyticsItem(_:)), name: .DebuggerDidReceiveAnalyticsItem),
+                                                Observer(selector: #selector(didReceiveLogItem(_:)), name: .DeuggerDidReceiveLogItem),
+                                                Observer(selector: #selector(save), name: UIApplication.willTerminateNotification),
+                                                Observer(selector: #selector(didReceiveErrorItem(_:)), name: .DeuggerDidReceiveErrorItem),
+                                                Observer(selector: #selector(didReceiveCrashItem(_:)), name: .DeuggerDidReceiveCrashItem),
+                                                Observer(selector: #selector(didReceiveNetworkingItem(_:)), name: .DeuggerDidReceiveNetworkingItem)
         )
     }
     
@@ -129,7 +136,7 @@ class DebuggerData {
         
         let addedIems: [AddedItem] = [AddedItem(type: .analytics, count: analyticsItems.numberOfItems)]
         
-        main {
+        DispatchQueue.main.async {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
         }
@@ -138,12 +145,18 @@ class DebuggerData {
     @objc func didReceiveErrorItem(_ notification: Notification) {
         guard let item = notification.object as? ErrorItem else { assert(false); return }
         
-        errorItems.append(item)
-        errorItems.move(item, to: 0)
+        let operation = BlockOperation {
+            [weak self] in
+            guard let self = self else { return }
+            self.errorItems.append(item)
+            self.errorItems.move(item, to: 0)
+        }
+        
+        operations.addOperation(operation)
         
         let addedIems: [AddedItem] = [AddedItem(type: .error(item: nil), count: errorItems.numberOfItems)]
         
-        main {
+        DispatchQueue.main.async {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendErrorItem, object: nil)
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
         }
@@ -157,7 +170,7 @@ class DebuggerData {
         
         let addedIems: [AddedItem] = [AddedItem(type: .networking(item: nil), count: networkingItems.numberOfItems)]
         
-        main {
+        DispatchQueue.main.async {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendAnalyticsItem, object: nil)
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
         }
@@ -171,7 +184,7 @@ class DebuggerData {
         
         let addedIems: [AddedItem] = [AddedItem(type: .logs, count: logItems.numberOfItems)]
     
-        main {
+        DispatchQueue.main.async {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendLogItem, object: nil)
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
         }
@@ -186,42 +199,42 @@ class DebuggerData {
         let addedIems: [AddedItem] = [AddedItem(type: .crashes(item: nil), count: crashItems.numberOfItems)]
         store(type: .crashes)
         
-        main {
+        DispatchQueue.main.async {
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAppendCrashItem, object: nil)
             NotificationCenter.default.post(name: NSNotification.Name.DebuggerDidAddDebuggerItem, object: addedIems)
         }
     }
     
     @objc func save() {
-        
         for type in DebuggerIconLabel.DebuggerIcons.allCases {
             self.store(type: type)
         }
     }
     
     func store(type: DebuggerIconLabel.DebuggerIcons) {
-
+        guard isDebuggingDataPersistenceEneabled else { return }
+        
         switch type {
         case .analytics:
             if DebuggerSettings.shouldStoreAnalyticsData {
-                try? Stanwood.Storage.store(analyticsItems, to: .documents(customDirectory: nil), as: .json, withName: AnalyticItems.fileName)
+                try? Storage.store(analyticsItems, to: .documents(customDirectory: nil), as: .json, withName: AnalyticItems.fileName)
             }
         case .logs:
             if DebuggerSettings.shouldStoreLogsData {
-                try? Stanwood.Storage.store(logItems, to: .documents(customDirectory: nil), as: .json, withName: LogItems.fileName)
+                try? Storage.store(logItems, to: .documents(customDirectory: nil), as: .json, withName: LogItems.fileName)
             }
         case .crashes:
             if DebuggerSettings.shouldStoreCrashesData {
-                try? Stanwood.Storage.store(crashItems, to: .documents(customDirectory: nil), as: .json, withName: CrashItems.fileName)
+                try? Storage.store(crashItems, to: .documents(customDirectory: nil), as: .json, withName: CrashItems.fileName)
             }
 
         case .error:
             if DebuggerSettings.shouldStoreErrorData {
-                try? Stanwood.Storage.store(errorItems, to: .documents(customDirectory: nil), as: .json, withName: ErrorItems.fileName)
+                try? Storage.store(errorItems, to: .documents(customDirectory: nil), as: .json, withName: ErrorItems.fileName)
             }
         case .networking:
             if DebuggerSettings.shouldStoreNetworkingData {
-                try? Stanwood.Storage.store(networkingItems, to: .documents(customDirectory: nil), as: .json, withName: NetworkItems.fileName)
+                try? Storage.store(networkingItems, to: .documents(customDirectory: nil), as: .json, withName: NetworkItems.fileName)
             }
         }
     }

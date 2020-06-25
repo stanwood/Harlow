@@ -55,11 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ### Other options
 
 ```swift
+debugger.isDebuggingDataPersistenceEneabled = true /// Enables local data persistance
 debugger.enabledServices: [Service] = [.logs, .errors] /// The services you would like to enable. Default is se to `allCases`
 debugger.tintColor = .red /// Change the tint color
 debugger.errorCodesExceptions = [4097] /// Add error code exceptions
-debugger.isEnabled = true
 debugger.isShakeEnabled = true // Defaults to `true`. When this is `true`, shaking the device will enable/disable the Debugger
+debugger.isEnabled = true
 ```
 
 ## Adding logs

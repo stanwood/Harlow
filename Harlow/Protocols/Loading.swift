@@ -26,13 +26,13 @@
 
 import Foundation
 
-protocol Loading { }
+public protocol Loading { }
 
 extension UIView: Loading { }
 
 extension Loading where Self: UIView {
     
-    static func loadFromNib(withFrame frame: CGRect? = nil, bundle: Bundle = Bundle.main) -> Self? {
+    public static func loadFromNib(withFrame frame: CGRect? = nil, bundle: Bundle = Bundle.main) -> Self? {
         guard let view = bundle.loadNibNamed(staticIdentifier, owner: nil, options: nil)?.last as? Self else { return nil }
         view.frame = frame ?? view.frame
         return view
@@ -44,7 +44,7 @@ extension Loading where Self: UIView {
      - bundle: default = Bundle.main
      */
     @discardableResult
-    func loadFromOutlet<T: UIView>(bundle: Bundle = Bundle.main) -> T? {
+    public func loadFromOutlet<T: UIView>(bundle: Bundle = Bundle.main) -> T? {
         guard let view = bundle.loadNibNamed(identifier, owner: self, options: nil)?.first as? T else { return nil }
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false

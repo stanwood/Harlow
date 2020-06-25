@@ -26,7 +26,7 @@
 
 import Foundation
 import Toast_Swift
-import StanwoodCore
+
 
 protocol DebuggerViewable: class {
     var debuggerScallableView: DebuggerScallableView? { get set }
@@ -56,7 +56,7 @@ class DebuggerViewController: UIViewController, DebuggerViewable {
             debuggerButton.shake(toward: .right, amount: 0.18, duration: 1.5, delay: 0.5)
             
             // Toast
-            main {
+            DispatchQueue.main.async {
                 var style = ToastStyle(); style.backgroundColor = Harlow.Style.tintColor
                 let toast = try? self.view.toastViewForMessage("Shake me to dismiss the Debugger", title: nil, image: nil, style: style)
                 let screen = UIApplication.shared.keyWindow?.rootViewController?.topMostViewController()

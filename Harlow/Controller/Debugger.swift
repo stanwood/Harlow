@@ -29,6 +29,7 @@ import Foundation
 protocol Debugging: class {
     var isEnabled: Bool { get set }
     var isDisplayed: Bool { get set }
+    var isDebuggingDataPersistenceEneabled: Bool { get set }
 }
 
 /// Harlow acts as the framework controller, delegating logs
@@ -55,6 +56,13 @@ public class Harlow: Debugging {
     public var errorCodesExceptions: [Int] = [] {
         didSet {
             DebuggerNSError.errorCodesExceptions = errorCodesExceptions
+        }
+    }
+    
+    /// Set to `true` to enable data persistence of services logs
+    public var isDebuggingDataPersistenceEneabled: Bool = false {
+        didSet {
+            appData.isDebuggingDataPersistenceEneabled = self.isDebuggingDataPersistenceEneabled
         }
     }
     

@@ -25,13 +25,13 @@
 //
 
 import SourceModel
-import StanwoodCore
+
 
 protocol ErrorViewable: class {
     func setupTableView(modelCollection: ModelCollection?)
 }
 
-class ErrorPresenter: Presentable {
+class ErrorPresenter {
     
     // MARK:- Properties
     
