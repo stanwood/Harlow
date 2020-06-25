@@ -33,12 +33,23 @@ class SettingsData: ModelCollection {
         return sections[0].numberOfItems
     }
     
-    var sections: [Section] = [
-        Section(withType: .information),
-        Section(withType: .data),
-        Section(withType: .animation),
-        Section(withType: .settings)
-    ]
+    var sections: [Section]
+    
+    init(isDataPersistenceEnabled: Bool) {
+        if isDataPersistenceEnabled {
+            sections = [
+                Section(withType: .information),
+                Section(withType: .animation),
+                Section(withType: .data),
+                Section(withType: .settings)
+            ]
+        } else {
+            sections = [
+                Section(withType: .information),
+                Section(withType: .animation),
+            ]
+        }
+    }
     
     var numberOfSections: Int {
         return sections.count
@@ -127,7 +138,7 @@ class SettingsData: ModelCollection {
                 case .resetAll, .removeData, .removeAnalytics, .removeNetworking, .removeError, .removeLogs, .removeCrashes: return true
                 }
             }
-    
+            
             var hasSwitch: Bool {
                 switch type {
                 case .device, .version, .resetAll, .removeData, .removeAnalytics, .removeNetworking, .removeError, .removeLogs, .removeCrashes: return false
@@ -137,12 +148,11 @@ class SettingsData: ModelCollection {
             
             var title: String? {
                 
-                let device = UIDevice.current.type.rawValue
                 let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
                 let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
                 switch type {
-                case .device: return "Device: \(device)"
-                case .version: return "Version: \(version)(\(build))"
+                case .device: return "Device: unknown"
+                case .version: return "Version: \(version) (\(build))"
                 case .storeAnalytics: return "Save Analytics Information"
                 case .storeNetworking: return "Save Networking Information"
                 case .storeError: return "Save NSError Information"

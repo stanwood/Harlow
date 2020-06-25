@@ -26,7 +26,7 @@
 
 import Foundation
 import Pulsator
-import StanwoodCore
+
 
 class DebuggerUIButton: UIButton {
     
@@ -142,7 +142,7 @@ class DebuggerUIButton: UIButton {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panning(_:)))
         addGestureRecognizer(pan)
         
-        NotificationCenter.default.addObservers(self, observers: Stanwood.Observer(selector: #selector(didAddDebuggerItem(_:)), name: Notification.Name.DebuggerDidAddDebuggerItem))
+        NotificationCenter.default.addObservers(self, observers: Observer(selector: #selector(didAddDebuggerItem(_:)), name: Notification.Name.DebuggerDidAddDebuggerItem))
     }
     
     func preparePulse() {
@@ -176,8 +176,8 @@ class DebuggerUIButton: UIButton {
             let position = Positions.position(for: center)
             pulsator.position = position.origin
             
-            main {
-                Stanwood.FeedbackGenerator.generate(style: .light)
+            DispatchQueue.main.async {
+                FeedbackGenerator.generate(style: .light)
             }
             
             UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
@@ -214,11 +214,13 @@ class DebuggerUIButton: UIButton {
     }
     
     private func animate(_ icon: DebuggerIconLabel.DebuggerIcons) {
-        main(deadline: .milliseconds(500)) { [weak self] in
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            [weak self]  in
             guard let `self` = self else { return }
             
             // Generating vibration feedback
-            Stanwood.FeedbackGenerator.generate(style: .light)
+            FeedbackGenerator.generate(style: .light)
             
             // Animating the icon
             guard !self.debugger.isDisplayed, DebuggerSettings.isDebuggerItemIconsAnimationEnabled else { return }

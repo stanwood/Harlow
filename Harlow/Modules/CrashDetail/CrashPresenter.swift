@@ -25,14 +25,14 @@
 //
 
 import SourceModel
-import StanwoodCore
+
 
 protocol CrashViewable: class {
     var navigationBarTitle: String? { get set }
     func setupTableView(modelCollection: ModelCollection?)
 }
 
-class CrashPresenter: Presentable {
+class CrashPresenter {
 
     // MARK:- Properties
     

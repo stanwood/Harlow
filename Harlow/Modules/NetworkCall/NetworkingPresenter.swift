@@ -25,13 +25,13 @@
 //
 
 import SourceModel
-import StanwoodCore
+
 
 protocol NetworkingViewable: class {
     func setupTableView(modelCollection: ModelCollection?)
 }
 
-class NetworkingPresenter: Presentable {
+class NetworkingPresenter {
     
     // MARK:- Properties
     

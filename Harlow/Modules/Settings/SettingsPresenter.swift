@@ -25,13 +25,13 @@
 //
 
 import Foundation
-import StanwoodCore
+
 
 protocol SettingsViewable: class {
     
 }
 
-class SettingsPresenter: Presentable {
+class SettingsPresenter {
     
     typealias DataSource = SettingsDataSource
     typealias Delegate = SettingsDelegate
@@ -45,9 +45,7 @@ class SettingsPresenter: Presentable {
     var parameters: SettingsParameterable
     weak var view: SettingsViewable?
     
-    private var settingsData = SettingsData()
-    
-    required init(actions: SettingsActionable, parameters: SettingsParameterable, view: SettingsViewable) {
+    required init(actions: SettingsActionable, parameters: SettingsParameterable, view: SettingsViewable, settingsData: SettingsData) {
         self.actions = actions
         self.parameters = parameters
         self.view = view

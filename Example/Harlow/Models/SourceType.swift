@@ -141,7 +141,7 @@ class CrashExample: NSObject, Model, Codable, ActionItemable {
         case .crash:
             self.perform(Selector(("missingSelector")), with: nil, afterDelay: 0.0)
         case .signal:
-            (self.type as! UIView)
+            let _ = self.type as! UIView
         }
     }
 }

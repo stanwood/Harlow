@@ -26,7 +26,6 @@
 
 import Foundation
 import SourceModel
-import StanwoodCore
 
 struct StackItem: Typeable, Codable {
     let text: String
@@ -67,13 +66,13 @@ struct CrashItem: Typeable, Codable, Recordable {
     let date: Date
     let signal: Int32?
     let stack: [StackItem]
-    let exception: Stanwood.CodingBridge<NSException>?
+    let exception: CodingBridge<NSException>?
     let type: CrashType
     let appInfo: String
 
     init(exception: NSException, appInfo: String) {
         self.stack = exception.callStackSymbols.map { StackItem(text: $0) }
-        self.exception = Stanwood.CodingBridge<NSException>(exception)
+        self.exception = CodingBridge<NSException>(exception)
         self.signal = nil
         self.type = .exception
         self.date = Date()
