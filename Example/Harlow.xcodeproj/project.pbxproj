@@ -68,6 +68,7 @@
 		13188422244D64B500A44BE7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		13188429244D64EF00A44BE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1318842B244D64EF00A44BE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		13DCCD6025F7BD0E00545176 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 		2DB4C518B8C62579D042055E /* Pods-Harlow_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Harlow_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Harlow_Tests/Pods-Harlow_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		2F50920E66D3E4454EC1A82A /* Harlow.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Harlow.podspec; path = ../Harlow.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		336996636B23604025BAA6DF /* Pods-StanwoodDebugger_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StanwoodDebugger_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StanwoodDebugger_Tests/Pods-StanwoodDebugger_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -191,9 +192,18 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		13DCCD5F25F7BCF100545176 /* Swift Package */ = {
+			isa = PBXGroup;
+			children = (
+				13DCCD6025F7BD0E00545176 /* Package.swift */,
+			);
+			name = "Swift Package";
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				13DCCD5F25F7BCF100545176 /* Swift Package */,
 				13124D5423EDB455004F461F /* Asseets */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for Harlow */,

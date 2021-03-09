@@ -1,5 +1,5 @@
 PODS:
-  - Harlow (1.4):
+  - Harlow (1.4.1):
     - Pulsator
     - SourceModel
     - Toast-Swift (~> 4.0.1)
@@ -21,11 +21,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Harlow: 9bcaf027fa29a9c27df85df34a4bef039c943bd9
+  Harlow: b7fc9191d64c22942ceea85e55e68df650c175d4
   Pulsator: eb5a9f9be4bdcbd19903984c65deca6aabe50a17
   SourceModel: f8638583dfd8eef728769b8bc4124fdc3fa13b7c
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
 PODFILE CHECKSUM: 2c5b42ec1a563fd41c09368b7a007eadff3154ec
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1
