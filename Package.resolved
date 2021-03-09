@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Pulsator",
+        "repositoryURL": "https://github.com/shu223/Pulsator.git",
+        "state": {
+          "branch": null,
+          "revision": "144e160aa9ff75de5ab88a91d8a2767942d97836",
+          "version": "0.6.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
