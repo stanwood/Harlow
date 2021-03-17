@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Harlow'
-  s.version          = '1.4'
+  s.version          = '1.4.1'
   s.summary          = 'Harlow provide live view debugging'
   s.description      = <<-DESC
     Live debugger for:
@@ -20,24 +20,24 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '10.0'
 
   s.source_files = [
-    'Harlow/Controller/**/*',
-    'Harlow/Views/**/*',
-    'Harlow/Modules/**/*',
-    'Harlow/Model/**/*',
-    'Harlow/Protocols/**/*',
-    'Harlow/Extensions/**/*'
+    'Sources/Harlow/Controller/**/*',
+    'Sources/Harlow/Views/**/*',
+    'Sources/Harlow/Modules/**/*',
+    'Sources/Harlow/Model/**/*',
+    'Sources/Harlow/Protocols/**/*',
+    'Sources/Harlow/Extensions/**/*'
   ]
   
   s.resource_bundles = {
       'Harlow' => [
-      'Harlow/Assets/*',
-      'Harlow/Resources/*',
-      'Harlow/Views/**/*.xib',
-      'Harlow/Modules/**/*.xib'
+      'Sources/Harlow/Assets/*',
+      'Sources/Harlow/Resources/*',
+      'Sources/Harlow/Views/**/*.xib',
+      'Sources/Harlow/Modules/**/*.xib'
       ]
   }
 
   s.dependency 'Pulsator'
   s.dependency 'SourceModel'
-  s.dependency 'Toast-Swift', '~> 4.0.1'
+  s.dependency 'Loaf'
 end
