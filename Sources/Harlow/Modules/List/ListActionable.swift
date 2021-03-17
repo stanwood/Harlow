@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ListActionable {
     func refresh(withDelay delay: DispatchTimeInterval)

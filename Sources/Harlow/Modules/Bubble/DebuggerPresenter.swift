@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ItemPresentable: class {
     func present(item: Recordable)

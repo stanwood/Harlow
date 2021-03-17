@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import UIKit
 //
 //typealias Itemable = Item & Codable
 //typealias CellFilling = UITableViewCell & Filling

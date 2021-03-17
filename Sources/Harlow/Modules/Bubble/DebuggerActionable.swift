@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol DebuggerActionable {
     func presentListView(settingsData: SettingsData, with filter: DebuggerFilterView.DebuggerFilter, completion: @escaping Completion)

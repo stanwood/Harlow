@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import UIKit
 
 public func debugPrint(_ items: Any...) {
     let output = items.map { "\($0)" }.joined(separator: " ") + "\n"

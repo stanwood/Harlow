@@ -24,6 +24,7 @@
 //  THE SOFTWARE.
 
 import Foundation
+import UIKit
 
 
 /// A convinient observer class to add observers to `NotificationCenter`

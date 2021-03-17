@@ -1,5 +1,5 @@
 PODS:
-  - Harlow (1.4.1):
+  - Harlow (1.4.2):
     - Loaf
     - Pulsator
     - SourceModel
@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Harlow: fb2077764fcd6a5f2056bfd5c093007476f08d45
+  Harlow: 36a35bf209e90f9842ca9e8e078e043542959342
   Loaf: d69937cd00649f3fa260beb8b7aef0a1feb861ef
   Pulsator: eb5a9f9be4bdcbd19903984c65deca6aabe50a17
   SourceModel: f8638583dfd8eef728769b8bc4124fdc3fa13b7c

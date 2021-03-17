@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ListViewable: class {
     var filterView: DebuggerFilterView! { get set }

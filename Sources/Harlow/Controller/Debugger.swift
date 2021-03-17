@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol Debugging: class {
     var isEnabled: Bool { get set }

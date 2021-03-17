@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension UserDefaults {
     static var isHintShown: Bool {

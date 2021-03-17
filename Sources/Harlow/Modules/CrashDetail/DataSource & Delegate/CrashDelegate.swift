@@ -25,6 +25,7 @@
 //
 
 import SourceModel
+import UIKit
 
 class CrashDelegate: TableDelegate {
 
