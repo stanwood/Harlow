@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol DebuggerWindowDelegate: class {
     func isPoint(inside point: CGPoint) -> Bool

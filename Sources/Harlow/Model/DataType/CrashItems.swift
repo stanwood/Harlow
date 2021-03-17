@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import UIKit
 import SourceModel
 
 class CrashItems: Elements<CrashItem> {

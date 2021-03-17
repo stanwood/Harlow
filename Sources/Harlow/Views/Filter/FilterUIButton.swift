@@ -25,7 +25,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 class FilterUIButton: UIButton {
     

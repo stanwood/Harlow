@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Harlow'
-  s.version          = '1.4.1'
+  s.version          = '1.4.2'
   s.summary          = 'Harlow provide live view debugging'
   s.description      = <<-DESC
     Live debugger for:

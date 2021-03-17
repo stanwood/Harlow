@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import UIKit
 
 class DebuggerSettings {
     

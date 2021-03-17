@@ -25,5 +25,6 @@
 //
 
 import Foundation
+import UIKit
 
 protocol Recordable {}

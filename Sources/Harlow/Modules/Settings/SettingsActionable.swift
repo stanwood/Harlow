@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SettingsActionable {
     func switchDidChange(to value: Bool, for type: SettingsData.Section.SettingType)

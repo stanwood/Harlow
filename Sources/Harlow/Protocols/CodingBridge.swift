@@ -24,6 +24,7 @@
 //  THE SOFTWARE.
 
 import Foundation
+import UIKit
 
 
 /// Coding bridge is a helper struct that bridge NSCoding and Codable objects

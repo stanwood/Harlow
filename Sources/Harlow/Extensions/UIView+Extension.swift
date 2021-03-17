@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// Source: https://github.com/okakaino/InnerShadowTest
 

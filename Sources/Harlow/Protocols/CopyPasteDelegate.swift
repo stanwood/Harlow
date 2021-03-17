@@ -24,6 +24,8 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
+
 protocol CopyPasteDelegate: class {
     func didCopy(text: String, sender: UIView)
 }
