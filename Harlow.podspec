@@ -39,5 +39,5 @@ Pod::Spec.new do |s|
 
   s.dependency 'Pulsator'
   s.dependency 'SourceModel'
-  s.dependency 'Toast-Swift', '~> 4.0.1'
+  s.dependency 'Loaf'
 end

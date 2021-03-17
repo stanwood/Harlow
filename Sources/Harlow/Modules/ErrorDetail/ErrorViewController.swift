@@ -26,6 +26,7 @@
 
 import UIKit
 import SourceModel
+import Loaf
 
 class ErrorViewController: UIViewController, SourceTypePresentable {
 
@@ -87,6 +88,6 @@ extension ErrorViewController: ErrorViewable {
 extension ErrorViewController: ErrorUserInfoCellDelegate {
     func didCopy(text: String) {
         UIPasteboard.general.string = text
-        view.makeToast("Copied user info to clipboard", duration: 3.0, position: .bottom)
+        Loaf("Copied user info to clipboard", state: .info, sender: self).show()
     }
 }

@@ -26,6 +26,7 @@
 
 import UIKit
 import SourceModel
+import Loaf
 
 class CrashViewController: UIViewController {
 
@@ -89,7 +90,7 @@ extension CrashViewController: CopyPasteDelegate {
 
     func didCopy(text: String, sender: UIView) {
         UIPasteboard.general.string = text
-        view.makeToast("Copied crash to clipboard", duration: 3.0, position: .bottom)
+        Loaf("Copied crash to clipboard", state: .success, sender: self).show()
     }
 
 }

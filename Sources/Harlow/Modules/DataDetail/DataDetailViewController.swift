@@ -26,6 +26,7 @@
 
 import UIKit
 import WebKit
+import Loaf
 
 class DataDetailViewController: UIViewController {
     
@@ -80,13 +81,12 @@ class DataDetailViewController: UIViewController {
     
     @objc func copyToClipboard(_ sender: UIButton) {
         guard let text = dataItem?.text, !text.isEmpty else {
-            
-            view.makeToast("No text to copy to clipboard", duration: 3.0, position: .bottom)
+            Loaf("No text to copy to clipboard", state: .success, sender: self).show()
             return
         }
         
         UIPasteboard.general.string = dataItem?.text
-        view.makeToast("Copied text to clipboard", duration: 3.0, position: .bottom)
+        Loaf("Copied text to clipboard", state: .success, sender: self).show()
     }
     
     fileprivate func present(htmlString: String, frame: CGRect) {

@@ -25,7 +25,7 @@
 //
 
 import Foundation
-import Toast_Swift
+import Loaf
 
 
 protocol DebuggerViewable: class {
@@ -57,11 +57,7 @@ class DebuggerViewController: UIViewController, DebuggerViewable {
             
             // Toast
             DispatchQueue.main.async {
-                var style = ToastStyle(); style.backgroundColor = Harlow.Style.tintColor
-                let toast = try? self.view.toastViewForMessage("Shake me to dismiss the Debugger", title: nil, image: nil, style: style)
-                let screen = UIApplication.shared.keyWindow?.rootViewController?.topMostViewController()
-                guard let toastDone = toast else { return }
-                screen?.view.showToast(toastDone)
+                Loaf("Shake me to dismiss the Debugger", state: .info, sender: self).show()
             }
         }
     }

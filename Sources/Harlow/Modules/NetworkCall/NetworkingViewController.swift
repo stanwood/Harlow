@@ -26,7 +26,7 @@
 
 import UIKit
 import SourceModel
-import Toast_Swift
+import Loaf
 
 class NetworkingViewController: UIViewController, SourceTypePresentable {
 
@@ -103,7 +103,7 @@ extension NetworkingViewController: CopyPasteDelegate {
             message = "Copied URL to clipboard"
         default: break
         }
-        view.makeToast(message, duration: 3.0, position: .bottom)
+        Loaf(message, state: .success, sender: self).show()
     }
 }
 
