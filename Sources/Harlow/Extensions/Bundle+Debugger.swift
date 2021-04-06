@@ -36,7 +36,10 @@ extension Bundle {
     static func debuggerBundle(from target: AnyClass) -> Bundle {
         let podBundle = Bundle(for:  target)
         guard let bundleURL = podBundle.url(forResource: "Harlow", withExtension: "bundle"),
-        let bundle = Bundle(url: bundleURL) else { fatalError("Must have a local bundle") }
+              let bundle = Bundle(url: bundleURL) else {
+            
+            return Bundle.module
+        }
         return bundle
     }
     

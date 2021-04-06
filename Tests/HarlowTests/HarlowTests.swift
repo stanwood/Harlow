@@ -1,5 +1,4 @@
 import XCTest
-@testable import Harlow
 
 final class HarlowTests: XCTestCase {
     func testExample() {

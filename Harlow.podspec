@@ -31,9 +31,7 @@ Pod::Spec.new do |s|
   s.resource_bundles = {
       'Harlow' => [
       'Sources/Harlow/Assets/*',
-      'Sources/Harlow/Resources/*',
-      'Sources/Harlow/Views/**/*.xib',
-      'Sources/Harlow/Modules/**/*.xib'
+      'Sources/Harlow/Resources/**/*.xib'
       ]
   }
 

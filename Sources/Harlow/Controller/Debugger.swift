@@ -24,6 +24,7 @@
 //  THE SOFTWARE.
 //
 
+#if !os(macOS)
 import Foundation
 import UIKit
 
@@ -232,3 +233,5 @@ extension UIApplication {
         }
     }
 }
+
+#endif
